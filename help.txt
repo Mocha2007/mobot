@@ -87,7 +87,7 @@ rpn (string)
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
-	|valid numbers are 0-0, inclusive
+	|valid numbers are 0-2, inclusive
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
