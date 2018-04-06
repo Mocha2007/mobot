@@ -61,6 +61,7 @@ special = {
 'ban':'u can\'t make me!!!',
 'hey google':'hey yourself faggot',
 'up':'five more minutes sky daddy',
+'you\'re matched':'say hello! ;)\nhttps://www.youtube.com/playlist?list=PLv6V4TpHURSCdQyK_naClw8c-LCoV_5nO',
 }
 
 xskey = [
