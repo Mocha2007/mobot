@@ -510,7 +510,7 @@ def sto(string):
 		return 'Success!'
 	elif arg[0] == 'get':
 		q = c(open("temp.txt", "r").read().split('\n'))
-		if q!='\n':return q
+		if q not in '\n ':return q
 
 	return sto('get')
 
