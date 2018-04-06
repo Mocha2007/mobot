@@ -375,10 +375,10 @@ def momath(string):
 		a = int(arg[1])
 		b = int(arg[2])
 		return int(abs(a*b)/gcd(a,b))
-	elif arg[0] == 'map':
-		a = list(map(float,arg[2:]))
-		f = arg[1]
-		return eval('list(map('+f+',a))')
+	#elif arg[0] == 'map':
+	#	a = list(map(float,arg[2:]))
+	#	f = arg[1]
+	#	return eval('list(map('+f+',a))')
 	elif arg[0] == 'max':
 		return max(map(float,arg[1:]))
 	elif arg[0] == 'mean':
