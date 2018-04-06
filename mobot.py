@@ -20,14 +20,16 @@ def help(command):
 	for i in range(len(doclines)):
 		begin = i
 		line = doclines[i]
+		if line[0]!='\t':lastmajor = line
 		if line[:clen] == command: # MAJOR command, not minor
 			depth = 1
 			break
 		elif line[:clen+1] == '\t'+command: # MINOR command, not major
 			depth = 2
 			break
+	if depth>1:relevant+=lastmajor+'\n' #print overcommand
 	while 1:
-		relevant += doclines[i][depth-1:]+'\n'
+		relevant += doclines[i]+'\n'
 		i+=1
 		try:
 			if doclines[i][:depth] != '\t'*depth:break # must be another command or end
