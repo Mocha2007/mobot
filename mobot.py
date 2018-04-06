@@ -692,7 +692,7 @@ async def on_message(message):
 	elif n.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
 	elif n.startswith(bot_prefix):
-		try:await client.send_message(message.channel, special[m[3:]]) # specials
+		try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
 		except KeyError:await client.send_message(message.channel,'me confufu uwu')
 
 print('Loaded')
