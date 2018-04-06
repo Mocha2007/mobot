@@ -564,11 +564,11 @@ def mbti(arg):
 		except IndexError:pass
 		except ValueError:pass
 
-	try:string+='Dom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
+	try:string+='\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
 	except IndexError:pass
 	except ValueError:pass
 
-	return '**'+arg.upper()+'**\n```\n'+string+'```'
+	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
 
 def coffee(arg):
 	coffees = {
