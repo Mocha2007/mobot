@@ -587,11 +587,12 @@ client = Bot(command_prefix = bot_prefix)
 @client.event
 async def on_message(message):
 	m = message.content
-	n = message.content.lower()
+	n = m.lower()
 
 	if message.content.startswith(bot_prefix):
-		print(message.content)
-		open("log.txt", "a").write(message.content+'\n')
+		loglook = str(message.timestamp)[:19]+' - '+str(message.author)+'\n\t'+message.content
+		print(loglook)
+		open("log.txt", "a").write(loglook+'\n')
 
 	if 'mobot' in m.lower():
 		try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
