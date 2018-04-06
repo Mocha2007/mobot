@@ -541,7 +541,8 @@ async def on_message(message):
 		open("log.txt", "a").write(message.content+'\n')
 
 	if 'mobot' in m.lower():
-		await client.send_message(message.channel, c(['das meee :3','hai!~']))
+		try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
+		except:pass
 
 	if m.lower() == 'owo':
 		await client.send_message(message.channel, '*What\'s this???*')
