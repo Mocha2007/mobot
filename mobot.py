@@ -652,7 +652,7 @@ async def on_message(message):
 		try:print(loglook)
 		except UnicodeEncodeError:
 			try:print(str(message.timestamp)[:19]+'\n\t'+message.content)
-			except UnicodeEncodeError:print(str(message.timestamp)[:19]+'[Unable to read message]')
+			except UnicodeEncodeError:print(str(message.timestamp)[:19]+' [Unable to read message]')
 		try:open("log.txt", "a").write(loglook+'\n')
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
