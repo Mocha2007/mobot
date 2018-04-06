@@ -30,7 +30,7 @@ def help(command):
 		relevant += doclines[i]+'\n'
 		i+=1
 		try:
-			if doclines[i][0] != '\t'*depth:break # must be another command or end
+			if doclines[i][:depth] != '\t'*depth:break # must be another command or end
 		except IndexError:break
 	return relevant+'```'
 
