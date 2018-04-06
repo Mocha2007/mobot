@@ -471,7 +471,8 @@ def moling(string):
 		except:m = 1
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'soundex':
-		return mochalang.soundex(arg[1])
+		try:return mochalang.soundex(arg[1])
+		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'
 	elif arg[0] == 'x-sampa':
 		return xsampa(arg[1])
 
