@@ -88,6 +88,15 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
+	|most operators perform as you would expect
+	|negation is done with ~
+	|s c t S C T = sin cos tan asin acos atan
+	|l L = ln(a) log_b(a)
+	|[ ] | = floor ceil abs
+	|stack manipulators:
+	|; = pop top of stack
+	|@ = move top of stack to bottom
+	|\ = swap top two of stack
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
