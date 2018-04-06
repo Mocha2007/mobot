@@ -6,7 +6,7 @@ import discord
 from random import choice as c
 from math import acos,asin,atan,ceil,cos,floor,gcd,hypot,log,pi,sin,tan
 from time import time
-import mochaastro,mochalang,mochamath
+import mochaastro,mochalang,mochamath,mochastargen
 
 # CODE SHIT
 def help():
@@ -424,6 +424,12 @@ def moastro(string):
 		m = float(arg[1])
 		s = mochaastro.star(m)
 		return '```\nMass: '+str(m)+' kg\nRadius: '+str(s[0])+' m\nLuminosity: '+str(s[1])+' W\nTemperature: '+str(s[2])+' K\nLifespan: '+str(s[3])+' s```'
+	elif arg[0] == 'stargen':
+		try:
+			m = float(arg[1])
+			return mochastargen.stargen(m)
+		except IndexError:return mochastargen.stargen('r')
+		except ValueError:return mochastargen.stargen('r')
 	elif arg[0] == 'synodic':
 		a = float(arg[1])
 		b = float(arg[2])
