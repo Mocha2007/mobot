@@ -435,9 +435,7 @@ def moastro(string):
 def moling(string):
 	arg = string.split(' ')
 
-	if arg[0] == 'soundex':
-		return mochalang.soundex(arg[1])
-	elif arg[0] == 'ipa':
+	if arg[0] == 'ipa':
 		if arg[1] == 'en':
 			return mochalang.ipa(arg[2])
 		elif arg[1] == 'de':
@@ -452,6 +450,10 @@ def moling(string):
 			return mochalang.italianipa(arg[2])
 		elif arg[1] == 'po':
 			return mochalang.polishipa(arg[2])
+	elif arg[0] == 'scrabble':
+		return mochalang.scrabble(arg[1])
+	elif arg[0] == 'soundex':
+		return mochalang.soundex(arg[1])
 	elif arg[0] == 'x-sampa':
 		return xsampa(arg[1])
 

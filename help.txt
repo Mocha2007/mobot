@@ -17,6 +17,8 @@ help
 ling (command) [string]
 	ipa [language code] [word]
 		attempt to generate IPA for a word in language
+	scrabble
+		generate the score in scrabble for a word
 	soundex
 		generate soundex from string
 	x-sampa
