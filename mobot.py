@@ -617,8 +617,11 @@ async def on_message(message):
 	if message.content.startswith(bot_prefix):
 		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
 		try:print(loglook)
-		except UnicodeEncodeError:print(str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server))
-		open("log.txt", "a").write(loglook+'\n')
+		except UnicodeEncodeError:
+			try:print(str(message.timestamp)[:19]+'\n\t'+message.content)
+			except UnicodeEncodeError:print(str(message.timestamp)[:19]+'[Unable to read message]')
+		try:open("log.txt", "a").write(loglook+'\n')
+		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
 	if 'mobot' in m.lower():
 		try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
