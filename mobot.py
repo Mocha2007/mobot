@@ -27,7 +27,7 @@ def help(command):
 			depth = 2
 			break
 	while 1:
-		relevant += doclines[i]+'\n'
+		relevant += doclines[i][depth-1:]+'\n'
 		i+=1
 		try:
 			if doclines[i][:depth] != '\t'*depth:break # must be another command or end
