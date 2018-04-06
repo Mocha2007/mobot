@@ -1,6 +1,5 @@
 *.txt
-*.cpython-35
-*.cpython-36
+*.pyc
 !bee.txt
 !help.txt
 !link.txt
