@@ -44,6 +44,13 @@ def mobotlink():
 
 moquote = open("moquote.txt", "r").read().split('\n')
 
+quotefiles = [
+'bee',
+'hi',
+'prequel',
+'spidey'
+]
+
 religions = {
 'catholicism':{'members':1.285e9,'partof':'Christianity','url':'https://en.wikipedia.org/wiki/Catholic_Church'},
 'christianity':{'members':2.4e9,'partof':'Abrahamic Religions','url':'https://en.wikipedia.org/wiki/Christianity'},
@@ -650,6 +657,8 @@ client = Bot(command_prefix = bot_prefix)
 async def on_message(message):
 	m = message.content
 	n = m.lower()
+	try:qf = n.split(' ')[1]
+	except: qf = False
 
 	if message.content.startswith(bot_prefix):
 		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
@@ -698,14 +707,8 @@ async def on_message(message):
 	elif n.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
 	# QUOTES
-	elif n.startswith(bot_prefix+'bee'):
-		await client.send_message(message.channel, quotefile(m[7:],'bee'))
-	elif n.startswith(bot_prefix+'hi'):
-		await client.send_message(message.channel, quotefile(m[6:],'hi'))
-	elif n.startswith(bot_prefix+'prequel'):
-		await client.send_message(message.channel, quotefile(m[11:],'prequel'))
-	elif n.startswith(bot_prefix+'spidey'):
-		await client.send_message(message.channel, quotefile(m[10:],'spidey'))
+	elif qf in quotefiles:
+		await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
 	# ELSE
 	elif n.startswith(bot_prefix):
 		try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
