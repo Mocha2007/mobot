@@ -4,10 +4,6 @@ ast
 	|many, many astronomical/physics/orbital mechanics calculations
 	|try this:
 	|m! ast stargen
-bee (number)
-	|line #number from the bee movie script;
-	|leave out number for random line
-	|valid numbers are 0-1973, inclusive
 bug [string]
 	|submit bug report/feature request
 coffee (string)
