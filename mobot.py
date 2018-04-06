@@ -587,6 +587,7 @@ client = Bot(command_prefix = bot_prefix)
 @client.event
 async def on_message(message):
 	m = message.content
+	n = message.content.lower()
 
 	if message.content.startswith(bot_prefix):
 		print(message.content)
@@ -596,40 +597,40 @@ async def on_message(message):
 		try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
 		except:pass
 
-	if m.lower() == 'owo':
+	if n == 'owo':
 		await client.send_message(message.channel, '*What\'s this???*')
-	elif m.startswith(bot_prefix+'help'):
+	elif n.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help())
-	elif m.startswith(bot_prefix+'link'):
+	elif n.startswith(bot_prefix+'link'):
 		await client.send_message(message.channel, mobotlink())
-	elif m.startswith(bot_prefix+'hi'):
+	elif n.startswith(bot_prefix+'hi'):
 		await client.send_message(message.channel, c(['fuck off','go fuck yourself','die in a fire','go to hell','go drink some bleach','ur mom gay']))
-	elif m.startswith(bot_prefix+'moquote'):
+	elif n.startswith(bot_prefix+'moquote'):
 		await client.send_message(message.channel, c(moquote))
-	elif m.startswith(bot_prefix+'rpn'):
+	elif n.startswith(bot_prefix+'rpn'):
 		await client.send_message(message.channel, str(rpn(m[7:])))
-	elif m.startswith(bot_prefix+'mat'):
+	elif n.startswith(bot_prefix+'mat'):
 		await client.send_message(message.channel, str(momath(m[7:])))
-	elif m.startswith(bot_prefix+'ast'):
+	elif n.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
-	elif m.startswith(bot_prefix+'ling'):
+	elif n.startswith(bot_prefix+'ling'):
 		await client.send_message(message.channel, str(moling(m[8:])))
-	elif m.startswith(bot_prefix+'quote'):
+	elif n.startswith(bot_prefix+'quote'):
 		await client.send_message(message.channel, str(sto(m[9:])))
-	elif m.startswith(bot_prefix+'zodiac'):
+	elif n.startswith(bot_prefix+'zodiac'):
 		await client.send_message(message.channel, str(zodiac(m[10:])))
-	elif m.startswith(bot_prefix+'coffee'):
+	elif n.startswith(bot_prefix+'coffee'):
 		await client.send_message(message.channel, str(coffee(m[10:])))
-	elif m.startswith(bot_prefix+'convert'):
+	elif n.startswith(bot_prefix+'convert'):
 		await client.send_message(message.channel, str(convert(m[11:])))
-	elif m.startswith(bot_prefix+'religion'):
+	elif n.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
-	elif m.startswith(bot_prefix+'bee'):
+	elif n.startswith(bot_prefix+'bee'):
 		await client.send_message(message.channel, str(bee(m[7:])))
-	elif m.startswith(bot_prefix+'bug'):
+	elif n.startswith(bot_prefix+'bug'):
 		await client.send_message(message.channel, str(bug(m[7:])))
-	elif m.startswith(bot_prefix):
-		try:await client.send_message(message.channel, special[m[3:]])
+	elif n.startswith(bot_prefix):
+		try:await client.send_message(message.channel, special[m[3:]]) # specials
 		except KeyError:await client.send_message(message.channel,'me confufu uwu')
 
 print('Loaded')
