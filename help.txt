@@ -12,6 +12,13 @@ convert [number] [from] [to]
 	convert numbers
 help
 	>this
+ling (command) [string]
+	ipa [language code] [word]
+		attempt to generate IPA for a word in language
+	soundex
+		generate soundex from string
+	x-sampa
+		converts x-sampa into unicode IPA
 mat
 	various math calculations
 quote (sto [string]/get)
@@ -20,8 +27,6 @@ religion [string]
 	information regarding religions
 rpn [string]
 	evaluates mathematical expressions formatted in RPN
-x-sampa [string]
-	converts x-sampa into unicode IPA
 zodiac [string]
 	information regarding the current starsign
 	(string optional)

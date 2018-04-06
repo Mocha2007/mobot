@@ -6,8 +6,7 @@ import discord
 from random import choice as c
 from math import acos,asin,atan,ceil,cos,floor,gcd,hypot,log,pi,sin,tan
 from time import time
-import mochaastro
-import mochamath
+import mochaastro,mochalang,mochamath
 
 # CODE SHIT
 def help():
@@ -430,6 +429,31 @@ def moastro(string):
 	try:return object[arg[0]][arg[1]]
 	except:return ':/'
 
+def moling(string):
+	arg = string.split(' ')
+
+	if arg[0] == 'soundex':
+		return mochalang.soundex(arg[1])
+	elif arg[0] == 'ipa':
+		if arg[1] == 'en':
+			return mochalang.ipa(arg[2])
+		elif arg[1] == 'de':
+			return mochalang.germanipa(arg[2])
+		elif arg[1] == 'es':
+			return mochalang.spanishipa(arg[2])
+		elif arg[1] == 'fr':
+			return mochalang.frenchipa(arg[2])
+		elif arg[1] == 'hu':
+			return mochalang.hungarianipa(arg[2])
+		elif arg[1] == 'it':
+			return mochalang.italianipa(arg[2])
+		elif arg[1] == 'po':
+			return mochalang.polishipa(arg[2])
+	elif arg[0] == 'x-sampa':
+		return xsampa(arg[1])
+
+	return ':/'
+
 def sto(string):
 	arg = string.split(' ')
 
@@ -469,7 +493,7 @@ def coffee(arg):
 	'grande':'16 oz cup',
 	'latte':'espresso\nhot milk',
 	'macchiato':'espresso\nhot milk',
-	'mocha':'chocolate\nespresso\nhot milk\n\nAlso Mobot\'s Senpai',
+	'mocha':'chocolate\nespresso\nhot milk\n\n(also my senpai uwu)',
 	'tall':'8 oz cup',
 	'venti':'20 oz cup',
 	}
@@ -558,6 +582,8 @@ async def on_message(message):
 		await client.send_message(message.channel, str(momath(m[7:])))
 	elif m.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
+	elif m.startswith(bot_prefix+'ling'):
+		await client.send_message(message.channel, str(moling(m[8:])))
 	elif m.startswith(bot_prefix+'quote'):
 		await client.send_message(message.channel, str(sto(m[9:])))
 	elif m.startswith(bot_prefix+'zodiac'):
@@ -566,8 +592,6 @@ async def on_message(message):
 		await client.send_message(message.channel, str(coffee(m[10:])))
 	elif m.startswith(bot_prefix+'convert'):
 		await client.send_message(message.channel, str(convert(m[11:])))
-	elif m.startswith(bot_prefix+'x-sampa'):
-		await client.send_message(message.channel, str(xsampa(m[11:])))
 	elif m.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
 	elif m.startswith(bot_prefix+'bee'):
