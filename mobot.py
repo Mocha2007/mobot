@@ -9,8 +9,30 @@ from time import time
 import mochaastro,mochalang,mochamath,mochastargen
 
 # CODE SHIT
-def help():
-	return open("help.txt", "r").read()
+def help(command):
+	doc = open("help.txt", "r").read()
+	doclines = doc.split('\n')
+	if command == '':return doc
+	clen = len(command)
+	relevant = '```\n'
+	begin = 0
+	# try to find command
+	for i in range(len(doclines)):
+		begin = i
+		line = doclines[i]
+		if line[:clen] == command: # MAJOR command, not minor
+			depth = 1
+			break
+		elif line[:clen+1] == '\t'+command: # MINOR command, not major
+			depth = 2
+			break
+	while 1:
+		relevant += doclines[i]+'\n'
+		i+=1
+		try:
+			if doclines[i][0] != '\t'*depth:break # must be another command or end
+		except IndexError:break
+	return relevant+'```'
 
 def mobotlink():
 	return open("link.txt", "r").read()
@@ -472,7 +494,7 @@ def moling(string):
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
-	elif arg[0] == 'x-sampa':
+	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
 		try:return xsampa(arg[1])
 		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'
 
@@ -602,7 +624,7 @@ async def on_message(message):
 	if n == 'owo':
 		await client.send_message(message.channel, '*What\'s this???*')
 	elif n.startswith(bot_prefix+'help'):
-		await client.send_message(message.channel, help())
+		await client.send_message(message.channel, help(m[8:]))
 	elif n.startswith(bot_prefix+'link'):
 		await client.send_message(message.channel, mobotlink())
 	elif n.startswith(bot_prefix+'hi'):

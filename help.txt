@@ -15,7 +15,7 @@ coffee (string)
 	information regarding coffee
 convert [number] [from-unit] [to-unit]
 	convert between units
-help
+help ((sub)command)
 	>this
 ling [command]
 	ipa [language code] [word]
@@ -27,7 +27,8 @@ ling [command]
 	soundex [word]
 		generate soundex from string
 	x-sampa [string]
-		converts x-sampa into unicode IPA
+		converts x-sampa into unicode IPA:
+		https://en.wikipedia.org/wiki/X-SAMPA
 link
 	get the link for adding this bot to a server
 mat
