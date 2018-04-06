@@ -36,6 +36,8 @@ mat
 	ping mocha for specific questions
 	try this:
 	m! mat vol sphere 10
+mbti [string]
+	information regarding the specified mbti
 quote [command]
 	sto [string]
 		store a string into the magic database

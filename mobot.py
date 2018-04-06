@@ -524,7 +524,6 @@ def bee(line):
 		return q
 	q = open("bee.txt", "r").read().split('\n')[int(line)]
 	return q
-	
 
 def zodiac(arg):
 	signs = ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','coffee']
@@ -537,6 +536,19 @@ def zodiac(arg):
 	else:n = int(((time()-vernal)%31556952000)/2629746000); # sign number 0-11
 
 	return '**'+signs[n].title()+'**\nElement: '+signelements[n%4]+'\nQuality: '+signqualities[n%3]+'\nRuler: '+signrulers[n]
+
+def mbti(arg):
+	arg = arg[:4].lower()
+	ids = (('e','i'),('s','n'),('t','f'),('j','p'))
+	idz = (('extroverted','introverted'),('sensing','intuition'),('thinkinh','feeling'),('judging','perceiving'))
+
+	string = ''
+	for i in range(4):
+		try:string+=idz[i][ids[i].index(arg[i])]+'\n'
+		except IndexError:pass
+		except ValueError:pass
+
+	return '**'+arg.upper()+'**\n```\n'+string+'```'
 
 def coffee(arg):
 	coffees = {
@@ -637,14 +649,20 @@ async def on_message(message):
 		await client.send_message(message.channel, c(['fuck off','go fuck yourself','die in a fire','go to hell','go drink some bleach','ur mom gay']))
 	elif n.startswith(bot_prefix+'moquote'):
 		await client.send_message(message.channel, c(moquote))
-	elif n.startswith(bot_prefix+'rpn'):
-		await client.send_message(message.channel, str(rpn(m[7:])))
-	elif n.startswith(bot_prefix+'mat'):
-		await client.send_message(message.channel, str(momath(m[7:])))
 	elif n.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
+	elif n.startswith(bot_prefix+'bee'):
+		await client.send_message(message.channel, str(bee(m[7:])))
+	elif n.startswith(bot_prefix+'bug'):
+		await client.send_message(message.channel, str(bug(m[7:])))
+	elif n.startswith(bot_prefix+'mat'):
+		await client.send_message(message.channel, str(momath(m[7:])))
+	elif n.startswith(bot_prefix+'rpn'):
+		await client.send_message(message.channel, str(rpn(m[7:])))
 	elif n.startswith(bot_prefix+'ling'):
 		await client.send_message(message.channel, str(moling(m[8:])))
+	elif n.startswith(bot_prefix+'mbti'):
+		await client.send_message(message.channel, str(mbti(m[8:])))
 	elif n.startswith(bot_prefix+'quote'):
 		await client.send_message(message.channel, str(sto(m[9:])))
 	elif n.startswith(bot_prefix+'zodiac'):
@@ -655,10 +673,6 @@ async def on_message(message):
 		await client.send_message(message.channel, str(convert(m[11:])))
 	elif n.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
-	elif n.startswith(bot_prefix+'bee'):
-		await client.send_message(message.channel, str(bee(m[7:])))
-	elif n.startswith(bot_prefix+'bug'):
-		await client.send_message(message.channel, str(bug(m[7:])))
 	elif n.startswith(bot_prefix):
 		try:await client.send_message(message.channel, special[m[3:]]) # specials
 		except KeyError:await client.send_message(message.channel,'me confufu uwu')
