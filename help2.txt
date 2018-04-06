@@ -17,7 +17,7 @@ help ((sub)command)
 ling [command]
 	|many, many language calculations
 	|try this:
-	|m! soundex mocha
+	|m! ling soundex mocha
 link
 	|get the link for adding this bot to a server
 mat
