@@ -540,7 +540,7 @@ def zodiac(arg):
 def mbti(arg):
 	arg = arg[:4].lower()
 	ids = (('e','i'),('s','n'),('t','f'),('j','p'))
-	idz = (('extroverted','introverted'),('sensing','intuition'),('thinkinh','feeling'),('judging','perceiving'))
+	idz = (('extroverted','introverted'),('sensing','intuition'),('thinking','feeling'),('judging','perceiving'))
 
 	string = ''
 	for i in range(4):
