@@ -467,7 +467,9 @@ def moling(string):
 		elif arg[1] == 'po':
 			return mochalang.polishipa(arg[2])
 	elif arg[0] == 'scrabble':
-		return mochalang.scrabble(arg[1])
+		try:m = int(arg[2])
+		except:m = 1
+		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
 	elif arg[0] == 'x-sampa':

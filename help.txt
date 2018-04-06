@@ -14,14 +14,15 @@ convert [number] [from] [to]
 	convert numbers
 help
 	>this
-ling (command) [string]
+ling (command)
 	ipa [language code] [word]
 		attempt to generate IPA for a word in language
-	scrabble
+	scrabble [word] [multiplier]
 		generate the score in scrabble for a word
-	soundex
+		multiplier optional
+	soundex [word]
 		generate soundex from string
-	x-sampa
+	x-sampa [string]
 		converts x-sampa into unicode IPA
 link
 	get the link for adding this bot to a server
