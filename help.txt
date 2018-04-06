@@ -23,6 +23,8 @@ ling (command) [string]
 		generate soundex from string
 	x-sampa
 		converts x-sampa into unicode IPA
+link
+	get the link for adding this bot to a server
 mat
 	various math calculations
 quote (sto [string]/get)
