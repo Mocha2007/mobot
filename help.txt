@@ -2,6 +2,9 @@ Commands:
 ```
 ast
 	astronomical/physics/orbital mechanics calculators
+	ping mocha for specific questions
+	try this:
+	m! ast star 1e30
 bee [number]
 	line #number from the bee movie script;
 	leave out number for random line
@@ -27,9 +30,15 @@ ling (command)
 link
 	get the link for adding this bot to a server
 mat
-	various math calculations
-quote (sto [string]/get)
-	data storage
+	many, many math calculations
+	ping mocha for specific questions
+	try this:
+	m! mat vol sphere 10
+quote (command)
+	sto [string]
+		store a string into the magic database
+	get
+		get a random string from the magic database
 religion [string]
 	information regarding religions
 rpn [string]
