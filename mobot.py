@@ -469,6 +469,10 @@ def sto(string):
 
 	return sto('get')
 
+def bug(string):
+	open("bug.txt", "a").write(string+'\n')
+	return 'Success!'
+
 def bee(line):
 	if line == '':
 		q = c(open("bee.txt", "r").read().split('\n'))
@@ -602,6 +606,8 @@ async def on_message(message):
 		await client.send_message(message.channel, str(religion(m[12:])))
 	elif m.startswith(bot_prefix+'bee'):
 		await client.send_message(message.channel, str(bee(m[7:])))
+	elif m.startswith(bot_prefix+'bug'):
+		await client.send_message(message.channel, str(bug(m[7:])))
 	elif m.startswith(bot_prefix):
 		try:await client.send_message(message.channel, special[m[3:]])
 		except KeyError:await client.send_message(message.channel,'me confufu uwu')

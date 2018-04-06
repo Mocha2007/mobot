@@ -6,6 +6,8 @@ bee [number]
 	line #number from the bee movie script;
 	leave out number for random line
 	valid numbers are 0-1973, inclusive
+bug [string]
+	bug report/feature request
 coffee [string]
 	information regarding coffee
 convert [number] [from] [to]
@@ -31,4 +33,5 @@ zodiac [string]
 	information regarding the current starsign
 	(string optional)
 ```
+Did you know you can report bugs and make feature requests with the ``m! bug [string]`` command?
 mocha made me. notice me, senpai!!!
