@@ -36,6 +36,9 @@ def help(command):
 		except IndexError:break
 	return relevant+'```'
 
+def info():
+	return open("info.txt", "r").read()
+
 def mobotlink():
 	return open("link.txt", "r").read()
 
@@ -664,6 +667,8 @@ async def on_message(message):
 		await client.send_message(message.channel, '*What\'s this???*')
 	elif n.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help(m[8:]))
+	elif n.startswith(bot_prefix+'info'):
+		await client.send_message(message.channel, info())
 	elif n.startswith(bot_prefix+'link'):
 		await client.send_message(message.channel, mobotlink())
 	elif n.startswith(bot_prefix+'hi'):
