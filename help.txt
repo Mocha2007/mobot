@@ -1,0 +1,29 @@
+Commands:
+```
+ast
+	astronomical/physics/orbital mechanics calculators
+bee [number]
+	line #number from the bee movie script;
+	leave out number for random line
+	valid numbers are 0-1973, inclusive
+coffee [string]
+	information regarding coffee
+convert [number] [from] [to]
+	convert numbers
+help
+	>this
+mat
+	various math calculations
+quote (sto [string]/get)
+	data storage
+religion [string]
+	information regarding religions
+rpn [string]
+	evaluates mathematical expressions formatted in RPN
+x-sampa [string]
+	converts x-sampa into unicode IPA
+zodiac [string]
+	information regarding the current starsign
+	(string optional)
+```
+mocha made me. notice me, senpai!!!
