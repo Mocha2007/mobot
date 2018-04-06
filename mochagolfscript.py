@@ -5,6 +5,7 @@ def pre(prog):
 	return prog # unimplemented so far
 
 def main(prog):
+	var = {}
 	comment = False
 	stack = []
 	cnum = ''
@@ -12,7 +13,9 @@ def main(prog):
 		command = prog[i]
 		errorcode = 'error @ char '+str(i)+': '+command+'\n\tstack ('+str(len(stack))+'): '+str(stack)+'\n\tcode '
 		#TODO ' " : and or xor print p n puts rand do while until if abs zip base
-		if not comment:
+		try:isdefined = prog[i-1] == ':'
+		except:isdefined = False
+		if not comment and not isdefined:
 			if command in '0123456789':
 				cnum += command
 			elif command == ' ':
@@ -27,7 +30,9 @@ def main(prog):
 						stack.append(int(cnum))
 						cnum = ''
 					except:return errorcode+'b'
-				if len(stack): # for commands requiring at least ONE var
+				if command in var:
+					stack.append(var[command])
+				elif len(stack): # for commands requiring at least ONE var
 					temp = stack.pop()
 					if command == '~':
 						if typeof(temp) == 'int':stack.append(~temp)
@@ -46,6 +51,9 @@ def main(prog):
 							stack.append(stack[len(stack)-1-temp])
 						else:
 							stack.append(sorted(temp))
+					elif command == ':':
+						stack.append(temp)
+						var[prog[i+1]] = temp
 					elif command == ';':
 						pass
 					elif command == ',':
