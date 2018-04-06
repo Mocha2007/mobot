@@ -525,11 +525,11 @@ def bug(string):
 	open("bug.txt", "a").write(string+'\n')
 	return 'Success!'
 
-def bee(line):
+def quotefile(line,file):
 	if line == '':
-		q = c(open("bee.txt", "r").read().split('\n'))
+		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
-	q = open("bee.txt", "r").read().split('\n')[int(line)]
+	q = open(file+".txt", "r").read().split('\n')[int(line)]
 	return q
 
 def zodiac(arg):
@@ -679,7 +679,7 @@ async def on_message(message):
 	elif n.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
 	elif n.startswith(bot_prefix+'bee'):
-		await client.send_message(message.channel, str(bee(m[7:])))
+		await client.send_message(message.channel, quotefile(m[7:],'bee'))
 	elif n.startswith(bot_prefix+'bug'):
 		await client.send_message(message.channel, str(bug(m[7:])))
 	elif n.startswith(bot_prefix+'mat'):
@@ -694,6 +694,8 @@ async def on_message(message):
 		await client.send_message(message.channel, str(sto(m[9:])))
 	elif n.startswith(bot_prefix+'zodiac'):
 		await client.send_message(message.channel, str(zodiac(m[10:])))
+	elif n.startswith(bot_prefix+'spidey'):
+		await client.send_message(message.channel, quotefile(m[7:],'spidey'))
 	elif n.startswith(bot_prefix+'coffee'):
 		await client.send_message(message.channel, str(coffee(m[10:])))
 	elif n.startswith(bot_prefix+'convert'):
