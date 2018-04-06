@@ -566,6 +566,7 @@ def mbti(arg):
 
 	try:string+='\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
 	except IndexError:pass
+	except KeyError:pass
 	except ValueError:pass
 
 	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
