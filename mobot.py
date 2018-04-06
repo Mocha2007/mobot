@@ -666,20 +666,17 @@ async def on_message(message):
 
 	if n == 'owo':
 		await client.send_message(message.channel, '*What\'s this???*')
+	# MAIN
 	elif n.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help(m[8:]))
 	elif n.startswith(bot_prefix+'info'):
 		await client.send_message(message.channel, info())
 	elif n.startswith(bot_prefix+'link'):
 		await client.send_message(message.channel, mobotlink())
-	elif n.startswith(bot_prefix+'hi'):
-		await client.send_message(message.channel, c(['fuck off','go fuck yourself','die in a fire','go to hell','go drink some bleach','ur mom gay']))
 	elif n.startswith(bot_prefix+'moquote'):
 		await client.send_message(message.channel, c(moquote))
 	elif n.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
-	elif n.startswith(bot_prefix+'bee'):
-		await client.send_message(message.channel, quotefile(m[7:],'bee'))
 	elif n.startswith(bot_prefix+'bug'):
 		await client.send_message(message.channel, str(bug(m[7:])))
 	elif n.startswith(bot_prefix+'mat'):
@@ -694,14 +691,20 @@ async def on_message(message):
 		await client.send_message(message.channel, str(sto(m[9:])))
 	elif n.startswith(bot_prefix+'zodiac'):
 		await client.send_message(message.channel, str(zodiac(m[10:])))
-	elif n.startswith(bot_prefix+'spidey'):
-		await client.send_message(message.channel, quotefile(m[7:],'spidey'))
 	elif n.startswith(bot_prefix+'coffee'):
 		await client.send_message(message.channel, str(coffee(m[10:])))
 	elif n.startswith(bot_prefix+'convert'):
 		await client.send_message(message.channel, str(convert(m[11:])))
 	elif n.startswith(bot_prefix+'religion'):
 		await client.send_message(message.channel, str(religion(m[12:])))
+	# QUOTES
+	elif n.startswith(bot_prefix+'bee'):
+		await client.send_message(message.channel, quotefile(m[7:],'bee'))
+	elif n.startswith(bot_prefix+'hi'):
+		await client.send_message(message.channel, quotefile(m[6:],'hi'))
+	elif n.startswith(bot_prefix+'spidey'):
+		await client.send_message(message.channel, quotefile(m[10:],'spidey'))
+	# ELSE
 	elif n.startswith(bot_prefix):
 		try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
 		except KeyError:await client.send_message(message.channel,'me confufu uwu')

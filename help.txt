@@ -49,6 +49,10 @@ info
 	|mobot info
 help ((sub)command)
 	|>this
+hi (number)
+	|line #number from greetings file
+	|leave out number for random line
+	|valid numbers are 0-5, inclusive
 ling [command]
 	ipa [language code] [word]
 		|attempt to generate IPA for a word in language
@@ -80,6 +84,10 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
+spidey (number)
+	|line #number from spidey file
+	|leave out number for random line
+	|valid numbers are 0-0, inclusive
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
