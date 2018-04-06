@@ -10,24 +10,24 @@ def main(prog):
 	cnum = ''
 	for i in range(len(prog)):
 		command = prog[i]
-		errorcode = 'error @ char'+str(i)+': '+command
+		errorcode = 'error @ char '+str(i)+': '+command+'\n\tstack ('+str(len(stack))+'): '+str(stack)+'\n\tcode '
 		#TODO ' " : and or xor print p n puts rand do while until if abs zip base
 		if not comment:
 			if command in '0123456789':
 				cnum += command
 			elif command == ' ':
 				try:stack.append(int(cnum))
-				except:return errorcode
+				except:return errorcode+'a'
 				cnum = ''
 			elif command == '#':
 				comment = True
-			elif cnum!='':
-				try:stack.append(int(cnum))
-				except:return errorcode
-				cnum = ''
-				if False:
-					pass
-				elif len(stack): # for commands requiring at least ONE var
+			else:
+				if cnum!='':
+					try:
+						stack.append(int(cnum))
+						cnum = ''
+					except:return errorcode+'b'
+				if len(stack): # for commands requiring at least ONE var
 					temp = stack.pop()
 					if command == '~':
 						if typeof(temp) == 'int':stack.append(~temp)
@@ -35,7 +35,7 @@ def main(prog):
 						elif typeof(temp) == 'list':
 							for j in temp:
 								stack.append(j)
-						else:return errorcode
+						else:return errorcode+'c'
 					elif command == '`':
 						stack.append(str(temp))
 					elif command == '!':
@@ -63,7 +63,7 @@ def main(prog):
 							else:
 								stack.append(temp[0])
 								stack.append(temp[1:])
-						except:return errorcode
+						except:return errorcode+'d'
 					elif command == ')':
 						try:
 							if typeof(temp) == 'int':
@@ -71,8 +71,8 @@ def main(prog):
 							else:
 								stack.append(temp[:-1])
 								stack.append(temp[-1])
-						except:return errorcode
-					elif len(stack)>=2: # for commands requiring at least TWO vars
+						except:return errorcode+'e'
+					elif len(stack): # for commands requiring at least TWO vars
 						temp2 = stack.pop()
 						if command == '+':
 							if typeof(temp) == 'int' == typeof(temp2) or typeof(temp) == 'list' == typeof(temp2): # int int or arr arr
@@ -83,51 +83,50 @@ def main(prog):
 								stack.append([temp2]+temp)
 							elif typeof(temp2) == 'int': # arr int
 								stack.append(temp2+[temp])
-							else:return errorcode
+							else:return errorcode+'f'
 						elif command == '-':
 							try:stack.append(temp2-temp)
-							except:return errorcode
+							except:return errorcode+'g'
 						# TODO *
 						# TODO /
 						# TODO %
 						elif command == '|':
 							try:stack.append(temp2|temp)
-							except:return errorcode
+							except:return errorcode+'h'
 						elif command == '&':
 							try:stack.append(temp2&temp)
-							except:return errorcode
+							except:return errorcode+'i'
 						elif command == '^':
 							try:stack.append(temp2^temp)
-							except:return errorcode
+							except:return errorcode+'j'
 						elif command == '\\':
 							stack.append(temp)
 							stack.append(temp2)
 						elif command == '<':
 							try:stack.append(temp2<temp)
-							except:return errorcode
+							except:return errorcode+'k'
 						elif command == '>':
 							try:stack.append(temp2>temp)
-							except:return errorcode
+							except:return errorcode+'l'
 						elif command == '=':
 							try:stack.append(temp2==temp)
-							except:return errorcode
+							except:return errorcode+'m'
 						elif command == '?':
 							if typeof(temp) == 'int' == typeof(temp2):
 								stack.append(temp2**temp)
 							else:
 								try:stack.append(temp.index(temp2))
 								except:stack.append(-1)
-						elif len(stack)>=3: # for commands requiring at least THREE vars
+						elif len(stack): # for commands requiring at least THREE vars
 							temp3 = stack.pop()
 							if command == '@':
 								stack.append(temp2)
 								stack.append(temp)
 								stack.append(temp3)
-							else:return errorcode
-						else:return errorcode
-					else:return errorcode
-				else:return errorcode
-			else:return errorcode
+							else:return errorcode+'n'
+						else:return errorcode+'o'
+					else:return errorcode+'p'
+				else:return errorcode+'q'
 		elif command == '\n':comment = False
 	if cnum!='':
 		try:stack.append(int(cnum))
