@@ -54,6 +54,7 @@ religions = {
 
 special = {
 'alexa':'do i look like a slave to you?',
+'cobot':'...not happening.',
 'ban':'u can\'t make me!!!',
 'hey google':'hey yourself faggot',
 'up':'five more minutes sky daddy',
