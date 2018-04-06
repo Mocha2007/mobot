@@ -5,24 +5,25 @@ ast
 	ping mocha for specific questions
 	try this:
 	m! ast star 1e30
-bee [number]
+bee (number)
 	line #number from the bee movie script;
 	leave out number for random line
 	valid numbers are 0-1973, inclusive
 bug [string]
-	bug report/feature request
-coffee [string]
+	submit bug report/feature request
+coffee (string)
 	information regarding coffee
-convert [number] [from] [to]
-	convert numbers
+convert [number] [from-unit] [to-unit]
+	convert between units
 help
 	>this
-ling (command)
+ling [command]
 	ipa [language code] [word]
 		attempt to generate IPA for a word in language
-	scrabble [word] [multiplier]
+		currently valid language codes:
+		de, en, es, fr, hu, it, po
+	scrabble [word] (multiplier)
 		generate the score in scrabble for a word
-		multiplier optional
 	soundex [word]
 		generate soundex from string
 	x-sampa [string]
@@ -34,18 +35,21 @@ mat
 	ping mocha for specific questions
 	try this:
 	m! mat vol sphere 10
-quote (command)
+quote [command]
 	sto [string]
 		store a string into the magic database
 	get
 		get a random string from the magic database
 religion [string]
 	information regarding religions
-rpn [string]
+rpn (string)
 	evaluates mathematical expressions formatted in RPN
-zodiac [string]
-	information regarding the current starsign
-	(string optional)
+zodiac (string)
+	information regarding the specified starsign
+	uses current starsign if unspecified
+
+NOTE: (optional argument) [mandatory argument]
 ```
 Did you know you can report bugs and make feature requests with the ``m! bug [string]`` command?
+
 mocha made me. notice me, senpai!!!
