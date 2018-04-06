@@ -545,7 +545,8 @@ def convert(uwaa):
 	except KeyError:return 'invalid unit... did you try using its abbreviation?'
 
 def religion(uwaa):
-	return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
+	try:return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
+	except KeyError:return ':/'
 
 def xsampa(string):
 	for replacement in xskey:
