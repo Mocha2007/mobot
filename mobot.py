@@ -541,12 +541,32 @@ def mbti(arg):
 	arg = arg[:4].lower()
 	ids = (('e','i'),('s','n'),('t','f'),('j','p'))
 	idz = (('extroverted','introverted'),('sensing','intuition'),('thinking','feeling'),('judging','perceiving'))
+	functions = {
+	'entp':('Ne','Ti'),
+	'enfp':('Ne','Fi'),
+	'intj':('Ni','Te'),
+	'infj':('Ni','Fe'),
+	'infp':('Fi','Ne'),
+	'isfp':('Fi','Se'),
+	'intp':('Ti','Ne'),
+	'istp':('Ti','Se'),
+	'entj':('Te','Ni'),
+	'estj':('Te','Si'),
+	'estp':('Se','Ti'),
+	'esfp':('Se','Fi'),
+	'istj':('Si','Te'),
+	'estp':('Si','Fe')
+	}
 
 	string = ''
 	for i in range(4):
 		try:string+=idz[i][ids[i].index(arg[i])]+'\n'
 		except IndexError:pass
 		except ValueError:pass
+
+	try:string+='Dom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
+	except IndexError:pass
+	except ValueError:pass
 
 	return '**'+arg.upper()+'**\n```\n'+string+'```'
 
