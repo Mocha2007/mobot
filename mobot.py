@@ -462,8 +462,7 @@ def moastro(string):
 		try:
 			m = float(arg[1])
 			return mochastargen.stargen(m)
-		except IndexError:return mochastargen.stargen('r')
-		except ValueError:return mochastargen.stargen('r')
+		except (IndexError,ValueError):return mochastargen.stargen('r')
 	elif arg[0] == 'synodic':
 		a = float(arg[1])
 		b = float(arg[2])
@@ -561,13 +560,10 @@ def mbti(arg):
 	string = ''
 	for i in range(4):
 		try:string+=idz[i][ids[i].index(arg[i])]+'\n'
-		except IndexError:pass
-		except ValueError:pass
+		except (IndexError,ValueError):pass
 
 	try:string+='\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
-	except IndexError:pass
-	except KeyError:pass
-	except ValueError:pass
+	except (IndexError,KeyError,ValueError):pass
 
 	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
 
