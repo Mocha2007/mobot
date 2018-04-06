@@ -616,7 +616,8 @@ async def on_message(message):
 
 	if message.content.startswith(bot_prefix):
 		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
-		print(loglook)
+		try:print(loglook)
+		except UnicodeEncodeError:print(str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server))
 		open("log.txt", "a").write(loglook+'\n')
 
 	if 'mobot' in m.lower():
