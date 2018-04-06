@@ -12,7 +12,7 @@ import mochaastro,mochalang,mochamath,mochastargen
 def help(command):
 	doc = open("help.txt", "r").read()
 	doclines = doc.split('\n')
-	if command == '':return doc
+	if command == '':return open("help2.txt", "r").read()
 	clen = len(command)
 	relevant = '```\n'
 	begin = 0

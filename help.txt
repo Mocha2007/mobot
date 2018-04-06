@@ -1,91 +1,84 @@
-Commands:
-```
 ast
 	density [mass] [radius]
-		returns the density of a sphere with the specified mass and radius
+		|returns the density of a sphere with the specified mass and radius
 	escapevelocity [mass] [distance]
-		returns the escape velocity from a mass at the specified distance
+		|returns the escape velocity from a mass at the specified distance
 	g
-		see gravity
+		|see gravity
 	goldilocks
-		see habitablezone
+		|see habitablezone
 	grav
-		see gravity
+		|see gravity
 	gravity [mass] [distance]
-		returns the gravity from a mass at the specified distance
+		|returns the gravity from a mass at the specified distance
 	habitablezone [mass]
-		returns the inner and outer boundaries of the habitable zone around a star with the specified mass
+		|returns the inner and outer boundaries of the habitable zone around a star with the specified mass
 	hohmann [a_i] [a_f] [mass]
-		returns the Delta-v needed to change orbits from a_i to a_f,
-		using a hohmann transfer
+		|returns the Delta-v needed to change orbits from a_i to a_f,
+		|using a hohmann transfer
 	p
-		see period
+		|see period
 	period [mass] [a]
-		returns the period of an object orbiting the mass at the specified semimajor axis
+		|returns the period of an object orbiting the mass at the specified semimajor axis
 	rho
-		see density
+		|see density
 	roche [mass] [density]
-		returns the roche limit for an object of given density orbiting the specified mass
+		|returns the roche limit for an object of given density orbiting the specified mass
 	soi [minor_mass] [major_mass] [a]
-		returns the sphere of influence of the minor orbiting the major at the specified semimajor axis
+		|returns the sphere of influence of the minor orbiting the major at the specified semimajor axis
 	star [mass]
-		simulate a star of specified mass
+		|simulate a star of specified mass
 	stargen (mass)
-		simulate accretion of a protoplanetary disk containing a star of specified mass
-		if mass is left out, one will be semi-randomly chosen based on observed stellar mass distribution
+		|simulate accretion of a protoplanetary disk containing a star of specified mass
+		|if mass is left out, one will be semi-randomly chosen based on observed stellar mass distribution
 	synodic [p_1] [p_2]
-		return the synodic period between the two objects with given periods
+		|return the synodic period between the two objects with given periods
 	ve
-		see escapevelocity
+		|see escapevelocity
 bee (number)
-	line #number from the bee movie script;
-	leave out number for random line
-	valid numbers are 0-1973, inclusive
+	|line #number from the bee movie script;
+	|leave out number for random line
+	|valid numbers are 0-1973, inclusive
 bug [string]
-	submit bug report/feature request
+	|submit bug report/feature request
 coffee (string)
-	information regarding coffee
+	|information regarding coffee
 convert [number] [from-unit] [to-unit]
-	convert between units
+	|convert between units
 help ((sub)command)
-	>this
+	|>this
 ling [command]
 	ipa [language code] [word]
-		attempt to generate IPA for a word in language
-		currently valid language codes:
-		de, en, es, fr, hu, it, po
+		|attempt to generate IPA for a word in language
+		|currently valid language codes:
+		|de, en, es, fr, hu, it, po
 	scrabble [word] (multiplier)
-		generate the score in scrabble for a word
+		|generate the score in scrabble for a word
 	soundex [word]
-		generate soundex from string
+		|generate soundex from string
 	x-sampa [string]
-		converts x-sampa into unicode IPA:
-		https://en.wikipedia.org/wiki/X-SAMPA
+		|converts x-sampa into unicode IPA:
+		|https://en.wikipedia.org/wiki/X-SAMPA
 link
-	get the link for adding this bot to a server
+	|get the link for adding this bot to a server
 mat
-	many, many math calculations
-	ping mocha for specific questions
-	try this:
-	m! mat vol sphere 10
+	|many, many math calculations
+	|ping mocha for specific questions
+	|try this:
+	|m! mat vol sphere 10
 mbti [string]
-	information regarding the specified mbti
+	|information regarding the specified mbti
 quote [command]
 	sto [string]
-		store a string into the magic database
+		|store a string into the magic database
 	get (quote_id)
-		get a specified string from the magic database
-		leave out quote_id for a random quote
+		|get a specified string from the magic database
+		|leave out quote_id for a random quote
 religion [string]
-	information regarding religions
+	|information regarding religions
 rpn (string)
-	evaluates mathematical expressions formatted in RPN
+	|evaluates mathematical expressions formatted in RPN
 zodiac (string)
-	information regarding the specified starsign
-	uses current starsign if unspecified
-
-NOTE: (optional argument) [mandatory argument]
-```
-Did you know you can report bugs and make feature requests with the ``m! bug [string]`` command?
-
-mocha made me. notice me, senpai!!!
+	|information regarding the specified starsign
+	|uses current starsign if unspecified
+#MobotOUT
