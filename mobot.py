@@ -6,7 +6,7 @@ import discord
 from random import choice as c
 from math import gcd,hypot,pi
 from time import time
-import mochaastro,mochalang,mochamath,mocharpn,mochastargen
+import mochaastro,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen
 from mochaxyz import *
 
 # CODE SHIT
@@ -358,6 +358,8 @@ async def on_message(message):
 	# MAIN
 	elif n.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help(m[8:]))
+	elif n.startswith(bot_prefix+'gs'):
+		await client.send_message(message.channel, str(mochagolfscript.run(m[6:])))
 	elif n.startswith(bot_prefix+'ast'):
 		await client.send_message(message.channel, str(moastro(m[7:])))
 	elif n.startswith(bot_prefix+'bug'):
