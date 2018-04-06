@@ -702,6 +702,8 @@ async def on_message(message):
 		await client.send_message(message.channel, quotefile(m[7:],'bee'))
 	elif n.startswith(bot_prefix+'hi'):
 		await client.send_message(message.channel, quotefile(m[6:],'hi'))
+	elif n.startswith(bot_prefix+'prequel'):
+		await client.send_message(message.channel, quotefile(m[11:],'prequel'))
 	elif n.startswith(bot_prefix+'spidey'):
 		await client.send_message(message.channel, quotefile(m[10:],'spidey'))
 	# ELSE

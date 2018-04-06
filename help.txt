@@ -74,6 +74,10 @@ mat
 	|m! mat vol sphere 10
 mbti [string]
 	|information regarding the specified mbti
+prequel (number)
+	|line #number from prequel file
+	|leave out number for random line
+	|valid numbers are 0-0, inclusive
 quote [command]
 	sto [string]
 		|store a string into the magic database
@@ -87,7 +91,7 @@ rpn (string)
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
-	|valid numbers are 0-2, inclusive
+	|valid numbers are 0-3, inclusive
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
