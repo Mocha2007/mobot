@@ -12,6 +12,9 @@ import mochaastro,mochalang,mochamath
 def help():
 	return open("help.txt", "r").read()
 
+def mobotlink():
+	return open("link.txt", "r").read()
+
 moquote = open("moquote.txt", "r").read().split('\n')
 
 religions = {
@@ -572,6 +575,8 @@ async def on_message(message):
 		await client.send_message(message.channel, '*What\'s this???*')
 	elif m.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help())
+	elif m.startswith(bot_prefix+'link'):
+		await client.send_message(message.channel, mobotlink())
 	elif m.startswith(bot_prefix+'hi'):
 		await client.send_message(message.channel, c(['fuck off','go fuck yourself','die in a fire','go to hell','go drink some bleach','ur mom gay']))
 	elif m.startswith(bot_prefix+'moquote'):
