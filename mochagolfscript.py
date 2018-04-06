@@ -2,17 +2,17 @@ def typeof(x):
 	return type(x).__name__
 
 def pre(prog):
-	return prog # unimplemented so far
+	return prog
 
 def main(prog):
-	var = {}
+	var = {'n':'\n'}
 	comment = False
 	stack = []
 	cnum = ''
 	for i in range(len(prog)):
 		command = prog[i]
 		errorcode = 'error @ char '+str(i)+': '+command+'\n\tstack ('+str(len(stack))+'): '+str(stack)+'\n\tcode '
-		#TODO ' " : and or xor print p n puts rand do while until if abs zip base
+		#TODO ' " : and or xor print p puts rand do while until if abs zip base
 		try:isdefined = prog[i-1] == ':'
 		except:isdefined = False
 		if not comment and not isdefined:
