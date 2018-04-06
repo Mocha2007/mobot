@@ -1,6 +1,7 @@
 *.txt
 *.pyc
 !bee.txt
+!bug.txt
 !help.txt
 !help2.txt
 !info.txt
