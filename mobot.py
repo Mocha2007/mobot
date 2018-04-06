@@ -159,13 +159,27 @@ object = {
 }
 
 def rpn(prog):
+	decimal = False
 	stack = []
 	cnum = ''
 	for command in prog:
 		if command in '01234567890':
 			cnum += command
 		elif command in ', ':
-			try:stack += [int(cnum)]
+			if not decimal:
+				try:stack.append(int(cnum))
+				except ValueError:pass
+			else:
+				try:
+					temp = stack.pop()
+					temp += float('.'+cnum)
+					stack.append(temp)
+				except ValueError:pass
+				decimal = False
+			cnum = ''
+		elif command == '.':
+			decimal = True
+			try:stack.append(int(cnum))
 			except ValueError:pass
 			cnum = ''
 		# stack manip
@@ -206,10 +220,6 @@ def rpn(prog):
 			# stack manip
 			elif command == ';':
 				stack.pop()
-			elif command == '.':
-				temp = stack.pop()
-				stack.append(temp)
-				stack.append(temp)
 			elif command == '@':
 				temp = stack.pop()
 				stack = [temp] + stack
