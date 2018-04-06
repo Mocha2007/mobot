@@ -509,7 +509,8 @@ def sto(string):
 		open("temp.txt", "a").write(' '.join(arg[1:])+'\n')
 		return 'Success!'
 	elif arg[0] == 'get':
-		q = c(open("temp.txt", "r").read().split('\n'))
+		try:q = open("temp.txt", "r").read().split('\n')[int(arg[1])]
+		except:q = c(open("temp.txt", "r").read().split('\n'))
 		if q not in '\n ':return q
 
 	return sto('get')

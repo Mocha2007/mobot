@@ -73,8 +73,9 @@ mbti [string]
 quote [command]
 	sto [string]
 		store a string into the magic database
-	get
-		get a random string from the magic database
+	get (quote_id)
+		get a specified string from the magic database
+		leave out quote_id for a random quote
 religion [string]
 	information regarding religions
 rpn (string)
