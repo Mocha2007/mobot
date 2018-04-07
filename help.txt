@@ -94,6 +94,9 @@ prequel (number)
 	|valid numbers are 0-11, inclusive
 quote (command)
 	|leave blank for a random quote
+	search [regex]
+		|search the magic database for lines
+		|that match a regular expression
 	sto [string]
 		|store a string into the magic database
 	[quote_id]

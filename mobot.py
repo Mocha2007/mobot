@@ -256,7 +256,9 @@ def moling(string):
 
 def sto(string):
 	arg = string.split(' ')
-	if arg[0] == 'search':return qfsearch(arg[1],'temp')
+	try:
+		if arg[0] == 'search':return qfsearch(arg[1],'temp')
+	except IndexError:pass
 
 	if arg[0] == 'sto':
 		inputendo = ' '.join(arg[1:])
