@@ -2,7 +2,9 @@ from time import time as t
 
 mem = [0]*256
 
-def run(prog):
+def run(prog,inp):
+	o = []
+	inpn = 0
 	start = t()
 	pointer = 0
 	i = 0
@@ -14,6 +16,11 @@ def run(prog):
 		elif command == '<':pointer-=1
 		elif command == '+':mem[pointer]+=1
 		elif command == '-':mem[pointer]-=1
+		elif command == ',':
+			try:mem[pointer]=inp[inpn]
+			except:return 'Error: End of input'
+			inpn+=1
+		elif command == '.':o+=[mem[pointer]]
 		elif command == '[':# jump to the next matching ]
 			if mem[pointer] == 0:
 				balance = 1
@@ -33,4 +40,4 @@ def run(prog):
 		pointer = pointer%256
 		i+=1
 		if t()-start>5:return 'Took too long (5s)'
-	return str(mem)+'\n'+''.join(map(chr,mem))
+	return str(o)+'\n'+''.join(map(chr,o))

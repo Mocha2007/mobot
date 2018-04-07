@@ -44,7 +44,8 @@ bee (number)
 	|leave out number for random line
 	|valid numbers are 0-1973, inclusive
 bf [program]
-	|P'' interpreter using brainfuck styling
+	|brainfuck interpreter
+	|use newlines to separate inputs
 bug [string]
 	|submit bug report/feature request
 cobot

@@ -5,7 +5,8 @@ ast
 	|try this:
 	|m! ast stargen
 bf (program)
-	|P'' interpreter using brainfuck styling
+	|brainfuck interpreter
+	|use newlines to separate inputs
 bug [string]
 	|submit bug report/feature request
 coffee (string)

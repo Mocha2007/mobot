@@ -358,7 +358,8 @@ async def on_message(message):
 	elif n.startswith(bot_prefix+'help'):
 		await client.send_message(message.channel, help(m[8:]))
 	elif n.startswith(bot_prefix+'bf'):
-		await client.send_message(message.channel, str(mochabf.run(m[6:])))
+		args = m[6:].split('\n')
+		await client.send_message(message.channel, str(mochabf.run(args[0],args[1:])))
 	elif n.startswith(bot_prefix+'gs'):
 		await client.send_message(message.channel, str(mochagolfscript.run(m[6:])))
 	elif n.startswith(bot_prefix+'ast'):
