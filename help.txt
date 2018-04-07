@@ -60,6 +60,10 @@ game [command]
 	gtn [min] [max]
 		|guess the number
 		|answer will be an integer between min and max
+	word (word)
+		|begin a game of mastermind
+		|if no word is specified,
+		|one will be chosen pseudo-randomly
 gs [program]
 	|golfscript interpreter
 	|only partially implemented, WIP

@@ -50,6 +50,8 @@ quotefiles = [
 'tng'
 ]
 
+quit = ('exit','quit')
+
 def product(numlist):
 	if len(numlist) == 0:return 0
 	if len(numlist) == 1:return numlist[0]
@@ -434,7 +436,7 @@ async def on_message(message):
 					else:
 						await client.send_message(message.channel, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
 					msg = await client.wait_for_message(channel=message.channel)
-					if msg.content.lower() in ('exit','quit'):
+					if msg.content.lower() in quit:
 						await client.send_message(message.channel, 'o oki ;-;')
 						break
 					elif msg.content == str(answer):
@@ -459,7 +461,32 @@ async def on_message(message):
 					await client.send_message(message.channel, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
 				except ZeroDivisionError:
 					await client.send_message(message.channel, 'N-nobody??? ;-;')
-					
+			elif args[0] == 'word':
+				mc = message.channel
+				try:
+					word = args[1].lower()
+					await client.delete_message(message)
+				except:word = c(open("bee.txt", "r").read().replace('\n',' ').split(' '))
+				await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
+				msg = False
+				while msg.content.lower() not in quit:
+					pips = ''
+					msg = await client.wait_for_message(channel=mc)
+					if msg.author.name!='Mobot':
+						try:
+							guess = msg.content.lower()
+							if guess == word:
+								await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+								break
+							mr = range(min(len(word),len(guess)))
+							#look for EXACT matches
+							for i in mr:
+								if guess[i]==word[i]:pips+='x'
+							for i in mr:
+								if guess[i] in word:pips+='*'
+							await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+						except:pass
+
 		# ELSE
 		elif n.startswith(bot_prefix):
 			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
