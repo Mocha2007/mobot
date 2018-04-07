@@ -290,7 +290,7 @@ def qfsearch(pattern,file):
 		if search(p,line)!=None:l.append((i,line))
 	for m in l:
 		r+=str(m[0])+' '+m[1]+'\n'
-	return r
+	return 'No Match' if r=='' else r
 
 def zodiac(arg):
 	signs = ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','coffee']
