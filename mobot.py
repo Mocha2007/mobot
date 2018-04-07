@@ -256,6 +256,7 @@ def moling(string):
 
 def sto(string):
 	arg = string.split(' ')
+	if arg[0] == 'search':return qfsearch(arg[1],'temp')
 
 	if arg[0] == 'sto':
 		inputendo = ' '.join(arg[1:])
@@ -263,10 +264,8 @@ def sto(string):
 		open("temp.txt", "a").write(inputendo+'\n')
 		return 'Success!'
 
-	try:q = open("temp.txt", "r").read().split('\n')[int(arg[0])]
-	except:q = c(open("temp.txt", "r").read().split('\n'))
-	if q not in '\n ':return q
-	return sto('get')
+	try:return quotefile(arg[0],'temp')
+	except:return quotefile('','temp')
 
 def bug(string):
 	open("bug.txt", "a").write(string+'\n')
