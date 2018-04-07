@@ -361,8 +361,8 @@ def rword(min):
 		if len(attempt)>=min:return attempt.lower()
 	
 def d(m,n):
-	if m==0:return 0
 	if m<0:return -d(-m,n)
+	if n<0:return -d(m,-n)
 	s = 0
 	for i in range(m):
 		s+=c(range(n))+1
