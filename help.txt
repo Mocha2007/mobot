@@ -55,6 +55,8 @@ coffee (string)
 convert [number] [from-unit] [to-unit]
 	|convert between units
 game [command]
+	g2/3
+		|guess 2/3 of the average
 	gtn [min] [max]
 		|guess the number
 		|answer will be an integer between min and max

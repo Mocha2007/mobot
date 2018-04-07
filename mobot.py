@@ -440,6 +440,24 @@ async def on_message(message):
 					elif msg.content == str(answer):
 						await client.send_message(message.channel, msg.author.name+', you win! ^o^')
 						break
+			elif args[0] == 'g2/3':
+				timer = 30
+				await client.send_message(message.channel, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
+				start = time()
+				guesses = []
+				while time()<start+timer:#30s should be enough
+					msg = await client.wait_for_message(timeout=1,channel=message.channel)
+					try:guesses.append((float(msg.content),msg.author.name))
+					except:pass
+				a1 = list(map(lambda x:x[0],guesses))
+				try:
+					avg23 = sum(a1)*2/3/len(a1)
+					a2 = list(map(lambda x:abs(x-avg23),a1))
+					winner = a2.index(min(a2))
+					await client.send_message(message.channel, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
+				except ZeroDivisionError:
+					await client.send_message(message.channel, 'N-nobody??? ;-;')
+					
 		# ELSE
 		elif n.startswith(bot_prefix):
 			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
