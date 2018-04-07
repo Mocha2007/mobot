@@ -1,3 +1,5 @@
+alexa
+	|fun :)
 ast
 	density [mass] [radius]
 		|returns the density of a sphere with the specified mass and radius
@@ -35,12 +37,16 @@ ast
 		|return the synodic period between the two objects with given periods
 	ve
 		|see escapevelocity
+ban
+	|fun :)
 bee (number)
 	|line #number from the bee movie script;
 	|leave out number for random line
 	|valid numbers are 0-1973, inclusive
 bug [string]
 	|submit bug report/feature request
+cobot
+	|fun :)
 coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
@@ -50,6 +56,8 @@ gs [program]
 	|only partially implemented, WIP
 help ((sub)command)
 	|>this
+hey google
+	|fun :)
 hi (number)
 	|line #number from greetings file
 	|leave out number for random line
@@ -105,6 +113,10 @@ spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
 	|valid numbers are 0-3, inclusive
+up
+	|fun :)
+you're matched
+	|fun :)
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
