@@ -8,7 +8,7 @@ from random import randint
 from math import gcd,hypot,pi
 from time import time
 from re import compile,search
-from statistics import median,mode,stdev,StatisticsError
+from statistics import median,mode,stdev
 import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
@@ -374,7 +374,7 @@ def dice(m,n):
 		rolls += [d(m,n)]
 	mean = sum(rolls)/1000
 	try:mmmm = str(mode(rolls))
-	except statistics.StatisticsError:mmmm = 'No Unique Mode'
+	except:mmmm = 'No Unique Mode'
 	return '```\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nstdev: '+str(stdev(rolls))+'\nSample: '+str(d(m,n))+'```'
 
 def dicemat(x):
