@@ -7,6 +7,7 @@ coffees = {
 'espresso':'coffee brewed by expressing or forcing out a small amount of nearly boiling water under pressure through finely ground coffee beans',
 'flat white':'microfoam poured into a:\nsingle or double shot of espresso',
 'grande':'16 oz cup',
+'hot milk':'milk\nheat',
 'latte':'espresso\nhot milk',
 'long black':'A long black is made by pouring a double-shot of espresso or ristretto over hot water.',
 'macchiato':'espresso\nhot milk',
