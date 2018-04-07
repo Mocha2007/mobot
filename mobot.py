@@ -481,7 +481,7 @@ async def on_message(message):
 				while 1:
 					msg = await client.wait_for_message(channel=mc)
 					if msg.content.lower() in quit:
-						await client.send_message(message.channel, 'c r i e ;-;')
+						await client.send_message(message.channel, 'c r i e ;-;\nthe word was **'+word+'**.')
 						break
 					pips = ''
 					if msg.author.name!='Mobot':
