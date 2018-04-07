@@ -348,6 +348,12 @@ def xsampa(string):
 		string = string.replace(replacement[0],replacement[1])
 	return string
 
+def rword(min):
+	corpus = open("bee.txt", "r").read().replace('\n',' ').split(' ')
+	while 1:
+		attempt = c(corpus)
+		if len(attempt)>=min:return attempt
+
 # ACUTAL BOT SHIT
 
 bot_prefix = "m! "
@@ -466,25 +472,28 @@ async def on_message(message):
 				try:
 					word = args[1].lower()
 					await client.delete_message(message)
-				except:word = c(open("bee.txt", "r").read().replace('\n',' ').split(' '))
+				except:word = rword(4)
 				await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
 				while 1:
 					msg = await client.wait_for_message(channel=mc)
-					if msg.content.lower() in quit:break
+					if msg.content.lower() in quit:
+						await client.send_message(message.channel, 'c r i e ;-;')
+						break
 					pips = ''
 					if msg.author.name!='Mobot':
 						try:
 							guess = msg.content.lower()
-							if guess == word:
-								await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
-								break
-							mr = range(min(len(word),len(guess)))
-							#look for EXACT matches
-							for i in mr:
-								if guess[i]==word[i]:pips+='x'
-							for i in mr:
-								if guess[i] in word and guess[i]!=word[i]:pips+='*'
-							await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+							if len(guess) == len(word): # NO CHEATING
+								if guess == word:
+									await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+									break
+								mr = range(min(len(word),len(guess)))
+								#look for EXACT matches
+								for i in mr:
+									if guess[i]==word[i]:pips+='x'
+								for i in mr:
+									if guess[i] in word and guess[i]!=word[i]:pips+='*'
+								await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
 						except:pass
 
 		# ELSE
