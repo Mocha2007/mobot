@@ -6,6 +6,7 @@ import discord
 from random import choice as c
 from math import gcd,hypot,pi
 from time import time
+from re import compile,search
 import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen
 from mochaxyz import *
 
@@ -271,11 +272,25 @@ def bug(string):
 	return 'Success!'
 
 def quotefile(line,file):
+	l = line.split(' ')
+	if l[0] == 'search':return qfsearch(l[1],file)
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
 	q = open(file+".txt", "r").read().split('\n')[int(line)]
 	return q
+
+def qfsearch(pattern,file):
+	p = compile(pattern)
+	q = open(file+".txt", "r").read().split('\n')
+	l = []
+	r = ''
+	for i in range(len(q)):
+		line = q[i]
+		if search(p,line)!=None:l.append((i,line))
+	for m in l:
+		r+=str(m[0])+' '+m[1]+'\n'
+	return r
 
 def zodiac(arg):
 	signs = ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','coffee']
