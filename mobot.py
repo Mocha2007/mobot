@@ -389,7 +389,9 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'rpn'):
 			await client.send_message(message.channel, str(mocharpn.rpn(m[7:])))
 		elif n.startswith(bot_prefix+'ttt'):
-			await client.send_message(message.channel, str(mochattt.ai(m[7:])))
+			try:
+				await client.send_message(message.channel, str(mochattt.ai(m[7:])))
+			except:pass
 		elif n.startswith(bot_prefix+'ling'):
 			await client.send_message(message.channel, str(moling(m[8:])))
 		elif n.startswith(bot_prefix+'mbti'):
