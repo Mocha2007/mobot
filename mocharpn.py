@@ -7,6 +7,11 @@ def rpn(prog):
 	for command in prog:
 		if command in '01234567890':
 			cnum += command
+		elif command == '.':
+			decimal = True
+			try:stack.append(int(cnum))
+			except ValueError:pass
+			cnum = ''
 		elif command in ', ':
 			if not decimal:
 				try:stack.append(int(cnum))
@@ -19,12 +24,6 @@ def rpn(prog):
 				except ValueError:pass
 				decimal = False
 			cnum = ''
-		elif command == '.':
-			decimal = True
-			try:stack.append(int(cnum))
-			except ValueError:pass
-			cnum = ''
-		# stack manip
 		elif len(stack): # for commands requiring at least ONE number
 			if command == '~':
 				temp = stack.pop()
