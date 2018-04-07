@@ -8,6 +8,7 @@ def main(prog):
 	var = {'n':'\n'}
 	comment = False
 	string = False
+	esc = False
 	stack = []
 	cnum = ''
 	for i in range(len(prog)):
@@ -17,16 +18,23 @@ def main(prog):
 		try:isdefined = prog[i-1] == ':'
 		except:isdefined = False
 		if not comment and not isdefined:
-			if string or command in '0123456789':
+			if (string and command not in '\\\'') or command in '0123456789':
 				cnum += command
 			elif command == ' ':
 				try:stack.append(int(cnum))
 				except:return errorcode+'a'
 				cnum = ''
-			elif command == '\'' and string: # ADD ESCAPE SEQUENCES PLEASE
+			elif command == '\'' and string:
 				stack.append(cnum)
 				cnum = ''
 				string = False
+			elif command == '\\' and string:
+				esc = True
+			elif esc:
+				if command in '\\\'':
+					cnum += command
+					esc = False
+				else:return errorcode+'a2'
 			elif command == '#':
 				comment = True
 			elif command == '\'':
