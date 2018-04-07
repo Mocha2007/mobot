@@ -20,6 +20,7 @@ def help(command):
 	relevant = '```\n'
 	begin = 0
 	# try to find command
+	depth = 0 # to prevent UnboundLocalError on a wrong command
 	for i in range(len(doclines)):
 		begin = i
 		line = doclines[i]
