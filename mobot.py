@@ -349,7 +349,7 @@ def xsampa(string):
 	return string
 
 def rword(min):
-	replace = '\n.?,!0123456789'
+	replace = '\n.?,!0123456789":;'
 	corpus = open("bee.txt", "r").read()
 	for char in replace:
 		corpus = corpus.replace(char,' ')
