@@ -264,6 +264,8 @@ def sto(string):
 		inputendo = ' '.join(arg[1:])
 		if '<@!' in inputendo:return 'Not happening.'
 		if 'm!' == inputendo[:2]:return 'Not happening.'
+		for line in open("temp.txt", "r").read():
+			if inputendo == line:return 'Quote Already Stored.'
 		open("temp.txt", "a").write(inputendo+'\n')
 		return 'Success!'
 
