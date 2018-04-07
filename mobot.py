@@ -45,7 +45,8 @@ quotefiles = [
 'link',
 'moquote',
 'prequel',
-'spidey'
+'spidey',
+'tng'
 ]
 
 def product(numlist):
