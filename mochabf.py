@@ -38,6 +38,7 @@ def run(prog,inp):
 					elif prog[i] == ']':balance-=1
 					
 		pointer = pointer%256
+		mem[pointer] = mem[pointer]%256
 		i+=1
-		if t()-start>5:return 'Took too long (5s)'
+		if t()-start>5:return 'Took too long (5s) Stopped at char '+str(i)
 	return str(o)+'\n'+''.join(map(chr,o))
