@@ -363,8 +363,10 @@ def rword(min):
 def d(m,n):
 	if m==0:return 0
 	if m<0:return -d(-m,n)
-	if m==1:return c(range(1,n+1))
-	return c(range(1,n+1))+d(m-1,n)
+	s = 0
+	for i in range(m):
+		s+=c(range(n))+1
+	return s
 
 def dice(m,n):
 	rolls = []
