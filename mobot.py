@@ -348,49 +348,51 @@ async def on_message(message):
 		try:open("log.txt", "a").write(loglook+'\n')
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
-	if 'mobot' in m.lower():
-		try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
-		except:pass
+	try:
+		if 'mobot' in m.lower():
+			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
+			except:pass
 
-	if n == 'owo':
-		await client.send_message(message.channel, '*What\'s this???*')
-	# MAIN
-	elif n.startswith(bot_prefix+'help'):
-		await client.send_message(message.channel, help(m[8:]))
-	elif n.startswith(bot_prefix+'bf'):
-		args = m[6:].split('\n')
-		await client.send_message(message.channel, str(mochabf.run(args[0],args[1:])))
-	elif n.startswith(bot_prefix+'gs'):
-		await client.send_message(message.channel, str(mochagolfscript.run(m[6:])))
-	elif n.startswith(bot_prefix+'ast'):
-		await client.send_message(message.channel, str(moastro(m[7:])))
-	elif n.startswith(bot_prefix+'bug'):
-		await client.send_message(message.channel, str(bug(m[7:])))
-	elif n.startswith(bot_prefix+'mat'):
-		await client.send_message(message.channel, str(momath(m[7:])))
-	elif n.startswith(bot_prefix+'rpn'):
-		await client.send_message(message.channel, str(mocharpn.rpn(m[7:])))
-	elif n.startswith(bot_prefix+'ling'):
-		await client.send_message(message.channel, str(moling(m[8:])))
-	elif n.startswith(bot_prefix+'mbti'):
-		await client.send_message(message.channel, str(mbti(m[8:])))
-	elif n.startswith(bot_prefix+'quote'):
-		await client.send_message(message.channel, str(sto(m[9:])))
-	elif n.startswith(bot_prefix+'zodiac'):
-		await client.send_message(message.channel, str(zodiac(m[10:])))
-	elif n.startswith(bot_prefix+'coffee'):
-		await client.send_message(message.channel, str(coffee(m[10:])))
-	elif n.startswith(bot_prefix+'convert'):
-		await client.send_message(message.channel, str(convert(m[11:])))
-	elif n.startswith(bot_prefix+'religion'):
-		await client.send_message(message.channel, str(religion(m[12:])))
-	# QUOTES
-	elif qf in quotefiles:
-		await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
-	# ELSE
-	elif n.startswith(bot_prefix):
-		try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
-		except KeyError:await client.send_message(message.channel,'me confufu uwu')
+		if n == 'owo':
+			await client.send_message(message.channel, '*What\'s this???*')
+		# MAIN
+		elif n.startswith(bot_prefix+'help'):
+			await client.send_message(message.channel, help(m[8:]))
+		elif n.startswith(bot_prefix+'bf'):
+			args = m[6:].split('\n')
+			await client.send_message(message.channel, str(mochabf.run(args[0],args[1:])))
+		elif n.startswith(bot_prefix+'gs'):
+			await client.send_message(message.channel, str(mochagolfscript.run(m[6:])))
+		elif n.startswith(bot_prefix+'ast'):
+			await client.send_message(message.channel, str(moastro(m[7:])))
+		elif n.startswith(bot_prefix+'bug'):
+			await client.send_message(message.channel, str(bug(m[7:])))
+		elif n.startswith(bot_prefix+'mat'):
+			await client.send_message(message.channel, str(momath(m[7:])))
+		elif n.startswith(bot_prefix+'rpn'):
+			await client.send_message(message.channel, str(mocharpn.rpn(m[7:])))
+		elif n.startswith(bot_prefix+'ling'):
+			await client.send_message(message.channel, str(moling(m[8:])))
+		elif n.startswith(bot_prefix+'mbti'):
+			await client.send_message(message.channel, str(mbti(m[8:])))
+		elif n.startswith(bot_prefix+'quote'):
+			await client.send_message(message.channel, str(sto(m[9:])))
+		elif n.startswith(bot_prefix+'zodiac'):
+			await client.send_message(message.channel, str(zodiac(m[10:])))
+		elif n.startswith(bot_prefix+'coffee'):
+			await client.send_message(message.channel, str(coffee(m[10:])))
+		elif n.startswith(bot_prefix+'convert'):
+			await client.send_message(message.channel, str(convert(m[11:])))
+		elif n.startswith(bot_prefix+'religion'):
+			await client.send_message(message.channel, str(religion(m[12:])))
+		# QUOTES
+		elif qf in quotefiles:
+			await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
+		# ELSE
+		elif n.startswith(bot_prefix):
+			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
+			except KeyError:await client.send_message(message.channel,'me confufu uwu')
+	except discord.errors.Forbidden:pass
 
 print('Loaded')
 client.run(token)

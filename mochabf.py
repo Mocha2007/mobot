@@ -33,8 +33,10 @@ def run(prog,inp):
 				balance = 1
 				while balance:
 					i+=1
-					if prog[i] == '[':balance+=1
-					elif prog[i] == ']':balance-=1
+					try:
+						if prog[i] == '[':balance+=1
+						elif prog[i] == ']':balance-=1
+					except:return 'Error: End of input'
 				i-=1
 		elif command == ']':# jump to the next matching [
 			if mem[pointer]:
