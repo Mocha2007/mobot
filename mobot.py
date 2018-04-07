@@ -375,7 +375,8 @@ def dice(m,n):
 	mean = sum(rolls)/1000
 	try:mmmm = str(mode(rolls))
 	except:mmmm = 'No Unique Mode'
-	return '```\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nstdev: '+str(stdev(rolls))+'\nSample: '+str(d(m,n))+'```'
+	ssss = stdev(rolls)
+	return '```\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
 
 def dicemat(x):
 	x = x.split(' ')
