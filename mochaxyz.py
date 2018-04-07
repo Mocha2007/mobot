@@ -3,7 +3,7 @@ import mochaastro
 coffees = {
 '':'coffee',
 'americano':'espresso\nhot water',
-'black':'I just want my damn coffee without and of your milky-lickin\' pussy crap!',
+'black':'I just want my damn coffee without any of your milky-lickin\' pussy crap!',
 'cappuccino':'double espresso\nsteamed milk foam',
 'color':'#6F4E37',
 'espresso':'coffee brewed by expressing or forcing out a small amount of nearly boiling water under pressure through finely ground coffee beans',
