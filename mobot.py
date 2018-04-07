@@ -447,7 +447,9 @@ async def on_message(message):
 				guesses = []
 				while time()<start+timer:#30s should be enough
 					msg = await client.wait_for_message(timeout=1,channel=message.channel)
-					try:guesses.append((float(msg.content),msg.author.name))
+					try:
+						guesses.append((float(msg.content),msg.author.name))
+						await client.delete_message(msg)
 					except:pass
 				a1 = list(map(lambda x:x[0],guesses))
 				try:
