@@ -483,7 +483,7 @@ async def on_message(message):
 							for i in mr:
 								if guess[i]==word[i]:pips+='x'
 							for i in mr:
-								if guess[i] in word:pips+='*'
+								if guess[i] in word and guess[i]!=word[i]:pips+='*'
 							await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
 						except:pass
 

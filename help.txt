@@ -64,6 +64,9 @@ game [command]
 		|begin a game of mastermind
 		|if no word is specified,
 		|one will be chosen pseudo-randomly
+		|Key:
+		|x = one correct letter in the correct position
+		|* = one correct letter in an incorrect position
 gs [program]
 	|golfscript interpreter
 	|only partially implemented, WIP
