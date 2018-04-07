@@ -5,7 +5,7 @@ ast
 	|try this:
 	|m! ast stargen
 bf (program)
-	|P′′ interpreter using brainfuck styling
+	|P'' interpreter using brainfuck styling
 bug [string]
 	|submit bug report/feature request
 coffee (string)
