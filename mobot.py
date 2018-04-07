@@ -430,16 +430,15 @@ async def on_message(message):
 								await client.send_message(message.channel, '>')
 							else:
 								await client.send_message(message.channel, '<')
-						except:
-							await client.send_message(message.channel, ':/')
+						except:pass
 					else:
 						await client.send_message(message.channel, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
-					msg = await client.wait_for_message(author=message.author)
+					msg = await client.wait_for_message(channel=message.channel)
 					if msg.content.lower() in ('exit','quit'):
 						await client.send_message(message.channel, 'o oki ;-;')
 						break
 					elif msg.content == str(answer):
-						await client.send_message(message.channel, 'You Win! ^o^')
+						await client.send_message(message.channel, msg.author+', you win! ^o^')
 						break
 		# ELSE
 		elif n.startswith(bot_prefix):
