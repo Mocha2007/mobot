@@ -14,7 +14,7 @@ def main(prog):
 	for i in range(len(prog)):
 		command = prog[i]
 		errorcode = 'error @ char '+str(i)+': '+command+'\n\tstack ('+str(len(stack))+'): '+str(stack)+'\n\tcode '
-		#TODO ' " : and or xor print p puts rand do while until if abs zip base
+		#TODO " and or xor print p puts rand do while until if abs zip base
 		try:isdefined = prog[i-1] == ':'
 		except:isdefined = False
 		if not comment and not isdefined:
@@ -110,9 +110,25 @@ def main(prog):
 						elif command == '-':
 							try:stack.append(temp2-temp)
 							except:return errorcode+'g'
-						# TODO *
-						# TODO /
-						# TODO %
+						elif command == '*':
+							if typeof(temp) == 'int':
+								stack.append(temp2*temp)
+							elif typeof(temp2) == 'int':
+								stack.append(temp*temp2)
+							elif typeof(temp2) == 'list' and typeof(temp) == 'str':
+								stack.append(temp.join(temp2))
+							elif typeof(temp2) == 'str' and typeof(temp) == 'str':
+								stack.append(temp.join(temp2))
+							elif typeof(temp2) == 'list' and typeof(temp) == 'str':
+								stack.append(temp.join(''.join(temp2)))
+							else: # str arr | arr arr
+								if typeof(temp2) == 'str':temp2 = list(temp2)
+								Q = str(temp2).replace(',',str(temp)[1:-1])[1:-1].split(',')
+								stack.append(Q)
+						elif command == '/': # UNLIKE OFFICIAL DOCS, ONLY DIVIDES
+							stack.append(int(temp2/temp))
+						elif command == '%': # UNLIKE OFFICIAL DOCS, ONLY MODULUS
+							stack.append(temp2%temp)
 						elif command == '|':
 							try:stack.append(temp2|temp)
 							except:return errorcode+'h'
