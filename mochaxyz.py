@@ -3,10 +3,15 @@ import mochaastro
 coffees = {
 '':'coffee',
 'americano':'espresso\nhot water',
+'cappuccino':'double espresso\nsteamed milk foam',
+'espresso':'coffee brewed by expressing or forcing out a small amount of nearly boiling water under pressure through finely ground coffee beans',
+'flat white':'microfoam poured into a:\nsingle or double shot of espresso',
 'grande':'16 oz cup',
 'latte':'espresso\nhot milk',
+'long black':'A long black is made by pouring a double-shot of espresso or ristretto over hot water.',
 'macchiato':'espresso\nhot milk',
 'mocha':'chocolate\nespresso\nhot milk\n\n(also my senpai uwu)',
+'ristretto':'Ristretto is traditionally a short shot of espresso coffee made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.',
 'tall':'8 oz cup',
 'venti':'20 oz cup',
 }
