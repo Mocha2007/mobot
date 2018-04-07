@@ -468,10 +468,10 @@ async def on_message(message):
 					await client.delete_message(message)
 				except:word = c(open("bee.txt", "r").read().replace('\n',' ').split(' '))
 				await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
-				msg = False
-				while msg.content.lower() not in quit:
-					pips = ''
+				while 1:
 					msg = await client.wait_for_message(channel=mc)
+					if msg.content.lower() in quit:break
+					pips = ''
 					if msg.author.name!='Mobot':
 						try:
 							guess = msg.content.lower()
