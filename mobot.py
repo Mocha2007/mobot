@@ -349,10 +349,14 @@ def xsampa(string):
 	return string
 
 def rword(min):
-	corpus = open("bee.txt", "r").read().replace('\n',' ').split(' ')
+	replace = '\n.?,!0123456789'
+	corpus = open("bee.txt", "r").read()
+	for char in replace:
+		corpus = corpus.replace(char,' ')
+	corpus = corpus.split(' ')
 	while 1:
 		attempt = c(corpus)
-		if len(attempt)>=min:return attempt
+		if len(attempt)>=min:return attempt.lower()
 
 # ACUTAL BOT SHIT
 
