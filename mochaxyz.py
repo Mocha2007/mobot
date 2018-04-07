@@ -4,6 +4,7 @@ coffees = {
 '':'coffee',
 'americano':'espresso\nhot water',
 'cappuccino':'double espresso\nsteamed milk foam',
+'color':'#6F4E37',
 'espresso':'coffee brewed by expressing or forcing out a small amount of nearly boiling water under pressure through finely ground coffee beans',
 'flat white':'microfoam poured into a\nsingle or double shot of espresso',
 'grande':'16 oz cup',
