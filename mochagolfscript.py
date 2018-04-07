@@ -28,6 +28,8 @@ def main(prog):
 				cnum = ''
 			elif command == '#':
 				comment = True
+			elif command == '\'':
+				string = True
 			else:
 				if cnum!='':
 					try:
