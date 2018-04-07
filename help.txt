@@ -54,6 +54,10 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
+game [command]
+	gtn [min] [max]
+		|guess the number
+		|answer will be an integer between min and max
 gs [program]
 	|golfscript interpreter
 	|only partially implemented, WIP

@@ -13,9 +13,10 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
+game [command]
+	|games
 gs [program]
-	|golfscript interpreter
-	|only partially implemented, WIP
+	|golfscript interpreter, WIP
 help ((sub)command)
 	|>this
 info

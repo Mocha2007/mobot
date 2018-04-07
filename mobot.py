@@ -4,6 +4,7 @@ from discord.ext.commands import Bot
 import discord
 
 from random import choice as c
+from random import randint
 from math import gcd,hypot,pi
 from time import time
 from re import compile,search
@@ -410,6 +411,36 @@ async def on_message(message):
 		# QUOTES
 		elif qf in quotefiles:
 			await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
+		# GAMES
+		elif n.startswith(bot_prefix+'game'):
+			args = n.split(' ')[2:]
+			if args[0] == 'gtn':
+				try:
+					minn = int(args[1])
+					maxn = int(args[2])
+				except:
+					minn = 0
+					maxn = 99
+				answer = randint(minn,maxn)
+				msg = False
+				while 1:
+					if msg:
+						try:
+							if int(msg.content) < answer:
+								await client.send_message(message.channel, '>')
+							else:
+								await client.send_message(message.channel, '<')
+						except:
+							await client.send_message(message.channel, ':/')
+					else:
+						await client.send_message(message.channel, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
+					msg = await client.wait_for_message(author=message.author)
+					if msg.content.lower() in ('exit','quit'):
+						await client.send_message(message.channel, 'o oki ;-;')
+						break
+					elif msg.content == str(answer):
+						await client.send_message(message.channel, 'You Win! ^o^')
+						break
 		# ELSE
 		elif n.startswith(bot_prefix):
 			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
