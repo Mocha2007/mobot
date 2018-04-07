@@ -8,7 +8,7 @@ from random import randint
 from math import gcd,hypot,pi
 from time import time
 from re import compile,search
-from statistics import median,mode,stdev
+from statistics import median,mode,stdev,StatisticsError
 import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
