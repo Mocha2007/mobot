@@ -260,11 +260,10 @@ def sto(string):
 		if '<@!' in inputendo:return 'Not happening.'
 		open("temp.txt", "a").write(inputendo+'\n')
 		return 'Success!'
-	elif arg[0] == 'get':
-		try:q = open("temp.txt", "r").read().split('\n')[int(arg[1])]
-		except:q = c(open("temp.txt", "r").read().split('\n'))
-		if q not in '\n ':return q
 
+	try:q = open("temp.txt", "r").read().split('\n')[int(arg[0])]
+	except:q = c(open("temp.txt", "r").read().split('\n'))
+	if q not in '\n ':return q
 	return sto('get')
 
 def bug(string):

@@ -29,7 +29,7 @@ mat
 	|m! mat vol sphere 10
 mbti [string]
 	|information regarding the specified mbti
-quote [command]
+quote (command)
 	| quote things
 religion [string]
 	|information regarding religions

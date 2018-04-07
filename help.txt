@@ -81,12 +81,12 @@ prequel (number)
 	|line #number from prequel file
 	|leave out number for random line
 	|valid numbers are 0-11, inclusive
-quote [command]
+quote (command)
+	|leave blank for a random quote
 	sto [string]
 		|store a string into the magic database
-	get (quote_id)
+	[quote_id]
 		|get a specified string from the magic database
-		|leave out quote_id for a random quote
 religion [string]
 	|information regarding religions
 rpn (string)
