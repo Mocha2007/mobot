@@ -22,7 +22,7 @@ def main(prog):
 				cnum += command
 			elif command == ' ':
 				try:stack.append(int(cnum))
-				except:return errorcode+'a'
+				except:pass
 				cnum = ''
 			elif command == '\'' and string:
 				stack.append(cnum)
@@ -34,7 +34,7 @@ def main(prog):
 				if command in '\\\'':
 					cnum += command
 					esc = False
-				else:return errorcode+'a2'
+				else:return errorcode+'a'
 			elif command == '#':
 				comment = True
 			elif command == '\'':

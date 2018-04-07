@@ -10,10 +10,13 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
-info
-	|mobot info
+gs [program]
+	|golfscript interpreter
+	|only partially implemented, WIP
 help ((sub)command)
 	|>this
+info
+	|mobot info
 ling [command]
 	|many, many language calculations
 	|try this:
