@@ -19,13 +19,14 @@ def main(prog):
 		if not comment and not isdefined:
 			if string or command in '0123456789':
 				cnum += command
-			elif command == ' ' and not string or command == '\'' and string: # ADD ESCAPE SEQUENCES PLEASE
-				if string:
-					stack.append(cnum)
-				else:
-					try:stack.append(int(cnum))
-					except:return errorcode+'a'
+			elif command == ' ':
+				try:stack.append(int(cnum))
+				except:return errorcode+'a'
 				cnum = ''
+			elif command == '\'' and string: # ADD ESCAPE SEQUENCES PLEASE
+				stack.append(cnum)
+				cnum = ''
+				string = False
 			elif command == '#':
 				comment = True
 			elif command == '\'':
