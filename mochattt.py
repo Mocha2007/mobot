@@ -54,15 +54,6 @@ def ai(position):
 		for move2 in moves(p2):
 			if won(p2.replace(move2,tg)):return move
 	# failsafe
-	# center
-	if '5' in p:return 5
-	# corners
-	if '7' in p:return 7
-	if '9' in p:return 9
-	if '1' in p:return 1
-	if '3' in p:return 3
-	# edges
-	if '8' in p:return 8
-	if '4' in p:return 4
-	if '2' in p:return 2
-	if '6' in p:return 6
+	for i in '579138426':
+		if i in p:return i
+	return 'Game Already Drawn'
