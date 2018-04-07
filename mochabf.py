@@ -1,8 +1,15 @@
 from time import time as t
 
+def tonum(x):
+	try:return int(x)
+	except:	
+		try:return chr(x)
+		return:len(x)
+
 mem = [0]*256
 
 def run(prog,inp):
+	inp = list(map(tonum,inp))
 	o = []
 	inpn = 0
 	start = t()
