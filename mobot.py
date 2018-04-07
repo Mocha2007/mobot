@@ -280,7 +280,7 @@ def quotefile(line,file):
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
 	q = open(file+".txt", "r").read().split('\n')[int(line)]
-	return q
+	return quotefile('',file) if q=='' else q
 
 def qfsearch(pattern,file):
 	p = compile(pattern)
