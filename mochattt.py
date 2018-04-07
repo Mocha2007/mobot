@@ -18,9 +18,12 @@ def won(p):
 
 def togo(p):
 	s = 0
-	for n in '123456789':
-		if n in p:s+=1
-	return 'x' if s%2==1 else 'o'
+	for n in p:
+		if n=='x':s+=1
+		elif n=='o':s-=1
+	if s==0:return 'x'
+	if s==1:return 'o'
+	return 'Illegal Position'
 
 def moves(p):
 	return p.replace('x','').replace('o','')
@@ -30,11 +33,13 @@ def opp(p):
 
 def ai(position):
 	p = position.replace(' ','').lower()
+	if len(9)!=9:return 'Invalid Position'
 	if p in ('123456789','1234x6789'):return 7
 	#checking
-	if won(p):return 'Invalid Position'
+	if won(p):return 'Game Already Won'
 	#for all possible moves
 	tg = togo(p)
+	if tg[0]=='I':return tg
 	opponent = opp(p)
 	m = moves(p)
 	#can the ai immediately win?
