@@ -377,7 +377,10 @@ def dice(m,n):
 
 def dicemat(x):
 	x = x.split(' ')
-	return dice(int(x[0]),int(x[1]))
+	m = int(x[0])
+	n = int(x[1])
+	if abs(m)<99>abs(n):return dice(m,n)
+	return 'Too High'
 
 # ACUTAL BOT SHIT
 
