@@ -438,7 +438,7 @@ async def on_message(message):
 						await client.send_message(message.channel, 'o oki ;-;')
 						break
 					elif msg.content == str(answer):
-						await client.send_message(message.channel, msg.author+', you win! ^o^')
+						await client.send_message(message.channel, msg.author.name+', you win! ^o^')
 						break
 		# ELSE
 		elif n.startswith(bot_prefix):
