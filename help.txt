@@ -120,6 +120,15 @@ tng (number)
 	|line #number from the tng quote file;
 	|leave out number for random line
 	|valid numbers are 0-0, inclusive
+ttt [pattern]
+	|tic-tac-toe AI, perfect play
+	|Board:
+	|789
+	|456
+	|123
+	|replace numbers with x and o as necessary
+	|try this pattern:
+	|m! ttt 123oo6xx9
 up
 	|fun :)
 you're matched

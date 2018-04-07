@@ -38,6 +38,8 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
+ttt [pattern]
+	|tic-tac-toe AI, perfect play
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified

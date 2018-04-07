@@ -7,7 +7,7 @@ from random import choice as c
 from math import gcd,hypot,pi
 from time import time
 from re import compile,search
-import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen
+import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
 # CODE SHIT
@@ -387,6 +387,8 @@ async def on_message(message):
 			await client.send_message(message.channel, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
 			await client.send_message(message.channel, str(mocharpn.rpn(m[7:])))
+		elif n.startswith(bot_prefix+'ttt'):
+			await client.send_message(message.channel, str(mochattt.ai(m[7:])))
 		elif n.startswith(bot_prefix+'ling'):
 			await client.send_message(message.channel, str(moling(m[8:])))
 		elif n.startswith(bot_prefix+'mbti'):
