@@ -4,7 +4,7 @@ def tonum(x):
 	try:return int(x)
 	except:	
 		try:return chr(x)
-		return:len(x)
+		except:return len(x)
 
 mem = [0]*256
 
