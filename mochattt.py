@@ -33,7 +33,7 @@ def opp(p):
 
 def ai(position):
 	p = position.replace(' ','').lower()
-	if len(9)!=9:return 'Invalid Position'
+	if len(p)!=9:return 'Invalid Position'
 	if p in ('123456789','1234x6789'):return 7
 	#checking
 	if won(p):return 'Game Already Won'
