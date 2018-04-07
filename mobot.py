@@ -263,6 +263,7 @@ def sto(string):
 	if arg[0] == 'sto':
 		inputendo = ' '.join(arg[1:])
 		if '<@!' in inputendo:return 'Not happening.'
+		if 'm!' == inputendo[:2]:return 'Not happening.'
 		open("temp.txt", "a").write(inputendo+'\n')
 		return 'Success!'
 
