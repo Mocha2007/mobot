@@ -54,6 +54,8 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
+dice [number] [number]
+	|stats for that roll
 game [command]
 	g2/3
 		|guess 2/3 of the average

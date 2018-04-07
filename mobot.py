@@ -8,6 +8,7 @@ from random import randint
 from math import gcd,hypot,pi
 from time import time
 from re import compile,search
+from statistics import median,mode,stdev
 import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
@@ -358,6 +359,25 @@ def rword(min):
 	while 1:
 		attempt = c(corpus)
 		if len(attempt)>=min:return attempt.lower()
+	
+def d(m,n):
+	if m==0:return 0
+	if m<0:return -d(-m,n)
+	if m==1:return c(range(1,n+1))
+	return c(range(1,n+1))+d(m-1,n)
+
+def dice(m,n):
+	rolls = []
+	for i in range(1000):
+		rolls += [d(m,n)]
+	mean = sum(rolls)/1000
+	try:mmmm = str(mode(rolls))
+	except statistics.StatisticsError:mmmm = 'No Unique Mode'
+	return '```\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nstdev: '+str(stdev(rolls))+'\nSample: '+str(d(m,n))+'```'
+
+def dicemat(x):
+	x = x.split(' ')
+	return dice(int(x[0]),int(x[1]))
 
 # ACUTAL BOT SHIT
 
@@ -411,6 +431,8 @@ async def on_message(message):
 			await client.send_message(message.channel, str(moling(m[8:])))
 		elif n.startswith(bot_prefix+'mbti'):
 			await client.send_message(message.channel, str(mbti(m[8:])))
+		elif n.startswith(bot_prefix+'dice'):
+			await client.send_message(message.channel, str(dicemat(m[8:])))
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(message.channel, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
