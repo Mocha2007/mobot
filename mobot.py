@@ -495,7 +495,7 @@ async def hangman(args,mc):
 								known = ''.join(known)
 						#won?
 						if 'X' not in known:
-							await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+							await client.send_message(mc, msg.author.name+', you won! The word was **'+word+'**! ^o^')
 							return False
 					else:
 						fails+=1
