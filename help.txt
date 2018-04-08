@@ -69,6 +69,10 @@ game [command]
 		|guess the number
 		|answer will be an integer
 		|between min and max
+	hangman (language_code)
+		|begin a game of hangman
+		|if no language is specified,
+		|English will be selected
 	numbers
 		|you are given a target number,
 		|and six numbers you can use to reach that target.

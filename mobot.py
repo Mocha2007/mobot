@@ -350,9 +350,10 @@ def xsampa(string):
 		string = string.replace(replacement[0],replacement[1])
 	return string
 
-def rword(min):
-	replace = '\n.?,!0123456789":;'
-	corpus = open("bee.txt", "r").read()
+def rword(lang,min):
+	replace = '\n.?,!0123456789[]()":;'
+	if lang == 'la':corpus = open("cdbg.txt", "r").read()
+	else:corpus = open("bee.txt", "r").read()
 	for char in replace:
 		corpus = corpus.replace(char,' ')
 	corpus = corpus.split(' ')
@@ -442,7 +443,8 @@ async def word(args,message):
 	try:
 		word = args[1].lower()
 		await client.delete_message(message)
-	except:word = rword(4)
+		if word == 'latin':word = rword('la',1)
+	except:word = rword('en',4)
 	await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
 	while 1:
 		msg = await client.wait_for_message(channel=mc)
@@ -464,6 +466,40 @@ async def word(args,message):
 					for i in mr:
 						if guess[i] in word and guess[i]!=word[i]:pips+='*'
 					await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+			except:pass
+	return True
+
+async def hangman(args,mc):
+	word = rword(args[1],4)
+	known = 'X'*len(word)
+	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
+	while 1:
+		msg = await client.wait_for_message(channel=mc)
+		if msg.content.lower() in quit:
+			await client.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
+			return True
+		if msg.author.name!='Mobot':
+			try:
+				guess = msg.content.lower()
+				if len(guess) == 1:
+					if guess in word:
+						#replace letters in known
+						for i in range(len(word)):
+							if guess == word[i]:
+								known = list(known)
+								known[i] = guess
+								known = ''.join(known)
+						#won?
+						if 'X' not in known:
+							await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+							return False
+						#display word
+						await client.send_message(mc, '**'+known+'**')
+					else:
+						await client.send_message(mc, '**'+guess+'** is not in the word.')
+				elif guess == word:
+					await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+					return False
 			except:pass
 	return True
 
@@ -715,6 +751,8 @@ async def on_message(message):
 				await gtn(args,mc)
 			elif args[0] == 'g2/3':
 				await g23(mc)
+			elif args[0] == 'hangman':
+				await hangman(args,mc)
 			elif args[0] == 'numbers':
 				await numbers(mc)
 			elif args[0] == 'verbrace':
