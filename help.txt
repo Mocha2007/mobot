@@ -57,6 +57,12 @@ convert [number] [from-unit] [to-unit]
 dice [number] [number]
 	|stats for that roll
 game [command]
+	24
+		|you are given four numbers
+		|your goal is to +-*/ those numbers to reach 24
+		|answers must be formatted in RPN
+		|otherwise, the winner must be manually computed.
+		|you get 30 seconds to submit your answer.
 	g2/3
 		|guess 2/3 of the average
 	gtn [min] [max]

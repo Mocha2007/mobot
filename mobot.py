@@ -557,6 +557,56 @@ async def numbers(mc):
 	await client.send_message(mc, 'The Math Corner notes that **'+str(target)+'** was achievable using the following solution:\n`'+owo+'`')
 	return False
 
+async def twentyfour(mc):
+	limit = 30
+	ops = '+-*/'
+	#generate numbers until it works dammit
+	target = 0
+	while target!=24:
+		start = time()
+		ns = []
+		for i in range(4):
+			ns.append(randint(1,10))
+		whatsthis = ' '.join(map(str,ns))
+		while target != 24:
+			owo = whatsthis
+			for i in range(len(ns)-1):
+				owo += c(ops)
+			target = mocharpn.rpn(owo)[0]
+			if time()-start>1:break
+	# now a valid sample is established
+	#Begin!
+	await client.send_message(mc, 'A new game of **24** has begun!\nYour numbers are **'+whatsthis+'**!')
+	await client.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
+	start = time()
+	guesses1 = []
+	guesses2 = []
+	warned = False
+	while time()<start+limit:
+		msg = await client.wait_for_message(channel=mc,timeout=1)
+		try:
+			if msg.content.lower() in quit:
+				await client.send_message(mc, 'c r i e ;-;')
+				return True
+			elif msg.author.name not in guesses2:
+				if msg.author.name!='Mobot':
+					guesses1.append(msg.content)
+					guesses2.append(msg.author.name)
+					await client.delete_message(msg)
+					await client.send_message(mc, '**'+msg.author.name+'**, your answer has been submitted!')
+			else:
+				await client.send_message(mc, 'u already gone shoo shoo')
+		except AttributeError:pass
+		if time()+5>start+limit and not warned:
+			await client.send_message(mc, 'You have **5** seconds left to solve!')
+			warned = True
+	await client.send_message(mc, 'The game of **24** has ended! Check your answers!')
+	for i in range(len(guesses1)):
+		result = mocharpn.rpn(guesses1[i])[0]
+		await client.send_message(mc, guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
+	await client.send_message(mc, 'The Math Corner notes that **24** was achievable using the following solution:\n`'+owo+'`')
+	return False
+
 # ACUTAL BOT SHIT
 
 bot_prefix = "m! "
@@ -633,7 +683,9 @@ async def on_message(message):
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
 			args = n.split(' ')[2:]
-			if args[0] == 'gtn':
+			if args[0] == '24':
+				await twentyfour(mc)
+			elif args[0] == 'gtn':
 				await gtn(args,mc)
 			elif args[0] == 'g2/3':
 				await g23(mc)
