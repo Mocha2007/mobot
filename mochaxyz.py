@@ -93,6 +93,10 @@ units = {
 }
 
 verbs = {
+'en':(
+('say','says','say','say','say','say','say'),
+('am','is','are','are','are','be')
+)
 'fr':(
 ('dis','dis','dit','disons','dites','disent','dire'),
 ('suis','es','est','sommes','êtes','sont','être')
@@ -100,6 +104,7 @@ verbs = {
 }
 
 pronouns = {
+'en':('I','he','we','you','they'),
 'fr':('je','tu','il','nous','vous','ils')
 }
 

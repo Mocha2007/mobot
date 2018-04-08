@@ -65,6 +65,7 @@ game [command]
 	verbrace [language_code]
 		|begin a game of verb race
 		|currently, the language codes supported are:
+		|en (2 verbs)
 		|fr (2 verbs)
 	word (word)
 		|begin a game of mastermind
