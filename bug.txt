@@ -1,1 +1,5 @@
 add the esp game
+add verb race
+have bug print the bell character
+more word games
+Finish area volemes
