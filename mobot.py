@@ -384,14 +384,16 @@ def dicemat(x):
 	n = int(x[1])
 	if abs(m)<99>abs(n):return dice(m,n)
 	return 'Too High'
+
+# GAMES
 	
-async def g23(message):
+async def g23(mc):
 	timer = 30
-	await client.send_message(message.channel, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
+	await client.send_message(mc, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
 	start = time()
 	guesses = []
 	while time()<start+timer:#30s should be enough
-		msg = await client.wait_for_message(timeout=1,channel=message.channel)
+		msg = await client.wait_for_message(timeout=1,channel=mc)
 		try:
 			guesses.append((float(msg.content),msg.author.name))
 			await client.delete_message(msg)
@@ -401,10 +403,10 @@ async def g23(message):
 		avg23 = sum(a1)*2/3/len(a1)
 		a2 = list(map(lambda x:abs(x-avg23),a1))
 		winner = a2.index(min(a2))
-		await client.send_message(message.channel, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
+		await client.send_message(mc, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
 		return False
 	except ZeroDivisionError:
-		await client.send_message(message.channel, 'N-nobody??? ;-;')
+		await client.send_message(mc, 'N-nobody??? ;-;')
 		return True
 
 async def gtn(args,mc):
@@ -522,8 +524,6 @@ async def on_message(message):
 			await client.send_message(message.channel, str(mbti(m[8:])))
 		elif n.startswith(bot_prefix+'dice'):
 			await client.send_message(message.channel, str(dicemat(m[8:])))
-		elif n.startswith(bot_prefix+'test'):
-			await g23(message)
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(message.channel, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
@@ -544,7 +544,7 @@ async def on_message(message):
 			if args[0] == 'gtn':
 				await gtn(args,mc)
 			elif args[0] == 'g2/3':
-				await g23(message)
+				await g23(mc)
 			elif args[0] == 'word':
 				await word(args,message)
 
