@@ -512,6 +512,7 @@ async def on_message(message):
 			await client.send_message(message.channel, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
 			await client.send_message(message.channel, str(bug(m[7:])))
+			print('\a')
 		elif n.startswith(bot_prefix+'mat'):
 			await client.send_message(message.channel, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
