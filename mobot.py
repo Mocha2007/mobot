@@ -353,7 +353,7 @@ def xsampa(string):
 def rword(lang,min):
 	replace = '\n.?,!0123456789[]()":;'
 	if lang == 'la':corpus = open("cdbg.txt", "r").read()
-	elif lang == 'fr':corpus = open("la géométrie.txt", "r").read()
+	elif lang == 'fr':corpus = open("lg.txt", "r").read()
 	else:corpus = open("bee.txt", "r").read()
 	for char in replace:
 		corpus = corpus.replace(char,' ')
@@ -476,7 +476,7 @@ async def hangman(args,mc):
 	try:lang = args[1]
 	except:lang = 'en'
 	word = rword(lang,4)
-	print('\t\t'+lang,word)
+	#print('\t\t'+lang,word)
 	known = 'X'*len(word)
 	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
