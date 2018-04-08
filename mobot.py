@@ -467,6 +467,23 @@ async def word(args,message):
 			except:pass
 	return True
 
+def vrleaderboard(lang,verb,n):
+	#[(lang,verb,##,user),...]
+	wholelist = list(map(lambda x:(x[0],x[1],int(x[2]),x[3]),map(lambda x:x.split('\t'),open("vrleaderboard.txt", "r").read().split('\n'))))
+	#the above is CONFIRMED to work correctly. the problem is below this point
+	#find relevant entries
+	o = []
+	for entry in wholelist:
+		if entry[0] == lang and entry[1] == verb:o.append((entry[2],entry[3]))
+	#sort by time
+	o = sorted(o,key=lambda x:x[0])
+	#now turn to text
+	oo = ''
+	for i in range(min(len(o),n+1)):
+		entry = o[i]
+		oo+=str(entry[0])+' '+entry[1]+'\n'
+	return '```\n'+oo+'```'
+
 async def verbrace(args,mc):
 	forms = pronouns[args[1]]
 	word = c(verbs[args[1]])
@@ -479,32 +496,41 @@ async def verbrace(args,mc):
 	while time()<start+limit:
 		msg = await client.wait_for_message(channel=mc,timeout=1)
 		try:
-			if msg.content.lower() == 'join' and msg.author.name!='Mobot':players+=[msg.author]
-			await client.send_message(mc, '**'+msg.author.name+'** has joined!')
+			if msg.content.lower() == 'join' and msg.author.name!='Mobot':
+				players.append(msg.author)
+				await client.send_message(mc, '**'+msg.author.name+'** has joined!')
 		except:pass
 	if len(players)<finalform: # for small games
 		players = players*ceil(finalform/len(players))
 	shuffle(players)
+	pbu = players[:] # player backup
 	choice = False
 	start = time()
 	await client.send_message(mc, 'A new game of **Verb Race** has begun!\nYour verb is: **'+word[finalform]+'**!')
+	allcorrect = True
 	while form<finalform:
 		if choice:
 			msg = await client.wait_for_message(channel=mc)
-			if msg.content.lower() in quit and msg.author.name in players:
+			if msg.content.lower() in quit and msg.author in players:
 				await client.send_message(mc, 'c r i e ;-;')
-				return True
+				break#return True
 			elif msg.author == choice:
 				if msg.content == word[form]:
 					await client.send_message(mc, 'Correct!')
 				else:
 					await client.send_message(mc, 'Incorrect! The correct form was **'+word[form]+'**')
+					allcorrect = False
 				form+=1
 				choice = False
 		else:
 			choice = players.pop()
 			await client.send_message(mc, '**'+choice.name+'**, conjugate **'+word[finalform]+'** for **'+forms[form]+'**!')
 	await client.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
+	#check to see if eligible for leaderboard
+	if allcorrect and len(set(pbu[:finalform])) == 1:
+		open("vrleaderboard.txt", "a").write('\n'+'\t'.join([args[1],word[finalform],str(int(time()-start)),pbu[0].name]))
+	#print leaders
+	await client.send_message(mc, 'Leaderboard for **'+word[finalform]+'**:\n'+vrleaderboard(args[1],word[finalform],5))
 	return False
 
 async def numbers(mc):

@@ -122,6 +122,7 @@ verbs = {
 ('say','says','saying','said','said','say')
 ),
 'eo':(
+('estas','estis','estos','estus','estu','esti'),
 ('estas','estis','estos','estus','estu','esti')
 ),
 'fr':(
