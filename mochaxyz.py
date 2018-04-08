@@ -92,6 +92,17 @@ units = {
 'yr':31556952,
 }
 
+verbs = {
+'fr':(
+('dis','dis','dit','disons','dites','disent','dire'),
+('suis','es','est','sommes','êtes','sont','être')
+)
+}
+
+pronouns = {
+'fr':('je','tu','il','nous','vous','ils')
+}
+
 xskey = (
 ('b_<','ɓ'),
 ('d`','ɖ'),

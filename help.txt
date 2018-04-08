@@ -62,6 +62,10 @@ game [command]
 	gtn [min] [max]
 		|guess the number
 		|answer will be an integer between min and max
+	verbrace [language_code]
+		|begin a game of verb race
+		|currently, the language codes supported are:
+		|fr (2 verbs)
 	word (word)
 		|begin a game of mastermind
 		|if no word is specified,

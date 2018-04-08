@@ -4,8 +4,8 @@ from discord.ext.commands import Bot
 import discord
 
 from random import choice as c
-from random import randint
-from math import gcd,hypot,pi
+from random import randint,shuffle
+from math import ceil,gcd,hypot,pi
 from time import time
 from re import compile,search
 from statistics import median,mode,stdev
@@ -64,7 +64,7 @@ def momath(string):
 
 	# simple
 
-	if arg[0] == 'circumference':
+	if arg[0] in ('circumference','perimeter'):
 		return float(arg[2])*pi
 	elif arg[0] == 'ecc':
 		a = float(arg[1])
@@ -467,6 +467,45 @@ async def word(args,message):
 			except:pass
 	return True
 
+async def verbrace(args,mc):
+	forms = pronouns[args[1]]
+	word = c(verbs[args[1]])
+	limit = 30
+	await client.send_message(mc, 'A new game of **Verb Race** has begun! You have **'+str(limit)+'** seconds to type `join`!')
+	form = 0
+	start = time()
+	players = []
+	while time()<start+limit:
+		msg = await client.wait_for_message(channel=mc,timeout=1)
+		try:
+			if msg.content.lower() == 'join' and msg.author.name!='Mobot':players+=[msg.author]
+			await client.send_message(mc, '**'+msg.author.name+'** has joined!')
+		except:pass
+	if len(players)<6: # for small games
+		players = players*ceil(6/len(players))
+	shuffle(players)
+	choice = False
+	start = time()
+	await client.send_message(mc, 'A new game of **Verb Race** has begun!\nYour verb is: **'+word[6]+'**!')
+	while form<6:
+		if choice:
+			msg = await client.wait_for_message(channel=mc)
+			if msg.content.lower() in quit and msg.author.name in players:
+				await client.send_message(mc, 'c r i e ;-;')
+				return True
+			elif msg.author == choice:
+				if msg.content == word[form]:
+					await client.send_message(mc, 'Correct!')
+				else:
+					await client.send_message(mc, 'Incorrect! The correct form was **'+word[form]+'**')
+				form+=1
+				choice = False
+		else:
+			choice = players.pop()
+			await client.send_message(mc, '**'+choice.name+'**, conjugate **'+word[6]+'** for **'+forms[form]+'**!')
+	await client.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
+	return False
+
 # ACUTAL BOT SHIT
 
 bot_prefix = "m! "
@@ -498,54 +537,57 @@ async def on_message(message):
 			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
 			except:pass
 
+		mc = message.channel
+
 		if n == 'owo':
-			await client.send_message(message.channel, '*What\'s this???*')
+			await client.send_message(mc, '*What\'s this???*')
 		# MAIN
 		elif n.startswith(bot_prefix+'help'):
-			await client.send_message(message.channel, help(m[8:]))
+			await client.send_message(mc, help(m[8:]))
 		elif n.startswith(bot_prefix+'bf'):
 			args = m[6:].split('\n')
-			await client.send_message(message.channel, str(mochabf.run(args[0],args[1:])))
+			await client.send_message(mc, str(mochabf.run(args[0],args[1:])))
 		elif n.startswith(bot_prefix+'gs'):
-			await client.send_message(message.channel, str(mochagolfscript.run(m[6:])))
+			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
 		elif n.startswith(bot_prefix+'ast'):
-			await client.send_message(message.channel, str(moastro(m[7:])))
+			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
-			await client.send_message(message.channel, str(bug(m[7:])))
+			await client.send_message(mc, str(bug(m[7:])))
 			print('\a')
 		elif n.startswith(bot_prefix+'mat'):
-			await client.send_message(message.channel, str(momath(m[7:])))
+			await client.send_message(mc, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
-			await client.send_message(message.channel, str(mocharpn.rpn(m[7:])))
+			await client.send_message(mc, str(mocharpn.rpn(m[7:])))
 		elif n.startswith(bot_prefix+'ttt'):
-			await client.send_message(message.channel, str(mochattt.ai(m[7:])))
+			await client.send_message(mc, str(mochattt.ai(m[7:])))
 		elif n.startswith(bot_prefix+'ling'):
-			await client.send_message(message.channel, str(moling(m[8:])))
+			await client.send_message(mc, str(moling(m[8:])))
 		elif n.startswith(bot_prefix+'mbti'):
-			await client.send_message(message.channel, str(mbti(m[8:])))
+			await client.send_message(mc, str(mbti(m[8:])))
 		elif n.startswith(bot_prefix+'dice'):
-			await client.send_message(message.channel, str(dicemat(m[8:])))
+			await client.send_message(mc, str(dicemat(m[8:])))
 		elif n.startswith(bot_prefix+'quote'):
-			await client.send_message(message.channel, str(sto(m[9:])))
+			await client.send_message(mc, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
-			await client.send_message(message.channel, str(zodiac(m[10:])))
+			await client.send_message(mc, str(zodiac(m[10:])))
 		elif n.startswith(bot_prefix+'coffee'):
-			await client.send_message(message.channel, str(coffee(m[10:])))
+			await client.send_message(mc, str(coffee(m[10:])))
 		elif n.startswith(bot_prefix+'convert'):
-			await client.send_message(message.channel, str(convert(m[11:])))
+			await client.send_message(mc, str(convert(m[11:])))
 		elif n.startswith(bot_prefix+'religion'):
-			await client.send_message(message.channel, str(religion(m[12:])))
+			await client.send_message(mc, str(religion(m[12:])))
 		# QUOTES
 		elif qf in quotefiles:
-			await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
+			await client.send_message(mc, quotefile(m[4+len(qf):],qf))
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
-			mc = message.channel
 			args = n.split(' ')[2:]
 			if args[0] == 'gtn':
 				await gtn(args,mc)
 			elif args[0] == 'g2/3':
 				await g23(mc)
+			elif args[0] == 'verbrace':
+				await verbrace(args,mc)
 			elif args[0] == 'word':
 				await word(args,message)
 
