@@ -481,8 +481,8 @@ def vrleaderboard(lang,verb,n):
 	oo = ''
 	for i in range(min(len(o),n+1)):
 		entry = o[i]
-		oo+=str(entry[0])+' '+entry[1]+'\n'
-	return '```\n'+oo+'```'
+		oo+=str(entry[0])+'\t'+entry[1]+'\n'
+	return '```\ns\tusername\n'+oo+'```'
 
 async def verbrace(args,mc):
 	forms = pronouns[args[1]]
