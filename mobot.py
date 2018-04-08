@@ -507,6 +507,56 @@ async def verbrace(args,mc):
 	await client.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
 	return False
 
+async def numbers(mc):
+	limit = 45
+	ops = '+-*/'
+	minn = 2
+	maxn = 20
+	nn = 6
+	ns = []
+	for i in range(nn):
+		ns.append(randint(minn,maxn))
+	target = 0.5
+	whatsthis = ' '.join(map(str,ns))
+	while target != int(target) or target>1000 or target<10:
+		owo = whatsthis
+		for i in range(len(ns)-1):
+			owo += c(ops)
+		target = mocharpn.rpn(owo)[0]
+	# now a valid target is established
+	target = int(target)
+	#Begin!
+	await client.send_message(mc, 'A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+whatsthis+'**!')
+	await client.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
+	start = time()
+	guesses1 = []
+	guesses2 = []
+	warned = False
+	while time()<start+limit:
+		msg = await client.wait_for_message(channel=mc,timeout=1)
+		try:
+			if msg.content.lower() in quit:
+				await client.send_message(mc, 'c r i e ;-;')
+				return True
+			elif msg.author.name not in guesses2:
+				if msg.author.name!='Mobot':
+					guesses1.append(msg.content)
+					guesses2.append(msg.author.name)
+					await client.delete_message(msg)
+					await client.send_message(mc, '**'+msg.author.name+'**, your answer has been submitted!')
+			else:
+				await client.send_message(mc, 'u already gone shoo shoo')
+		except AttributeError:pass
+		if time()+5>start+limit and not warned:
+			await client.send_message(mc, 'You have **5** seconds left to solve!')
+			warned = True
+	await client.send_message(mc, 'The game of **Numbers** has ended! Check your answers!')
+	for i in range(len(guesses1)):
+		result = mocharpn.rpn(guesses1[i])[0]
+		await client.send_message(mc, guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
+	await client.send_message(mc, 'The Math Corner notes that **'+str(target)+'** was achievable using the following solution:\n`'+owo+'`')
+	return False
+
 # ACUTAL BOT SHIT
 
 bot_prefix = "m! "
@@ -587,6 +637,8 @@ async def on_message(message):
 				await gtn(args,mc)
 			elif args[0] == 'g2/3':
 				await g23(mc)
+			elif args[0] == 'numbers':
+				await numbers(mc)
 			elif args[0] == 'verbrace':
 				await verbrace(args,mc)
 			elif args[0] == 'word':
