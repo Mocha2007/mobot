@@ -475,19 +475,20 @@ async def verbrace(args,mc):
 	form = 0
 	start = time()
 	players = []
+	finalform = len(forms)
 	while time()<start+limit:
 		msg = await client.wait_for_message(channel=mc,timeout=1)
 		try:
 			if msg.content.lower() == 'join' and msg.author.name!='Mobot':players+=[msg.author]
 			await client.send_message(mc, '**'+msg.author.name+'** has joined!')
 		except:pass
-	if len(players)<6: # for small games
-		players = players*ceil(6/len(players))
+	if len(players)<finalform: # for small games
+		players = players*ceil(finalform/len(players))
 	shuffle(players)
 	choice = False
 	start = time()
-	await client.send_message(mc, 'A new game of **Verb Race** has begun!\nYour verb is: **'+word[6]+'**!')
-	while form<6:
+	await client.send_message(mc, 'A new game of **Verb Race** has begun!\nYour verb is: **'+word[finalform]+'**!')
+	while form<finalform:
 		if choice:
 			msg = await client.wait_for_message(channel=mc)
 			if msg.content.lower() in quit and msg.author.name in players:
@@ -502,7 +503,7 @@ async def verbrace(args,mc):
 				choice = False
 		else:
 			choice = players.pop()
-			await client.send_message(mc, '**'+choice.name+'**, conjugate **'+word[6]+'** for **'+forms[form]+'**!')
+			await client.send_message(mc, '**'+choice.name+'**, conjugate **'+word[finalform]+'** for **'+forms[form]+'**!')
 	await client.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
 	return False
 

@@ -92,20 +92,52 @@ units = {
 'yr':31556952,
 }
 
+# sort by infinitive (last word)
 verbs = {
 'en':(
-('say','says','say','say','say','say','say'),
-('am','is','are','are','are','be')
-)
+('are','is','being','were','been','be'),
+('bear','bears','bearing','bore','borne','bear'),
+('beat','beats','beating','beat','beaten','beat'),
+('begin','begins','beginning','began','begun','begin'),
+('bend','bends','bending','bent','bent','bend'),
+('bereave','bereaves','bereaving','bereaved','bereft','bereave'),
+('bet','bets','betting','bet','bet','bet'),
+('bid','bids','bidding','bade','bid','bid'),
+('bide','bides','biding','bode','bidden','bide'),
+('bind','binds','binding','bound','bound','bind'),
+('bite','bites','biting','bit','bitten','bite'),
+('bleed','bleeds','bleeding','bled','bled','bleed'),
+('blow','blows','blowing','blew','blown','blow'),
+('break','breaks','breaking','broke','broken','break'),
+('breed','breeds','breeding','bred','bred','breed'),
+('bring','brings','bringing','brought','brought','bring'),
+('build','builds','building','built','built','build'),
+('burn','burns','burning','burnt','burnt','burn'),
+('burst','bursts','bursting','burst','burst','burst'),
+('buy','buys','buying','bought','bought','buy'),
+('can','can','-','could','couth','can'),
+# continue https://en.wiktionary.org/wiki/Category:English_irregular_verbs
+('get','gets','getting','got','gotten','get'),
+('have','has','having','had','had','have'),
+('say','says','saying','said','said','say')
+),
+'eo':(
+('estas','estis','estos','estus','estu','esti')
+),
 'fr':(
+('vais','vas','va','allons','allez','vont','aller'),
+('ai','as','a','avons','avez','ont','avoir'),
+('bats','bats','bat','battons','battez','battent','battre'),
+# continue https://en.wiktionary.org/wiki/Category:French_irregular_verbs
 ('dis','dis','dit','disons','dites','disent','dire'),
 ('suis','es','est','sommes','êtes','sont','être')
-)
+),
 }
 
 pronouns = {
-'en':('I','he','we','you','they'),
-'fr':('je','tu','il','nous','vous','ils')
+'en':('the simple present','the third-person singular simple present','the present participle','the simple past','the past participle'),
+'eo':('the present','the past','the future','the conditional','the imperative'),
+'fr':('je','tu','il','nous','vous','ils'),
 }
 
 xskey = (
