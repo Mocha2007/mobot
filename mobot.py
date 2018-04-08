@@ -493,15 +493,14 @@ async def hangman(args,mc):
 						if 'X' not in known:
 							await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 							return False
-						#display word
-						await client.send_message(mc, '**'+known+'**')
 					else:
 						await client.send_message(mc, '**'+guess+'** is not in the word.')
 				elif guess == word:
 					await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 					return False
+				#display word
+				await client.send_message(mc, '**'+known+'**')
 			except:pass
-	return True
 
 def vrleaderboard(lang,verb,n):
 	#[(lang,verb,##,user),...]
