@@ -384,6 +384,86 @@ def dicemat(x):
 	n = int(x[1])
 	if abs(m)<99>abs(n):return dice(m,n)
 	return 'Too High'
+	
+async def g23(message):
+	timer = 30
+	await client.send_message(message.channel, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
+	start = time()
+	guesses = []
+	while time()<start+timer:#30s should be enough
+		msg = await client.wait_for_message(timeout=1,channel=message.channel)
+		try:
+			guesses.append((float(msg.content),msg.author.name))
+			await client.delete_message(msg)
+		except:pass
+	a1 = list(map(lambda x:x[0],guesses))
+	try:
+		avg23 = sum(a1)*2/3/len(a1)
+		a2 = list(map(lambda x:abs(x-avg23),a1))
+		winner = a2.index(min(a2))
+		await client.send_message(message.channel, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
+		return False
+	except ZeroDivisionError:
+		await client.send_message(message.channel, 'N-nobody??? ;-;')
+		return True
+
+async def gtn(args,mc):
+	try:
+		minn = int(args[1])
+		maxn = int(args[2])
+	except:
+		minn = 0
+		maxn = 99
+	answer = randint(minn,maxn)
+	msg = False
+	while 1:
+		if msg:
+			try:
+				if int(msg.content) < answer:
+					await client.send_message(mc, '>')
+				else:
+					await client.send_message(mc, '<')
+			except:pass
+		else:
+			await client.send_message(mc, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
+		msg = await client.wait_for_message(channel=mc)
+		if msg.content.lower() in quit:
+			await client.send_message(mc, 'o oki ;-;')
+			return True
+		elif msg.content == str(answer):
+			await client.send_message(mc, msg.author.name+', you win! ^o^')
+			return False
+	return True
+
+async def word(args,message):
+	mc = message.channel
+	try:
+		word = args[1].lower()
+		await client.delete_message(message)
+	except:word = rword(4)
+	await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
+	while 1:
+		msg = await client.wait_for_message(channel=mc)
+		if msg.content.lower() in quit:
+			await client.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
+			return True
+		pips = ''
+		if msg.author.name!='Mobot':
+			try:
+				guess = msg.content.lower()
+				if len(guess) == len(word): # NO CHEATING
+					if guess == word:
+						await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+						return False
+					mr = range(min(len(word),len(guess)))
+					#look for EXACT matches
+					for i in mr:
+						if guess[i]==word[i]:pips+='x'
+					for i in mr:
+						if guess[i] in word and guess[i]!=word[i]:pips+='*'
+					await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+			except:pass
+	return True
 
 # ACUTAL BOT SHIT
 
@@ -442,6 +522,8 @@ async def on_message(message):
 			await client.send_message(message.channel, str(mbti(m[8:])))
 		elif n.startswith(bot_prefix+'dice'):
 			await client.send_message(message.channel, str(dicemat(m[8:])))
+		elif n.startswith(bot_prefix+'test'):
+			await g23(message)
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(message.channel, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
@@ -457,80 +539,14 @@ async def on_message(message):
 			await client.send_message(message.channel, quotefile(m[4+len(qf):],qf))
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
+			mc = message.channel
 			args = n.split(' ')[2:]
 			if args[0] == 'gtn':
-				try:
-					minn = int(args[1])
-					maxn = int(args[2])
-				except:
-					minn = 0
-					maxn = 99
-				answer = randint(minn,maxn)
-				msg = False
-				while 1:
-					if msg:
-						try:
-							if int(msg.content) < answer:
-								await client.send_message(message.channel, '>')
-							else:
-								await client.send_message(message.channel, '<')
-						except:pass
-					else:
-						await client.send_message(message.channel, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
-					msg = await client.wait_for_message(channel=message.channel)
-					if msg.content.lower() in quit:
-						await client.send_message(message.channel, 'o oki ;-;')
-						break
-					elif msg.content == str(answer):
-						await client.send_message(message.channel, msg.author.name+', you win! ^o^')
-						break
+				await gtn(args,mc)
 			elif args[0] == 'g2/3':
-				timer = 30
-				await client.send_message(message.channel, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
-				start = time()
-				guesses = []
-				while time()<start+timer:#30s should be enough
-					msg = await client.wait_for_message(timeout=1,channel=message.channel)
-					try:
-						guesses.append((float(msg.content),msg.author.name))
-						await client.delete_message(msg)
-					except:pass
-				a1 = list(map(lambda x:x[0],guesses))
-				try:
-					avg23 = sum(a1)*2/3/len(a1)
-					a2 = list(map(lambda x:abs(x-avg23),a1))
-					winner = a2.index(min(a2))
-					await client.send_message(message.channel, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
-				except ZeroDivisionError:
-					await client.send_message(message.channel, 'N-nobody??? ;-;')
+				await g23(message)
 			elif args[0] == 'word':
-				mc = message.channel
-				try:
-					word = args[1].lower()
-					await client.delete_message(message)
-				except:word = rword(4)
-				await client.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
-				while 1:
-					msg = await client.wait_for_message(channel=mc)
-					if msg.content.lower() in quit:
-						await client.send_message(message.channel, 'c r i e ;-;\nthe word was **'+word+'**.')
-						break
-					pips = ''
-					if msg.author.name!='Mobot':
-						try:
-							guess = msg.content.lower()
-							if len(guess) == len(word): # NO CHEATING
-								if guess == word:
-									await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
-									break
-								mr = range(min(len(word),len(guess)))
-								#look for EXACT matches
-								for i in mr:
-									if guess[i]==word[i]:pips+='x'
-								for i in mr:
-									if guess[i] in word and guess[i]!=word[i]:pips+='*'
-								await client.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
-						except:pass
+				await word(args,message)
 
 		# ELSE
 		elif n.startswith(bot_prefix):
