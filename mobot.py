@@ -601,7 +601,7 @@ async def numbers(mc):
 	#shuffle again to prevent exploit
 	shuffle(ns)
 	#Begin!
-	await client.send_message(mc, 'A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+whatsthis+'**!')
+	await client.send_message(mc, 'A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+' '.join(map(str,ns))+'**!')
 	await client.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
 	start = time()
 	guesses1 = []
