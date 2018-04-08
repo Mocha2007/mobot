@@ -409,7 +409,10 @@ async def on_message(message):
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
 	try:
-		if 'mobot' in m.lower():
+		if 'right, mobot' == m.lower()[:12] or 'right mobot' == m.lower()[:11]:
+			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
+			except:pass
+		elif 'mobot' in m.lower():
 			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
 			except:pass
 
