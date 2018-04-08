@@ -61,11 +61,12 @@ game [command]
 		|guess 2/3 of the average
 	gtn [min] [max]
 		|guess the number
-		|answer will be an integer between min and max
+		|answer will be an integer
+		|between min and max
 	numbers
-		|you are given a target number between 10 and 1000,
+		|you are given a target number,
 		|and six numbers you can use to reach that target.
-		|your goal is to add, subtract, multiply, and divide those numbers to reach the target.
+		|your goal is to +-*/ those numbers to reach the target.
 		|answers must be formatted in RPN
 		|otherwise, the winner must be manually computed.
 		|you get 45 seconds to submit your answer.
