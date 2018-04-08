@@ -473,7 +473,9 @@ async def hangman(args,mc):
 	word = rword(args[1],4)
 	known = 'X'*len(word)
 	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
-	while 1:
+	fails = 0
+	faill = ''
+	while fails<8:
 		msg = await client.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
 			await client.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
@@ -494,13 +496,17 @@ async def hangman(args,mc):
 							await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 							return False
 					else:
-						await client.send_message(mc, '**'+guess+'** is not in the word.')
+						fails+=1
+						faill+=' '+guess
+						await client.send_message(mc, '**'+guess+'** is not in the word.\n'+faill)
 				elif guess == word:
 					await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 					return False
 				#display word
 				await client.send_message(mc, '**'+known+'**')
 			except:pass
+	await client.send_message(mc, 'You lost. The word was **'+word+'**. uwu')
+	return False
 
 def vrleaderboard(lang,verb,n):
 	#[(lang,verb,##,user),...]
