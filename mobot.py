@@ -498,7 +498,7 @@ async def hangman(args,mc):
 					else:
 						fails+=1
 						faill+=guess+' '
-						await client.send_message(mc, '**'+guess+'** is not in the word.\n'+faill)
+						await client.send_message(mc, '**'+guess+'** is not in the word.')
 				elif guess == word:
 					await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 					return False
