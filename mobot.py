@@ -475,7 +475,7 @@ async def hangman(args,mc):
 	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
 	faill = ''
-	while fails<8:
+	while fails<10:
 		msg = await client.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
 			await client.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
@@ -503,7 +503,7 @@ async def hangman(args,mc):
 					await client.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
 					return False
 				#display word
-				await client.send_message(mc, '**'+known+'**')
+				await client.send_message(mc, '**'+known+'**\n'+faill)
 			except:pass
 	await client.send_message(mc, 'You lost. The word was **'+word+'**. uwu')
 	return False
