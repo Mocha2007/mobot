@@ -2,6 +2,7 @@ import mochaastro
 
 coffees = {
 '':'coffee',
+'affogato':'a scoop of vanilla gelato or ice cream topped with\na shot of hot espresso',
 'americano':'espresso\nhot water',
 'black':'I just want my damn coffee without any of your milky-lickin\' pussy crap!',
 'cappuccino':'double espresso\nsteamed milk foam',
