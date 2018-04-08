@@ -2,6 +2,7 @@
 *.pyc
 !bee.txt
 !bug.txt
+!cdbg.txt
 !help.txt
 !help2.txt
 !hi.txt
