@@ -470,7 +470,9 @@ async def word(args,message):
 	return True
 
 async def hangman(args,mc):
-	word = rword(args[1],4)
+	try:lang = args[1]
+	except:lang = 'en'
+	word = rword(lang,4)
 	known = 'X'*len(word)
 	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
