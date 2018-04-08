@@ -353,13 +353,16 @@ def xsampa(string):
 def rword(lang,min):
 	replace = '\n.?,!0123456789[]()":;'
 	if lang == 'la':corpus = open("cdbg.txt", "r").read()
+	elif lang == 'fr':corpus = open("la géométrie.txt", "r").read()
 	else:corpus = open("bee.txt", "r").read()
 	for char in replace:
 		corpus = corpus.replace(char,' ')
 	corpus = corpus.split(' ')
 	while 1:
-		attempt = c(corpus)
-		if len(attempt)>=min:return attempt.lower()
+		attempt = c(corpus).lower()
+		if len(attempt)>=min:#obeys min
+			if not compile("[^a-z-']").search(attempt):#must only contain a-z, hyphens, or apostrophes
+				return attempt
 	
 def d(m,n):
 	if m<0:return -d(-m,n)
@@ -473,6 +476,7 @@ async def hangman(args,mc):
 	try:lang = args[1]
 	except:lang = 'en'
 	word = rword(lang,4)
+	print('\t\t'+lang,word)
 	known = 'X'*len(word)
 	await client.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
@@ -495,14 +499,14 @@ async def hangman(args,mc):
 								known = ''.join(known)
 						#won?
 						if 'X' not in known:
-							await client.send_message(mc, msg.author.name+', you won! The word was **'+word+'**! ^o^')
+							await client.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
 							return False
 					else:
 						fails+=1
 						faill+=guess+' '
 						await client.send_message(mc, '**'+guess+'** is not in the word.')
 				elif guess == word:
-					await client.send_message(mc, msg.author.name+', you won! The word was **'+word+'**! ^o^')
+					await client.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
 					return False
 				#display word
 				await client.send_message(mc, '**'+known+'**\n'+faill)
