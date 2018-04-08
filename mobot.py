@@ -598,6 +598,8 @@ async def numbers(mc):
 		target = mocharpn.rpn(owo)[0]
 	# now a valid target is established
 	target = int(target)
+	#shuffle again to prevent exploit
+	shuffle(ns)
 	#Begin!
 	await client.send_message(mc, 'A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+whatsthis+'**!')
 	await client.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
