@@ -123,15 +123,31 @@ verbs = {
 ),
 'eo':(
 ('estas','estis','estos','estus','estu','esti'),
-('estas','estis','estos','estus','estu','esti')
+('havas','havis','havos','havus','havu','havi')
 ),
 'fr':(
 ('vais','vas','va','allons','allez','vont','aller'),
 ('ai','as','a','avons','avez','ont','avoir'),
 ('bats','bats','bat','battons','battez','battent','battre'),
-# continue https://en.wiktionary.org/wiki/Category:French_irregular_verbs
+('bois','bois','boit','buvons','buvez','boivent','boivre'),
+('bous','bous','bout','bouillons','bouillez','bouillent','bouillir'),
+('ceins','ceins','ceint','ceignons','ceignez','ceignent','ceindre'),
+('couds','couds','coud','cousons','cousez','cousent','coudre'),
+('cours','cours','court','courons','courez','courent','courir'),
+('couvre','couvres','couvre','couvrons','couvrez','couvrent','couvrir'),
+('crains','crains','craint','craignons','craignez','craignent','craindre'),
+('crois','crois','croit','croyons','croyez','croient','croire'),
+('croîs','croîs','croît','croissons','croissez','croissent','croître'),
+('cueille','cueilles','cueille','cueillons','cueillez','cueillent','cueillir'),
+('cuis','cuis','cuit','cuisons','cuisez','cuisent','cuire'),
+('dois','dois','doit','devons','devez','doivent','devoir'),
 ('dis','dis','dit','disons','dites','disent','dire'),
+('dors','dors','dort','dormons','dormez','dorment','dormir'),
+('écris','écris','écrit','écrivons','écrivez','écrivent','écrire'),
+('envoie','envoies','envoie','envoyons','envoyez','envoient','envoyer'),
+('équivaux','équivaux','équivaut','équivalons','équivalez','équivalent','équivaloir'),
 ('suis','es','est','sommes','êtes','sont','être')
+# continue https://en.wiktionary.org/wiki/Category:French_irregular_verbs
 ),
 }
 
