@@ -84,7 +84,7 @@ game [command]
 		|begin a game of verb race
 		|currently, the language codes supported are:
 		|de (2 verbs)
-		|en (24 verbs)
+		|en (151 verbs)
 		|eo (2 verbs)
 		|fr (21 verbs)
 		|la (4 verbs)
