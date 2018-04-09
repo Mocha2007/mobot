@@ -545,6 +545,7 @@ async def verbrace(args,mc):
 		try:
 			if msg.content.lower() == 'join' and msg.author.name!='Mobot':
 				players.append(msg.author)
+				await client.delete_message(msg)
 				await client.send_message(mc, '**'+msg.author.name+'** has joined!')
 		except:pass
 	if len(players)<finalform: # for small games
@@ -562,6 +563,7 @@ async def verbrace(args,mc):
 				await client.send_message(mc, 'c r i e ;-;')
 				break#return True
 			elif msg.author == choice:
+				await client.delete_message(msg)
 				if msg.content == word[form]:
 					await client.send_message(mc, 'Correct!')
 				else:
