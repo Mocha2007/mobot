@@ -1,0 +1,6 @@
+fr	être	25	mocha2007
+eo	esti	11	mocha2007
+fr	aller	28	mocha2007
+fr	cuire	17	mocha2007
+en	meet	12	mocha2007
+en	ride	13	mocha2007
