@@ -94,6 +94,10 @@ units = {
 
 # sort by infinitive (last word)
 verbs = {
+'de':(
+('bin','bist','ist','sind','seid','sind','sein'),
+('tue','tust','tut','tun','tut','tun','tun')
+),
 'en':(
 ('are','is','being','were','been','be'),
 ('bear','bears','bearing','bore','borne','bear'),
@@ -149,12 +153,20 @@ verbs = {
 ('suis','es','est','sommes','êtes','sont','être')
 # continue https://en.wiktionary.org/wiki/Category:French_irregular_verbs
 ),
+'la':(
+('sum','es','est','sumus','estis','sunt','esse'),
+('do','das','dat','damus','datis','dant','dare'),
+('eo','is','it','imus','itis','eunt','ire'),
+('possum','potes','potest','possumus','potestis','possunt','posse')
+),
 }
 
 pronouns = {
+'de':('ich','du','er','wir','ihr','sie'),
 'en':('the simple present','the third-person singular simple present','the present participle','the simple past','the past participle'),
 'eo':('the present','the past','the future','the conditional','the imperative'),
 'fr':('je','tu','il','nous','vous','ils'),
+'la':('ego','tu','is','nos','vos','ei'), # using the masculine rather than the neuter due to the ambiguity of ea
 }
 
 xskey = (
