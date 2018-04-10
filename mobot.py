@@ -692,7 +692,7 @@ async def llama(message):
 		msg = await client.wait_for_message(channel=mc,author=message.author)
 		if room == -1 == state:return True # exit
 		ml = mochallama.llama(room,state,inv,msg)
-		await client.send_message(mc, ml[2])
+		await client.send_message(mc, ml[3])
 		room = ml[0]
 		state = ml[1]
 	return False
