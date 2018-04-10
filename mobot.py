@@ -295,6 +295,8 @@ def bug(string):
 	try:
 		open("bug.txt", "a").write(string+'\n')
 		print('\a')
+		try:play('../bug.wav')
+		except:pass
 		return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 	except:
 		return ':/'
@@ -764,7 +766,6 @@ async def on_message(message):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
 			await client.send_message(mc, str(bug(m[7:])))
-			play('../bug.wav')
 		elif n.startswith(bot_prefix+'mat'):
 			await client.send_message(mc, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
