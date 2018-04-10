@@ -295,6 +295,8 @@ pronouns = {
 'la':('ego','tu','is','nos','vos','ei'), # using the masculine rather than the neuter due to the ambiguity of ea
 }
 
+quit = ('exit','quit')
+
 xskey = (
 ('b_<','ɓ'),
 ('d`','ɖ'),

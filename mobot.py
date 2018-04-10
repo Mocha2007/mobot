@@ -9,7 +9,7 @@ from math import ceil,gcd,hypot,pi
 from time import time
 from re import compile,search
 from statistics import median,mode,stdev
-import mochaastro,mochabf,mochagolfscript,mochalang,mochamath,mocharpn,mochastargen,mochattt
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
 # CODE SHIT
@@ -51,8 +51,6 @@ quotefiles = [
 'spidey',
 'tng'
 ]
-
-quit = ('exit','quit')
 
 def product(numlist):
 	if len(numlist) == 0:return 0
@@ -684,6 +682,20 @@ async def twentyfour(mc):
 	await client.send_message(mc, 'The Math Corner notes that **24** was achievable using the following solution:\n`'+owo+'`')
 	return False
 
+async def llama(message):
+	mc = message.channel
+	room = -1
+	state = 0
+	await client.send_message(message.channel, 'A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
+	while 1:
+		msg = await client.wait_for_message(channel=mc,author=message.author)
+		if room == -1 == state:return True # exit
+		ml = mochallama.llama(room,state,msg)
+		await client.send_message(mc, ml[2])
+		room = ml[0]
+		state = ml[1]
+	return False
+
 # ACUTAL BOT SHIT
 
 bot_prefix = "m! "
@@ -711,7 +723,7 @@ async def on_message(message):
 		if 'right, mobot' in m.lower() or 'right mobot' in m.lower():
 			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
 			except:pass
-		elif 'mobot' in m.lower():
+		elif 'mobot' in m.lower() and message.author.name!='Mobot':
 			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
 			except:pass
 
@@ -768,6 +780,8 @@ async def on_message(message):
 				await g23(mc)
 			elif args[0] == 'hangman':
 				await hangman(args,mc)
+			elif args[0] == 'llama':
+				await llama(message)
 			elif args[0] == 'numbers':
 				await numbers(mc)
 			elif args[0] == 'verbrace':
