@@ -9,6 +9,7 @@ from math import ceil,gcd,hypot,pi
 from time import time
 from re import compile,search
 from statistics import median,mode,stdev
+from winsound import PlaySound,SND_FILENAME
 import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt
 from mochaxyz import *
 
@@ -51,6 +52,9 @@ quotefiles = [
 'spidey',
 'tng'
 ]
+
+def play(x):
+	PlaySound(x,SND_FILENAME)
 
 def product(numlist):
 	if len(numlist) == 0:return 0
@@ -291,7 +295,7 @@ def bug(string):
 	try:
 		open("bug.txt", "a").write(string+'\n')
 		print('\a')
-		return 'Success!'
+		return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 	except:
 		return ':/'
 
@@ -760,6 +764,7 @@ async def on_message(message):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
 			await client.send_message(mc, str(bug(m[7:])))
+			play('../bug.wav')
 		elif n.startswith(bot_prefix+'mat'):
 			await client.send_message(mc, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
