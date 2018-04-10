@@ -7,7 +7,7 @@ def llama(room,state,inv,message):
 	mc = message.channel
 	player = message.author #NOTE THIS IS NOT AUTHOR NAME
 	if mcl in quit: # not in original
-		return -1,-1,'Goodbye!'
+		return -1,-1,False,'Goodbye!'
 	iscommand = False
 	for c in commands:
 		if c in mcl:
@@ -44,7 +44,7 @@ def llama(room,state,inv,message):
 				elif 'table' in mcl:
 					o+='On my **table** is a white cloth with three keys... a **badkey** - a **tastykey** - a **goodkey** - I named those myself! Next to the cloth is an unfolded note with writing on it and just so you know I don\'t have handwriting like my fellow doctors.'
 				elif 'note' in mcl:
-					o+='I\'ll read you the **note** llama/ You can\'t read! You can mash that button board, but a llama reading!\nImpossible.'
+					o+='I\'ll read you the **note** llama. You can\'t read! You can mash that button board, but a llama reading!\nImpossible.'
 					o+='\n\n\'The **badkey** is good and the **goodkey** is bad. The **badkey** can get you through the door. That **tastykey**... you can **eat** that. It\'s made of alfalfa.\''
 				elif 'badkey' in mcl:
 					o+='This key is my heaviest key, given the extra metal keychain attached to it. The metal keychain has a large smiley face on it, so smile llama!'
@@ -105,7 +105,7 @@ def llama(room,state,inv,message):
 						o+='You should probably **use** the **goodkey** with the lock!'
 				elif 'badkey' in mcl:
 					if 'lock' in mcl:
-						o+='Carefuylly turning the **badkey** into the **lock** on the **door** the key suddenly vanishes/ Now what? Where did you put my key?!'
+						o+='Carefuylly turning the **badkey** into the **lock** on the **door** the key suddenly vanishes. Now what? Where did you put my key?!'
 						# note: the original game never removes badkey from your inventory. I'm not sure why this is the case.
 						# Additionally, the tastykey RETURNS when you use the badkey!
 						state = 3
