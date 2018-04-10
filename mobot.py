@@ -288,8 +288,11 @@ def sto(string):
 	except:return quotefile('','temp')
 
 def bug(string):
-	open("bug.txt", "a").write(string+'\n')
-	return 'Success!'
+	try:
+		open("bug.txt", "a").write(string+'\n')
+		return 'Success!'
+	except:
+		return ':/'
 
 def quotefile(line,file):
 	l = line.split(' ')
