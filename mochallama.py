@@ -183,7 +183,7 @@ def llama(room,state,inv,message):
 				o+='Fantastic.'
 			else:
 				o+='I know you know what I meant. Stop acting dumb.'
-			o+='\n\nIf you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Fell free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
+			o+='\n\nIf you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Feel free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
 			state = 2
 	elif room == 2:
 		if state == 0:
