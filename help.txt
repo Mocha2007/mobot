@@ -75,6 +75,7 @@ game [command]
 		|English will be selected
 	llama
 		|port of Llama Adventure for Mobot
+		|WIP, under construction.
 	numbers
 		|you are given a target number,
 		|and six numbers you can use to reach that target.
