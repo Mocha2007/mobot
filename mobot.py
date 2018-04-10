@@ -63,7 +63,8 @@ def momath(string):
 	# simple
 
 	if arg[0] in ('circumference','perimeter'):
-		return float(arg[2])*pi
+		if arg[1] == 'circle':
+			return float(arg[2])*pi
 	elif arg[0] == 'ecc':
 		a = float(arg[1])
 		b = float(arg[2])
@@ -97,7 +98,11 @@ def momath(string):
 		elif arg[1] == 'square':
 			return float(arg[2])**2
 		elif arg[1] == 'triangle':
-			return float(arg[2])+float(arg[3])/2
+			a = arg[2]
+			b = arg[3]
+			c = arg[4]
+			s = (a+b+c)/2
+			return (s*(s-a)*(s-b)*(s-c))**.5
 		elif arg[1] == 'trigon':
 			return 3**.5/4*float(arg[2])**2
 	elif arg[0] == 'd':

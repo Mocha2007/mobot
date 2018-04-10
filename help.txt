@@ -126,10 +126,57 @@ ling [command]
 link
 	|get the link for adding this bot to a server
 mat
-	|many, many math calculations
-	|ping mocha for specific questions
-	|try this:
-	|m! mat vol sphere 10
+	area [shape]
+		|area/surface area of a shape/solid
+		|currently supported:
+		|circle [r]
+		|cone [r] [h]
+		|cylinder [r] [h]
+		|hexagon [side]
+		|octagon [side]
+		|pentagon [side]
+		|sphere [r]
+		|square [side]
+		|triangle [a] [b] [c]
+		|trigon [a]
+	circumference [shape]
+		|circumference/perimeter of a shape
+		|currently supported:
+		|circle [r]
+	d [coefficients]
+		|derivative of a polynomial
+	ecc [longer_axis] [shorter_axis]
+		|eccentricity of an ellipse
+	frac [decimal]
+		|decimal -> fraction
+	gcd [a] [b]
+		|greatest common denominator
+	hypot [a] [b]
+		|hypotenuse
+	i [coefficients]
+		|integral of a polynomial
+	lcm [a] [b]
+		|least common multiple
+	max [numbers]
+		|maximum
+	mean [numbers]
+		|mean
+	min [numbers]
+		|minimum
+	nroot [x] [n]
+		|nth root of x
+	perimeter
+		|see circumference
+	sqrt [x]
+		|square root of x
+	sum [numbers]
+		|sum
+	volume [shape]
+		|volume of a solid
+		|currently supported:
+		|cone [r] [h]
+		|cylinder [r] [h]
+		|sphere [r]
 mbti [string]
 	|information regarding the specified mbti
 prequel (number)
