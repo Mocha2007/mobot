@@ -1,5 +1,6 @@
 from mochaxyz import quit
-commands = ('drop','eat','gaze','get','go','grab','help''look','open','pickup','see','take','use')
+from random import choice
+commands = ('drop','eat','gaze','get','go','grab','help','john','look','muffin','open','pickup','see','take','tasselfoot','use')
 
 def llama(room,state,inv,message):
 	mcl = message.content.lower()
@@ -8,6 +9,11 @@ def llama(room,state,inv,message):
 	player = message.author #NOTE THIS IS NOT AUTHOR NAME
 	if mcl in quit: # not in original
 		return -1,-1,False,'Goodbye!'
+	elif room == -2:
+		if state == 0:
+			o+='Meow '*14
+		elif state == 1:
+			o+=choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
 	iscommand = False
 	for c in commands:
 		if c in mcl:
@@ -21,6 +27,16 @@ def llama(room,state,inv,message):
 			o+='If you want to **get** a sense of what\'s in the room, **use** the phrase **look around**. Build short sentences!\n\n'
 			o+='Also remember that new words will crop up as you explore more.\n\n'
 			o+='You can always find **help** by mashing that term here!'
+		elif 'john' in mcl:
+			o+='That\'s me!'
+		elif 'muffin' in mcl:
+			room = -2
+			state = 0
+			o+='Meow '*14
+		elif 'tasselfoot' in mcl:
+			room = -2
+			state = 1
+			o+=choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
 		elif 'look' in mcl or 'see' in mcl or 'gaze' in mcl:
 			if room == 0:
 				if 'around' in mcl or 'room' in mcl:
@@ -142,7 +158,6 @@ def llama(room,state,inv,message):
 				o+='You can\'t **eat** that llama. That\'s not a llama chew thing.'
 			else:
 				o+='What do you want to**eat** llama?'
-		# TODO eat tastykey
 	elif room == -1:
 		if state == 0:
 			o+='Llama Adventure\nA Text Adventure to Greener Pastures\n'
