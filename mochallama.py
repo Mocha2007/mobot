@@ -1,5 +1,5 @@
 from mochaxyz import quit
-commands = ('drop','gaze','get','go','grab','help''look','open','pickup','see','take','use')
+commands = ('drop','eat','gaze','get','go','grab','help''look','open','pickup','see','take','use')
 
 def llama(room,state,inv,message):
 	mcl = message.content.lower()
@@ -33,6 +33,27 @@ def llama(room,state,inv,message):
 					o+='The wooden **door** has a small bolt on it, easy enough to slide **open** with little effort. The hinge pushes outward away from the door.'
 				else:
 					o+='I\'m not quite sure what you are looking at.'
+			elif room == 1:
+				if 'around' in mcl or 'room' in mcl:
+					o+='This **room** is nothing like the **room** you were just in. The floors to walls are a blinding white, with florescent lights behind metal grates filling the **room** with an immense about of illumination. Feel like a test subject yet llama?'
+					o+='\n\nRight here is a **table** I bought from the neighbors during a garage sale. Across the **room** is a similar **door** to the one your just passed through, this time with a lock.'
+				elif 'door' in mcl:
+					o+='What a fine door. It has a **lock** on it.'
+				elif 'lock' in mcl:
+					o+='This **lock** looks like it could **take** a key. Imagine that.'
+				elif 'table' in mcl:
+					o+='On my **table** is a white cloth with three keys... a **badkey** - a **tastykey** - a **goodkey** - I named those myself! Next to the cloth is an unfolded note with writing on it and just so you know I don\'t have handwriting like my fellow doctors.'
+				elif 'note' in mcl:
+					o+='I\'ll read you the **note** llama/ You can\'t read! You can mash that button board, but a llama reading!\nImpossible.'
+					o+='\n\n\'The **badkey** is good and the **goodkey** is bad. The **badkey** can get you through the door. That **tastykey**... you can **eat** that. It\'s made of alfalfa.\''
+				elif 'badkey' in mcl:
+					o+='This key is my heaviest key, given the extra metal keychain attached to it. The metal keychain has a large smiley face on it, so smile llama!'
+				elif 'goodkey' in mcl:
+					o+='This key is a pale blue with cracked paint all over it. Spatters of fresh red material give the eerie impression that the last user of this key is **no** longer around. Disregard that unpleasantness, llama!'
+				elif 'tastykey' in mcl:
+					o+='This beautiful green key shows intricate craftmanship with delicate swoops and curves **around** the handle and key blade. Wow, I couldn\'t have said it any better!'
+				else:
+					o+='I\'m not quite sure what you are looking at.'
 		elif 'get' in mcl or 'take' in mcl or 'pickup' in mcl or 'grab' in mcl:
 			if inv:
 				o+='You already have **'+inv+'** in your mouth! You need to **drop** that before you **grab** something else.'
@@ -49,6 +70,18 @@ def llama(room,state,inv,message):
 						o+='It\'s too heave llama. Plus I lost my tools a while back and haven\'t been able to do any maintenance for some time.'
 					else:
 						o+='What are you going on about llama? There\'s nothing to **'+mcl+'** of that nature **around** here!'
+				elif room == 1:
+					if 'tastykey' in mcl:
+						o+='You pick up the **tastykey** in your mouth. It tastes delicious, so much that you want to **eat** it.'
+						inv = 'tastykey'
+					elif 'goodkey' in mcl:
+						o+='You have picked up the **goodkey**! It tastes of a sweet, sweet honey. This key is so nice, isn\'t it? Better than those other keys!'
+						inv = 'goodkey'
+					elif 'badkey' in mcl:
+						o+='You have picked up the **badkey**! It tastes slightly sour, of course! It\'s got bad in the title for a reason!'
+						inv = 'badkey'
+					else:
+						o+='What are you going on about llama? There\'s nothing to **'+mcl+'** of that nature **around** here!'
 		elif 'drop' in mcl:
 			if inv:
 				o+='You put back the **'+inv+'** where you found it.'
@@ -62,16 +95,54 @@ def llama(room,state,inv,message):
 					o+='You opened the door, and you\'re off to the next room! Just go through now and you\'re on your way.'
 				else:
 					o+='What are you trying to do llama? When you utilize the word **use** make sure you follow up with a noun such as **door** or **books**... if you need **help** finding words **look around** or something!'
+			elif room == 1:
+				if 'goodkey' in mcl:
+					if 'lock' in mcl:
+						o+='Bad news. It\'s not anything you saw. Rather, it was what you felt. 10,000 Volts of electricity can kill a Llama fairly quickly, especially when transferred between your mouth and the **door** through that bad key! Luckily your death was over before you knew it, unluckily you have **no** more life to account for.'
+						o+='\n\nLet\'s try this **room** again, llama.'
+						state = 0
+					else:
+						o+='You should probably **use** the **goodkey** with the lock!'
+				elif 'badkey' in mcl:
+					if 'lock' in mcl:
+						o+='Carefuylly turning the **badkey** into the **lock** on the **door** the key suddenly vanishes/ Now what? Where did you put my key?!'
+						# note: the original game never removes badkey from your inventory. I'm not sure why this is the case.
+						# Additionally, the tastykey RETURNS when you use the badkey!
+						state = 3
+					else:
+						o+='You should probably **use** the **badkey** with the lock!'
+				else:
+					o+='What are you trying to do llama? When you utilize the word **use** make sure you follow up with a noun such as **door** or **books**... if you need **help** finding words **look around** or something!'
 		elif 'go' in mcl:
 			if room == 0:
 				if state == 3:
 					o+='I\'ll **see** you in the next **room** Llama. Tally-ho!'
-					o+='\n\nHere is where we start our experiment, Llama. I have made you seven rooms fit for llama exploration and triumph. Do you understand?'
 					room = 1
 					state = 0
+					o+='\n\nHere is where we start our experiment, Llama. I have made you seven rooms fit for llama exploration and triumph. Do you understand?'
 				else:
 					o+='Sorry, I don\'t quite understand that.'
-		# TODO take
+			elif room == 1:
+				if state == 3:
+					o+='I\'ll **see** you in the next **room** Llama. Tally-ho!'
+					room = 2
+					state = 0
+					o+='\n\nNow that we have met in person I\'m going to be typing to you on this monitor located in each room.'
+					o+='\n\nI\'m not sure if this text is coming through, can you **see** it?'
+				else:
+					o+='Sorry, I don\'t quite understand that.'
+		elif 'eat' in mcl:
+			if 'tastykey' in mcl:
+				if inv == 'tastykey':
+					o+='You ate the tastykey and it was delicious! What a great snack, Llama. Now I\'m going to have to make another.'
+					inv = False
+				else:
+					o+='You don\'t have **tastykey** right now, maybe you should **pickup** that object?'
+			elif inv:
+				o+='You can\'t **eat** that llama. That\'s not a llama chew thing.'
+			else:
+				o+='What do you want to**eat** llama?'
+		# TODO eat tastykey
 	elif room == -1:
 		if state == 0:
 			o+='Llama Adventure\nA Text Adventure to Greener Pastures\n'
@@ -103,8 +174,9 @@ def llama(room,state,inv,message):
 			if 'yes' in mcl:
 				o+='Good Llama! Obeying is the key to survival!'
 			else:
-				o+='Ah , the rebellious teenage llama. Too good for their house and home. Wants their individualism! Moon and dad always keeping you down! Well we won\'t keey you long.'
-			o+='\n\nNow as the 44th creature to enter this facility your job is to **get** past **room** 7. Each **room** has a puzzle the next **room** will open. If you fail the puzzle then you will most certainly die a terrible death! But that is all semantics and nothing to worry about!\n\nIs that clear?'
+				o+='Ah, the rebellious teenage llama. Too good for their house and home. Wants their individualism! Moon and dad always keeping you down! Well we won\'t keey you long.'
+			o+='\n\nNow as the 44th creature to enter this facility your job is to **get** past **room** 7. Each **room** has a puzzle the next **room** will open. If you fail the puzzle then you will most certainly die a terrible death! But that is all semantics and nothing to worry about!'
+			o+='\n\nIs that clear?'
 			state = 1
 		elif state == 1:
 			if 'yes' in mcl:
@@ -112,6 +184,22 @@ def llama(room,state,inv,message):
 			else:
 				o+='I know you know what I meant. Stop acting dumb.'
 			o+='\n\nIf you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Fell free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
+			state = 2
+	elif room == 2:
+		if state == 0:
+			if 'yes' in mcl:
+				o+='Good Llama! Obeying is the key to survival!'
+			else:
+				o+='TODO'
+			o+='\n\nI quite admire your ability to **get** through a simple **room** like that, but can you **get** through a simple **room** such as this one? I am tickled by the idea that you can win such an easy **room** as the last but you cannot win an even easier **room** such as this one! All you have to do is stop that **clock** between after it ticks 14-15 seconds!'
+			o+='\n\nDo you understand?'
+			state = 1
+		elif state == 1:
+			if 'yes' in mcl:
+				o+='Fair enough.'
+			else:
+				o+='TODO'
+			o+='\n\nSpeaking of which, did you know that you can **look** at specific items for clues to the puzzle rooms? Anyway... carry on.'
 			state = 2
 	#NEXT: TODO
 	if o == '':o = 'I don\'t quite understand what you mean.'
