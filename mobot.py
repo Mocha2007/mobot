@@ -290,6 +290,7 @@ def sto(string):
 def bug(string):
 	try:
 		open("bug.txt", "a").write(string+'\n')
+		print('\a')
 		return 'Success!'
 	except:
 		return ':/'
@@ -759,7 +760,6 @@ async def on_message(message):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
 			await client.send_message(mc, str(bug(m[7:])))
-			print('\a')
 		elif n.startswith(bot_prefix+'mat'):
 			await client.send_message(mc, str(momath(m[7:])))
 		elif n.startswith(bot_prefix+'rpn'):
