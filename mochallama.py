@@ -1,5 +1,5 @@
 from mochaxyz import quit
-commands = ('drop','gaze','get','grab','help''look','pickup','see','take')
+commands = ('drop','gaze','get','go','grab','help''look','open','pickup','see','take','use')
 
 def llama(room,state,inv,message):
 	mcl = message.content.lower()
