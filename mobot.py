@@ -686,11 +686,12 @@ async def llama(message):
 	mc = message.channel
 	room = -1
 	state = 0
+	inv = False
 	await client.send_message(message.channel, 'A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
 	while 1:
 		msg = await client.wait_for_message(channel=mc,author=message.author)
 		if room == -1 == state:return True # exit
-		ml = mochallama.llama(room,state,msg)
+		ml = mochallama.llama(room,state,inv,msg)
 		await client.send_message(mc, ml[2])
 		room = ml[0]
 		state = ml[1]
