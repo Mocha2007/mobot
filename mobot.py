@@ -74,6 +74,8 @@ def momath(string):
 
 	# complex
 
+	elif arg[0][:3] == 'ack':
+		return mochamath.ack(int(arg[1]),int(arg[2]))
 	elif arg[0][:-4] == 'area':
 		if arg[1] == 'circle':
 			r = float(arg[2])
@@ -160,6 +162,11 @@ def momath(string):
 		c = float(arg[3])
 		d = (b**2-4*a*c)**.5
 		return (-b+d)/2,(-b-d)/2
+	elif arg[0] == 'random':
+		if arg[1] == 'card':
+			return mochamath.card()
+		elif arg[1] == 'mnm' or arg[1] == 'm&m':
+			return mochamath.mnm()
 	elif arg[0] == 'sqrt':
 		return float(arg[1])**.5
 	elif arg[0] == 'sum':
