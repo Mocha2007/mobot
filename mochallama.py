@@ -66,6 +66,7 @@ def llama(room,state,inv,message):
 			if room == 0:
 				if state == 3:
 					o+='TODO'
+					o+='\n\nHere is where we start our experiment, Llama. I have made you seven rooms fit for llama exploration and triumph. Do you understand?'
 					room = 1
 					state = 0
 				else:
@@ -97,4 +98,20 @@ def llama(room,state,inv,message):
 				o+='Cheeky Llama! You know what you are and I do too! Got some humor we do!'#orig. to humour
 			o+='\nWell then Llama, we\'re going to start right away. If you would **open** the **door** we can start. You can do that by typing that into your magical button board! Or you can **look around** first! always **look around** in every room!'
 			state = 2
+	elif room == 1:
+		if state == 0:
+			if 'yes' in mcl:
+				o+='Good Llama! Obeying is the key to survival!\n\n'
+				o+='Now as the 44th creature to enter this facility your job is to **get** past **room** 7. Each **room** has a puzzle the next **room** will open. If you fail the puzzle then you will most certainly die a terrible death! But that is all semantics and nothing to worry about!\n\nIs that clear?'
+			else:
+				o+='TODO'
+			state = 1
+		elif state == 1:
+			if 'yes' in mcl:
+				o+='Fantastic.\n\n'
+				o+='If you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Fell free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
+			else:
+				o+='TODO'
+			state = 2
+	#NEXT: TODO
 	return room,state,inv,o
