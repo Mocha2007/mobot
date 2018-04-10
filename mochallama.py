@@ -65,7 +65,7 @@ def llama(room,state,inv,message):
 		elif 'go' in mcl:
 			if room == 0:
 				if state == 3:
-					o+='TODO'
+					o+='I\'ll **see** you in the next **room** Llama. Tally-ho!'
 					o+='\n\nHere is where we start our experiment, Llama. I have made you seven rooms fit for llama exploration and triumph. Do you understand?'
 					room = 1
 					state = 0
@@ -101,17 +101,18 @@ def llama(room,state,inv,message):
 	elif room == 1:
 		if state == 0:
 			if 'yes' in mcl:
-				o+='Good Llama! Obeying is the key to survival!\n\n'
-				o+='Now as the 44th creature to enter this facility your job is to **get** past **room** 7. Each **room** has a puzzle the next **room** will open. If you fail the puzzle then you will most certainly die a terrible death! But that is all semantics and nothing to worry about!\n\nIs that clear?'
+				o+='Good Llama! Obeying is the key to survival!'
 			else:
-				o+='TODO'
+				o+='Ah , the rebellious teenage llama. Too good for their house and home. Wants their individualism! Moon and dad always keeping you down! Well we won\'t keey you long.'
+			o+='\n\nNow as the 44th creature to enter this facility your job is to **get** past **room** 7. Each **room** has a puzzle the next **room** will open. If you fail the puzzle then you will most certainly die a terrible death! But that is all semantics and nothing to worry about!\n\nIs that clear?'
 			state = 1
 		elif state == 1:
 			if 'yes' in mcl:
-				o+='Fantastic.\n\n'
-				o+='If you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Fell free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
+				o+='Fantastic.'
 			else:
-				o+='TODO'
+				o+='I know you know what I meant. Stop acting dumb.'
+			o+='\n\nIf you need **help** at any time feel free to **use** that command. I\'ll be looking at you funny behind that mirrored one-way glass that all test facilities of this nature have! Fell free to **look around** you! Always **look** at everything! It will **help** you last longer than the others!'#orig. anytime
 			state = 2
 	#NEXT: TODO
+	if o == '':o = 'I don\'t quite understand what you mean.'
 	return room,state,inv,o
