@@ -11,9 +11,9 @@ def llama(room,state,inv,message):
 		return -1,-1,False,'Goodbye!'
 	elif room == -2:
 		if state == 0:
-			o+='Meow '*14
+			return -2,0,inv,'Meow '*14
 		elif state == 1:
-			o+=choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
+			return -2,1,inv,choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
 	iscommand = False
 	for c in commands:
 		if c in mcl:
@@ -29,6 +29,8 @@ def llama(room,state,inv,message):
 			o+='You can always find **help** by mashing that term here!'
 		elif 'john' in mcl:
 			o+='That\'s me!'
+		elif 'mocha' in mcl:
+			o+='That\'s *also* me!'
 		elif 'muffin' in mcl:
 			room = -2
 			state = 0
