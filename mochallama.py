@@ -1,36 +1,43 @@
-from mochaxyz import quit
 from random import choice
-commands = ('drop','eat','gaze','get','go','grab','help','john','look','muffin','open','pickup','see','take','tasselfoot','use')
+commands = ('drop','eat','exit','gaze','get','go','grab','help','john','leave','look','muffin','open','pickup','see','take','tasselfoot','travel','turn','use','walk','?')
 
 def llama(room,state,inv,message):
 	mcl = message.content.lower()
 	o = ''
 	mc = message.channel
 	player = message.author #NOTE THIS IS NOT AUTHOR NAME
-	if mcl in quit: # not in original
+	if mcl == 'quit': # not in original; can't use exit
 		return -1,-1,False,'Goodbye!'
 	elif room == -2:
 		if state == 0:
 			return -2,0,inv,'Meow '*14
 		elif state == 1:
 			return -2,1,inv,choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
+		elif state == 2:
+			return -2,2,inv,'succeed = try();'
 	iscommand = False
 	for c in commands:
 		if c in mcl:
 			iscommand = True
 			break
 	if iscommand:
-		if 'help' in mcl:
+		if 'help' in mcl or '?' in mcl:
 			o+='A bit lost are we llama?\n\n'
 			o+='Here are some keywords you can think about using:\n'
 			o+='**open use go look see gaze take grab pickup drop\n\n**'
 			o+='If you want to **get** a sense of what\'s in the room, **use** the phrase **look around**. Build short sentences!\n\n'
 			o+='Also remember that new words will crop up as you explore more.\n\n'
 			o+='You can always find **help** by mashing that term here!'
-		elif 'john' in mcl:
+		elif 'john' in mcl or 'jmtb02' in mcl:
 			o+='That\'s me!'
 		elif 'mocha' in mcl:
 			o+='That\'s *also* me!'
+		elif 'armorgames' in mcl:
+			o+='Armor Games loves you too!'
+		elif 'joey' in mcl:
+			room = -2
+			state = 2
+			o+='while(!succeed)'
 		elif 'muffin' in mcl:
 			room = -2
 			state = 0
@@ -106,7 +113,7 @@ def llama(room,state,inv,message):
 				inv = False
 			else:
 				o+='Your mouth is empty, you don\'t have anything to drop!'
-		elif 'open' in mcl or 'use' in mcl: # apparently, these are functionally equivalent...?
+		elif 'open' in mcl or 'use' in mcl or 'turn' in mcl: # apparently, these are functionally equivalent...?
 			if room == 0:
 				if 'door' in mcl:
 					state = 3
@@ -131,7 +138,7 @@ def llama(room,state,inv,message):
 						o+='You should probably **use** the **badkey** with the lock!'
 				else:
 					o+='What are you trying to do llama? When you utilize the word **use** make sure you follow up with a noun such as **door** or **books**... if you need **help** finding words **look around** or something!'
-		elif 'go' in mcl:
+		elif 'go' in mcl or 'travel' in mcl or 'walk' in mcl or 'exit' in mcl or 'leave' in mcl:
 			if room == 0:
 				if state == 3:
 					o+='I\'ll **see** you in the next **room** Llama. Tally-ho!'
