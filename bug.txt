@@ -1,0 +1,5 @@
+verify help formatting correct on pc
+try to use badkey on door twice
+chai latte
+dirty chai
+london fog
