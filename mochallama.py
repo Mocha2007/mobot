@@ -1,6 +1,9 @@
 from random import choice
 commands = ('drop','eat','exit','gaze','get','go','grab','help','john','leave','look','muffin','open','pickup','see','take','tasselfoot','travel','turn','use','walk','?')
 
+def negative():
+	return choice(['I don\'t quite understand what you mean.','Pardon?',"Sorry, come again?","I don\'t understand that.","I cannot understand what you are saying.","That does not make sense to me.","I am not sure what that means.","That phrase does not make sense to me.","Try another phrase, please.","I wish I knew what that phrase meant.","That statement does not make sense to me."])
+
 def llama(room,state,inv,message):
 	mcl = message.content.lower()
 	o = ''
@@ -12,9 +15,9 @@ def llama(room,state,inv,message):
 		if state == 0:
 			return -2,0,inv,'Meow '*14
 		elif state == 1:
-			return -2,1,inv,choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!'])
+			return -2,1,inv,choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!']) # TODO after 500 times print 'I\'m a cat :-3"'
 		elif state == 2:
-			return -2,2,inv,'succeed = try();'
+			return -2,2,inv,'succeed = try();' #only do 500 times
 	iscommand = False
 	for c in commands:
 		if c in mcl:
@@ -226,5 +229,5 @@ def llama(room,state,inv,message):
 			o+='\n\nSpeaking of which, did you know that you can **look** at specific items for clues to the puzzle rooms? Anyway... carry on.'
 			state = 2
 	#NEXT: TODO
-	if o == '':o = 'I don\'t quite understand what you mean.'
+	if o == '':o = negative()
 	return room,state,inv,o
