@@ -11,6 +11,7 @@ coffees = {
 'flat white':'microfoam poured into a\nsingle or double shot of espresso',
 'grande':'16 oz cup',
 'hot milk':'milk\nheat',
+'hot water':'water\nheat',
 'latte':'espresso\nhot milk',
 'long black':'double-shot of espresso or ristretto poured over\nhot water.',
 'macchiato':'espresso\nhot milk',

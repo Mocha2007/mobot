@@ -49,8 +49,8 @@ zodiac (string)
 
 NOTE: (optional argument) [mandatory argument]
 ```
-Did you know you can report bugs and make feature requests with the ``m! bug [string]`` command?
+Did you know you can report bugs and make feature requests with the `m! bug [string]` command?
 
-try ``m! help [command]`` for more detailed information!
+try `m! help [command]` for more detailed information!
 
 mocha made me. notice me, senpai!!!
