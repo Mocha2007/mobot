@@ -54,6 +54,8 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
+daily
+	|fun :)
 dice [number] [number]
 	|stats for that roll
 game [command]

@@ -56,6 +56,7 @@ special = {
 'alexa':'do i look like a slave to you?',
 'ban':'u can\'t make me!!!',
 'cobot':'...not happening.',
+'daily':'the hell you think i\'m gonna pay you for?',
 'hey google':'hey yourself faggot',
 'up':'five more minutes sky daddy',
 'weather':'do i look like a fucking weatherman to you',
