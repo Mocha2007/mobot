@@ -235,6 +235,8 @@ ttt [pattern]
 	|m! ttt 123oo6xx9
 up
 	|fun :)
+weather
+	|fun :)
 you're matched
 	|fun :)
 zodiac (string)
