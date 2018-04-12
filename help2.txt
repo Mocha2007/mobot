@@ -41,6 +41,8 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
+time
+	|current time (UTC)
 ttt [pattern]
 	|tic-tac-toe AI, perfect play
 zodiac (string)
