@@ -3,7 +3,6 @@
 from discord.ext.commands import Bot
 import discord
 
-import datetime
 from random import choice as c
 from random import randint,shuffle
 from math import ceil,gcd,hypot,pi
@@ -410,9 +409,6 @@ def dicemat(x):
 	if abs(m)<99>abs(n):return dice(m,n)
 	return 'Too High'
 
-def currenttime():
-	return str(datetime.datetime.utcnow())[:-7]+' UTC'
-
 # GAMES
 	
 async def g23(mc):
@@ -783,7 +779,7 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'mbti'):
 			await client.send_message(mc, str(mbti(m[8:])))
 		elif n.startswith(bot_prefix+'time'):
-			await client.send_message(mc, str(currenttime()))
+			await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(mc, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
