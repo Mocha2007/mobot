@@ -286,7 +286,7 @@ def sto(string):
 		if 'm!' == inputendo[:2]:return 'Not happening.'
 		for line in open("temp.txt", "r").read():
 			if inputendo == line:return 'Quote Already Stored.'
-		open("temp.txt", "a").write(inputendo+'\n')
+		open("temp.txt", "a").write('\n'+inputendo)
 		return 'Success!'
 
 	try:return quotefile(arg[0],'temp')
