@@ -787,7 +787,7 @@ async def on_message(message):
 				lastmessage = message
 			elif n == 'm! time diff' and message.author.name == 'Mobot':
 				await client.edit_message(message,'Calculating...')
-				sleep(2)
+				sleep(1)
 				old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
 				new = message.timestamp.replace(tzinfo=timezone.utc).timestamp()
 				await client.edit_message(message,str(int((new-old)*1000))+' ms')
