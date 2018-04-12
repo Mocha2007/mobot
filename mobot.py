@@ -728,6 +728,7 @@ client = Bot(command_prefix = bot_prefix)
 
 @client.event
 async def on_message(message):
+	start = time() #semi-debug
 	m = message.content
 	n = m.lower()
 	try:qf = n.split(' ')[1]
@@ -779,7 +780,13 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'mbti'):
 			await client.send_message(mc, str(mbti(m[8:])))
 		elif n.startswith(bot_prefix+'time'):
-			await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
+			args = m[8:].split(' ')
+			if args[0] == 'taken':
+				t = (time()-start)*1000
+				d = t*299.792458/1.48 # speed of light in fiber
+				await client.send_message(mc, str(int(t))+' ms ('+str(int(d))+' km/c_fiber)')
+			else:
+				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(mc, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):

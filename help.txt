@@ -216,8 +216,12 @@ spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
 	|valid numbers are 0-3, inclusive
-time
+time (command)
 	|current time (UTC)
+	taken
+		|time taken to process command, in ms.
+		|includes equivalent light travel,
+		|assuming a fiber medium
 tng (number)
 	|line #number from the tng quote file;
 	|leave out number for random line
