@@ -805,7 +805,7 @@ async def on_message(message):
 			await client.send_message(mc, str(religion(m[12:])))
 		# QUOTES
 		elif qf[0]=='m!' and qf[1] in quotefiles:
-			await client.send_message(mc, quotefile(m[4+len(qf):],qf))
+			await client.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
 			args = n.split(' ')[2:]
