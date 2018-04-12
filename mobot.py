@@ -732,7 +732,7 @@ async def on_message(message):
 	global lastmessage
 	m = message.content
 	n = m.lower()
-	try:qf = n.split(' ')[1]
+	try:qf = n.split(' ')
 	except: qf = False
 
 	if message.content.startswith(bot_prefix):
@@ -804,7 +804,7 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'religion'):
 			await client.send_message(mc, str(religion(m[12:])))
 		# QUOTES
-		elif qf in quotefiles:
+		elif qf[0]=='m!' and qf[1] in quotefiles:
 			await client.send_message(mc, quotefile(m[4+len(qf):],qf))
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
