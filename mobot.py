@@ -3,10 +3,11 @@
 from discord.ext.commands import Bot
 import discord
 
+from datetime import timezone
 from random import choice as c
 from random import randint,shuffle
 from math import ceil,gcd,hypot,pi
-from time import time
+from time import time,sleep
 from re import compile,search
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
@@ -728,7 +729,7 @@ client = Bot(command_prefix = bot_prefix)
 
 @client.event
 async def on_message(message):
-	start = time() #semi-debug
+	global lastmessage
 	m = message.content
 	n = m.lower()
 	try:qf = n.split(' ')[1]
@@ -782,9 +783,14 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'time'):
 			args = m[8:].split(' ')
 			if args[0] == 'taken':
-				t = (time()-start)*1000
-				d = t*299.792458/1.48 # speed of light in fiber
-				await client.send_message(mc, str(int(t))+' ms ('+str(int(d))+' km/c_fiber)')
+				await client.send_message(mc, 'm! time diff')
+				lastmessage = message
+			elif n == 'm! time diff' and message.author.name == 'Mobot':
+				await client.edit_message(message,'Calculating...')
+				sleep(2)
+				old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
+				new = message.timestamp.replace(tzinfo=timezone.utc).timestamp()
+				await client.edit_message(message,str(int((new-old)*1000))+' ms')
 			else:
 				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
 		elif n.startswith(bot_prefix+'quote'):

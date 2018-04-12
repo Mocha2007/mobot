@@ -219,9 +219,7 @@ spidey (number)
 time (command)
 	|current time (UTC)
 	taken
-		|time taken to process command, in ms.
-		|includes equivalent light travel,
-		|assuming a fiber medium
+		|time taken to process command, in ms
 tng (number)
 	|line #number from the tng quote file;
 	|leave out number for random line
