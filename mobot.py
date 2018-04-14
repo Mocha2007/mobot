@@ -262,6 +262,9 @@ def moling(string):
 			return mochalang.italianipa(arg[2])
 		elif arg[1] == 'po':
 			return mochalang.polishipa(arg[2])
+	elif arg[0] == 'pie':
+		try:return pie(arg[1])
+		except:return 'https://en.wikipedia.org/wiki/Proto-Indo-European_phonology'
 	elif arg[0] == 'scrabble':
 		try:m = int(arg[2])
 		except:m = 1
@@ -368,6 +371,11 @@ def religion(uwaa):
 
 def xsampa(string):
 	for replacement in xskey:
+		string = string.replace(replacement[0],replacement[1])
+	return string
+
+def pie(string):
+	for replacement in piekey:
 		string = string.replace(replacement[0],replacement[1])
 	return string
 

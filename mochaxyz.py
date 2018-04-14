@@ -292,6 +292,21 @@ verbs = {
 ),
 }
 
+#h₁, *h₂, *h₃
+
+piekey = (
+('_h','ʰ'),
+('_w','ʷ'),
+('k`','ḱ'),
+('g`','ǵ'),
+('1','₁'),
+('2','₂'),
+('3','₃'),
+('\'','\u0301'),
+('-','\u0304')
+)
+
+
 pronouns = {
 'de':('ich','du','er','wir','ihr','sie'),
 'en':('the simple present','the third-person singular simple present','the present participle','the simple past','the past participle'),
@@ -299,7 +314,6 @@ pronouns = {
 'fr':('je','tu','il','nous','vous','ils'),
 'la':('ego','tu','is','nos','vos','ei'), # using the masculine rather than the neuter due to the ambiguity of ea
 }
-
 quit = ('exit','quit')
 
 xskey = (

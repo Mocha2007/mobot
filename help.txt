@@ -118,6 +118,11 @@ ling [command]
 		|attempt to generate IPA for a word in language
 		|currently valid language codes:
 		|de, en, es, fr, hu, it, po
+	pie [string]
+		|converts abbreviated PIE to pie
+		|very similar to x-sampa
+		| apostrophe = acute
+		| hyphen = macron
 	scrabble [word] (multiplier)
 		|generate the score in scrabble for a word
 	soundex [word]
