@@ -1,6 +1,8 @@
 import random,math
 def stargen(x):
 	outputstring = '```'
+	outputstring2 = []
+	outputstring3 = ''
 	#BEGIN STAR GEN
 	if x=='r':
 		if random.random()<.7645:
@@ -43,14 +45,14 @@ def stargen(x):
 	#FIRST GAS GIANT GEN
 	gg1sma=frost+random.random()*.2+1
 	if gg1sma<outerlimit:#can't be outside the system - can happen if starmass>~16.5
-		outputstring+="\n Gas Giant 1 : "+str(gg1sma)+" au, "+str((gg1sma**3/starmass)**.5)+" years,\n              "+str(498659569/52594920*math.pi*(starmass/gg1sma)**.5)+" km/s, "+str(round(startemperature*(1-.5)**.25*(2319000/498659569*starradius/2/gg1sma)**.5))+" K"#gas giants have an average albedo closer to .5
+		outputstring3+="\n Gas Giant 1 : "+str(gg1sma)+" au, "+str((gg1sma**3/starmass)**.5)+" years,\n              "+str(498659569/52594920*math.pi*(starmass/gg1sma)**.5)+" km/s, "+str(round(startemperature*(1-.5)**.25*(2319000/498659569*starradius/2/gg1sma)**.5))+" K"#gas giants have an average albedo closer to .5
 	#More gas giants
 	ggosma=gg1sma
 	ggn=1
 	while ggosma*2<outerlimit:
 		ggn+=1
 		ggosma=ggosma*(random.random()*.6+1.4)
-		outputstring+="\n Gas Giant "+str(ggn)+" : "+str(ggosma)+" au, "+str((ggosma**3/starmass)**.5)+" years,\n              "+str(498659569/52594920*math.pi*(starmass/ggosma)**.5)+" km/s, "+str(round(startemperature*(1-.5)**.25*(2319000/498659569*starradius/2/ggosma)**.5))+" K"
+		outputstring3+="\n Gas Giant "+str(ggn)+" : "+str(ggosma)+" au, "+str((ggosma**3/starmass)**.5)+" years,\n              "+str(498659569/52594920*math.pi*(starmass/ggosma)**.5)+" km/s, "+str(round(startemperature*(1-.5)**.25*(2319000/498659569*starradius/2/ggosma)**.5))+" K"
 	#Inner worlds!
 	rocky=gg1sma
 	lastrocky=gg1sma+1
@@ -58,16 +60,16 @@ def stargen(x):
 		rocky=rocky/(random.random()*.6+1.4)
 		if 273<startemperature*(1-.3)**.25*(2319000/498659569*starradius/2/rocky)**.5<373 and lastrocky-rocky>.15 and rocky<outerlimit:#can't be outside the system, habitable calc used to be innerhabitable<rocky<outerhabitable
 			if (rocky**3/starmass)**.5>1: #use years as unit
-				outputstring+="\n Habitable: "+str(rocky)+" au, "+str((rocky**3/starmass)**.5)+" years,\n           "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.35)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"#assuming albedo of .3 since like earth yo. i need the weird frac cuz i need to convert solar radii to au
+				outputstring2+=["\n Habitable: "+str(rocky)+" au, "+str((rocky**3/starmass)**.5)+" years,\n           "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.35)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"]#assuming albedo of .3 since like earth yo. i need the weird frac cuz i need to convert solar radii to au
 			else: #days
-				outputstring+="\n Habitable: "+str(rocky)+" au, "+str(365.2425*(rocky**3/starmass)**.5)+" days,\n           "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.35)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"
+				outputstring2+=["\n Habitable: "+str(rocky)+" au, "+str(365.2425*(rocky**3/starmass)**.5)+" days,\n           "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.35)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"]
 		elif lastrocky-rocky>.15 and rocky<outerlimit:#can't be within .15 au or outside the system
 			if (rocky**3/starmass)**.5>1: #use years as unit
-				outputstring+="\n Rocky: "+str(rocky)+" au, "+str((rocky**3/starmass)**.5)+" years,\n       "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.2)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"#assuming albedo of .2
+				outputstring2+=["\n Rocky: "+str(rocky)+" au, "+str((rocky**3/starmass)**.5)+" years,\n       "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.2)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"]#assuming albedo of .2
 			else:
-				outputstring+="\n Rocky: "+str(rocky)+" au, "+str(365.2425*(rocky**3/starmass)**.5)+" days,\n       "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.2)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"
+				outputstring2+=["\n Rocky: "+str(rocky)+" au, "+str(365.2425*(rocky**3/starmass)**.5)+" days,\n       "+str(498659569/52594920*math.pi*(starmass/rocky)**.5)+" km/s, "+str(round(startemperature*(1-.2)**.25*(2319000/498659569*starradius/2/rocky)**.5))+" K"]
 		lastrocky=rocky
-	return outputstring+'\n```'
+	return outputstring+''.join(outputstring2[::-1])+outputstring3+'\n```'
 	#rocky moon mass total = planet mass/random.randint(80,200)
 	#gas moon mass total = planet mass/random.randint(4000,10000)
 	#first moon = random.random()*that value
