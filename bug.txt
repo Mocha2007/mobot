@@ -1,1 +1,2 @@
 CHESS
+"m! quote list" command
