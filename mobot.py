@@ -749,7 +749,7 @@ async def on_message(message):
 	try:
 		gchelp = 'which' if 'which' in n else ('what' if 'what' in n else 0),'best' if 'best' in n else ('greatest' if 'greatest' in n else 0)
 		goatcondition = gchelp[0] and 'bot' in n and 'is' in n and gchelp[1]
-		goatcondition = n.index(gchelp[0]) < n.index('bot') < n.index('is') < n.index(gchelp[1])
+		#goatcondition = n.index(gchelp[0]) < n.index('bot') < n.index('is') < n.index(gchelp[1])
 	except: goatcondition = False
 
 	if message.content.startswith(bot_prefix):
