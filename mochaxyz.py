@@ -58,7 +58,7 @@ special = {
 'cobot':'...not happening.',
 'daily':'the hell you think i\'m gonna pay you for?',
 'hey google':'hey yourself faggot',
-'moobot':'🐮',
+'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
 'up':'five more minutes sky daddy',
 'weather':'do i look like a fucking weatherman to you',
 'you\'re matched':'say hello! ;)',

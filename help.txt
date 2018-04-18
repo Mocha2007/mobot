@@ -205,6 +205,8 @@ quote (command)
 		|store a string into the magic database
 	[quote_id]
 		|get a specified string from the magic database
+rasputin
+	|fun :)
 religion [string]
 	|information regarding religions
 rpn (string)
