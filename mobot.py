@@ -740,8 +740,10 @@ async def on_message(message):
 	global lastmessage
 	m = message.content
 	n = m.lower()
-	try:qf = n.split(' ')
-	except: qf = False
+	try:
+		qf = n.split(' ')
+		qfcondition = qf[0]=='m!' and qf[1] in quotefiles
+	except: qfcondition = False
 
 	if message.content.startswith(bot_prefix):
 		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
@@ -753,10 +755,13 @@ async def on_message(message):
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
 	try:
-		if 'right, mobot' in m.lower() or 'right mobot' in m.lower():
+		if 'right, mobot' in n or 'right mobot' in n:
 			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
 			except:pass
-		elif 'mobot' in m.lower() and message.author.name!='Mobot':
+		elif ('which' in n or 'what' in n) and 'bot' in n and 'is' in n and 'best' in n:
+			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
+			except:pass
+		elif 'mobot' in n and message.author.name!='Mobot':
 			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
 			except:pass
 
@@ -812,7 +817,7 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'religion'):
 			await client.send_message(mc, str(religion(m[12:])))
 		# QUOTES
-		elif qf[0]=='m!' and qf[1] in quotefiles:
+		elif qfcondition:
 			await client.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))
 		# GAMES
 		elif n.startswith(bot_prefix+'game'):
