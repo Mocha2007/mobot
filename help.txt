@@ -209,6 +209,8 @@ rpn (string)
 	|; = pop top of stack
 	|@ = move top of stack to bottom
 	|\ = swap top two of stack
+secret
+	|number of secret commands
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line

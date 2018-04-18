@@ -826,6 +826,8 @@ async def on_message(message):
 			await client.send_message(mc, str(zodiac(m[10:])))
 		elif n.startswith(bot_prefix+'coffee'):
 			await client.send_message(mc, str(coffee(m[10:])))
+		elif n.startswith(bot_prefix+'secret'):
+			await client.send_message(mc, str(len(quotefiles)+len(special))+' secret commands')
 		elif n.startswith(bot_prefix+'convert'):
 			await client.send_message(mc, str(convert(m[11:])))
 		elif n.startswith(bot_prefix+'religion'):
