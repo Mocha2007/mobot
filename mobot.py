@@ -758,7 +758,7 @@ async def on_message(message):
 		if 'right, mobot' in n or 'right mobot' in n:
 			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
 			except:pass
-		elif ('which' in n or 'what' in n) and 'bot' in n and 'is' in n and 'best' in n:
+		elif ('which' in n or 'what' in n) and 'bot' in n and 'is' in n and ('best' in n or 'greatest' in n):
 			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
 			except:pass
 		elif 'mobot' in n and message.author.name!='Mobot':
