@@ -762,14 +762,18 @@ async def on_message(message):
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
 	try:
-		if 'right, mobot' in n or 'right mobot' in n:
+		notmobot = message.author.name!='Mobot'
+		if ('right, mobot' in n or 'right mobot' in n) and notmobot:
 			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
 			except:pass
-		elif goatcondition:
+		elif goatcondition and notmobot:
 			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
 			except:pass
-		elif 'mobot' in n and message.author.name!='Mobot':
+		elif 'mobot' in n and notmobot:
 			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
+			except:pass
+		elif 'moobot' in n and notmobot:
+			try:await client.send_message(message.channel, '🐮')
 			except:pass
 
 		mc = message.channel
