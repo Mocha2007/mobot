@@ -740,10 +740,17 @@ async def on_message(message):
 	global lastmessage
 	m = message.content
 	n = m.lower()
+	#quotefile
 	try:
 		qf = n.split(' ')
 		qfcondition = qf[0]=='m!' and qf[1] in quotefiles
 	except: qfcondition = False
+	#GOAT
+	try:
+		gchelp = 'which' if 'which' in n else ('what' if 'what' in n else 0),'best' if 'best' in n else ('greatest' if 'greatest' in n else 0)
+		goatcondition = gchelp[0] and 'bot' in n and 'is' in n and gchelp[1]
+		goatcondition = n.index(gchelp[0]) < n.index('bot') < n.index('is') < n.index(gchelp[1])
+	except: goatcondition = False
 
 	if message.content.startswith(bot_prefix):
 		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
@@ -758,7 +765,7 @@ async def on_message(message):
 		if 'right, mobot' in n or 'right mobot' in n:
 			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
 			except:pass
-		elif ('which' in n or 'what' in n) and 'bot' in n and 'is' in n and ('best' in n or 'greatest' in n):
+		elif goatcondition:
 			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
 			except:pass
 		elif 'mobot' in n and message.author.name!='Mobot':
