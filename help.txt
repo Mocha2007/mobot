@@ -1,5 +1,3 @@
-alexa
-	|fun :)
 ast
 	density [mass] [radius]
 		|returns the density of a sphere with the specified mass and radius
@@ -37,8 +35,6 @@ ast
 		|return the synodic period between the two objects with given periods
 	ve
 		|see escapevelocity
-ban
-	|fun :)
 bee (number)
 	|line #number from the bee movie script;
 	|leave out number for random line
@@ -48,14 +44,10 @@ bf [program]
 	|use newlines to separate inputs
 bug [string]
 	|submit bug report/feature request
-cobot
-	|fun :)
 coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
-daily
-	|fun :)
 dice [number] [number]
 	|stats for that roll
 game [command]
@@ -105,8 +97,6 @@ gs [program]
 	|only partially implemented, WIP
 help ((sub)command)
 	|>this
-hey google
-	|fun :)
 hi (number)
 	|line #number from greetings file
 	|leave out number for random line
@@ -205,8 +195,6 @@ quote (command)
 		|store a string into the magic database
 	[quote_id]
 		|get a specified string from the magic database
-rasputin
-	|fun :)
 religion [string]
 	|information regarding religions
 rpn (string)
@@ -242,12 +230,6 @@ ttt [pattern]
 	|replace numbers with x and o as necessary
 	|try this pattern:
 	|m! ttt 123oo6xx9
-up
-	|fun :)
-weather
-	|fun :)
-you're matched
-	|fun :)
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
