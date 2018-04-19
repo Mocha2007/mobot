@@ -273,6 +273,8 @@ def moling(string):
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
+	elif arg[0] == 'unmojibake':
+		return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
 		try:return xsampa(arg[1])
 		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'

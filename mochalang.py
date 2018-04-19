@@ -21,6 +21,9 @@ def scrabble(string):
 		score+=scoring[alphabet.index(char)]
 	return score
 
+def unmojibake(string,fro,to):
+	return bytes(string,fro).decode(to)
+
 def soundex(string):
 	#Pre-rules
 	string=string.title()
