@@ -1,3 +1,2 @@
 CHESS
-"m! quote list" command
 adapt handwriting detection to mocha shorthand
