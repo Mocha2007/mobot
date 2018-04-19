@@ -827,7 +827,7 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'coffee'):
 			await client.send_message(mc, str(coffee(m[10:])))
 		elif n.startswith(bot_prefix+'secret'):
-			await client.send_message(mc, str(len(quotefiles)+len(special)+len(specialer))+' secret commands, of which:\n'+str(len(specialer))+' are triggered by a string,\n'+str(len(quotefiles))+' are triggered by `m!`, and\n'+str(len(special))+' are triggered by `m!` and an optional argument.')
+			await client.send_message(mc, str(len(quotefiles)+len(special)+len(specialer))+' secret commands, of which:\n'+str(len(specialer))+' are triggered by a string,\n'+str(len(special))+' are triggered by `m!`, and\n'+str(len(quotefiles))+' are triggered by `m!` and an optional argument.')
 		elif n.startswith(bot_prefix+'convert'):
 			await client.send_message(mc, str(convert(m[11:])))
 		elif n.startswith(bot_prefix+'religion'):
