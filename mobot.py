@@ -776,7 +776,7 @@ async def on_message(message):
 				except:pass
 			else: #special triggers
 				for i in specialer:
-					ret = compile('^'+i+'|'+i+'$|\\W'+i+'\\W')
+					ret = compile('^'+i+'$|^'+i+'\\W|\\W'+i+'$|\\W'+i+'\\W')
 					if search(ret,n):
 						try:await client.send_message(mc, specialer[i])
 						except:pass
