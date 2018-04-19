@@ -70,7 +70,6 @@ special = {
 'daily':'the hell you think i\'m gonna pay you for?',
 'egu':'https://www.youtube.com/watch?v=3-rfBsWmo0M',
 'hey google':'hey yourself faggot',
-'input':'https://www.youtube.com/watch?v=Pj-qBUWOYfE',
 'kill':'nuuuu!~',
 'legs':'https://www.youtube.com/watch?v=ZFUd-RbAr-s',
 'owo':'**What\'s this???**',
@@ -87,6 +86,18 @@ specialer = {
 'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮'
 }
+
+mobotirl = [
+'https://www.youtube.com/watch?v=Pj-qBUWOYfE',
+'https://www.youtube.com/watch?v=HVtojNukkA0&t=2m03s'
+]
+
+mobotyes = [
+'mhmm!~~',
+'ofc!~',
+'ya!~',
+'yayaya ^3^'
+]
 
 units = {
 'au':149597870700,

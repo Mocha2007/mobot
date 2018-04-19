@@ -772,10 +772,13 @@ async def on_message(message):
 		mc = message.channel
 		notmobot = message.author.name!='Mobot'
 		if notmobot:
-			if ('right, mobot' in n or 'right mobot' in n):
-				try:await client.send_message(mc, c(['ya!~','ofc!~','yayaya ^3^']))
+			if ('right, mobot' in n or 'right mobot' in n): #needed due to multiple responses
+				try:await client.send_message(mc, c(mobotyes))
 				except:pass
-			elif goatcondition:
+			elif 'mobot irl' in n: #needed due to multiple responses
+				try:await client.send_message(mc, c(mobotirl))
+				except:pass
+			elif goatcondition: #needed due to complicated conditions
 				try:await client.send_message(mc, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
 				except:pass
 			else: #special triggers
