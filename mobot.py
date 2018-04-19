@@ -215,7 +215,7 @@ def moastro(string):
 		m = float(arg[1])
 		M = float(arg[2])
 		a = float(arg[3])
-		return mochaastro.roche(m,M,a)
+		return mochaastro.soi(m,M,a)
 	elif arg[0] == 'star':
 		m = float(arg[1])
 		s = mochaastro.star(m)
