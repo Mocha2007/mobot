@@ -1,2 +1,3 @@
 CHESS
 adapt handwriting detection to mocha shorthand
+m! birthday

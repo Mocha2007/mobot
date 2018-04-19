@@ -72,6 +72,7 @@ special = {
 'hey google':'hey yourself faggot',
 'kill':'nuuuu!~',
 'legs':'https://www.youtube.com/watch?v=ZFUd-RbAr-s',
+'owo':'**What\'s this???**',
 'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
 'up':'five more minutes sky daddy',
 'weather':'do i look like a fucking weatherman to you',
@@ -81,8 +82,7 @@ special = {
 specialer = {
 'maltese falcon':'It\'s the stuff that dreams are made of.',
 'mobot':'das meee!~~ :3',
-'moobot':'🐮',
-'owo':'**What\'s this???**'
+'moobot':'🐮'
 }
 
 units = {
