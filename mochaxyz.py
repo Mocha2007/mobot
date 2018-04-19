@@ -82,6 +82,7 @@ special = {
 specialer = {
 'maltese falcon':'It\'s the stuff that dreams are made of.',
 'mobot':'das meee!~~ :3',
+'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮'
 }
 
