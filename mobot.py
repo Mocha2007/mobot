@@ -8,7 +8,7 @@ from random import choice as c
 from random import randint,shuffle
 from math import ceil,gcd,hypot,pi
 from time import time,sleep
-from re import compile,search
+from re import compile,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
 import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt
@@ -244,6 +244,10 @@ def moling(string):
 	arg = string.split(' ')
 
 	if arg[0] == 'freq':
+		sss = ' '.join(arg[1:]).lower()
+		ppp = compile('[^a-z]')
+		return lf(sub(ppp,'',sss))
+	elif arg[0] == 'freq2':
 		return lf(' '.join(arg[1:]))
 	elif arg[0] == 'ipa':
 		if arg[1] == 'en':
