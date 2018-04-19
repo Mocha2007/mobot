@@ -70,6 +70,7 @@ special = {
 'daily':'the hell you think i\'m gonna pay you for?',
 'egu':'https://www.youtube.com/watch?v=3-rfBsWmo0M',
 'hey google':'hey yourself faggot',
+'input':'https://www.youtube.com/watch?v=HVtojNukkA0&t=2m03s',
 'kill':'nuuuu!~',
 'legs':'https://www.youtube.com/watch?v=ZFUd-RbAr-s',
 'owo':'**What\'s this???**',
