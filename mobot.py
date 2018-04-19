@@ -233,10 +233,19 @@ def moastro(string):
 	try:return object[arg[0]][arg[1]]
 	except:return ':/'
 
+def lf(x):
+	l = mochalang.sortdict(mochalang.letterfreq(x))
+	s = '```\n'
+	for i in l:
+		s+=i[0]+' '+str(i[1])+'\n'
+	return s+'```'
+
 def moling(string):
 	arg = string.split(' ')
 
-	if arg[0] == 'ipa':
+	if arg[0] == 'freq':
+		return lf(arg[1])
+	elif arg[0] == 'ipa':
 		if arg[1] == 'en':
 			return mochalang.ipa(arg[2])
 		elif arg[1] == 'de':

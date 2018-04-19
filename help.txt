@@ -108,6 +108,8 @@ ling [command]
 		|attempt to generate IPA for a word in language
 		|currently valid language codes:
 		|de, en, es, fr, hu, it, po
+	freq [string]
+		|frequency of characters in a string
 	pie [string]
 		|converts abbreviated PIE to pie
 		|very similar to x-sampa
