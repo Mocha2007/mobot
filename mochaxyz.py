@@ -66,6 +66,12 @@ special = {
 'you\'re matched':'say hello! ;)',
 }
 
+specialer = {
+'maltese falcon':'It\'s the stuff that dreams are made of.',
+'mobot':'das meee :3',
+'moobot':'🐮'
+}
+
 units = {
 'au':149597870700,
 'banana':.3048*8/12,

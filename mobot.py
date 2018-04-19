@@ -772,12 +772,12 @@ async def on_message(message):
 		elif goatcondition and notmobot:
 			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
 			except:pass
-		elif 'mobot' in n and notmobot:
-			try:await client.send_message(message.channel, c(['das meee :3','hai!~']))
-			except:pass
-		elif 'moobot' in n and notmobot:
-			try:await client.send_message(message.channel, '🐮')
-			except:pass
+		elif notmobot: #special triggers
+			for i in specialer:
+				if i in n:
+					try:await client.send_message(message.channel, specialer[i])
+					except:pass
+					break
 
 		mc = message.channel
 
@@ -827,7 +827,7 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'coffee'):
 			await client.send_message(mc, str(coffee(m[10:])))
 		elif n.startswith(bot_prefix+'secret'):
-			await client.send_message(mc, str(len(quotefiles)+len(special))+' secret commands')
+			await client.send_message(mc, str(len(quotefiles)+len(special)+len(specialer))+' secret commands')
 		elif n.startswith(bot_prefix+'convert'):
 			await client.send_message(mc, str(convert(m[11:])))
 		elif n.startswith(bot_prefix+'religion'):
