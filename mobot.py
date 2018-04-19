@@ -274,7 +274,9 @@ def moling(string):
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
 	elif arg[0] == 'unmojibake':
-		return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
+		try:return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
+		except UnicodeDecodeError:return 'Invalid... probably missing some characters?'
+		except:return 'Invalid... just really, really invalid.'
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
 		try:return xsampa(arg[1])
 		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'
