@@ -75,6 +75,7 @@ special = {
 'owo':'**What\'s this???**',
 'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
 'up':'five more minutes sky daddy',
+'vc':'\U0001F1FB \U0001F1E8',
 'weather':'do i look like a fucking weatherman to you',
 'you\'re matched':'say hello! ;)',
 }
