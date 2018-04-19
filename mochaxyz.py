@@ -52,6 +52,17 @@ religions = {
 'wicca':{'members':750000,'partof':'n/a','url':'https://en.wikipedia.org/wiki/Wicca'},
 }
 
+quotefiles = [
+'bee',
+'hi',
+'info',
+'link',
+'moquote',
+'prequel',
+'spidey',
+'tng'
+]
+
 special = {
 'alexa':'do i look like a slave to you?',
 'ban':'u can\'t make me!!!',

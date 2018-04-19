@@ -43,17 +43,6 @@ def help(command):
 		except IndexError:break
 	return relevant+'```'
 
-quotefiles = [
-'bee',
-'hi',
-'info',
-'link',
-'moquote',
-'prequel',
-'spidey',
-'tng'
-]
-
 def play(x):
 	PlaySound(x,SND_FILENAME)
 
