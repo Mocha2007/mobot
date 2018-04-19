@@ -742,6 +742,7 @@ async def on_message(message):
 			goatcondition = n.index(gchelp[0]) < n.index('is') < n.index(gchelp[1])
 		else:
 			goatcondition = n.index(gchelp[0]) < n.index('bot') < n.index('is') < n.index(gchelp[1])
+			goatcondition = goatcondition or (n.index(gchelp[0]) < n.index('is') < n.index(gchelp[1]) < n.index('bot'))
 	except: goatcondition = False
 
 	if message.content.startswith(bot_prefix):
