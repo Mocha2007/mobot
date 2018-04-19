@@ -754,26 +754,24 @@ async def on_message(message):
 		except UnicodeEncodeError as e:open("log.txt", "a").write(str(e)+'\n')
 
 	try:
-		notmobot = message.author.name!='Mobot'
-		if ('right, mobot' in n or 'right mobot' in n) and notmobot:
-			try:await client.send_message(message.channel, c(['ya!~','ofc!~','yayaya ^3^']))
-			except:pass
-		elif goatcondition and notmobot:
-			try:await client.send_message(message.channel, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
-			except:pass
-		elif notmobot: #special triggers
-			for i in specialer:
-				if i in n:
-					try:await client.send_message(message.channel, specialer[i])
-					except:pass
-					break
-
 		mc = message.channel
-
-		if n == 'owo':
-			await client.send_message(mc, '*What\'s this???*')
-		# MAIN
-		elif n.startswith(bot_prefix+'help'):
+		notmobot = message.author.name!='Mobot'
+		if notmobot:
+			if ('right, mobot' in n or 'right mobot' in n):
+				try:await client.send_message(mc, c(['ya!~','ofc!~','yayaya ^3^']))
+				except:pass
+			elif goatcondition:
+				try:await client.send_message(mc, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
+				except:pass
+			else: #special triggers
+				for i in specialer:
+					ret = compile('^'+i+'|'+i+'$|\\W'+i+'\\W')
+					if search(ret,n):
+						try:await client.send_message(mc, specialer[i])
+						except:pass
+						break
+		#real commands
+		if n.startswith(bot_prefix+'help'):
 			await client.send_message(mc, help(m[8:]))
 		elif n.startswith(bot_prefix+'bf'):
 			args = m[6:].split('\n')
@@ -843,7 +841,6 @@ async def on_message(message):
 				await verbrace(args,mc)
 			elif args[0] == 'word':
 				await word(args,message)
-
 		# ELSE
 		elif n.startswith(bot_prefix):
 			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
