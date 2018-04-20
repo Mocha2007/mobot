@@ -78,6 +78,7 @@ special = {
 'vc':'\U0001F1FB \U0001F1E8',
 'weather':'do i look like a fucking weatherman to you',
 'you\'re matched':'say hello! ;)',
+'yuri':'https://yuri.dance/'
 }
 
 specialer = {
