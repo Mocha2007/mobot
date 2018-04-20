@@ -26,7 +26,10 @@ def read2(site,page):
 	return t[v]['revisions'][0]['*']
 
 def deltemplates(string):
-	return sub(compile('{{[^]+?}}'),'',string)
+	sublimit = 3 # should be enough
+	for i in range(sublimit):
+		string = sub(compile(r'{{[^{}]+?}}'),'',string)
+	return sub(compile(r'{{[\w\W]+?}}'),'',string)
 
 def link2text(string):
 	if search(r'\[\[File:[^\]]+?]]',string):return '' # file
@@ -34,6 +37,7 @@ def link2text(string):
 	return search(r'\|[^\]|]+?]]',string).group(0)[1:-2] # alt text
 
 def cleanup(string):
+	string = string.replace('{&nbsp;}',' ')
 	string = deltemplates(string)
 	string = string.replace("'''",'**')
 	string = string.replace("''",'*')
