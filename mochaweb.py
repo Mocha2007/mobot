@@ -29,6 +29,11 @@ def wtcleanup(string):
 	string = sub(r'\n{2,}','\n',string) # multiple returns
 	string = sub(r'Category:[\w:]+','',string) # category removal
 	string = sub(r'^[#*][^\w\n]+\n','',string) # empty defs
+	n = 0
+	for c in string:# start numbering the definitions
+		if c=='#':
+			n+=1
+			string = string.replace(c,'**'+str(n)+'.**',1)
 	return string
 
 def wikicleanup(string):
