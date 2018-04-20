@@ -804,7 +804,7 @@ async def on_message(message):
 			await client.send_message(mc, mochaweb.ud(m[6:]))
 		elif n.startswith(bot_prefix+'wt'):
 			entry = m[6:].replace(' ','%20')
-			await client.send_message(mc, mochamw.main('en.wiktionary.org/w',entry))
+			await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
 		elif n.startswith(bot_prefix+'ast'):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):

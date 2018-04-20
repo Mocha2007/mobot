@@ -29,14 +29,16 @@ def deltemplates(string):
 	return sub(compile('{{[^}]+?}}'),'',string)
 
 def link2text(string):
-	if search(r'\[\[[^\]|]+?\]\]',string):return string [2:-2] # no alt text
-	return search(r'\|[^\]|]+?\]\]',string).group(0)[1:-2] # alt text
+	if search(r'\[\[File:[^\]]+?]]',string):return '' # file
+	if search(r'\[\[[^\]|]+?]]',string):return string [2:-2] # no alt text
+	return search(r'\|[^\]|]+?]]',string).group(0)[1:-2] # alt text
 
 def cleanup(string):
 	string = deltemplates(string)
 	string = string.replace("'''",'**')
 	string = string.replace("''",'*')
-	string = string.replace('\n','')
+	string = sub(r'\n+','\n',string)
+	string = sub(r'<ref>[^>]*<\/ref>','',string)#refs
 	for i in findall(compile(linkpattern),string):
 		alt = link2text(i)
 		string = string.replace(i,alt)

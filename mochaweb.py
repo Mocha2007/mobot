@@ -19,6 +19,13 @@ def udcleanup(string):
 	string = sub(compile(r'<.+?>'),'',string)#.group(0) # remove links
 	return string
 
+def wtcleanup(string):
+	string = sub(compile(r'====[^=]+?===='),'',string) # remove 4th header
+	string = sub(compile(r'===[^=]+?==='),'',string) # remove 3rd header
+	string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
+	string = string.replace('#','\n#') # ol
+	return string
+
 def ud(word):
 	# eg ud('test')
 	return udcleanup(l('https://www.urbandictionary.com/define.php?term='+word))
