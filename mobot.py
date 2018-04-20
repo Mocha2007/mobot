@@ -408,14 +408,15 @@ def d(m,n):
 	return s
 
 def dice(m,n):
+	maxrolls = 10000
 	rolls = []
-	for i in range(1000):
+	for i in range(maxrolls):
 		rolls += [d(m,n)]
-	mean = sum(rolls)/1000
+	mean = sum(rolls)/maxrolls
 	try:mmmm = str(mode(rolls))
 	except:mmmm = 'No Unique Mode'
 	ssss = stdev(rolls)
-	return '```\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
+	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
 
 def dicemat(x):
 	x = x.split(' ')
