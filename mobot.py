@@ -797,6 +797,10 @@ async def on_message(message):
 			await client.send_message(mc, str(mochabf.run(args[0],args[1:])))
 		elif n.startswith(bot_prefix+'gs'):
 			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
+		elif n.startswith(bot_prefix+'dfprop'):
+			entry = m[10:].replace(' ','%20')
+			try:await client.send_message(mc, mochaweb.dfprop(entry))
+			except:await client.send_message(mc, 'Can\'t seem to fetch properties for '+m[10:])
 		elif n.startswith(bot_prefix+'df'):
 			entry = m[6:].replace(' ','%20')
 			try:await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))

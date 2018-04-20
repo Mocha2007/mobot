@@ -1,4 +1,4 @@
-import urllib.request
+import urllib.request,mochamw
 from re import compile,sub,findall,search
 
 linkpattern = r'\[\[[^\]]+?\]\]'
@@ -29,3 +29,11 @@ def wtcleanup(string):
 def ud(word):
 	# eg ud('test')
 	return udcleanup(l('https://www.urbandictionary.com/define.php?term='+word))
+
+def dfprop(word):
+	art = mochamw.read2('dwarffortresswiki.org','DF2014:'+word)
+	temps = findall(compile(r'{{ct\|\d+}}'),art)
+	for m in temps: # template ct
+		art = art.replace(m,sub(r'\D','',m)+'\xb0U')
+	props = search(compile(r'(?<=properties=\n)[\w\W]+?(?=}}{{av}})'),art).group(0)
+	return mochamw.cleanup(props)

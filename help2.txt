@@ -15,6 +15,8 @@ convert [number] [from-unit] [to-unit]
 	|convert between units
 df [string]
 	|search dfwiki for string (WIP)
+dfprop [material]
+	|search dfwiki for properties of a material
 dice [number] [number]
 	|stats for that roll
 game [command]
