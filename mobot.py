@@ -11,7 +11,7 @@ from time import time,sleep
 from re import compile,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw
 from mochaxyz import *
 
 # CODE SHIT
@@ -797,6 +797,8 @@ async def on_message(message):
 			await client.send_message(mc, str(mochabf.run(args[0],args[1:])))
 		elif n.startswith(bot_prefix+'gs'):
 			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
+		elif n.startswith(bot_prefix+'df'):
+			await client.send_message(mc, mochamw.main('dwarffortresswiki.org','DF2014:'+m[6:]))
 		elif n.startswith(bot_prefix+'ast'):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
