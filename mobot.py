@@ -854,7 +854,7 @@ async def on_message(message):
 			except:await client.send_message(mc, 'Can\'t seem to fetch comic #'+m[8:])
 		elif n.startswith(bot_prefix+'wiki'):
 			entry = m[8:].replace(' ','%20')
-			try:await client.send_message(mc, mochamw.main('en.wikipedia.org/w',entry))
+			try:await client.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
 			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(mc, str(sto(m[9:])))

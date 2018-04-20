@@ -252,9 +252,9 @@ weather [place]
 wc [string]
 	|search wikbooks cookbooks for recipe
 wiki [string]
-	|search wikipedia for string (WIP)
+	|search wikipedia for string
 wt [string]
-	|search wiktionary for string (WIP)
+	|search wiktionary for string
 xkcd (#)
 	|retrieve xkcd #x
 	|retrieves random xkcd if unspecified

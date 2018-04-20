@@ -22,9 +22,6 @@ def udcleanup(string):
 
 def wtcleanup(string):
 	string = sub('^[^#].+$','',string,flags=M) # delete ANY line not beginning with a hash
-	#string = sub(compile(r'====[^=]+?===='),'',string) # remove 4th header
-	#string = sub(compile(r'===[^=]+?==='),'',string) # remove 3rd header
-	#string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
 	string = string.replace('#','\n#') # ol
 	string = sub('^[^#]+','',string) # crap in beginning
 	string = sub('#[:*].+','',string) # crap in middle
@@ -33,6 +30,10 @@ def wtcleanup(string):
 	string = sub(r'Category:[\w:]+','',string) # category removal
 	string = sub(r'^[#*][^\w\n]+\n','',string) # empty defs
 	return string
+
+def wikicleanup(string):
+	string = sub(r'\s?\(.*?\)','',string) # text in parens
+	return search('[^.]+.',string).group(0) # first sentence
 
 def ud(word):
 	# eg ud('test')
