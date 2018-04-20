@@ -818,8 +818,8 @@ async def on_message(message):
 			#except:await client.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
 		elif n.startswith(bot_prefix+'wt'):
 			entry = m[6:].replace(' ','%20')
-			try:await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
-			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+			await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
+			#except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
 		elif n.startswith(bot_prefix+'ast'):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):

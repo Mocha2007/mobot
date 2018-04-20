@@ -52,8 +52,8 @@ def cleanup(string):
 
 def main(site,page):
 	# eg main('dwarffortresswiki.org','DF2014:Pig')
+	if site == 'en.wiktionary.org/w':return cleanup(read(site,page))[:1997]+'...'
 	return cleanup(read(site,page))[:limit]+'...'
 
 def main2(site,page):
-	# eg main('dwarffortresswiki.org','DF2014:Pig')
 	return cleanup(read2(site,page))[:limit]+'...'

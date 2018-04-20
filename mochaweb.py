@@ -1,5 +1,5 @@
 import urllib.request,mochamw
-from re import compile,sub,findall,search
+from re import compile,sub,findall,search,M
 from random import randint
 
 linkpattern = r'\[\[[^\]]+?\]\]'
@@ -21,9 +21,10 @@ def udcleanup(string):
 	return string
 
 def wtcleanup(string):
-	string = sub(compile(r'====[^=]+?===='),'',string) # remove 4th header
-	string = sub(compile(r'===[^=]+?==='),'',string) # remove 3rd header
-	string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
+	string = sub('^[^#].+$','',string,flags=M) # delete ANY line not beginning with a hash
+	#string = sub(compile(r'====[^=]+?===='),'',string) # remove 4th header
+	#string = sub(compile(r'===[^=]+?==='),'',string) # remove 3rd header
+	#string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
 	string = string.replace('#','\n#') # ol
 	string = sub('^[^#]+','',string) # crap in beginning
 	string = sub('#[:*].+','',string) # crap in middle
