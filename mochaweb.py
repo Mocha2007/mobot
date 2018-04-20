@@ -1,5 +1,6 @@
 import urllib.request,mochamw
 from re import compile,sub,findall,search
+from random import randint
 
 linkpattern = r'\[\[[^\]]+?\]\]'
 limit = 499
@@ -37,3 +38,15 @@ def dfprop(word):
 		art = art.replace(m,sub(r'\D','',m)+'\xb0U')
 	props = search(compile(r'(?<=properties=\n)[\w\W]+?(?=}}{{av}})'),art).group(0)
 	return mochamw.cleanup(props)
+
+def xkcdcleanup(string):
+	string = string.replace('&#39;','\'')
+	title = search(r'(?<=ctitle">)[^<]+?(?=<)',string).group(0)
+	img = 'https:'+search(r'(?<=src=")[^"]+?(?=" t)',string).group(0)
+	alt = search(r'(?<=title=")[^"]+?(?=" a)',string).group(0)
+	return '**'+title+'**\n*'+alt+'*\n'+img
+
+def xkcd(arg):
+	try:arg = 'https://xkcd.com/'+str(int(arg))
+	except:arg = 'https://c.xkcd.com/random/comic/'
+	return xkcdcleanup(l(arg))

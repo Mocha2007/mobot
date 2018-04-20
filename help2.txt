@@ -59,6 +59,9 @@ wiki [string]
 	|search wikipedia for string (WIP)
 wt [string]
 	|search wiktionary for string (WIP)
+xkcd (#)
+	|retrieve xkcd #x
+	|retrieves random xkcd if unspecified
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified

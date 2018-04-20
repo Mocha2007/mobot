@@ -845,6 +845,9 @@ async def on_message(message):
 				await client.edit_message(message,str(int((new-old)*1000))+' ms')
 			else:
 				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
+		elif n.startswith(bot_prefix+'xkcd'):
+			try:await client.send_message(mc, mochaweb.xkcd(m[8:]))
+			except:await client.send_message(mc, 'Can\'t seem to fetch comic #'+m[8:])
 		elif n.startswith(bot_prefix+'wiki'):
 			entry = m[8:].replace(' ','%20')
 			try:await client.send_message(mc, mochamw.main('en.wikipedia.org/w',entry))
