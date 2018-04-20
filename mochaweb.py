@@ -26,7 +26,11 @@ def wtcleanup(string):
 	string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
 	string = string.replace('#','\n#') # ol
 	string = sub('^[^#]+','',string) # crap in beginning
-	string = sub(r'#[^\s\w][\w\W]+','',string) # crap in end
+	string = sub('#[:*].+','',string) # crap in middle
+	string = sub(r'----[\w\W]+','',string) # crap in end
+	string = sub(r'\n{2,}','\n',string) # multiple returns
+	string = sub(r'Category:[\w:]+','',string) # category removal
+	string = sub(r'^[#*][^\w\n]+\n','',string) # empty defs
 	return string
 
 def ud(word):
