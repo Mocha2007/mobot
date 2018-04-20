@@ -40,7 +40,7 @@ def dfprop(word):
 	return mochamw.cleanup(props)
 
 def xkcdcleanup(string):
-	string = string.replace('&#39;','\'')
+	string = string.replace('&#39;','\'').replace('&quot;','"')
 	title = search(r'(?<=ctitle">)[^<]+?(?=<)',string).group(0)
 	img = 'https:'+search(r'(?<=src=")[^"]+?(?=" t)',string).group(0)
 	alt = search(r'(?<=title=")[^"]+?(?=" a)',string).group(0)
