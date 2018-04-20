@@ -33,7 +33,7 @@ def wtcleanup(string):
 
 def wikicleanup(string):
 	string = sub(r'\s?\(.*?\)','',string) # text in parens
-	return search('[^.]+.',string).group(0) # first sentence
+	return ''.join(findall('[^.]+.',string)[:3]) # first three sentences
 
 def ud(word):
 	# eg ud('test')
