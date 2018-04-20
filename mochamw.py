@@ -26,7 +26,7 @@ def read2(site,page):
 	return t[v]['revisions'][0]['*']
 
 def deltemplates(string):
-	return sub(compile('{{[^}]+?}}'),'',string)
+	return sub(compile('{{[^]+?}}'),'',string)
 
 def link2text(string):
 	if search(r'\[\[File:[^\]]+?]]',string):return '' # file
