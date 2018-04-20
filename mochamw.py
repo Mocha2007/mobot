@@ -34,9 +34,11 @@ def deltemplates(string):
 def link2text(string):
 	if search(r'\[\[File:[^\]]+?]]',string):return '' # file
 	if search(r'\[\[[^\]|]+?]]',string):return string [2:-2] # no alt text
-	return search(r'\|[^\]|]+?]]',string).group(0)[1:-2] # alt text
+	try:return search(r'\|[^\]|]+?]]',string).group(0)[1:-2] # alt text
+	except:return ''
 
 def cleanup(string):
+	string = sub(compile(r'<!--[^>]+?-->'),'',string) # remove comments
 	string = string.replace('{&nbsp;}',' ')
 	string = deltemplates(string)
 	string = string.replace("'''",'**')

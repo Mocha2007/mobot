@@ -25,6 +25,8 @@ def wtcleanup(string):
 	string = sub(compile(r'===[^=]+?==='),'',string) # remove 3rd header
 	string = sub(compile(r'==[^=]+?=='),'',string) # remove 2nd header
 	string = string.replace('#','\n#') # ol
+	string = sub('^[^#]+','',string) # crap in beginning
+	string = sub(r'#[^\s\w][\w\W]+','',string) # crap in end
 	return string
 
 def ud(word):

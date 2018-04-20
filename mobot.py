@@ -812,6 +812,10 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'ud'):
 			try:await client.send_message(mc, mochaweb.ud(m[6:]))
 			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+		elif n.startswith(bot_prefix+'wc'):
+			entry = m[6:].replace(' ','%20')
+			await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
+			#except:await client.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
 		elif n.startswith(bot_prefix+'wt'):
 			entry = m[6:].replace(' ','%20')
 			try:await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))

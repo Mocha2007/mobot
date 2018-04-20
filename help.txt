@@ -246,9 +246,11 @@ ttt [pattern]
 	|try this pattern:
 	|m! ttt 123oo6xx9
 ud [string]
-	|search urban dictionary for string (WIP)
+	|search urban dictionary for string
 weather [place]
 	|fetch weather for place
+wc [string]
+	|search wikbooks cookbooks for recipe
 wiki [string]
 	|search wikipedia for string (WIP)
 wt [string]

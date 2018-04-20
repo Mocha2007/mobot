@@ -52,7 +52,9 @@ time
 ttt [pattern]
 	|tic-tac-toe AI, perfect play
 ud [string]
-	|search urban dictionary for string (WIP)
+	|search urban dictionary for string
+wc [string]
+	|search wikbooks cookbooks for recipe
 weather [place]
 	|fetch weather for place
 wiki [string]
