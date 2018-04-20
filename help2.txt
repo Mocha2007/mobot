@@ -49,6 +49,8 @@ ttt [pattern]
 	|tic-tac-toe AI, perfect play
 ud [string]
 	|search urban dictionary for string (WIP)
+weather [place]
+	|fetch weather for place
 wiki [string]
 	|search wikipedia for string (WIP)
 wt [string]

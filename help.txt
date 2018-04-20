@@ -243,6 +243,8 @@ ttt [pattern]
 	|m! ttt 123oo6xx9
 ud [string]
 	|search urban dictionary for string (WIP)
+weather [place]
+	|fetch weather for place
 wiki [string]
 	|search wikipedia for string (WIP)
 wt [string]

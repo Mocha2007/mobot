@@ -11,7 +11,7 @@ from time import time,sleep
 from re import compile,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather
 from mochaxyz import *
 
 # CODE SHIT
@@ -847,6 +847,9 @@ async def on_message(message):
 			await client.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer))+'** secret commands, of which:\n\n**'+str(len(specialer))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 		elif n.startswith(bot_prefix+'convert'):
 			await client.send_message(mc, str(convert(m[11:])))
+		elif n.startswith(bot_prefix+'weather'):
+			try:await client.send_message(mc, mochaweather.main(m[11:]))
+			except:await client.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
 		elif n.startswith(bot_prefix+'religion'):
 			await client.send_message(mc, str(religion(m[12:])))
 		# QUOTES
