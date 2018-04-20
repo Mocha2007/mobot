@@ -11,7 +11,7 @@ from time import time,sleep
 from re import compile,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb
 from mochaxyz import *
 
 # CODE SHIT
@@ -800,6 +800,8 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'df'):
 			entry = m[6:].replace(' ','%20')
 			await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+		elif n.startswith(bot_prefix+'ud'):
+			await client.send_message(mc, mochaweb.ud(m[6:]))
 		elif n.startswith(bot_prefix+'wt'):
 			entry = m[6:].replace(' ','%20')
 			await client.send_message(mc, mochamw.main('en.wiktionary.org/w',entry))

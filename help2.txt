@@ -47,13 +47,15 @@ time
 	|current time (UTC)
 ttt [pattern]
 	|tic-tac-toe AI, perfect play
-zodiac (string)
-	|information regarding the specified starsign
-	|uses current starsign if unspecified
+ud [string]
+	|search urban dictionary for string (WIP)
 wiki [string]
 	|search wikipedia for string (WIP)
 wt [string]
 	|search wiktionary for string (WIP)
+zodiac (string)
+	|information regarding the specified starsign
+	|uses current starsign if unspecified
 
 NOTE: (optional argument) [mandatory argument]
 ```
