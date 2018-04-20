@@ -74,6 +74,7 @@ special = {
 'legs':'https://www.youtube.com/watch?v=ZFUd-RbAr-s',
 'owo':'**What\'s this???**',
 'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
+'tng':'https://www.youtube.com/watch?v=kRXry95Q6e0',
 'up':'five more minutes sky daddy',
 'vc':'\U0001F1FB \U0001F1E8',
 'you\'re matched':'say hello! ;)',
