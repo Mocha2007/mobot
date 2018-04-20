@@ -241,6 +241,10 @@ ttt [pattern]
 	|replace numbers with x and o as necessary
 	|try this pattern:
 	|m! ttt 123oo6xx9
+wiki [string]
+	|search wikipedia for string (WIP)
+wt [string]
+	|search wiktionary for string (WIP)
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified

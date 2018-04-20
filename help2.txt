@@ -14,7 +14,7 @@ coffee (string)
 convert [number] [from-unit] [to-unit]
 	|convert between units
 df [string]
-	|search dfwiki for string
+	|search dfwiki for string (WIP)
 dice [number] [number]
 	|stats for that roll
 game [command]
@@ -50,6 +50,10 @@ ttt [pattern]
 zodiac (string)
 	|information regarding the specified starsign
 	|uses current starsign if unspecified
+wiki [string]
+	|search wikipedia for string (WIP)
+wt [string]
+	|search wiktionary for string (WIP)
 
 NOTE: (optional argument) [mandatory argument]
 ```

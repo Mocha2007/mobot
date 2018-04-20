@@ -4,6 +4,7 @@ import urllib.request
 from re import compile,sub,findall,search
 
 linkpattern = r'\[\[[^\]]+?\]\]'
+limit = 499
 
 user_agent = 'MochaMW/1.0 (https://github.com/Mocha2007/mochalib)'
 headers={'User-Agent':user_agent,}
@@ -15,6 +16,9 @@ def l(site,page): #load
 	return load(StringIO(webpage))
 
 def read(site,page):
+	return l(site,page)['query']['pages'][0]['revisions'][0]['content']
+
+def read2(site,page):
 	t = l(site,page)['query']['pages']
 	for i in t:
 		v = i
@@ -40,4 +44,8 @@ def cleanup(string):
 
 def main(site,page):
 	# eg main('dwarffortresswiki.org','DF2014:Pig')
-	return cleanup(read(site,page))[:999]+'...'
+	return cleanup(read(site,page))[:limit]+'...'
+
+def main2(site,page):
+	# eg main('dwarffortresswiki.org','DF2014:Pig')
+	return cleanup(read2(site,page))[:limit]+'...'

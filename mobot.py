@@ -798,7 +798,11 @@ async def on_message(message):
 		elif n.startswith(bot_prefix+'gs'):
 			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
 		elif n.startswith(bot_prefix+'df'):
-			await client.send_message(mc, mochamw.main('dwarffortresswiki.org','DF2014:'+m[6:]))
+			entry = m[6:].replace(' ','%20')
+			await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+		elif n.startswith(bot_prefix+'wt'):
+			entry = m[6:].replace(' ','%20')
+			await client.send_message(mc, mochamw.main('en.wiktionary.org/w',entry))
 		elif n.startswith(bot_prefix+'ast'):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
@@ -828,6 +832,9 @@ async def on_message(message):
 				await client.edit_message(message,str(int((new-old)*1000))+' ms')
 			else:
 				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
+		elif n.startswith(bot_prefix+'wiki'):
+			entry = m[8:].replace(' ','%20')
+			await client.send_message(mc, mochamw.main('en.wikipedia.org/w',entry))
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(mc, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):
