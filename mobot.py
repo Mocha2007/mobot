@@ -799,12 +799,19 @@ async def on_message(message):
 			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
 		elif n.startswith(bot_prefix+'df'):
 			entry = m[6:].replace(' ','%20')
-			await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+			try:await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+		elif n.startswith(bot_prefix+'mc'):
+			entry = m[6:].replace(' ','%20')
+			try:await client.send_message(mc, mochamw.main('minecraft.gamepedia.com',entry))
+			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
 		elif n.startswith(bot_prefix+'ud'):
-			await client.send_message(mc, mochaweb.ud(m[6:]))
+			try:await client.send_message(mc, mochaweb.ud(m[6:]))
+			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
 		elif n.startswith(bot_prefix+'wt'):
 			entry = m[6:].replace(' ','%20')
-			await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
+			try:await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
+			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
 		elif n.startswith(bot_prefix+'ast'):
 			await client.send_message(mc, str(moastro(m[7:])))
 		elif n.startswith(bot_prefix+'bug'):
@@ -836,7 +843,8 @@ async def on_message(message):
 				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
 		elif n.startswith(bot_prefix+'wiki'):
 			entry = m[8:].replace(' ','%20')
-			await client.send_message(mc, mochamw.main('en.wikipedia.org/w',entry))
+			try:await client.send_message(mc, mochamw.main('en.wikipedia.org/w',entry))
+			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
 		elif n.startswith(bot_prefix+'quote'):
 			await client.send_message(mc, str(sto(m[9:])))
 		elif n.startswith(bot_prefix+'zodiac'):

@@ -189,6 +189,8 @@ mat [command]
 		|cone [r] [h]
 		|cylinder [r] [h]
 		|sphere [r]
+mc [string]
+	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
 prequel (number)

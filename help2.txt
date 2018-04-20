@@ -35,6 +35,8 @@ mat
 	|many, many math calculations
 	|try this:
 	|m! mat vol sphere 10
+mc [string]
+	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
 quote (command)

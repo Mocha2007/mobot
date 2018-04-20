@@ -3,6 +3,8 @@ from io import StringIO
 import urllib.request
 from re import compile,sub,findall,search
 
+#https://openweathermap.org/current
+
 key = open("../openweathermap.txt", "r").read()
 
 linkpattern = r'\[\[[^\]]+?\]\]'
