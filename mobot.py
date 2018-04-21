@@ -765,6 +765,10 @@ token = open("../token.txt", "r").read()
 client = Bot(command_prefix = bot_prefix)
 
 @client.event
+async def on_ready():
+    print(client.user.name+' loaded')
+
+@client.event
 async def on_message(message):
 	global lastmessage
 	m = message.content
@@ -925,5 +929,4 @@ async def on_message(message):
 				except KeyError:await client.send_message(mc,'me confufu uwu')
 	except discord.errors.Forbidden:pass
 
-print('Loaded')
 client.run(token)
