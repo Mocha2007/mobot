@@ -273,6 +273,8 @@ def moling(string):
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
+	elif arg[0] == 'romanize':
+		return mochalang.romanize(' '.join(arg[1:]))
 	elif arg[0] == 'unmojibake':
 		try:return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
 		except UnicodeDecodeError:return 'Invalid... probably missing some characters?'
@@ -280,6 +282,14 @@ def moling(string):
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
 		try:return xsampa(arg[1])
 		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'
+
+	return ':/'
+
+def trivia(string):
+	arg = string.split(' ')
+
+	if arg[0] == 'number':
+		return mochaweb.numbersapi(arg[1])
 
 	return ':/'
 
@@ -862,6 +872,8 @@ async def on_message(message):
 			await client.send_message(mc, str(zodiac(m[10:])))
 		elif n.startswith(bot_prefix+'coffee'):
 			await client.send_message(mc, str(coffee(m[10:])))
+		elif n.startswith(bot_prefix+'trivia'):
+			await client.send_message(mc, str(trivia(m[10:])))
 		elif n.startswith(bot_prefix+'secret'):
 			await client.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer))+'** secret commands, of which:\n\n**'+str(len(specialer))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 		elif n.startswith(bot_prefix+'convert'):

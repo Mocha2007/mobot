@@ -63,3 +63,6 @@ def xkcd(arg):
 	try:arg = 'https://xkcd.com/'+str(int(arg))
 	except:arg = 'https://c.xkcd.com/random/comic/'
 	return xkcdcleanup(l(arg))
+
+def numbersapi(n):
+	return l('http://numbersapi.com/'+n)

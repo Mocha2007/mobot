@@ -47,8 +47,10 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
-time
+time (subcommand)
 	|current time (UTC)
+trivia [subject]
+	|trivia
 ttt [pattern]
 	|tic-tac-toe AI, perfect play
 ud [string]

@@ -121,6 +121,8 @@ ling [command]
 		|very similar to x-sampa
 		| apostrophe = acute
 		| hyphen = macron
+	romanize [string]
+		|naive romanization of string
 	scrabble [word] (multiplier)
 		|generate the score in scrabble for a word
 	soundex [word]
@@ -236,6 +238,10 @@ tng (number)
 	|line #number from the tng quote file;
 	|leave out number for random line
 	|valid numbers are 0-0, inclusive
+trivia [subject]
+	|trivia
+	number [#]
+		|trivia about a number
 ttt [pattern]
 	|tic-tac-toe AI, perfect play
 	|Board:
