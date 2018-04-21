@@ -30,23 +30,23 @@ def random_world(sc,conv,lf,mc):
 		w+=[row]
 
 	while plainscount < lf*rows*columns:
+		ow = [x[:] for x in w]
 		for i in range(rows):
 			for j in range(columns):
-				try:
-					if w[i][j] != plains:
-						neighbors = [w[i][(j+1)%columns],w[i][(j-1)%columns],w[i+1][j],w[i-1][j]].count(plains)
-						if random.random()<conv*neighbors:
-							w[i][j]=plains
-							plainscount+=1
-				except IndexError:pass
+				if w[i][j] != plains:
+					try:neighbors = [ow[i][(j+1)%columns],ow[i][(j-1)%columns],ow[i+1][j],ow[i-1][j]].count(plains)
+					except IndexError:neighbors = [ow[i][(j+1)%columns],ow[i][(j-1)%columns],ow[i-1][j]].count(plains)
+					if random.random()<conv*neighbors:
+						w[i][j]=plains
+						plainscount+=1
 		if time.time() > s + 5:return w # too long
 
 	for i in range(rows):
 		for j in range(columns):
-			try:
-				if w[i][j]==plains and [w[i][(j+1)%columns],w[i][(j-1)%columns],w[i+1][j],w[i-1][j]].count(sea)==0 and random.random()<mc:
-					w[i][j]=mountains
-			except IndexError:pass
+			try:neighbors = [w[i][(j+1)%columns],w[i][(j-1)%columns],w[i+1][j],w[i-1][j]].count(sea)
+			except IndexError:neighbors = [w[i][(j+1)%columns],w[i][(j-1)%columns],w[i-1][j]].count(sea)
+			if w[i][j]==plains and neighbors==0 and random.random()<mc:
+				w[i][j]=mountains
 
 	return w
 
