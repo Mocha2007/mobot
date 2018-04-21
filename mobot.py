@@ -204,7 +204,8 @@ def moastro(string):
 		m = float(arg[3])
 		return mochaastro.hohmann(i,o,m)
 	elif arg[0] == 'horizons':
-		return '```\n'+mochaweb.horizons(arg[1])+'\n```'
+		try:return ('```\n'+mochaweb.horizons(arg[1])[:1992]+'\n```')
+		except EOFError:return 'unable to connect'
 	elif arg[0] == 'p' or arg[0] == 'period':
 		mass = float(arg[1])
 		sma = float(arg[2])
