@@ -287,9 +287,19 @@ def moling(string):
 
 def trivia(string):
 	arg = string.split(' ')
+	try:
+		x = int(arg[0])
+		number = True
+	except:number = False
 
-	if arg[0] == 'number':
-		return mochaweb.numbersapi(arg[1])
+	if number:
+		return mochaweb.numbersapi(arg[0])
+	elif arg[0] == 'number':
+		try:
+			x = int(arg[1])
+			try:return mochaweb.numbersapi(arg[1])
+			except:pass
+		except:pass
 
 	return ':/'
 

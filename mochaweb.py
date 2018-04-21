@@ -65,4 +65,6 @@ def xkcd(arg):
 	return xkcdcleanup(l(arg))
 
 def numbersapi(n):
-	return l('http://numbersapi.com/'+n)
+	x = l('http://numbersapi.com/'+n)
+	if 'numbersapi' in x:return n+' is a gay-ass number.'
+	return x
