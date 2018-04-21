@@ -1,5 +1,3 @@
-# TODO
-# random fact
 from discord.ext.commands import Bot
 import discord
 
@@ -762,7 +760,7 @@ async def llama(message):
 bot_prefix = "m!"
 token = open("../token.txt", "r").read()
 
-client = Bot(command_prefix = bot_prefix)
+client = Bot(command_prefix = bot_prefix+' ')
 
 @client.event
 async def on_ready():
