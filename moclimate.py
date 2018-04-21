@@ -4,16 +4,15 @@ spritesize = 4
 rows = 48
 columns = 96
 size = columns*spritesize,rows*spritesize
-
-plains = pygame.image.load("img/grass.png")
-mountains = pygame.image.load("img/stone.png")
-sea = pygame.image.load("img/sea.png")
-
-#generator variables
+#default generator variables
 seedchance = 1/512#generate continent seeds
 conversion = .2#if an adjacent tile is a plain, then 20% chance of conversion per adjacent plains
 landfrac = .3#check if 30% full off land
 mountainschance = .1#change plains to mountains 10% of the time if all 4 adjacent are not sea
+
+plains = pygame.image.load("img/grass.png")
+mountains = pygame.image.load("img/stone.png")
+sea = pygame.image.load("img/sea.png")
 	
 def random_world(sc,conv,lf,mc):
 	s = time.time()
@@ -69,6 +68,7 @@ def wg(string):
 		v4 = mountainschance
 			
 	pygame.init()
+	pygame.display.iconify()
 	screen = pygame.display.set_mode(size)
 
 	terrain=random_world(v1,v2,v3,v4)
