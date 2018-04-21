@@ -203,6 +203,8 @@ def moastro(string):
 		o = float(arg[2])
 		m = float(arg[3])
 		return mochaastro.hohmann(i,o,m)
+	elif arg[0] == 'horizons':
+		return '```\n'+mochaweb.horizons(arg[1])+'\n```'
 	elif arg[0] == 'p' or arg[0] == 'period':
 		mass = float(arg[1])
 		sma = float(arg[2])

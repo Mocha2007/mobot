@@ -1,4 +1,4 @@
-import urllib.request,mochamw
+import urllib.request,mochamw,telnetlib
 from re import compile,sub,findall,search,M
 from random import randint
 
@@ -68,3 +68,14 @@ def numbersapi(n):
 	x = l('http://numbersapi.com/'+n)
 	if 'numbersapi' in x:return n+' is a gay-ass number.'
 	return x
+
+htn = telnetlib.Telnet(host='horizons.jpl.nasa.gov',port=6775)
+def horizons(name):
+	htn.read_until(b'Horizons> ',timeout=1)
+	htn.write(name.encode('ascii')+b'\n')
+	x = htn.read_until(b'Horizons> ',timeout=1)
+	if b'<cr>=yes' in x:
+		htn.write(b'\n')
+		x = htn.read_until(b'Select ...',timeout=1)
+		return x.decode('ascii')[27:-24]
+	return x.decode('ascii')[19:-76]

@@ -16,6 +16,9 @@ ast
 	hohmann [a_i] [a_f] [mass]
 		|returns the Delta-v needed to change orbits from a_i to a_f,
 		|using a hohmann transfer
+	horizons (object)
+		|attempts to retrieve elements for object
+		|using JPL's HORIZONS
 	p
 		|see period
 	period [mass] [a]
