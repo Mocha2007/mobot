@@ -759,7 +759,7 @@ async def llama(message):
 
 # ACUTAL BOT SHIT
 
-bot_prefix = "m! "
+bot_prefix = "m!"
 token = open("../token.txt", "r").read()
 
 client = Bot(command_prefix = bot_prefix)
@@ -768,12 +768,12 @@ client = Bot(command_prefix = bot_prefix)
 async def on_message(message):
 	global lastmessage
 	m = message.content
+	mc = message.channel
 	n = m.lower()
+	na = n.split(' ')
 	#quotefile
-	try:
-		qf = n.split(' ')
-		qfcondition = qf[0]=='m!' and qf[1] in quotefiles
-	except: qfcondition = False
+	try:qfcondition = na[0]=='m!' and na[1] in quotefiles
+	except:qfcondition = False
 	#GOAT
 	try:
 		gchelp = 'which' if 'which' in n else ('what' if 'what' in n else 0),'best' if 'best' in n else ('greatest' if 'greatest' in n else 0)
@@ -785,14 +785,7 @@ async def on_message(message):
 			goatcondition = goatcondition or (n.index(gchelp[0]) < n.index('is') < n.index(gchelp[1]) < n.index('bot'))
 	except: goatcondition = False
 
-	if message.content.startswith(bot_prefix):
-		loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(message.channel)+' in '+str(message.server)+')\n\t'+message.content
-		loglook = sub(compile(r'[^!-~\s]'),'?',loglook)
-		print(loglook)
-		open("log.txt", "a").write(loglook+'\n')
-
 	try:
-		mc = message.channel
 		notmobot = message.author.name!='Mobot'
 		if notmobot:
 			if ('right, mobot' in n or 'right mobot' in n): #needed due to multiple responses
@@ -812,118 +805,124 @@ async def on_message(message):
 						except:pass
 						break
 		#real commands
-		if n.startswith(bot_prefix+'help'):
-			await client.send_message(mc, help(m[8:]))
-		elif n.startswith(bot_prefix+'bf'):
-			args = m[6:].split('\n')
-			await client.send_message(mc, str(mochabf.run(args[0],args[1:])))
-		elif n.startswith(bot_prefix+'gs'):
-			await client.send_message(mc, str(mochagolfscript.run(m[6:])))
-		elif n.startswith(bot_prefix+'dfprop'):
-			entry = m[10:].replace(' ','%20')
-			try:await client.send_message(mc, mochaweb.dfprop(entry))
-			except:await client.send_message(mc, 'Can\'t seem to fetch properties for '+m[10:])
-		elif n.startswith(bot_prefix+'df'):
-			entry = m[6:].replace(' ','%20')
-			try:await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
-			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
-		elif n.startswith(bot_prefix+'mc'):
-			entry = m[6:].replace(' ','%20')
-			try:await client.send_message(mc, mochamw.main('minecraft.gamepedia.com',entry))
-			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
-		elif n.startswith(bot_prefix+'ud'):
-			try:await client.send_message(mc, mochaweb.ud(m[6:]))
-			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
-		elif n.startswith(bot_prefix+'wc'):
-			entry = m[6:].replace(' ','%20')
-			await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
-			#except:await client.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
-		elif n.startswith(bot_prefix+'wt'):
-			entry = m[6:].replace(' ','%20')
-			try:await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
-			except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
-		elif n.startswith(bot_prefix+'ast'):
-			await client.send_message(mc, str(moastro(m[7:])))
-		elif n.startswith(bot_prefix+'bug'):
-			await client.send_message(mc, str(bug(m[7:])))
-		elif n.startswith(bot_prefix+'mat'):
-			await client.send_message(mc, str(momath(m[7:])))
-		elif n.startswith(bot_prefix+'rpn'):
-			await client.send_message(mc, str(mocharpn.rpn(m[7:])))
-		elif n.startswith(bot_prefix+'ttt'):
-			await client.send_message(mc, str(mochattt.ai(m[7:])))
-		elif n.startswith(bot_prefix+'dice'):
-			await client.send_message(mc, str(dicemat(m[8:])))
-		elif n.startswith(bot_prefix+'ling'):
-			await client.send_message(mc, str(moling(m[8:])))
-		elif n.startswith(bot_prefix+'mbti'):
-			await client.send_message(mc, str(mbti(m[8:])))
-		elif n.startswith(bot_prefix+'time'):
-			args = m[8:].split(' ')
-			if args[0] == 'taken':
-				await client.send_message(mc, 'm! time diff')
-				lastmessage = message
-			elif n == 'm! time diff' and message.author.name == 'Mobot':
-				await client.edit_message(message,'Calculating...')
-				sleep(1)
-				old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
-				new = message.timestamp.replace(tzinfo=timezone.utc).timestamp()
-				await client.edit_message(message,str(int((new-old)*1000))+' ms')
-			else:
-				await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
-		elif n.startswith(bot_prefix+'xkcd'):
-			try:await client.send_message(mc, mochaweb.xkcd(m[8:]))
-			except:await client.send_message(mc, 'Can\'t seem to fetch comic #'+m[8:])
-		elif n.startswith(bot_prefix+'wiki'):
-			entry = m[8:].replace(' ','%20')
-			try:await client.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
-			except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
-		elif n.startswith(bot_prefix+'quote'):
-			await client.send_message(mc, str(sto(m[9:])))
-		elif n.startswith(bot_prefix+'zodiac'):
-			await client.send_message(mc, str(zodiac(m[10:])))
-		elif n.startswith(bot_prefix+'coffee'):
-			await client.send_message(mc, str(coffee(m[10:])))
-		elif n.startswith(bot_prefix+'trivia'):
-			await client.send_message(mc, str(trivia(m[10:])))
-		elif n.startswith(bot_prefix+'secret'):
-			await client.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer))+'** secret commands, of which:\n\n**'+str(len(specialer))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
-		elif n.startswith(bot_prefix+'convert'):
-			await client.send_message(mc, str(convert(m[11:])))
-		elif n.startswith(bot_prefix+'weather'):
-			try:await client.send_message(mc, mochaweather.main(m[11:]))
-			except:await client.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
-		elif n.startswith(bot_prefix+'religion'):
-			await client.send_message(mc, str(religion(m[12:])))
-		elif n.startswith(bot_prefix+'worldgen'):
-			moclimate.wg(m[12:])
-			await client.send_file(mc,'img/temp.png')
-		# QUOTES
-		elif qfcondition:
-			await client.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))
-		# GAMES
-		elif n.startswith(bot_prefix+'game'):
-			args = n.split(' ')[2:]
-			if args[0] == '24':
-				await twentyfour(mc)
-			elif args[0] == 'gtn':
-				await gtn(args,mc)
-			elif args[0] == 'g2/3':
-				await g23(mc)
-			elif args[0] == 'hangman':
-				await hangman(args,mc)
-			elif args[0] == 'llama':
-				await llama(message)
-			elif args[0] == 'numbers':
-				await numbers(mc)
-			elif args[0] == 'verbrace':
-				await verbrace(args,mc)
-			elif args[0] == 'word':
-				await word(args,message)
-		# ELSE
-		elif n.startswith(bot_prefix):
-			try:await client.send_message(message.channel, special[m[3:].lower()]) # specials
-			except KeyError:await client.send_message(message.channel,'me confufu uwu')
+		if na[0] == bot_prefix:
+			#logging
+			loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(mc)+' in '+str(message.server)+')\n\t'+m
+			loglook = sub(compile(r'[^!-~\s]'),'?',loglook)
+			print(loglook)
+			open("log.txt", "a").write(loglook+'\n')
+			#find command
+			if na[1] == 'help':
+				await client.send_message(mc, help(m[8:]))
+			elif na[1] == 'bf':
+				args = m[6:].split('\n')
+				await client.send_message(mc, str(mochabf.run(args[0],args[1:])))
+			elif na[1] == 'gs':
+				await client.send_message(mc, str(mochagolfscript.run(m[6:])))
+			elif na[1] == 'dfprop':
+				entry = m[10:].replace(' ','%20')
+				try:await client.send_message(mc, mochaweb.dfprop(entry))
+				except:await client.send_message(mc, 'Can\'t seem to fetch properties for '+m[10:])
+			elif na[1] == 'df':
+				entry = m[6:].replace(' ','%20')
+				try:await client.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+				except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+			elif na[1] == 'mc':
+				entry = m[6:].replace(' ','%20')
+				try:await client.send_message(mc, mochamw.main('minecraft.gamepedia.com',entry))
+				except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+			elif na[1] == 'ud':
+				try:await client.send_message(mc, mochaweb.ud(m[6:]))
+				except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+			elif na[1] == 'wc':
+				entry = m[6:].replace(' ','%20')
+				await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
+				#except:await client.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
+			elif na[1] == 'wt':
+				entry = m[6:].replace(' ','%20')
+				try:await client.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
+				except:await client.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+			elif na[1] == 'ast':
+				await client.send_message(mc, str(moastro(m[7:])))
+			elif na[1] == 'bug':
+				await client.send_message(mc, str(bug(m[7:])))
+			elif na[1] == 'mat':
+				await client.send_message(mc, str(momath(m[7:])))
+			elif na[1] == 'rpn':
+				await client.send_message(mc, str(mocharpn.rpn(m[7:])))
+			elif na[1] == 'ttt':
+				await client.send_message(mc, str(mochattt.ai(m[7:])))
+			elif na[1] == 'dice':
+				await client.send_message(mc, str(dicemat(m[8:])))
+			elif na[1] == 'ling':
+				await client.send_message(mc, str(moling(m[8:])))
+			elif na[1] == 'mbti':
+				await client.send_message(mc, str(mbti(m[8:])))
+			elif na[1] == 'time':
+				if na[2] == 'taken':
+					await client.send_message(mc, 'm! time diff')
+					lastmessage = message
+				elif n == 'm! time diff' and message.author.name == 'Mobot':
+					await client.edit_message(message,'Calculating...')
+					sleep(1)
+					old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
+					new = message.timestamp.replace(tzinfo=timezone.utc).timestamp()
+					await client.edit_message(message,str(int((new-old)*1000))+' ms')
+				else:
+					await client.send_message(mc, str(message.timestamp)[:19]+' UTC')
+			elif na[1] == 'xkcd':
+				try:await client.send_message(mc, mochaweb.xkcd(m[8:]))
+				except:await client.send_message(mc, 'Can\'t seem to fetch comic #'+m[8:])
+			elif na[1] == 'wiki':
+				entry = m[8:].replace(' ','%20')
+				try:await client.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
+				except:await client.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
+			elif na[1] == 'quote':
+				await client.send_message(mc, str(sto(m[9:])))
+			elif na[1] == 'zodiac':
+				await client.send_message(mc, str(zodiac(m[10:])))
+			elif na[1] == 'coffee':
+				await client.send_message(mc, str(coffee(m[10:])))
+			elif na[1] == 'trivia':
+				await client.send_message(mc, str(trivia(m[10:])))
+			elif na[1] == 'secret':
+				await client.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer))+'** secret commands, of which:\n\n**'+str(len(specialer))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
+			elif na[1] == 'convert':
+				await client.send_message(mc, str(convert(m[11:])))
+			elif na[1] == 'weather':
+				try:await client.send_message(mc, mochaweather.main(m[11:]))
+				except:await client.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
+			elif na[1] == 'religion':
+				await client.send_message(mc, str(religion(m[12:])))
+			elif na[1] == 'worldgen':
+				moclimate.wg(m[12:])
+				await client.send_file(mc,'img/temp.png')
+			# QUOTES
+			elif qfcondition:
+				await client.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))
+			# GAMES
+			elif na[1] == 'game':
+				args = n.split(' ')[2:]
+				if na[2] == '24':
+					await twentyfour(mc)
+				elif na[2] == 'gtn':
+					await gtn(args,mc)
+				elif na[2] == 'g2/3':
+					await g23(mc)
+				elif na[2] == 'hangman':
+					await hangman(args,mc)
+				elif na[2] == 'llama':
+					await llama(message)
+				elif na[2] == 'numbers':
+					await numbers(mc)
+				elif na[2] == 'verbrace':
+					await verbrace(args,mc)
+				elif na[2] == 'word':
+					await word(args,message)
+			# ELSE
+			elif n.startswith(bot_prefix):
+				try:await client.send_message(mc, special[m[3:].lower()]) # specials
+				except KeyError:await client.send_message(mc,'me confufu uwu')
 	except discord.errors.Forbidden:pass
 
 print('Loaded')
