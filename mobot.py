@@ -761,12 +761,7 @@ async def llama(message):
 bot_prefix = "m!"
 token = open("../token.txt", "r").read()
 
-bot = Bot(command_prefix = bot_prefix)#+' ')
-
-#TODO
-#@bot.command(pass_context = True)
-#async def test(ctx):
-#	await bot.say(ctx.message.content)
+bot = Bot(command_prefix = bot_prefix)
 
 @bot.event
 async def on_ready():
