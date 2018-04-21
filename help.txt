@@ -122,7 +122,7 @@ ling [command]
 		| apostrophe = acute
 		| hyphen = macron
 	romanize [string]
-		|naive romanization of string
+		|naïve romanization of string
 	scrabble [word] (multiplier)
 		|generate the score in scrabble for a word
 	soundex [word]
