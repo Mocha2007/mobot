@@ -104,6 +104,8 @@ gs [program]
 	|only partially implemented, WIP
 help ((sub)command)
 	|>this
+hurricane
+	|fetch atlantic hurricane advisories
 hi (number)
 	|line #number from greetings file
 	|leave out number for random line

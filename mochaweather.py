@@ -1,6 +1,6 @@
 from json import load
 from io import StringIO
-import urllib.request
+import urllib.request,telnetlib
 from re import compile,sub,findall,search
 
 #https://openweathermap.org/current
@@ -52,3 +52,17 @@ def cleanup(j):
 def main(loc):
 	# eg main('London')
 	return cleanup(l(loc))
+
+huracan = telnetlib.Telnet(host='rainmaker.wunderground.com')
+def hurricane():
+	huracan.read_until(b':',timeout=1) # PRESS RETURN TO CONTINUE
+	huracan.write(b'\n')
+	huracan.read_until(b'-- ',timeout=1) # PRESS RETURN FOR MENU
+	huracan.write(b'\n')
+	huracan.read_until(b'n:',timeout=1) # selection:
+	huracan.write(b'8\n')
+	huracan.read_until(b':',timeout=1) # selection:
+	huracan.write(b'1\n')
+
+	x = huracan.read_until(b'$$',timeout=1)
+	return '```\n'+x.decode('ascii')[:-2]+'\n```'
