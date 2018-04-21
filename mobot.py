@@ -766,7 +766,7 @@ client = Bot(command_prefix = bot_prefix)
 
 @client.event
 async def on_ready():
-    print(client.user.name+' loaded')
+	print(client.user.name+' loaded')
 
 @client.event
 async def on_message(message):
