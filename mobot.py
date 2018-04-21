@@ -15,9 +15,10 @@ from mochaxyz import *
 
 # CODE SHIT
 def help(command):
-	doc = open("help.txt", "r").read()
-	doclines = doc.split('\n')
+	'''help'''
 	if command == '':return open("help2.txt", "r").read()
+	doc = open("help.txt", "r").read() #reload docs
+	doclines = doc.split('\n')
 	clen = len(command)
 	relevant = '```\n'
 	begin = 0
@@ -756,21 +757,20 @@ async def llama(message):
 		state = ml[1]
 	return False
 
-# ACUTAL BOT SHIT
-
+# ACTUAL BOT SHIT
 bot_prefix = "m!"
 token = open("../token.txt", "r").read()
 
-bot = Bot(command_prefix = bot_prefix+' ')
-
-@bot.event
-async def on_ready():
-	print(bot.user.name+' loaded')
+bot = Bot(command_prefix = bot_prefix)#+' ')
 
 #TODO
 #@bot.command(pass_context = True)
 #async def test(ctx):
-#	await bot.say('icle')
+#	await bot.say(ctx.message.content)
+
+@bot.event
+async def on_ready():
+	print(bot.user.name+' loaded')
 
 @bot.event
 async def on_message(message):
