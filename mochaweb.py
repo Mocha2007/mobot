@@ -77,5 +77,4 @@ def horizons(name):
 	if b'<cr>=yes' in x:
 		htn.write(b'\n')
 		x = htn.read_until(b'Select ...',timeout=1)
-		return x.decode('ascii')[27:-24]
-	return x.decode('ascii')[19:-76]
+	return sub(r'^[^*]*\*+|\*+[^*]*$','',x.decode('ascii'))
