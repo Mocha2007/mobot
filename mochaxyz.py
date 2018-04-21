@@ -94,6 +94,8 @@ specialer = {
 'get hugs':'**\*huggu\*!!!~~~** :333',
 'i need a hug':'**\*huggu\*!!!~~~** :333',
 'i need hugs':'**\*huggu\*!!!~~~** :333',
+'i want a hug':'**\*huggu\*!!!~~~** :333',
+'i want hugs':'**\*huggu\*!!!~~~** :333',
 }
 
 mobotirl = [
