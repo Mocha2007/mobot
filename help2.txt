@@ -61,6 +61,8 @@ weather [place]
 	|fetch weather for place
 wiki [string]
 	|search wikipedia for string (WIP)
+worldgen (a) (b) (c) (d)
+	|generate random world
 wt [string]
 	|search wiktionary for string (WIP)
 xkcd (#)

@@ -11,7 +11,7 @@ from time import time,sleep
 from re import compile,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate
 from mochaxyz import *
 
 # CODE SHIT
@@ -893,6 +893,9 @@ async def on_message(message):
 			except:await client.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
 		elif n.startswith(bot_prefix+'religion'):
 			await client.send_message(mc, str(religion(m[12:])))
+		elif n.startswith(bot_prefix+'worldgen'):
+			moclimate.wg(m[12:])
+			await client.send_file(mc,'img/temp.png')
 		# QUOTES
 		elif qfcondition:
 			await client.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))

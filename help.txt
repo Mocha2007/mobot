@@ -259,6 +259,12 @@ wc [string]
 	|search wikbooks cookbooks for recipe
 wiki [string]
 	|search wikipedia for string
+worldgen (a) (b) (c) (d)
+	|generate random world
+	|a = continent seed chance (0,1]
+	|b = conversion chance (0,1]
+	|c = fraction land [0,1]
+	|d = fraction land mountains [0,1]
 wt [string]
 	|search wiktionary for string
 xkcd (#)
