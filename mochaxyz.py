@@ -74,6 +74,17 @@ special = {
 'legs':'https://www.youtube.com/watch?v=ZFUd-RbAr-s',
 'level':'Your current level is -89237522573987, lol kys n00b',
 'magic':'https://www.youtube.com/watch?v=NFQCYpIHLNQ',
+'nest':'''```
+     .--.  
+    /( @ >    ,-. 
+   / ' .'--._/  /
+   :   ,    , .'
+   '. (___.'_/
+    ((-((-''   
+I am building a nest
+here, and none of you
+   can stop me!
+```''',
 'owo':'**What\'s this???**',
 'rank':'I know you are, but how do *I* smell?',
 'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
