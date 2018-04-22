@@ -1,9 +1,7 @@
 Commands:
 ```
 ast
-	|many, many astronomical/physics/orbital mechanics calculations
-	|try this:
-	|m! ast stargen
+	|many astronomical/physics/orbital mechanics calculations
 bf (program)
 	|brainfuck interpreter
 	|use newlines to separate inputs
@@ -31,14 +29,10 @@ info
 	|mobot info
 ling [command]
 	|many, many language calculations
-	|try this:
-	|m! ling soundex mocha
 link
 	|get the link for adding this bot to a server
 mat
-	|many, many math calculations
-	|try this:
-	|m! mat vol sphere 10
+	|many math calculations
 mc [string]
 	|search mcwiki for string
 mbti [string]
@@ -71,10 +65,8 @@ wt [string]
 	|search wiktionary for string (WIP)
 xkcd (#)
 	|retrieve xkcd #x
-	|retrieves random xkcd if unspecified
 zodiac (string)
 	|information regarding the specified starsign
-	|uses current starsign if unspecified
 
 NOTE: (optional argument) [mandatory argument]
 ```
