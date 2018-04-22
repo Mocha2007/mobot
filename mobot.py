@@ -919,7 +919,7 @@ async def on_message(message):
 				try:await bot.send_message(mc, mochaweather.main(m[11:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
 			elif na[1] == 'hurricane':
-				try:await bot.send_message(mc, mochaweather.hurricane())
+				try:await bot.send_message(mc, mochaweather.hurricane(m[13:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisory for atlantic')
 			elif na[1] == 'religion':
 				await bot.send_message(mc, str(religion(m[12:])))

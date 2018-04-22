@@ -106,8 +106,14 @@ gs [program]
 	|only partially implemented, WIP
 help ((sub)command)
 	|>this
-hurricane
-	|fetch atlantic hurricane advisories
+hurricane (zone)
+	|fetch hurricane advisories
+	|defaults to atlantic
+	|1 Atlantic
+	|2 East Pacific
+	|3 Central Pacific
+	|4 West Pacific
+	|5 Indian
 hi (number)
 	|line #number from greetings file
 	|leave out number for random line

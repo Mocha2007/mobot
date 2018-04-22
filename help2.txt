@@ -25,8 +25,8 @@ gs [program]
 	|golfscript interpreter, WIP
 help ((sub)command)
 	|>this
-hurricane
-	|fetch atlantic hurricane advisories
+hurricane (area)
+	|fetch hurricane advisories
 info
 	|mobot info
 ling [command]

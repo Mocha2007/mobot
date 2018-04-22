@@ -54,7 +54,12 @@ def main(loc):
 	return cleanup(l(loc))
 
 huracan = telnetlib.Telnet(host='rainmaker.wunderground.com')
-def hurricane():
+def hurricane(x):
+	try:
+		x = int(x)
+		if not 0<x<6:x=1
+		x = str(x)
+	except:x='1'
 	huracan.read_until(b':',timeout=1) # PRESS RETURN TO CONTINUE
 	huracan.write(b'\n')
 	huracan.read_until(b'-- ',timeout=1) # PRESS RETURN FOR MENU
@@ -62,10 +67,13 @@ def hurricane():
 	huracan.read_until(b'n:',timeout=1) # selection:
 	huracan.write(b'8\n')
 	huracan.read_until(b':',timeout=1) # selection:
-	huracan.write(b'1\n')
+	huracan.write(x.encode('ascii')+b'\n')
 
-	x = huracan.read_until(b'$$',timeout=1)
-	return '```\n'+x.decode('ascii')[:-2]+'\n```'
+	y = huracan.read_until(b'$$',timeout=1).decode('ascii')[:-2]
+	if x in '45':
+		y = sub(r'^[\w\W]+Rmks\/\n+','',y)
+		y = sub(r'\n+[^\n]+exit$','',y)
+	return '```\n'+y+'\n```'
 
 th = telnetlib.Telnet(host='telehack.com')
 def phoon():
