@@ -47,6 +47,8 @@ religion [string]
 	|information regarding religions
 rpn (string)
 	|evaluates mathematical expressions formatted in RPN
+sc2 [string]
+	|search starcraft 2 wiki for string
 time (subcommand)
 	|current time (UTC)
 trivia [subject]

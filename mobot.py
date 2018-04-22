@@ -854,13 +854,17 @@ async def on_message(message):
 				entry = m[6:].replace(' ','%20')
 				try:await bot.send_message(mc, mochamw.main('minecraft.gamepedia.com',entry))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+			elif na[1] == 'sc2':
+				entry = m[7:].replace(' ','%20')
+				await bot.send_message(mc, mochamw.main('liquipedia.net/starcraft2',entry))
+				#except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[7:])
 			elif na[1] == 'ud':
 				try:await bot.send_message(mc, mochaweb.ud(m[6:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
 			elif na[1] == 'wc':
 				entry = m[6:].replace(' ','%20')
-				await bot.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
-				#except:await bot.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
+				try:await bot.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
+				except:await bot.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
 			elif na[1] == 'wt':
 				entry = m[6:].replace(' ','%20')
 				try:await bot.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))

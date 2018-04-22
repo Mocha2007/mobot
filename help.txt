@@ -239,6 +239,8 @@ rpn (string)
 	|; = pop top of stack
 	|@ = move top of stack to bottom
 	|\ = swap top two of stack
+sc2 [string]
+	|search starcraft 2 wiki for string
 secret
 	|number of secret commands
 spidey (number)
