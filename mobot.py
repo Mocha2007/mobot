@@ -451,8 +451,10 @@ def dicemat(x):
 
 def gp(x):
 	args = x.split(' ')
-	gold = int(args[0])
-	ways = int(args[1])
+	try:
+		gold = float(args[0])
+		ways = float(args[1])
+	except:return 'if you need help: `m! help gp`'
 	if ways == 0:return 'Zero ways, eh?'
 	quotient = str(round(gold/ways,2)).split('.')
 	g = quotient[0]
