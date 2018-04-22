@@ -765,7 +765,7 @@ bot = Bot(command_prefix = bot_prefix)
 
 @bot.event
 async def on_ready():
-	print(bot.user.name+' loaded')
+	print(bot.user.name+' loaded.')
 
 @bot.event
 async def on_message(message):
@@ -935,4 +935,5 @@ async def on_message(message):
 				except KeyError:await bot.send_message(mc,'me confufu uwu')
 	except discord.errors.Forbidden:pass
 
+print('Connecting...')
 bot.run(token)
