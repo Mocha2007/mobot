@@ -453,10 +453,13 @@ def gp(x):
 	args = x.split(' ')
 	gold = int(args[0])
 	ways = int(args[1])
+	if ways == 0:return 'Zero ways, eh?'
 	quotient = str(round(gold/ways,2)).split('.')
 	g = quotient[0]
-	s = quotient[1][0]
-	c = quotient[1][1]
+	try:s = quotient[1][0]
+	except:s = '0'
+	try:c = quotient[1][1]
+	except:c = '0'
 	return g+'g '+s+'s '+c+'c'
 
 # GAMES
