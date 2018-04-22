@@ -202,6 +202,8 @@ mc [string]
 	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
+phoon
+	|fetch current lunar phase
 prequel (number)
 	|line #number from prequel file
 	|leave out number for random line

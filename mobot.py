@@ -884,6 +884,9 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
 			elif na[1] == 'quote':
 				await bot.send_message(mc, str(sto(m[9:])))
+			elif na[1] == 'phoon':
+				try:await bot.send_message(mc, mochaweather.phoon())
+				except:await bot.send_message(mc, 'Can\'t seem to fetch current lunar phase')
 			elif na[1] == 'zodiac':
 				await bot.send_message(mc, str(zodiac(m[10:])))
 			elif na[1] == 'coffee':
@@ -899,7 +902,7 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
 			elif na[1] == 'hurricane':
 				try:await bot.send_message(mc, mochaweather.hurricane())
-				except Exception as e:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisory for atlantic');print(e)
+				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisory for atlantic')
 			elif na[1] == 'religion':
 				await bot.send_message(mc, str(religion(m[12:])))
 			elif na[1] == 'worldgen':

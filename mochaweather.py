@@ -66,3 +66,11 @@ def hurricane():
 
 	x = huracan.read_until(b'$$',timeout=1)
 	return '```\n'+x.decode('ascii')[:-2]+'\n```'
+
+th = telnetlib.Telnet(host='telehack.com')
+def phoon():
+	th.read_until(b'\n.',timeout=1)
+	th.write(b'phoon\r\n')
+
+	x = th.read_until(b'\n.',timeout=1)
+	return '```\n'+x.decode('ascii')[7:-1]+'\n```'
