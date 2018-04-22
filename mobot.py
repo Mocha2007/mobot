@@ -453,10 +453,11 @@ def gp(x):
 	args = x.split(' ')
 	gold = int(args[0])
 	ways = int(args[1])
-	g = int(gold/ways)
-	s = int(10*(gold/ways-g))
-	c = int(10*(10*(gold/ways-g)-s))
-	return str(g)+'g '+str(s)+'s '+str(c)+'c'
+	quotient = str(round(gold/ways,2)).split('.')
+	g = quotient[0]
+	s = quotient[1][0]
+	c = quotient[1][1]
+	return g+'g '+s+'s '+c+'c'
 
 # GAMES
 	
