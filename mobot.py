@@ -442,10 +442,21 @@ def dice(m,n):
 
 def dicemat(x):
 	x = x.split(' ')
-	m = int(x[0])
-	n = int(x[1])
-	if abs(m)<99>abs(n):return dice(m,n)
-	return 'Too High'
+	try:
+		m = int(x[0])
+		n = int(x[1])
+		if abs(m)<99>abs(n):return dice(m,n)
+		return 'Too High'
+	except:return 'Space-separated!'
+
+def gp(x):
+	args = x.split(' ')
+	gold = int(args[0])
+	ways = int(args[1])
+	g = int(gold/ways)
+	s = int(10*(gold/ways-g))
+	c = int(10*(10*(gold/ways-g)-s))
+	return str(g)+'g '+str(s)+'s '+str(c)+'c'
 
 # GAMES
 	
@@ -823,6 +834,8 @@ async def on_message(message):
 				await bot.send_message(mc, str(mochabf.run(args[0],args[1:])))
 			elif na[1] == 'gs':
 				await bot.send_message(mc, str(mochagolfscript.run(m[6:])))
+			elif na[1] == 'gp':
+				await bot.send_message(mc, gp(m[6:]))
 			elif na[1] == 'dfprop':
 				entry = m[10:].replace(' ','%20')
 				try:await bot.send_message(mc, mochaweb.dfprop(entry))

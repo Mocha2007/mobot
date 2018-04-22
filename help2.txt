@@ -19,6 +19,8 @@ dice [number] [number]
 	|stats for that roll
 game [command]
 	|games
+gp [g] [ways]
+	|split x gp n ways
 gs [program]
 	|golfscript interpreter, WIP
 help ((sub)command)

@@ -99,6 +99,8 @@ game [command]
 		|Key:
 		|x = one correct letter in the correct position
 		|* = one correct letter in an incorrect position
+gp [g] [ways]
+	|split x gp n ways
 gs [program]
 	|golfscript interpreter
 	|only partially implemented, WIP
