@@ -787,6 +787,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
 	await bot.process_commands(message)
+	global anchor
 	global lastmessage
 	m = message.content
 	mc = message.channel
@@ -930,6 +931,13 @@ async def on_message(message):
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
+			# SECRET DEBUG
+			elif na[1] == 'anchor' and message.author.name=='mocha':
+				anchor = mc
+				await bot.delete_message(message)
+			elif na[1] == 'torpedo' and message.author.name=='mocha':
+				await bot.send_message(mc,m[11:])
+				await bot.delete_message(message)
 			# QUOTES
 			elif qfcondition:
 				await bot.send_message(mc, quotefile(m[4+len(qf[1]):],qf[1]))
