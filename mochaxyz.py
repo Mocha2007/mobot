@@ -66,7 +66,6 @@ quotefiles = [
 special = {
 'alexa':'do i look like a slave to you?',
 'ban':'u can\'t make me!!!',
-'cobot':'...not happening.',
 'daily':'the hell you think i\'m gonna pay you for?',
 'egu':'https://www.youtube.com/watch?v=3-rfBsWmo0M',
 'hey google':'hey yourself faggot',
@@ -97,6 +96,7 @@ nobody can stop me!!
 
 specialer = {
 '<@!431483983088451584>':'whazaa??~ ;3',
+'cobot':'...not happening.',
 'maltese falcon':'It\'s the stuff that dreams are made of.',
 'mobot':'das meee!~~ :3',
 'mobutt':'\u0ca0_\u0ca0',
