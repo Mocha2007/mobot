@@ -2,3 +2,5 @@ CHESS
 m! birthday
 add biomes
 kill the bird
+wiktionary synonyms
+wt abbr/pl/etc
