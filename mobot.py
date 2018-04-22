@@ -327,9 +327,8 @@ def sto(string):
 def bug(string):
 	try:
 		open("bug.txt", "a").write(string+'\n')
-		print('\a')
 		try:play('../bug.wav')
-		except:pass
+		except:print('\a')
 		return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 	except:
 		return ':/'

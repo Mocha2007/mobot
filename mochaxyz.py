@@ -82,8 +82,8 @@ special = {
    '. (___.'_/
     ((-((-''   
 I am building a nest
-here, and none of you
-   can stop me!
+in this channel, and
+nobody can stop me!!
 ```''',
 'owo':'**What\'s this???**',
 'rank':'I know you are, but how do *I* smell?',

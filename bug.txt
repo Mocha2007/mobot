@@ -5,3 +5,4 @@ i think there are some studies about how much of an article "bypassers" read bef
 if you can make the bot stop on a . after a number of characters it would have a less abrupt of a stop
 add biomes
 this
+kill the bird
