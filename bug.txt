@@ -1,7 +1,4 @@
 CHESS
-
 m! birthday
-
 add biomes
-
 kill the bird
