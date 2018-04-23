@@ -910,6 +910,9 @@ async def on_message(message):
 			elif na[1] == 'phoon':
 				try:await bot.send_message(mc, mochaweather.phoon())
 				except:await bot.send_message(mc, 'Can\'t seem to fetch current lunar phase')
+			elif na[1] == 'quake':
+				try:await bot.send_message(mc, mochaweather.quake())
+				except:await bot.send_message(mc, 'Can\'t seem to fetch earthquake information')
 			elif na[1] == 'zodiac':
 				await bot.send_message(mc, str(zodiac(m[10:])))
 			elif na[1] == 'coffee':

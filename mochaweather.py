@@ -1,7 +1,7 @@
 from json import load
 from io import StringIO
 import urllib.request,telnetlib
-from re import compile,sub,findall,search
+from re import compile,sub,findall,search,MULTILINE
 
 #https://openweathermap.org/current
 
@@ -82,3 +82,12 @@ def phoon():
 
 	x = th.read_until(b'\n.',timeout=1)
 	return '```\n'+x.decode('ascii')[7:-1]+'\n```'
+
+def quake(): #load
+	url='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv'
+	request=urllib.request.Request(url,None,headers)
+	csv=urllib.request.urlopen(request).read().decode('ascii')
+	csv=sub(compile(r'(,[^,]*){8}$',MULTILINE),'',csv)
+	csv=sub(r',(?! )','\t',csv).replace('"','')
+	csv=sub(r'\tmagType\tnst\tgap\tdmin\trms\tnet\tid\tupdated|\t[Mm][bdeiLlsw].+(?=\t\d+km)','\t',csv) # del magType -> updated
+	return '```\n'+csv[:1992]+'\n```'

@@ -41,8 +41,10 @@ mbti [string]
 	|information regarding the specified mbti
 phoon
 	|fetch current lunar phase
+quake
+	|fetch list of major quakes in past month
 quote (command)
-	| quote things
+	|quote things
 religion [string]
 	|information regarding religions
 rpn (string)
