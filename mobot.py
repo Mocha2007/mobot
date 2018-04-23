@@ -827,7 +827,7 @@ async def on_message(message):
 						except:pass
 						break
 		#real commands
-		if na[0] == bot_prefix:
+		if na[0] == bot_prefix and len(na)>1:
 			#logging
 			loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(mc)+' in '+str(message.server)+')\n\t'+m
 			loglook = sub(compile(r'[^!-~\s]'),'?',loglook)
