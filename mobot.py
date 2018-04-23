@@ -936,7 +936,7 @@ async def on_message(message):
 				anchor = mc
 				await bot.delete_message(message)
 			elif na[1] == 'torpedo' and message.author.name=='mocha':
-				await bot.send_message(mc,m[11:])
+				await bot.send_message(anchor,m[11:])
 				await bot.delete_message(message)
 			# QUOTES
 			elif qfcondition:
