@@ -104,7 +104,7 @@ def infix(x):
 	x = x.replace('ln','l')
 	x = x.replace('log','l')
 	# strip non-digits, non- ()+-*/^.
-	x = sub('[^(-9^aclst]|,','',x)
+	x = sub('[^%(-9^aclst]|,','',x)
 	# readd sin cos tan log
 	x = x.replace('s','sin')
 	x = x.replace('c','cos')

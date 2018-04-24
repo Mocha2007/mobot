@@ -248,6 +248,7 @@ secret
 solve (string)
 	|evaluates mathematical expressions
 	|you can use // to represent floor division
+	|and % for modulo
 	|supports e and pi as well
 	|you can also use X and x for *
 	|functions supported include:
