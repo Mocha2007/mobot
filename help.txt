@@ -245,6 +245,8 @@ sc2 [string]
 	|search starcraft 2 wiki for string
 secret
 	|number of secret commands
+solve (string)
+	|evaluates mathematical expressions
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line

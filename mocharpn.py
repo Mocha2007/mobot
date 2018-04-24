@@ -1,4 +1,5 @@
 from math import acos,asin,atan,ceil,cos,floor,log,sin,tan
+from re import search,sub
 
 def rpn(prog):
 	decimal = False
@@ -86,3 +87,16 @@ def rpn(prog):
 				else:return err
 			else:return err
 	return stack
+
+def infix(x):
+	# strip non-digits, non- ()+-*/^.
+	x = sub('[^(-9^]|,','',x)
+	# ^ -> **
+	x = sub(r'\^','**',x)
+	# eval. used to have actual code here, but then i realized eval would be guaranteed safe and easy
+	try:x = eval(x)
+	except:return 'ERROR'
+	try:
+		if x%1==0:x=int(x)
+	except:pass # in case of complex number
+	return str(x) # always a string

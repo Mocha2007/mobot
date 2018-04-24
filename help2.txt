@@ -51,6 +51,8 @@ rpn (string)
 	|evaluates mathematical expressions formatted in RPN
 sc2 [string]
 	|search starcraft 2 wiki for string
+solve (string)
+	|evaluates mathematical expressions
 time (subcommand)
 	|current time (UTC)
 trivia [subject]
