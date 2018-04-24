@@ -1,4 +1,4 @@
-from math import acos,asin,atan,ceil,cos,floor,log,sin,tan
+from math import acos,asin,atan,ceil,cos,e,floor,log,pi,sin,tan
 from re import search,sub
 
 def rpn(prog):
@@ -89,6 +89,9 @@ def rpn(prog):
 	return stack
 
 def infix(x):
+	# sub e and pi appropriately
+	x = sub('e',str(e),x)
+	x = sub('pi',str(pi),x)
 	# strip non-digits, non- ()+-*/^.
 	x = sub('[^(-9^]|,','',x)
 	# ^ -> **

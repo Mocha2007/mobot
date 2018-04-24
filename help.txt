@@ -247,6 +247,7 @@ secret
 	|number of secret commands
 solve (string)
 	|evaluates mathematical expressions
+	|supports e and pi as well
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
