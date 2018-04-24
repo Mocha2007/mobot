@@ -336,7 +336,7 @@ def bug(string):
 
 def quotefile(line,file):
 	l = line.split(' ')
-	if l[0] == 'search':return qfsearch(' '.join(l[1:]),file)
+	if l[0].lower() == 'search':return qfsearch(' '.join(l[1:]),file)
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
@@ -793,6 +793,7 @@ async def on_message(message):
 	m = message.content
 	mc = message.channel
 	n = m.lower()
+	ma = m.split(' ')
 	na = n.split(' ')
 	#quotefile
 	try:qfcondition = na[0]=='m!' and na[1] in quotefiles
@@ -946,7 +947,7 @@ async def on_message(message):
 				await bot.delete_message(message)
 			# QUOTES
 			elif qfcondition:
-				o = quotefile(' '.join(na[2:]),na[1])
+				o = quotefile(' '.join(ma[2:]),ma[1].lower())
 				try:await bot.send_message(mc,o)
 				except discord.errors.HTTPException:await bot.send_message(mc,'Too many matches ('+str(o.count('\n'))+')')
 			# GAMES
