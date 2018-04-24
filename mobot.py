@@ -340,7 +340,8 @@ def quotefile(line,file):
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
-	q = open(file+".txt", "r").read().split('\n')[int(line)]
+	try:q = open(file+".txt", "r").read().split('\n')[int(line)]
+	except IndexError:return 'That line is not present in the document.'
 	return quotefile('',file) if q=='' else q
 
 def qfsearch(pattern,file):
