@@ -113,8 +113,11 @@ def infix(x):
 	# ^ -> **
 	x = sub(r'\^','**',x)
 	# eg. 3(5) -> 3*(5)
-	for n in digits:
+	for n in digits+')':
 		x = x.replace(n+'(',n+'*(')
+	# eg. (5)3 -> (5)*3
+	for n in digits:
+		x = x.replace(')'+n,')*'+n)
 	# eval. used to have actual code here, but then i realized eval would be guaranteed safe and easy
 	try:x = eval(x) # ^(a|sin|cos|tan|log)+$ matches all functions usable by eval
 	except:return 'ERROR'
