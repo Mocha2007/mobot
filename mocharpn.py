@@ -89,9 +89,10 @@ def rpn(prog):
 	return stack
 
 def infix(x):
-	# sub e and pi appropriately
+	# sub e and pi appropriately, also xX->*
 	x = sub('e',str(e),x)
 	x = sub('pi',str(pi),x)
+	x = sub('X|x','*',x)
 	# strip non-digits, non- ()+-*/^.
 	x = sub('[^(-9^]|,','',x)
 	# ^ -> **
