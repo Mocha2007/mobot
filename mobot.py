@@ -946,7 +946,7 @@ async def on_message(message):
 				await bot.delete_message(message)
 			# QUOTES
 			elif qfcondition:
-				try:await bot.send_message(mc, quotefile(na[2],na[1]))
+				try:await bot.send_message(mc, quotefile(' '.join(na[2:]),na[1]))
 				except:await bot.send_message(mc, quotefile('',na[1]))
 			# GAMES
 			elif na[1] == 'game':

@@ -53,6 +53,7 @@ religions = {
 }
 
 quotefiles = [
+'amp',
 'bee',
 'hi',
 'info',
