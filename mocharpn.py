@@ -1,13 +1,15 @@
 from math import acos,asin,atan,ceil,cos,e,floor,log,pi,sin,tan
 from re import search,sub
 
+digits = '01234567890'
+
 def rpn(prog):
 	decimal = False
 	stack = []
 	cnum = ''
 	for command in prog:
 		err = 'ERR @ '+command
-		if command in '01234567890':
+		if command in digits:
 			cnum += command
 		elif command == '.':
 			decimal = True
@@ -110,8 +112,11 @@ def infix(x):
 	x = x.replace('l','log')
 	# ^ -> **
 	x = sub(r'\^','**',x)
+	# eg. 3(5) -> 3*(5)
+	for n in digits:
+		x = x.replace(n+'(',n+'*(')
 	# eval. used to have actual code here, but then i realized eval would be guaranteed safe and easy
-	try:x = eval(x)
+	try:x = eval(x) # ^(a|sin|cos|tan|log)+$ matches all functions usable by eval
 	except:return 'ERROR'
 	try:
 		if x%1==0:x=int(x)
