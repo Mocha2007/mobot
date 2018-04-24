@@ -99,12 +99,15 @@ def infix(x):
 	x = x.replace('sin','s')
 	x = x.replace('cos','c')
 	x = x.replace('tan','t')
+	x = x.replace('ln','l')
+	x = x.replace('log','l')
 	# strip non-digits, non- ()+-*/^.
-	x = sub('[^(-9^acst]|,','',x)
-	# readd sin cos tan
+	x = sub('[^(-9^aclst]|,','',x)
+	# readd sin cos tan log
 	x = x.replace('s','sin')
 	x = x.replace('c','cos')
 	x = x.replace('t','tan')
+	x = x.replace('l','log')
 	# ^ -> **
 	x = sub(r'\^','**',x)
 	# eval. used to have actual code here, but then i realized eval would be guaranteed safe and easy

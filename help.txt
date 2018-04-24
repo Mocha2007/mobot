@@ -251,6 +251,7 @@ solve (string)
 	|you can also use X and x for *
 	|functions supported include:
 	|sin cos tan asin acos atan
+	|log (=ln)
 	|you may also use arc- instead of a-
 spidey (number)
 	|line #number from spidey file
