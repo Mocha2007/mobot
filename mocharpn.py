@@ -89,12 +89,22 @@ def rpn(prog):
 	return stack
 
 def infix(x):
+	#case insensitive
+	x = x.lower()
 	# sub e and pi appropriately, also xX->*
-	x = sub('e',str(e),x)
-	x = sub('pi',str(pi),x)
-	x = sub('X|x','*',x)
+	x = x.replace('e',str(e))
+	x = x.replace('pi',str(pi))
+	x = x.replace('x','*')
+	x = x.replace('arc','a')
+	x = x.replace('sin','s')
+	x = x.replace('cos','c')
+	x = x.replace('tan','t')
 	# strip non-digits, non- ()+-*/^.
-	x = sub('[^(-9^]|,','',x)
+	x = sub('[^(-9^acst]|,','',x)
+	# readd sin cos tan
+	x = x.replace('s','sin')
+	x = x.replace('c','cos')
+	x = x.replace('t','tan')
 	# ^ -> **
 	x = sub(r'\^','**',x)
 	# eval. used to have actual code here, but then i realized eval would be guaranteed safe and easy

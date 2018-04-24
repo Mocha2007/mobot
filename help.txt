@@ -249,6 +249,9 @@ solve (string)
 	|evaluates mathematical expressions
 	|supports e and pi as well
 	|you can also use X and x for *
+	|functions supported include:
+	|sin cos tan asin acos atan
+	|you may also use arc- instead of a-
 spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
