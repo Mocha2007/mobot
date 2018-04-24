@@ -7,7 +7,7 @@ from random import choice as c
 from random import randint,shuffle
 from math import ceil,gcd,hypot,pi
 from time import time,sleep
-from re import compile,search,sub
+from re import compile,findall,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
 import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate
@@ -352,7 +352,10 @@ def qfsearch(pattern,file):
 		line = q[i]
 		if search(p,line)!=None:l.append((i,line))
 	for m in l:
-		r+=str(m[0])+' '+m[1]+'\n'
+		mmatch = m[1]
+		for mmmatch in findall(p,mmatch):
+			mmatch = mmatch.replace(mmmatch,'**'+mmmatch+'**')
+		r+=str(m[0])+' '+mmatch+'\n'
 	return 'No Match' if r=='' else r
 
 def zodiac(arg):
