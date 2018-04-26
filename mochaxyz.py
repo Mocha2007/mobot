@@ -93,7 +93,7 @@ nobody can stop me!!
 'tng':'https://www.youtube.com/watch?v=kRXry95Q6e0',
 'up':'five more minutes sky daddy',
 'vc':'\U0001F1FB \U0001F1E8',
-'what is love','baby don\'t hurt me\ndon\'t hurt me\nno more',
+'what is love':'baby don\'t hurt me\ndon\'t hurt me\nno more',
 'you\'re matched':'say hello! ;)',
 'yuri':'https://yuri.dance/'
 }
@@ -511,17 +511,25 @@ xskey = (
 
 object = {
 'sun':{'r':6.957e8,'m':1.98855e30},
-'mercury':mochaastro.mercury,
-'venus':mochaastro.venus,
-'earth':mochaastro.earth,
-	'moon':{'a':384399000,'e':0.0549,'r':1737100,'m':7.342e22},
-'mars':mochaastro.mars,
-	'phobos':{'a':9376000,'e':0.0151,'r':11266.7,'m':1.0659e16},
-	'deimos':{'a':23463200,'e':0.00033,'r':6200,'m':1.4762e15},
-'jupiter':mochaastro.jupiter,
-'saturn':mochaastro.saturn,
-'uranus':mochaastro.uranus,
-'neptune':mochaastro.neptune,
-'pluto':{'a':5.90638e12,'e':0.2488,'r':1188.3,'m':1.303e22},
-'planetnine':mochaastro.planetnine
+	'mercury':mochaastro.mercury,
+	'venus':mochaastro.venus,
+	'earth':mochaastro.earth,
+		'moon':{'a':384399000,'e':0.0549,'r':1737100,'m':7.342e22},
+	'mars':mochaastro.mars,
+		'phobos':{'a':9376000,'e':0.0151,'r':11266.7,'m':1.0659e16},
+		'deimos':{'a':23463200,'e':0.00033,'r':6200,'m':1.4762e15},
+	'jupiter':mochaastro.jupiter,
+		'io':{'a':421700000,'e':0.0041,'r':1821.6,'m':8.931938e22},
+		'europa':{'a':670900000,'e':0.009,'r':1560.8,'m':4.799844e22},
+		'ganymede':{'a':1070400000,'e':0.0013,'r':2634.1,'m':1.4819e23},
+		'callisto':{'a':1882700000,'e':0.0074,'r':2410.3,'m':1.075938e23},
+	'saturn':mochaastro.saturn,
+	'uranus':mochaastro.uranus,
+	'neptune':mochaastro.neptune,
+	'pluto':{'a':5.90638e12,'e':0.2488,'r':1188.3,'m':1.303e22},
+	'planetnine':mochaastro.planetnine
+'kerbol':{'r':261600000,'m':1.7565459e28},
+	'kerbin':{'a':13599840256,'e':0,'r':6e5,'m':5.2915158e22},
+		'mun':{'a':12e6,'e':0,'r':2e5,'m':9.7599066e20},
+		'minmus':{'a':47e6,'e':0,'r':6e4,'m':2.645758e19},
 }
