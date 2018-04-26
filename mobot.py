@@ -805,7 +805,7 @@ async def llama(message):
 
 mochaid = open('../mocha.txt','r').read()
 def bankwrite(bank):
-	bank[mochaid] = 0
+	del bank[mochaid]
 	s = ''
 	for account in bank:
 		s+='\n'+account+'\t'+str(bank[account])
@@ -845,13 +845,16 @@ def mochapoint(message):
 			if acct!=mochaid:summation += bank[acct]
 		try:percent = str(round(int(bank[id])/summation*100,2))
 		except:percent = '0'
+		if id == mochaid:percent='\u221e'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
 	elif subcommand[0][:3] in ('del','don','giv'):
 		if subcommand[0][:3] in ('del','don'):
 			subcommand.append(subcommand[1])
 			subcommand[1] = c(list(message.server.members)).id
-		try:
+			tgt = subcommand[1]
+		else:
 			tgt = subcommand[1][3:-1]
+		try:
 			int(tgt)
 		except:return 'Invalid user'
 		if id == tgt:return '...no.'
