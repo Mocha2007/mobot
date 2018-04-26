@@ -10,3 +10,4 @@ Did you know you can add me to your server too? Just type `m! link` for the link
 Ĉu vi scias ke mi havas multajn **funkciojn lingvistikajn utilajn**? Provu `m! help ling` por ricevi detalojn.
 Did you know you can **query JPL's HORIZONS database**? Try searching for the orbital and physical elements of your favorite asteroid with `m! ast horizons`!
 Did you know Mocha is **fucking gay**?
+Iceburg strike your ship? Try using `m! ling morse` to convert your SOS message into morse code.

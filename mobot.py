@@ -285,6 +285,9 @@ def moling(string):
 			return mochalang.italianipa(arg[2])
 		elif arg[1] == 'po':
 			return mochalang.polishipa(arg[2])
+	elif arg[0] == 'morse':
+		try:return mochalang.morse(arg[1])
+		except:return 'https://en.wikipedia.org/wiki/Morse_code'
 	elif arg[0] == 'pie':
 		try:return pie(arg[1])
 		except:return 'https://en.wikipedia.org/wiki/Proto-Indo-European_phonology'
