@@ -1,0 +1,12 @@
+Did you know you can **submit feature requests** with the `m! bug` command?
+Need to find the **density of the Earth**? No problem! Simply use `m! ast earth m` and `m! ast earth r` to get the Earth's mass and radius, and plug those numbers into `m! ast rho [m] [r]`!
+**Don't understand something**? Try using the `m! help` command with another command or subcommand: `m! help tips`
+Did you know I have a **fuckton of secrets**? Type `m! secret` for more information.
+Did you know other calculators are **fucking gay**? Use `m! solve 2+2-1` for all your mathematical needs.
+Did you know `m! solve` **even recognizes** `x` for `*`? Unlike *Tungsten|Beta*, I don't judge you. :)
+Did you know **you can search the bee movie script** with `m! bee search [regex]`? It even supports lookbehind. Take that, JavaScript.
+Did you know I have a **Tic-Tac-Toe AI**? Go ahead, type `m! help ttt`. I'll kick your ass.
+Did you know you can add me to your server too? Just type `m! link` for the link. https://youtu.be/msa5ua7kZmQ
+Ĉu vi scias ke mi havas multajn **funkciojn lingvistikajn utilajn**? Provu `m! help ling` por ricevi detalojn.
+Did you know you can **query JPL's HORIZONS database**? Try searching for the orbital and physical elements of your favorite asteroid with `m! ast horizons`!
+Did you know Mocha is **fucking gay**?

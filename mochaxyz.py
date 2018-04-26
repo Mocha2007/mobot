@@ -61,6 +61,7 @@ quotefiles = [
 'moquote',
 'prequel',
 'spidey',
+'tips',
 'tng'
 ]
 
