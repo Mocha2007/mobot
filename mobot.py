@@ -830,11 +830,12 @@ def mochapoint(message):
 	#string edit
 	subcommand = string.split(' ')
 	if subcommand[0][:3] == 'bal':
-		try:return str(bank[message.author.name])
+		try:return person+': **'+str(bank[person])+'**'
 		except:# not in there
 			open("bank.txt", "a").write('\n'+person+'\t0')
-			return str(bank[person])
+			return person+': **0**'
 	elif subcommand[0] == 'give':
+		if person == subcommand[1]:return '...no.'
 		try:
 			amt = int(subcommand[2])
 			if amt<1:raise ValueError('SKREE')

@@ -1,4 +1,4 @@
-'tala	0
 tee	77
 mocha	69
 anti	21
+'tala	3
