@@ -55,6 +55,8 @@ solve (string)
 	|evaluates mathematical expressions
 time (subcommand)
 	|current time (UTC)
+tips
+	|mobot tips
 trivia [subject]
 	|trivia
 ttt [pattern]

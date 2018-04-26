@@ -146,6 +146,8 @@ ling [command]
 		|generate the score in scrabble for a word
 	soundex [word]
 		|generate soundex from string
+	tips
+		|mobot tips
 	unmojibake [string]
 		|undoes most common form of mojibake
 		|(windows-1252 -> utf-8)
