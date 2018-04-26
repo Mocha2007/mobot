@@ -1,1 +1,4 @@
+anti	21
+'tala	3
+tee	77
 mocha	69

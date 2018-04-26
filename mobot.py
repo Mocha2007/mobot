@@ -807,17 +807,19 @@ def bankwrite(bank):
 		s+='\n'+account+'\t'+str(bank[account])
 	open("bank.txt", "w").write(s[1:])
 
-# def mochagive(amt,acct):
-	# file = open("bank.txt", "r").read().split('\n')
-	# bank = {}
-	# for line in file:
-		# l = line.split('\t')
-		# bank[l[0]]=int(l[1])
-	# bank[user] += amt
-	# bankwrite(bank)
+def mochagive(amt,acct):
+	file = open("bank.txt", "r").read().split('\n')
+	bank = {}
+	for line in file:
+		l = line.split('\t')
+		bank[l[0]]=int(l[1])
+	try:bank[acct] += amt
+	except:bank[acct] = amt
+	bankwrite(bank)
 
 def mochapoint(message):
-	string = message.content.lower()[14:]
+	person = message.author.name.lower()
+	string = message.content.lower()[8:]
 	#["user\t$",...]
 	file = open("bank.txt", "r").read().split('\n')
 	bank = {}
@@ -827,27 +829,27 @@ def mochapoint(message):
 	bank['mocha'] = float('inf')
 	#string edit
 	subcommand = string.split(' ')
-	if subcommand[0] == 'balance':
+	if subcommand[0][:3] == 'bal':
 		try:return str(bank[message.author.name])
 		except:# not in there
-			open("bank.txt", "a").write('\n'+message.author.name+'\t0')
-			return '0'
+			open("bank.txt", "a").write('\n'+person+'\t0')
+			return str(bank[person])
 	elif subcommand[0] == 'give':
 		try:
-			amt = int(subcommand[1])
+			amt = int(subcommand[2])
 			if amt<1:raise ValueError('SKREE')
 			try:
-				bank[message.author.name] -= amt
-				if bank[message.author.name]<0:raise ValueError('SKREE')
+				bank[person] -= amt
+				if bank[person]<0:raise ValueError('SKREE')
 				try:
-					bank[subcommand[2]] += amt
+					bank[subcommand[1]] += amt
 					bankwrite(bank)
-					return 'Successfully transfered '+str(amt)+' mochapoints to '+subcommand[2]+'!'
+					return 'Successfully transfered '+str(amt)+' mokis to '+subcommand[1]+'!'
 				except:return 'Account does not yet exist!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	elif subcommand[0] == 'help':
-		return '*MochaPoints* are used to purchase **bragging rights**... or someshit.'
+		return '*Mokis* are used to purchase **bragging rights**... or someshit.'
 
 	return ':/'
 
@@ -1014,7 +1016,7 @@ async def on_message(message):
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
-			elif na[1] == 'mochapoint':
+			elif na[1] == 'moki':
 				try:await bot.send_message(mc, mochapoint(message))
 				except:await bot.send_message(mc, '*SKREEEEEEEEEEEEEEEEE*')
 			# SECRET DEBUG
@@ -1052,6 +1054,8 @@ async def on_message(message):
 			elif n.startswith(bot_prefix):
 				try:await bot.send_message(mc, special[m[3:].lower()]) # specials
 				except KeyError:await bot.send_message(mc,'me confufu uwu')
+			# $
+			mochagive(1,message.author.name.lower())
 	except discord.errors.Forbidden:pass
 
 print('Connecting...')
