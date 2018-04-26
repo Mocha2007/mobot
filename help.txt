@@ -220,6 +220,8 @@ moki [subcommand]
 	|currency
 	balance
 		|give balance; create account
+	del [amt]
+		|donate amt mokis to random user
 	economy
 		|moki economy info
 	give [acct] [amt]

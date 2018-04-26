@@ -839,14 +839,17 @@ def mochapoint(message):
 		except:# not in there
 			open("bank.txt", "a").write('\n'+id+'\t0')
 			return message.author.name+': **0**'
-	elif subcommand[0][:3] == 'eco': # ADD DOX
+	elif subcommand[0][:3] == 'eco':
 		summation = 0
 		for acct in bank:
 			if acct!=mochaid:summation += bank[acct]
 		try:percent = str(round(int(bank[id])/summation*100,2))
 		except:percent = '0'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
-	elif subcommand[0][:3] == 'giv':
+	elif subcommand[0][:3] in ('del','giv'):
+		if subcommand[0][:3] == 'del':
+			subcommand.append(subcommand[1])
+			subcommand[1] = c(list(message.server.members)).id
 		try:
 			tgt = subcommand[1][3:-1]
 			int(tgt)
@@ -864,7 +867,7 @@ def mochapoint(message):
 				return 'Successfully transfered **'+str(amt)+'** mokis to user!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
-	elif subcommand[0] == 'help': # ADD DOX
+	elif subcommand[0] == 'help':
 		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! word`, `m! hangman`, and `m! verbrace`.'
 
 	return ':/'
