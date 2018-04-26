@@ -819,7 +819,7 @@ def mochagive(amt,acct):
 
 def mochapoint(message):
 	person = message.author.name.lower()
-	string = message.content.lower()[8:]
+	string = ' '.join(message.content.lower().split(' ')[2:])
 	#["user\t$",...]
 	file = open("bank.txt", "r").read().split('\n')
 	bank = {}
