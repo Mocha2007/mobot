@@ -840,13 +840,21 @@ def mochapoint(message):
 			open("bank.txt", "a").write('\n'+id+'\t0')
 			return message.author.name+': **0**'
 	elif subcommand[0][:3] == 'eco':
-		summation = 0
+		people = len(bank)
+		wealth = []
 		for acct in bank:
-			if acct!=mochaid:summation += bank[acct]
+			if acct!=mochaid:wealth.append(bank[acct])
+		summation = sum(wealth)
+		# x% of people hold 95% of the wealth
+		wealth = sorted(wealth)
+		while sum(wealth) > summation*.05:
+			wealth.pop()
+		rich = str(round((1 - len(wealth) / people)*100,2))
+		# continue
 		try:percent = str(round(int(bank[id])/summation*100,2))+'%'
 		except:percent = '0%'
 		if id == mochaid:percent='errythin'
-		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**'
+		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**.\n**'+rich+'%** of people own **95%** of the wealth!'
 	elif subcommand[0][:3] in ('del','don','giv'):
 		if subcommand[0][:3] in ('del','don'):
 			subcommand.append(subcommand[1])
