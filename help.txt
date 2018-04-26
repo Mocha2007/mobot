@@ -1,4 +1,8 @@
 ast
+	delay [o1] [o2]
+		|communication delay between two planets
+		|use "here" to represent distance to the primary,
+		|for planet-moon communication instead
 	density [mass] [radius]
 		|returns the density of a sphere with the specified mass and radius
 	escapevelocity [mass] [distance]

@@ -183,7 +183,16 @@ def momath(string):
 def moastro(string):
 	arg = string.lower().split(' ')
 
-	if arg[0] == 'density' or arg[0] == 'rho':
+	if arg[0] == 'delay':
+		c = 299792458
+		try:a1 = object[arg[1]]['a']
+		except:a1 = 0
+		try:a2 = object[arg[2]]['a']
+		except:a2 = 0
+		bigd = int((a1+a2)/c)
+		littled = int(abs(a1-a2)/c)
+		return 'Between '+str(littled)+' and '+str(bigd)+' seconds'
+	elif arg[0] == 'density' or arg[0] == 'rho':
 		mass = float(arg[1])
 		radius = float(arg[2])
 		return mochaastro.density(mass,radius)
