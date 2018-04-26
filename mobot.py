@@ -802,7 +802,7 @@ async def llama(message):
 
 mochaid = open('../mocha.txt','r').read()
 def bankwrite(bank):
-	bank[mochaid] = 69
+	bank[mochaid] = 0
 	s = ''
 	for account in bank:
 		s+='\n'+account+'\t'+str(bank[account])
@@ -834,9 +834,16 @@ def mochapoint(message):
 		if id == mochaid:return 'https://youtu.be/7sWpSvQ_hwo'
 		try:return message.author.name+': **'+str(bank[id])+'**'
 		except:# not in there
-			open("bank.txt", "a").write('\n'+person+'\t0')
+			open("bank.txt", "a").write('\n'+id+'\t0')
 			return message.author.name+': **0**'
-	elif subcommand[0] == 'give':
+	elif subcommand[0][:3] == 'eco': # ADD DOX
+		summation = 0
+		for acct in bank:
+			if acct!=mochaid:summation += bank[acct]
+		try:percent = str(round(int(bank[id])/summation*100,2))
+		except:percent = '0'
+		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
+	elif subcommand[0][:3] == 'giv':
 		try:tgt = subcommand[1][3:-1]
 		except:return 'Invalid user'
 		if id == tgt:return '...no.'
@@ -846,14 +853,13 @@ def mochapoint(message):
 			try:
 				bank[id] -= amt
 				if bank[id]<0:raise ValueError('SKREE')
-				try:
-					bank[tgt] += amt
-					bankwrite(bank)
-					return 'Successfully transfered '+str(amt)+' mokis to user!'
-				except:return 'Account does not yet exist!'
+				try:bank[tgt] += amt
+				except:bank[tgt] = amt
+				bankwrite(bank)
+				return 'Successfully transfered **'+str(amt)+'** mokis to user!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
-	elif subcommand[0] == 'help':
+	elif subcommand[0] == 'help': # ADD DOX
 		return '*Mokis* are used to purchase **bragging rights**... or someshit.'
 
 	return ':/'
