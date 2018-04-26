@@ -844,7 +844,9 @@ def mochapoint(message):
 		except:percent = '0'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
 	elif subcommand[0][:3] == 'giv':
-		try:tgt = subcommand[1][3:-1]
+		try:
+			tgt = subcommand[1][3:-1]
+			int(tgt)
 		except:return 'Invalid user'
 		if id == tgt:return '...no.'
 		try:
