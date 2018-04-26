@@ -807,6 +807,15 @@ def bankwrite(bank):
 		s+='\n'+account+'\t'+str(bank[account])
 	open("bank.txt", "w").write(s[1:])
 
+# def mochagive(amt,acct):
+	# file = open("bank.txt", "r").read().split('\n')
+	# bank = {}
+	# for line in file:
+		# l = line.split('\t')
+		# bank[l[0]]=int(l[1])
+	# bank[user] += amt
+	# bankwrite(bank)
+
 def mochapoint(message):
 	string = message.content.lower()[14:]
 	#["user\t$",...]
@@ -837,6 +846,8 @@ def mochapoint(message):
 				except:return 'Account does not yet exist!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
+	elif subcommand[0] == 'help':
+		return '*MochaPoints* are used to purchase **bragging rights**... or someshit.'
 
 	return ':/'
 
