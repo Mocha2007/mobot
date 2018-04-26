@@ -189,9 +189,11 @@ def moastro(string):
 		except:a1 = 0
 		try:a2 = object[arg[2]]['a']
 		except:a2 = 0
-		bigd = int((a1+a2)/c)
-		littled = int(abs(a1-a2)/c)
-		return 'Between '+str(littled)+' and '+str(bigd)+' seconds'
+		bigd = (a1+a2)/c
+		littled = abs(a1-a2)/c
+		bigdm = ceil(bigd/60)
+		littledm = int(littled/60)
+		return 'Between '+str(int(littled))+' and '+str(ceil(bigd))+' seconds;\nBetween '+str(littledm)+' and '+str(bigdm)+' minutes.'
 	elif arg[0] == 'density' or arg[0] == 'rho':
 		mass = float(arg[1])
 		radius = float(arg[2])
