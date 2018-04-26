@@ -846,8 +846,8 @@ def mochapoint(message):
 		try:percent = str(round(int(bank[id])/summation*100,2))
 		except:percent = '0'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
-	elif subcommand[0][:3] in ('del','giv'):
-		if subcommand[0][:3] == 'del':
+	elif subcommand[0][:3] in ('del','don','giv'):
+		if subcommand[0][:3] in ('del','don'):
 			subcommand.append(subcommand[1])
 			subcommand[1] = c(list(message.server.members)).id
 		try:
