@@ -133,6 +133,8 @@ ling [command]
 		|frequency of a-z letters in a string
 	freq2 [string]
 		|frequency of characters in a string
+	morse [string]
+		|convert text to morse code
 	pie [string]
 		|converts abbreviated PIE to pie
 		|very similar to x-sampa
