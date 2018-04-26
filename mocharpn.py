@@ -93,6 +93,9 @@ def rpn(prog):
 def infix(x):
 	#case insensitive
 	x = x.lower()
+	# 2e -> 2*e
+	x = sub(r'(?<=\d)e','*e',x)
+	x = sub(r'(?<=\d)pi','*pi',x)
 	# sub e and pi appropriately, also xX->*
 	x = x.replace('e',str(e))
 	x = x.replace('pi',str(pi))
