@@ -507,18 +507,19 @@ xskey = (
 ('_w','ʷ')
 )
 
-sun={'r':6.957e8,'m':1.98855e30}
-moon={'a':384399000,'e':0.0549,'r':1737100,'m':7.342e22}
 object = {
-'sun':sun,
-'moon':moon,
+'sun':{'r':6.957e8,'m':1.98855e30},
 'mercury':mochaastro.mercury,
 'venus':mochaastro.venus,
 'earth':mochaastro.earth,
+	'moon':{'a':384399000,'e':0.0549,'r':1737100,'m':7.342e22},
 'mars':mochaastro.mars,
+	'phobos':{'a':9376000,'e':0.0151,'r':11266.7,'m':1.0659e16},
+	'deimos':{'a':23463200,'e':0.00033,'r':6200,'m':1.4762e15},
 'jupiter':mochaastro.jupiter,
 'saturn':mochaastro.saturn,
 'uranus':mochaastro.uranus,
 'neptune':mochaastro.neptune,
+'pluto':{'a':5.90638e12,'e':0.2488,'r':1188.3,'m':1.303e22},
 'planetnine':mochaastro.planetnine
 }
