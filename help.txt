@@ -216,6 +216,11 @@ mc [string]
 	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
+mochapoint [subcommand]
+	balance
+		|give balance; create account
+	give [amt] [acct]
+		|give amt M$ to acct
 phoon
 	|fetch current lunar phase
 prequel (number)

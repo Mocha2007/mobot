@@ -800,6 +800,46 @@ async def llama(message):
 		state = ml[1]
 	return False
 
+def bankwrite(bank):
+	bank['mocha'] = 69
+	s = ''
+	for account in bank:
+		s+='\n'+account+'\t'+str(bank[account])
+	open("bank.txt", "w").write(s[1:])
+
+def mochapoint(message):
+	string = message.content.lower()[14:]
+	#["user\t$",...]
+	file = open("bank.txt", "r").read().split('\n')
+	bank = {}
+	for line in file:
+		l = line.split('\t')
+		bank[l[0]]=int(l[1])
+	bank['mocha'] = float('inf')
+	#string edit
+	subcommand = string.split(' ')
+	if subcommand[0] == 'balance':
+		try:return str(bank[message.author.name])
+		except:# not in there
+			open("bank.txt", "a").write('\n'+message.author.name+'\t0')
+			return '0'
+	elif subcommand[0] == 'give':
+		try:
+			amt = int(subcommand[1])
+			if amt<1:raise ValueError('SKREE')
+			try:
+				bank[message.author.name] -= amt
+				if bank[message.author.name]<0:raise ValueError('SKREE')
+				try:
+					bank[subcommand[2]] += amt
+					bankwrite(bank)
+					return 'Successfully transfered '+str(amt)+' mochapoints to '+subcommand[2]+'!'
+				except:return 'Account does not yet exist!'
+			except:return 'Insufficient Funds'
+		except:return 'Invalid Amount; require a natural number.'
+
+	return ':/'
+
 # ACTUAL BOT SHIT
 bot_prefix = "m!"
 token = open("../token.txt", "r").read()
@@ -963,6 +1003,9 @@ async def on_message(message):
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
+			elif na[1] == 'mochapoint':
+				try:await bot.send_message(mc, mochapoint(message))
+				except:await bot.send_message(mc, '*SKREEEEEEEEEEEEEEEEE*')
 			# SECRET DEBUG
 			elif na[1] == 'anchor' and message.author.name=='mocha':
 				anchor = mc

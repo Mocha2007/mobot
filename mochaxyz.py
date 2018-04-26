@@ -527,7 +527,7 @@ object = {
 	'uranus':mochaastro.uranus,
 	'neptune':mochaastro.neptune,
 	'pluto':{'a':5.90638e12,'e':0.2488,'r':1188.3,'m':1.303e22},
-	'planetnine':mochaastro.planetnine
+	'planetnine':mochaastro.planetnine,
 'kerbol':{'r':261600000,'m':1.7565459e28},
 	'kerbin':{'a':13599840256,'e':0,'r':6e5,'m':5.2915158e22},
 		'mun':{'a':12e6,'e':0,'r':2e5,'m':9.7599066e20},

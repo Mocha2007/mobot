@@ -1,6 +1,7 @@
 *.txt
 *.pyc
 !amp.txt
+!bank.txt
 !bee.txt
 !bug.txt
 !cdbg.txt
