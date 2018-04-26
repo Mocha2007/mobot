@@ -800,8 +800,9 @@ async def llama(message):
 		state = ml[1]
 	return False
 
+mochaid = open('../mocha.txt','r').read()
 def bankwrite(bank):
-	bank['mocha'] = 69
+	bank[mochaid] = 69
 	s = ''
 	for account in bank:
 		s+='\n'+account+'\t'+str(bank[account])
@@ -818,7 +819,7 @@ def mochagive(amt,acct):
 	bankwrite(bank)
 
 def mochapoint(message):
-	person = message.author.name.lower()
+	id = message.author.id
 	string = ' '.join(message.content.lower().split(' ')[2:])
 	#["user\t$",...]
 	file = open("bank.txt", "r").read().split('\n')
@@ -826,24 +827,27 @@ def mochapoint(message):
 	for line in file:
 		l = line.split('\t')
 		bank[l[0]]=int(l[1])
-	bank['mocha'] = float('inf')
+	bank[mochaid] = float('inf')
 	#string edit
 	subcommand = string.split(' ')
 	if subcommand[0][:3] == 'bal':
-		try:return person+': **'+str(bank[person])+'**'
+		try:return message.author.name+': **'+str(bank[id])+'**'
 		except:# not in there
 			open("bank.txt", "a").write('\n'+person+'\t0')
-			return person+': **0**'
+			return message.author.name+': **0**'
 	elif subcommand[0] == 'give':
-		if person == subcommand[1]:return '...no.'
+		try:tgt = subcommand[1][3:-1]
+		except:return 'Invalid user'
+		print('tgt'+tgt)
+		if id == tgt:return '...no.'
 		try:
 			amt = int(subcommand[2])
 			if amt<1:raise ValueError('SKREE')
 			try:
-				bank[person] -= amt
-				if bank[person]<0:raise ValueError('SKREE')
+				bank[id] -= amt
+				if bank[id]<0:raise ValueError('SKREE')
 				try:
-					bank[subcommand[1]] += amt
+					bank[tgt] += amt
 					bankwrite(bank)
 					return 'Successfully transfered '+str(amt)+' mokis to '+subcommand[1]+'!'
 				except:return 'Account does not yet exist!'
@@ -1055,7 +1059,7 @@ async def on_message(message):
 				try:await bot.send_message(mc, special[m[3:].lower()]) # specials
 				except KeyError:await bot.send_message(mc,'me confufu uwu')
 			# $
-			mochagive(1,message.author.name.lower())
+			#mochagive(1,message.author.name.lower())
 	except discord.errors.Forbidden:pass
 
 print('Connecting...')
