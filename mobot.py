@@ -562,7 +562,7 @@ async def word(args,message):
 				if len(guess) == len(word): # NO CHEATING
 					if guess == word:
 						await bot.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
-						mochagive(1,msg.author.name.lower())
+						mochagive(5,msg.author.name.lower())
 						return False
 					mr = range(min(len(word),len(guess)))
 					#look for EXACT matches
@@ -865,7 +865,7 @@ def mochapoint(message):
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	elif subcommand[0] == 'help': # ADD DOX
-		return '*Mokis* are used to purchase **bragging rights**... or someshit.'
+		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! word`, `m! hangman`, and `m! verbrace`.'
 
 	return ':/'
 
