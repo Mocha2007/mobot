@@ -1016,9 +1016,8 @@ async def on_message(message):
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
-			elif na[1] == 'moki':
-				try:await bot.send_message(mc, mochapoint(message))
-				except:await bot.send_message(mc, '*SKREEEEEEEEEEEEEEEEE*')
+			elif na[1][:4] == 'moki':
+				await bot.send_message(mc, mochapoint(message))
 			# SECRET DEBUG
 			elif na[1] == 'anchor' and message.author.name=='mocha':
 				anchor = mc
