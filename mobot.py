@@ -831,6 +831,7 @@ def mochapoint(message):
 	#string edit
 	subcommand = string.split(' ')
 	if subcommand[0][:3] == 'bal':
+		if id == mochaid:return 'https://youtu.be/7sWpSvQ_hwo'
 		try:return message.author.name+': **'+str(bank[id])+'**'
 		except:# not in there
 			open("bank.txt", "a").write('\n'+person+'\t0')
@@ -838,7 +839,6 @@ def mochapoint(message):
 	elif subcommand[0] == 'give':
 		try:tgt = subcommand[1][3:-1]
 		except:return 'Invalid user'
-		print('tgt'+tgt)
 		if id == tgt:return '...no.'
 		try:
 			amt = int(subcommand[2])
@@ -849,7 +849,7 @@ def mochapoint(message):
 				try:
 					bank[tgt] += amt
 					bankwrite(bank)
-					return 'Successfully transfered '+str(amt)+' mokis to '+subcommand[1]+'!'
+					return 'Successfully transfered '+str(amt)+' mokis to user!'
 				except:return 'Account does not yet exist!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
