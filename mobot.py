@@ -843,10 +843,10 @@ def mochapoint(message):
 		summation = 0
 		for acct in bank:
 			if acct!=mochaid:summation += bank[acct]
-		try:percent = str(round(int(bank[id])/summation*100,2))
-		except:percent = '0'
-		if id == mochaid:percent='\u221e'
-		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**%'
+		try:percent = str(round(int(bank[id])/summation*100,2))+'%'
+		except:percent = '0%'
+		if id == mochaid:percent='errythin'
+		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**'
 	elif subcommand[0][:3] in ('del','don','giv'):
 		if subcommand[0][:3] in ('del','don'):
 			subcommand.append(subcommand[1])
