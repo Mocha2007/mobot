@@ -146,8 +146,6 @@ ling [command]
 		|generate the score in scrabble for a word
 	soundex [word]
 		|generate soundex from string
-	tips
-		|mobot tips
 	unmojibake [string]
 		|undoes most common form of mojibake
 		|(windows-1252 -> utf-8)
@@ -271,6 +269,8 @@ time (command)
 	|current time (UTC)
 	taken
 		|time taken to process command, in ms
+tips
+	|mobot tips
 tng (number)
 	|line #number from the tng quote file;
 	|leave out number for random line
