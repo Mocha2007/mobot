@@ -562,6 +562,7 @@ async def word(args,message):
 				if len(guess) == len(word): # NO CHEATING
 					if guess == word:
 						await bot.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+						mochagive(1,msg.author.name.lower())
 						return False
 					mr = range(min(len(word),len(guess)))
 					#look for EXACT matches
@@ -601,6 +602,7 @@ async def hangman(args,mc):
 						#won?
 						if 'X' not in known:
 							await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
+							mochagive(1,msg.author.name.lower())
 							return False
 					else:
 						fails+=1
@@ -678,6 +680,7 @@ async def verbrace(args,mc):
 	await bot.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
 	#check to see if eligible for leaderboard
 	if allcorrect and len(set(pbu[:finalform])) == 1:
+		mochagive(1,pbu[0].name.lower())
 		open("vrleaderboard.txt", "a").write('\n'+'\t'.join([args[1],word[finalform],str(int(time()-start)),pbu[0].name]))
 	#print leaders
 	await bot.send_message(mc, 'Leaderboard for **'+word[finalform]+'**:\n'+vrleaderboard(args[1],word[finalform],5))
@@ -1067,7 +1070,6 @@ async def on_message(message):
 				try:await bot.send_message(mc, special[m[3:].lower()]) # specials
 				except KeyError:await bot.send_message(mc,'me confufu uwu')
 			# $
-			#mochagive(1,message.author.name.lower())
 	except discord.errors.Forbidden:pass
 
 print('Connecting...')
