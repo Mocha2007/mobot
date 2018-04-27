@@ -822,6 +822,8 @@ def mochagive(amt,acct):
 	bankwrite(bank)
 
 def mochapoint(message):
+	donating = ['del','don']
+	giving = ['giv']
 	id = message.author.id
 	string = ' '.join(message.content.lower().split(' ')[2:])
 	#["user\t$",...]
@@ -855,8 +857,8 @@ def mochapoint(message):
 		except:percent = '0%'
 		if id == mochaid:percent='errythin'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'**.\n**'+rich+'%** of people own **95%** of the wealth!'
-	elif subcommand[0][:3] in ('del','don','giv'):
-		if subcommand[0][:3] in ('del','don'):
+	elif subcommand[0][:3] in donating+giving:
+		if subcommand[0][:3] in donating:
 			subcommand.append(subcommand[1])
 			subcommand[1] = c(list(message.server.members)).id
 			tgt = subcommand[1]
@@ -875,7 +877,8 @@ def mochapoint(message):
 				try:bank[tgt] += amt
 				except:bank[tgt] = amt
 				bankwrite(bank)
-				return 'Successfully transfered **'+str(amt)+'** mokis to user!'
+				user = 'user' if subcommand[0][:3] in giving else '<@!'+tgt+'>'
+				return 'Successfully transfered **'+str(amt)+'** mokis to '+user+'!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	elif subcommand[0] == 'help':
