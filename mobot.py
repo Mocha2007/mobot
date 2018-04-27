@@ -283,7 +283,7 @@ def moling(string):
 			return mochalang.hungarianipa(arg[2])
 		elif arg[1] == 'it':
 			return mochalang.italianipa(arg[2])
-		elif arg[1] == 'po':
+		elif arg[1] == 'pl':
 			return mochalang.polishipa(arg[2])
 	elif arg[0] == 'morse':
 		try:return mochalang.morse(arg[1])

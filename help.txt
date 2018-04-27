@@ -128,7 +128,7 @@ ling [command]
 	ipa [language code] [word]
 		|attempt to generate IPA for a word in language
 		|currently valid language codes:
-		|de, en, es, fr, hu, it, po
+		|de, en, es, fr, hu, it, pl
 	freq [string]
 		|frequency of a-z letters in a string
 	freq2 [string]
