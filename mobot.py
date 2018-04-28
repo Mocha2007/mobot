@@ -467,6 +467,7 @@ def dice(m,n):
 	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
 
 def dicemat(x):
+	x = x.lower().replace('d',' ')
 	x = x.split(' ')
 	try:
 		m = int(x[0])
