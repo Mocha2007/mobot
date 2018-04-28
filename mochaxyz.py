@@ -69,6 +69,7 @@ special = {
 'alexa':'do i look like a slave to you?',
 'ban':'u can\'t make me!!!',
 'daily':'the hell you think i\'m gonna pay you for?',
+'developers':'https://youtu.be/Vhh_GeBPOhs',
 'egu':'https://www.youtube.com/watch?v=3-rfBsWmo0M',
 'hey google':'hey yourself faggot',
 'kill':'nuuuu!~',
