@@ -448,6 +448,7 @@ def rword(lang,min):
 				return attempt
 	
 def d(m,n):
+	if m*n==0:return 0
 	if m<0:return -d(-m,n)
 	if n<0:return -d(m,-n)
 	s = 0
