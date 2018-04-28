@@ -286,7 +286,7 @@ def moling(string):
 		elif arg[1] == 'pl':
 			return mochalang.polishipa(arg[2])
 	elif arg[0] == 'morse':
-		try:return mochalang.morse(arg[1])
+		try:return mochalang.morse(' '.join(arg[1:]))
 		except:return 'https://en.wikipedia.org/wiki/Morse_code'
 	elif arg[0] == 'pie':
 		try:return pie(arg[1])
