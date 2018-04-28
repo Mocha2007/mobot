@@ -119,7 +119,7 @@ morsekey = {
 }
 
 def morse(string):
-	string = list(sub(r'[^\da-z]','',string.lower()))
+	string = list(sub(r'[^\da-z ]','',string.lower()))
 	string = list(map(lambda x:morsekey[x],string))
 	return ' '.join(string)
 
