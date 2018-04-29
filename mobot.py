@@ -70,7 +70,7 @@ def momath(string):
 
 	elif arg[0][:3] == 'ack':
 		return mochamath.ack(int(arg[1]),int(arg[2]))
-	elif arg[0] == 'area':
+	elif arg[0][-4:] == 'area':
 		if arg[1] == 'circle':
 			r = float(arg[2])
 			return mochamath.areacircle(r)
