@@ -1023,7 +1023,8 @@ async def on_message(message):
 				try:await bot.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
 			elif na[1] == 'quote':
-				await bot.send_message(mc, str(sto(m[9:])))
+				try:await bot.send_message(mc, str(sto(m[9:])))
+				except:await bot.send_message(mc,'Message too Long')
 			elif na[1] == 'phoon':
 				try:await bot.send_message(mc, mochaweather.phoon())
 				except:await bot.send_message(mc, 'Can\'t seem to fetch current lunar phase')
