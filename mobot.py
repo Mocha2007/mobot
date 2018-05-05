@@ -330,7 +330,9 @@ def trivia(string):
 def sto(string):
 	arg = string.split(' ')
 	try:
-		if arg[0] == 'search':return qfsearch(arg[1],'temp')
+		if arg[0] == 'search':
+			try:return qfsearch(arg[1],'temp')
+			except:return 'Bad RegEx'
 	except IndexError:pass
 
 	if arg[0] == 'sto':
