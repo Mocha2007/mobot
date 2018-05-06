@@ -1,5 +1,12 @@
 import mochaastro
 
+asmrwords = {
+'adj':['blue','calm','gentle','luscious','pastel','red','tingly'],
+'ing':['dreaming','glowing','massaging','satisfying','tingling','whispering'],
+'n':['darling','dream','fairy','glow','imagination','magic','peace','tingle','whisper'],
+'pl':['darlings','dreams','fairies','glows','tingles','whispers'],
+}
+
 coffees = {
 '':'coffee',
 'affogato':'a scoop of vanilla gelato or ice cream topped with\na shot of hot espresso',

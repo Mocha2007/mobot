@@ -1,3 +1,5 @@
+asmrname (seed)
+	|generates an ASMR-like username
 ast
 	delay [o1] [o2]
 		|communication delay between two planets

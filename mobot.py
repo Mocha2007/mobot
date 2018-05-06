@@ -4,7 +4,7 @@ import discord
 
 from datetime import timezone
 from random import choice as c
-from random import randint,shuffle
+from random import randint,seed,shuffle
 from math import ceil,gcd,hypot,pi
 from time import time,sleep
 from re import compile,findall,search,sub
@@ -528,6 +528,25 @@ def gp(x):
 	try:c = quotient[1][1]
 	except:c = '0'
 	return g+'g '+s+'s '+c+'c'
+
+def asmr(s):
+	if len(s):seed(s)
+	#		S1					S2					S3
+	#(ADJ/NOUN/VERBing) [NOUN(s)/VERBing] <ASMR (front/back;optional)>
+	name = []
+	asmrstyle = randint(0,2) # 0bXY X-beginning Y-end
+	#S1 style
+	s1style = c(['adj','ing','n',False])
+	if s1style:name+=[c(asmrwords[s1style])]
+	#S2 style
+	s2style = c(['ing','n','pl'])
+	name+=[c(asmrwords[s2style])]
+	#ooo
+	name = ' '.join(name).title()
+	#S3 style
+	if bin(asmrstyle)[-2] == '1':name='ASMR '+name
+	elif bin(asmrstyle)[-1] == '1':name+=' ASMR'
+	return name
 
 # GAMES
 	
@@ -1086,6 +1105,8 @@ async def on_message(message):
 			elif na[1] == 'hurricane':
 				try:await bot.send_message(mc, mochaweather.hurricane(m[13:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisories')
+			elif na[1] == 'asmrname':
+				await bot.send_message(mc,asmr(m[12:]))
 			elif na[1] == 'religion':
 				await bot.send_message(mc, str(religion(m[12:])))
 			elif na[1] == 'worldgen':

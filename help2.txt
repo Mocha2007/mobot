@@ -1,5 +1,7 @@
 Commands:
 ```
+asmrname
+	|generates an ASMR-like username
 ast
 	|many astronomical/physics/orbital mechanics calculations
 bf (program)
@@ -80,8 +82,4 @@ zodiac (string)
 
 NOTE: (optional argument) [mandatory argument]
 ```
-Did you know you can report bugs and make feature requests with the `m! bug [string]` command?
-
 try `m! help [command]` for more detailed information!
-
-mocha made me. notice me, senpai!!!
