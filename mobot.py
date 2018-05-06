@@ -124,12 +124,12 @@ def momath(string):
 		elif arg[1] == 'trigon':
 			return 3**.5/4*float(arg[2])**2
 	elif arg[0] == 'd':
-		d = arg[1]
-		poly = arg[2:]
+		d = int(arg[1])
+		poly = list(map(float,arg[2:]))
 		return mochamath.dpoly(poly,d)
 	elif arg[0] == 'i':
-		i = arg[1]
-		poly = arg[2:]
+		i = int(arg[1])
+		poly = list(map(float,arg[2:]))
 		return mochamath.ipoly(poly,i)
 	elif arg[0] == 'frac':
 		neg = False
@@ -950,7 +950,7 @@ async def on_message(message):
 	except:qfcondition = False
 	#GOAT
 	try:
-		gchelp = 'which' if 'which' in n else ('what' if 'what' in n else 0),'best' if 'best' in n else ('greatest' if 'greatest' in n else 0)
+		gchelp = 'which' if 'which' in n else ('what' if 'what' in n else ('who' if 'who' in n else 0)),'best' if 'best' in n else ('greatest' if 'greatest' in n else 0)
 		goatcondition = gchelp[0] and 'bot' in n and 'is' in n and gchelp[1]
 		if 'mobot' in n:
 			goatcondition = n.index(gchelp[0]) < n.index('is') < n.index(gchelp[1])

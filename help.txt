@@ -181,8 +181,8 @@ mat [command]
 		|circumference/perimeter of a shape
 		|currently supported:
 		|circle [r]
-	d [coefficients]
-		|derivative of a polynomial
+	d [n] [coefficients]
+		|nth derivative of a polynomial
 	ecc [longer_axis] [shorter_axis]
 		|eccentricity of an ellipse
 	frac [decimal]
@@ -191,8 +191,8 @@ mat [command]
 		|greatest common denominator
 	hypot [a] [b]
 		|hypotenuse
-	i [coefficients]
-		|integral of a polynomial
+	i [n] [coefficients]
+		|nth integral of a polynomial
 	lcm [a] [b]
 		|least common multiple
 	max [numbers]
