@@ -71,7 +71,16 @@ def momath(string):
 	elif arg[0][:3] == 'ack':
 		return mochamath.ack(int(arg[1]),int(arg[2]))
 	elif arg[0][-4:] == 'area':
-		if arg[1] == 'circle':
+		if arg[1] in ('annulus','ring'):
+			r1 = float(arg[2])
+			r2 = float(arg[3])
+			return mochamath.areacircle(r1)-mochamath.areacircle(r2)
+		elif arg[1] == 'arbelos':
+			r1 = float(arg[2])
+			r2 = float(arg[3])
+			r3 = float(arg[4])
+			return (mochamath.areacircle(r1)-mochamath.areacircle(r2)-mochamath.areacircle(r3))/2
+		elif arg[1] == 'circle':
 			r = float(arg[2])
 			return mochamath.areacircle(r)
 		elif arg[1] == 'cone':
@@ -88,6 +97,13 @@ def momath(string):
 			return (2+2*2**.5)*float(arg[2])**2
 		elif arg[1] == 'pentagon':
 			return ((25+10*5**.5)**.5)/4*float(arg[2])**2
+		elif arg[1] == 'salinon':
+			r = float(arg[2])+float(arg[3])
+			return mochamath.areacircle(r)/4
+		elif arg[1] == 'sector':
+			r = float(arg[2])
+			theta = float(arg[3])
+			return mochamath.areacircle(r)*theta/2/pi
 		elif arg[1] == 'sphere':
 			r = float(arg[2])
 			return mochamath.areasphere(r)
