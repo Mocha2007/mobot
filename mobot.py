@@ -962,22 +962,24 @@ async def on_message(message):
 	try:
 		notmobot = message.author.name!='Mobot'
 		if notmobot:
-			if ('right, mobot' in n or 'right mobot' in n): #needed due to multiple responses
-				try:await bot.send_message(mc, c(mobotyes))
-				except:pass
-			elif 'mobot irl' in n: #needed due to multiple responses
-				try:await bot.send_message(mc, c(mobotirl))
-				except:pass
-			elif goatcondition: #needed due to complicated conditions
-				try:await bot.send_message(mc, c(['MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0']))
+			if goatcondition: #needed due to complicated conditions
+				try:await bot.send_message(mc,'MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0')
 				except:pass
 			else: #special triggers
-				for i in specialer:
-					ret = compile('^'+i+'$|^'+i+'\\W|\\W'+i+'$|\\W'+i+'\\W')
-					if search(ret,n):
-						try:await bot.send_message(mc, specialer[i])
+				done = False
+				for i in rspecial:
+					if i in n:
+						try:await bot.send_message(mc, c(rspecial[i]))
 						except:pass
+						done = True
 						break
+				if not done:
+					for i in specialer:
+						ret = compile('^'+i+'$|^'+i+'\\W|\\W'+i+'$|\\W'+i+'\\W')
+						if search(ret,n):
+							try:await bot.send_message(mc, specialer[i])
+							except:pass
+							break
 		#real commands
 		if na[0] == bot_prefix and len(na)>1:
 			#logging

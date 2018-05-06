@@ -127,6 +127,12 @@ mobotyes = [
 'yayaya ^3^'
 ]
 
+rspecial = {
+'mobot irl':mobotirl,
+'right mobot':mobotyes,
+'right, mobot':mobotyes,
+}
+
 units = {
 'au':149597870700,
 'banana':.3048*8/12,
