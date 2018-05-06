@@ -129,6 +129,7 @@ mobotyes = [
 
 rspecial = {
 'mobot irl':mobotirl,
+'mobot laugh':['kek','keklmao','lel','lmao','lol','rofl','roflmao'],
 'right mobot':mobotyes,
 'right, mobot':mobotyes,
 }
