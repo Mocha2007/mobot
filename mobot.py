@@ -87,6 +87,8 @@ def momath(string):
 			r = float(arg[2])
 			h = float(arg[3])
 			return mochamath.areacone(r,h)
+		elif arg[1] == 'cube':
+			return 6*float(arg[2])**2
 		elif arg[1] == 'cylinder':
 			r = float(arg[2])
 			h = float(arg[3])
@@ -97,6 +99,8 @@ def momath(string):
 			return (2+2*2**.5)*float(arg[2])**2
 		elif arg[1] == 'pentagon':
 			return ((25+10*5**.5)**.5)/4*float(arg[2])**2
+		elif arg[1] == 'rectangle':
+			return float(arg[2])*float(arg[3])
 		elif arg[1] == 'salinon':
 			r = float(arg[2])+float(arg[3])
 			return mochamath.areacircle(r)/4
@@ -109,6 +113,8 @@ def momath(string):
 			return mochamath.areasphere(r)
 		elif arg[1] == 'square':
 			return float(arg[2])**2
+		elif arg[1] in ('trapezoid','trapezium'):
+			return float(arg[4])*(float(arg[2])+float(arg[3]))/2
 		elif arg[1] == 'triangle':
 			a = arg[2]
 			b = arg[3]
@@ -186,13 +192,26 @@ def momath(string):
 			r = float(arg[2])
 			h = float(arg[3])
 			return mochamath.volumecone(r,h)
+		elif arg[1] == 'cube':
+			return float(arg[2])**3
 		elif arg[1] == 'cylinder':
 			r = float(arg[2])
 			h = float(arg[3])
 			return mochamath.volumecylinder(r,h)
+		elif arg[1] == 'frustrum':
+			r1 = float(arg[2])
+			r2 = float(arg[3])
+			h = float(arg[4])
+			return pi*h/3*(r1**2+r1*r2+r2**2)
 		elif arg[1] == 'sphere':
 			r = float(arg[2])
 			return mochamath.volumesphere(r)
+		elif arg[1] == 'wedge':
+			a = float(arg[2])
+			b = float(arg[3])
+			c = float(arg[4])
+			h = float(arg[5])
+			return b*h*(a/3+c/6)
 
 	return ':/'
 
