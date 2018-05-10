@@ -1090,7 +1090,7 @@ async def on_message(message):
 			elif na[1] == 'solve':
 				await bot.send_message(mc, mocharpn.infix(m[9:]))
 			elif na[1] == 'zodiac':
-				await bot.send_message(mc, str(zodiac(m[10:])))
+				await bot.send_message(mc, zodiac(n[10:]))
 			elif na[1] == 'coffee':
 				await bot.send_message(mc, str(coffee(m[10:])))
 			elif na[1] == 'trivia':
