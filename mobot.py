@@ -861,6 +861,37 @@ async def llama(message):
 		state = ml[1]
 	return False
 
+filters = {}
+def reloadfilter():
+	global filters
+	filters = {}
+	for line in open('filter.txt','r').read().split('\n'):
+		lineargs = line.split('\t')
+		filters[lineargs[0]] = lineargs[1:]
+	return False
+
+async def mfilter(message):
+	if not message.author.server_permissions.administrator:
+		await bot.send_message(message.channel, 'Not happening.')
+		return True
+
+	mc = message.channel
+	# filter messages containing OR filter messages NOT containing?
+	await bot.send_message(message.channel, 'Filter messages WITH regex or WITHOUT regex?')
+	msg = False
+	while msg not in ('with','without'):
+		msg = await bot.wait_for_message(channel=mc,author=message.author)
+		msg = msg.content.lower()
+	await bot.send_message(message.channel, 'Enter regex filter:')
+	refilter = await bot.wait_for_message(channel=mc,author=message.author)
+	refilter = refilter.content
+	await bot.send_message(message.channel, 'Successfully set up **'+msg+'** filter **/'+refilter+'/** for **'+message.channel.name+'**.')
+	
+	open('filter.txt','a').write('\n'+message.channel.id+'\t'+msg+'\t'+refilter)
+	#reload filters
+	reloadfilter()
+	return False
+
 mochaid = open('../mocha.txt','r').read()
 def bankwrite(bank):
 	del bank[mochaid]
@@ -953,6 +984,7 @@ bot = Bot(command_prefix = bot_prefix)
 @bot.event
 async def on_ready():
 	print(bot.user.name+' loaded.')
+	reloadfilter()
 
 @bot.event
 async def on_message(message):
@@ -1089,6 +1121,8 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch earthquake information')
 			elif na[1] == 'solve':
 				await bot.send_message(mc, mocharpn.infix(m[9:]))
+			elif na[1] == 'filter':
+				await mfilter(message)
 			elif na[1] == 'zodiac':
 				await bot.send_message(mc, zodiac(n[10:]))
 			elif na[1] == 'coffee':
@@ -1149,7 +1183,14 @@ async def on_message(message):
 			elif n.startswith(bot_prefix):
 				try:await bot.send_message(mc, special[m[3:].lower()]) # specials
 				except KeyError:await bot.send_message(mc,'me confufu uwu')
-			# $
+		# Check filters
+		if mc.id in filters:
+			type = filters[mc.id][0]
+			lookfor = filters[mc.id][1]
+			if type == 'with' and search(compile(lookfor),m):
+				await bot.delete_message(message)
+			elif type == 'without' and not search(compile(lookfor),m):
+				await bot.delete_message(message)
 	except discord.errors.Forbidden:pass
 
 print('Connecting...')

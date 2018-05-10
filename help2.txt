@@ -19,6 +19,8 @@ dfprop [material]
 	|search dfwiki for properties of a material
 dice [number] [number]
 	|stats for that roll
+filter
+	|filter setup
 game [command]
 	|games
 gp [g] [ways]

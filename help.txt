@@ -63,6 +63,8 @@ dfprop [material]
 	|search dfwiki for properties of a material
 dice [number] [number]
 	|stats for that roll
+filter
+	|filter setup [admin-only]
 game [command]
 	24
 		|you are given four numbers

@@ -11,3 +11,4 @@ Cxu vi scias ke mi havas multajn **funkciojn lingvistikajn utilajn**? Provu `m! 
 Did you know you can **query JPL's HORIZONS database**? Try searching for the orbital and physical elements of your favorite asteroid with `m! ast horizons`!
 Did you know Mocha is **fucking gay**?
 Iceburg strike your ship? Try using `m! ling morse` to **convert your SOS message into morse code**.
+Did you know you can **set up filters** on channels if you're an admin? Type `m! filter` to filter messages containing or not containing a regex!
