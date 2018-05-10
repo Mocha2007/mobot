@@ -422,10 +422,10 @@ def zodiac(arg):
 	signelements = ['Fire (Enthusiasm; drive to express self; faith)','Earth (Practicality; caution; material world)','Air (Communication; socialization; conceptualization)','Water (Emotion; empathy; sensitivity)']
 	signqualities= ['Cardinal (active; self-motivated; insightful; ambitious)','Fixed (stabilization; determination; depth; persistence)','Mutable (adaptability; flexibility; sympathy)']
 	signrulers= ['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter','Starbucks']
-	vernal = 6884100
+	vernal = 6884100 # Venal equinox 1970
 
 	if len(arg):n = signs.index(arg.lower())
-	else:n = int(((time()-vernal)%31556952000)/2629746000); # sign number 0-11
+	else:n = int(((time()-vernal)%31556952)/2629746); # sign number 0-11
 
 	return '**'+signs[n].title()+'**\nElement: '+signelements[n%4]+'\nQuality: '+signqualities[n%3]+'\nRuler: '+signrulers[n]
 
