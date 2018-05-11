@@ -208,16 +208,6 @@ units = {
 'yr':(31556952,'year\ntime - nonstandard\napproximately earth\'s orbital period'),
 'v':(1,'volt\nelectric potential - metric\nequivalent to one watt per ampere'),
 'w':(1,'watt\npower - metric\nequivalent to one joule per second'),
-# currencies - eventually I plan to use fixer.io's API
-'usd':(1,'united states dollar\n[used as a reference currency]')
-'cad':(.78,'canadian dollar\n2018-05-10 at 16:00 UTC')
-'eur':(1.19,'euro\n2018-05-10 at 16:00 UTC')
-'gbp':(1.35,'british pounds\n2018-05-10 at 16:00 UTC')
-'jpy':(1/109.54,'yen\n2018-05-10 at 16:00 UTC')
-'krw':(1/1065.26,'won\n2018-05-10 at 16:00 UTC')
-'mxn':(1/19.31,'peso\n2018-05-10 at 16:00 UTC')
-'rub':(1/61.77,'peso\n2018-05-10 at 16:00 UTC')
-'xbt':(1/9323.33,'bitcoin\n2018-05-10 at 16:00 UTC')
 }
 
 # sort by infinitive (last word)

@@ -13,6 +13,8 @@ coffee (string)
 	|information regarding coffee
 convert [number] [from-unit] [to-unit]
 	|convert between units
+currency [amt] [from] [to]
+	|convert between currencies
 df [string]
 	|search dfwiki for string (WIP)
 dfprop [material]

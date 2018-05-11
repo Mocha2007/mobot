@@ -459,6 +459,11 @@ def convert(uwaa):
 	try:return float(arg[0]) * units[arg[1]][0] / units[arg[2]][0]
 	except KeyError:return 'invalid unit... did you try using its abbreviation?'
 
+def convertcurrency(uwaa):
+	arg = uwaa.split(' ')
+	try:return round(float(arg[0])*mochaweb.currency(arg[1].upper(),arg[2].upper()),2)
+	except KeyError:return 'invalid currency... did you try using its abbreviation?'
+
 def religion(uwaa):
 	try:return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
 	except KeyError:return ':/'
@@ -1136,6 +1141,8 @@ async def on_message(message):
 				await bot.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer)+len(rspecial))+'** secret commands, of which:\n\n**'+str(len(specialer)+len(rspecial))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 			elif na[1] == 'convert':
 				await bot.send_message(mc, str(convert(n[11:])))
+			elif na[1] == 'currency':
+				await bot.send_message(mc, str(convertcurrency(n[12:])))
 			elif na[1] == 'weather':
 				try:await bot.send_message(mc, mochaweather.main(m[11:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])

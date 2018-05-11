@@ -61,6 +61,8 @@ convert [number/subcommand] [from-unit] [to-unit]
 		|see help
 	help
 		|brief description of the unit
+currency [amt] [from] [to]
+	|convert between currencies
 df [string]
 	|search dfwiki for string
 dfprop [material]
