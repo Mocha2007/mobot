@@ -181,7 +181,7 @@ units = {
 'nmi':(1852,'nautical mile\nlength - imperial'),
 'oz':(.0283,'ounce\nmass - imperial'),
 'pc':(3.0857e18,'parsec\nlength - nonstandard'),
-'peck':(0.00909218,'peck\nidfk'),#TODO
+'peck':(0.00909218,'peck\nvolume - imperial'),
 'penis':(.129,'penis\nlength - nonstandard'),
 'pica':(.3048/72,'pica\nlength - imperial'),
 'point':(.3048/864,'point\nlength - imperial'),
