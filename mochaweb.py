@@ -82,8 +82,10 @@ def horizons(name):
 	return sub(r'^[^*]*\*+|\*+[^*]*$','',x.decode('ascii'))
 
 fixerioapikey = open('../fixer.io.txt','r').read()
+j = False
 def currency(a,b):
-	j = load(StringIO(l('http://data.fixer.io/api/latest?access_key='+fixerioapikey)))
+	global j
+	if not j:j = load(StringIO(l('http://data.fixer.io/api/latest?access_key='+fixerioapikey)))
 
 	if a != 'EUR':a = j['rates'][a]
 	else:a = 1
