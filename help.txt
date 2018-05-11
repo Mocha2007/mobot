@@ -55,8 +55,12 @@ bug [string]
 	|submit bug report/feature request
 coffee (string)
 	|information regarding coffee
-convert [number] [from-unit] [to-unit]
+convert [number/subcommand] [from-unit] [to-unit]
 	|convert between units
+	desc
+		|see help
+	help
+		|brief description of the unit
 df [string]
 	|search dfwiki for string
 dfprop [material]

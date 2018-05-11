@@ -449,11 +449,14 @@ def coffee(arg):
 	except KeyError:return ':/'
 
 def convert(uwaa):
-	arg = uwaa.lower().split(' ')
+	arg = uwaa.split(' ')
+	
+	#desc
+	if arg[0][:4] in ('desc','help'):return '```\n'+units[arg[1]][1]+'\n```'
 
 	if arg[1] in religions or arg[2] in religions:return 'No, I meant the **other** kind of convert!'
 	
-	try:return float(arg[0]) * units[arg[1]] / units[arg[2]]
+	try:return float(arg[0]) * units[arg[1]][0] / units[arg[2]][0]
 	except KeyError:return 'invalid unit... did you try using its abbreviation?'
 
 def religion(uwaa):
@@ -1132,7 +1135,7 @@ async def on_message(message):
 			elif na[1][:6] == 'secret':
 				await bot.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer)+len(rspecial))+'** secret commands, of which:\n\n**'+str(len(specialer)+len(rspecial))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 			elif na[1] == 'convert':
-				await bot.send_message(mc, str(convert(m[11:])))
+				await bot.send_message(mc, str(convert(n[11:])))
 			elif na[1] == 'weather':
 				try:await bot.send_message(mc, mochaweather.main(m[11:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
