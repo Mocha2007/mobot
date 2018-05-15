@@ -1,1 +1,2 @@
 444160920688787471	without	^silence$|^Silence$|^SILENCE$
+444634609485873170	without	Calculating...|m! time diff|[0-9]+ ms
