@@ -45,6 +45,8 @@ mc [string]
 	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
+outage
+	|information about recent mobot outages
 phoon
 	|fetch current lunar phase
 quake

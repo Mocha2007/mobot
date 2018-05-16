@@ -1005,7 +1005,7 @@ async def on_message(message):
 	ma = m.split(' ')
 	na = n.split(' ')
 	#quotefile
-	try:qfcondition = na[0]=='m!' and na[1] in quotefiles
+	try:qfcondition = na[0]=='m!' and na[1] in quotefiles+wholequotefiles
 	except:qfcondition = False
 	#GOAT
 	try:
@@ -1167,7 +1167,9 @@ async def on_message(message):
 				await bot.delete_message(message)
 			# QUOTES
 			elif qfcondition:
-				o = quotefile(' '.join(ma[2:]),ma[1].lower())
+				if n[3:] in wholequotefiles:o = open(n[3:]+'.txt','r').read()
+				else:o = quotefile(' '.join(ma[2:]),ma[1].lower())
+
 				try:await bot.send_message(mc,o)
 				except discord.errors.HTTPException:await bot.send_message(mc,'Too many matches ('+str(o.count('\n'))+')')
 			# GAMES

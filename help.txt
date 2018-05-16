@@ -250,6 +250,8 @@ moki [subcommand]
 		|give amt M$ to acct
 	help
 		|info
+outage
+	|information about recent mobot outages
 phoon
 	|fetch current lunar phase
 prequel (number)

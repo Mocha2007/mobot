@@ -63,13 +63,17 @@ quotefiles = [
 'amp',
 'bee',
 'hi',
-'info',
-'link',
 'moquote',
 'prequel',
 'spidey',
 'tips',
 'tng'
+]
+
+wholequotefiles = [
+'info',
+'link',
+'outage'
 ]
 
 special = {
