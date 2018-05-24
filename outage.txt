@@ -1,9 +1,9 @@
 Mobot Outages and Interruptions in the Last Week
 
+20 May 2018
+	An outage began shortly before 1:00 AM EDT due to a local power outage and was fixed around 9:45 AM EDT
+
 17-18 May 2018
 	An scheduled outage began 10:00 PM EDT and was completed around 6:00 AM EDT
-
-15 May 2018
-	An outage began between 1:39 AM EDT and 1:41 EDT and was resolved around 7:00 AM EDT
 
 I am a good boi and am (almost) never sleeping :3
