@@ -407,6 +407,10 @@ verbs = {
 ('eo','is','it','imus','itis','eunt','ire'),
 ('possum','potes','potest','possumus','potestis','possunt','posse')
 ),
+'mk-aorist':(
+('кажав','кажа','кажа','кажавме','кажавте','кажаа','каже'),
+('реков','рече','рече','рековме','рековте','рекоа','рече')
+),
 }
 
 #h₁, *h₂, *h₃
@@ -430,6 +434,7 @@ pronouns = {
 'eo':('the present','the past','the future','the conditional','the imperative'),
 'fr':('je','tu','il','nous','vous','ils'),
 'la':('ego','tu','is','nos','vos','ei'), # using the masculine rather than the neuter due to the ambiguity of ea
+'mk-aorist':('јас','ти','тој','ние','вие','тие'),
 }
 quit = ('exit','quit')
 

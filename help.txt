@@ -106,6 +106,7 @@ game [command]
 		|eo (2 verbs)
 		|fr (21 verbs)
 		|la (4 verbs)
+		|mk-aorist (2 verbs)
 	word (word)
 		|begin a game of mastermind
 		|if no word is specified,
