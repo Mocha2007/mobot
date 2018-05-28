@@ -57,7 +57,7 @@ huracan = telnetlib.Telnet(host='rainmaker.wunderground.com')
 def hurricane(x):
 	try:
 		x = int(x)
-		if not 0<x<6:x=1
+		if not 0<x<6:x='1'
 		x = str(x)
 	except:x='1'
 	huracan.read_until(b':',timeout=1) # PRESS RETURN TO CONTINUE
