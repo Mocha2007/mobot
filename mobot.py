@@ -701,6 +701,7 @@ def vrleaderboard(lang,verb,n):
 	return '```\ns \tusername\n'+oo+'```'
 
 async def associate(message):
+	idk = ('idk','skip','pass')
 	ma = message.author
 	mc = message.channel
 	await bot.send_message(mc,'A new game of **Associate** has begun!')
@@ -732,7 +733,11 @@ async def associate(message):
 		while 1:
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			mcl = msg.content.lower()
-			if not search(mcl,'[^a-z-]'):break
+			if mcl in idk or mcl in quit or mcl == 'stats':break
+			if not search(mcl,'[^a-z-]'):
+				if mcl in word or word in mcl:
+					await bot.send_message(mc,'Your word must contain the word, and the word must not contain yours.')
+				else:break
 			else:
 				await bot.send_message(mc,'Your word must contain only the letters a-z and hyphens.')
 		# quit
@@ -747,7 +752,7 @@ async def associate(message):
 				await bot.send_message(mc,o)
 			except:
 				await bot.send_message(mc,'No stats for this word!')
-		elif mcl in ('idk','skip','pass'):
+		elif mcl in idk:
 			pass
 		# was message in list?
 		elif mcl in wordstats1:
