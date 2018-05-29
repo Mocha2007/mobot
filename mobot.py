@@ -701,6 +701,7 @@ def vrleaderboard(lang,verb,n):
 	return '```\ns \tusername\n'+oo+'```'
 
 async def associate(message):
+	await bot.send_message(mc,'A new game of **Associate** has begun!')
 	ma = message.author
 	mc = message.channel
 	while 1:
@@ -719,7 +720,7 @@ async def associate(message):
 		s = sum(wordstats2)
 		wordstats2 = list(map(lambda x:x/s,wordstats2))
 		# text
-		await bot.send_message(mc,'A new game of **Associate** has begun! Your word is **'+word+'**! Type a word associated with it!')
+		await bot.send_message(mc,'Your word is **'+word+'**! Type a word associated with it!')
 		msg = await bot.wait_for_message(channel=mc,author=ma)
 		# quit
 		mcl = msg.content.lower()
