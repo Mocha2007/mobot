@@ -734,7 +734,7 @@ async def associate(message):
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			mcl = msg.content.lower()
 			if mcl in idk or mcl in quit or mcl == 'stats':break
-			if not search(mcl,'[^a-z-]'):
+			if not search('[^a-z-]',mcl):
 				if mcl in word or word in mcl:
 					await bot.send_message(mc,'Your word must not contain the word, and the word must not contain yours.')
 				else:break
