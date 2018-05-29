@@ -727,11 +727,14 @@ async def associate(message):
 		if mcl in quit:break
 		# stats
 		if mcl == 'stats':
-			o='```'
-			for i in range(len(wordstats1)):
-				o+='\n'+wordstats1[i]+'\t'+str(round(wordstats2[2],4))
-			o+='```'
-			await bot.send_message(mc,o)
+			try:
+				o='```'
+				for i in range(len(wordstats1)):
+					o+='\n'+wordstats1[i]+'\t'+str(round(wordstats2[2],4))
+				o+='```'
+				await bot.send_message(mc,o)
+			except:
+				await bot.send_message(mc,'No stats for this word!')
 		elif mcl in ('idk','skip','pass'):
 			pass
 		# was message in list?
