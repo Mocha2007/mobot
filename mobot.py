@@ -704,12 +704,19 @@ async def associate(message):
 	ma = message.author
 	mc = message.channel
 	await bot.send_message(mc,'A new game of **Associate** has begun!')
+	used = []
 	while 1:
 		# regenerate list
 		associatefile = open('associate.txt','r').read()
 		wordlist = list(map(lambda x:x[0:2]+[int(x[2])],map(lambda x:x.split('\t'),associatefile.split('\n'))))
 		# choose word
-		word = c(wordlist)[c([0,1])]
+		i = 0
+		while 1:
+			word = c(wordlist)[c([0,1])]
+			if word not in used:break
+			if i > 999:
+				used = []
+				break
 		# generate word stats
 		wordstats1 = []
 		wordstats2 = []
@@ -757,6 +764,7 @@ async def associate(message):
 			await bot.send_message(mc,x+'body agrees!')
 			# add
 			open("associate.txt", "a").write('\n'+word+'\t'+mcl+'\t1')
+		used.append(word)
 	await bot.send_message(mc,'Bye-bye!~ ^_^')
 	return False
 
