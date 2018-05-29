@@ -700,6 +700,52 @@ def vrleaderboard(lang,verb,n):
 		oo+=str(entry[0])+'\t'+entry[1]+'\n'
 	return '```\ns \tusername\n'+oo+'```'
 
+async def associate(message):
+	ma = message.author
+	mc = message.channel
+	while 1:
+		# regenerate list
+		associatefile = open('associate.txt','r').read()
+		wordlist = list(map(lambda x:x[0:2]+[int(x[2])],map(lambda x:x.split('\t'),associatefile.split('\n'))))
+		# choose word
+		word = c(wordlist)[c([0,1])]
+		# generate word stats
+		wordstats1 = []
+		wordstats2 = []
+		for match in wordlist:
+			if match[0] == word:
+				wordstats1.append(match[1])
+				wordstats2.append(match[2])
+		s = sum(wordstats2)
+		wordstats2 = list(map(lambda x:x/s,wordstats2))
+		# text
+		await bot.send_message(mc,'A new game of **Associate** has begun! Your word is **'+word+'**! Type a word associated with it!')
+		msg = await bot.wait_for_message(channel=mc,author=ma)
+		# quit
+		if msg in quit:break
+		# was message in list?
+		mcl = msg.content.lower()
+		if mcl in wordstats1:
+			i = wordstats1.index(mcl)
+			await bot.send_message(mc,str(round(wordstats2[i]*100,2))+'% agree!')
+			# add
+			target = word+'\t'+mcl
+			for line in associatefile.split('\n'):
+				if line[:len(target)] == target:
+					n = int(line[len(target)+1:])
+					oldline = target+'\t'+str(n)
+					newline = target+'\t'+str(n+1)
+					associatefile = associatefile.replace(oldline,newline)
+					open("associate.txt", "w").write(associatefile)
+					break
+		else:
+			# I feel clever for the following couple lines... :^)
+			x = 'No' if len(wordstats1) else 'Every'
+			await bot.send_message(mc,x+'body agrees!')
+			# add
+			open("associate.txt", "a").write('\n'+word+'\t'+mcl+'\t1')
+	return False
+
 async def verbrace(args,mc):
 	forms = pronouns[args[1]]
 	word = c(verbs[args[1]])
@@ -1177,6 +1223,8 @@ async def on_message(message):
 				args = n.split(' ')[2:]
 				if na[2] == '24':
 					await twentyfour(mc)
+				elif na[2] == 'associate':
+					await associate(message)
 				elif na[2] == 'gtn':
 					await gtn(args,mc)
 				elif na[2] == 'g2/3':
