@@ -717,6 +717,7 @@ async def associate(message):
 			if i > 999:
 				used = []
 				break
+			i+=1
 		# generate word stats
 		wordstats1 = []
 		wordstats2 = []
@@ -728,9 +729,13 @@ async def associate(message):
 		wordstats2 = list(map(lambda x:x/s,wordstats2))
 		# text
 		await bot.send_message(mc,'Your word is **'+word+'**! Type a word associated with it!')
-		msg = await bot.wait_for_message(channel=mc,author=ma)
+		while 1:
+			msg = await bot.wait_for_message(channel=mc,author=ma)
+			mcl = msg.content.lower()
+			if not search(mcl,'[^a-z-]'):break
+			else:
+				await bot.send_message(mc,'Your word must contain only the letters a-z and hyphens.')
 		# quit
-		mcl = msg.content.lower()
 		if mcl in quit:break
 		# stats
 		if mcl == 'stats':
