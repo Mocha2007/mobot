@@ -724,8 +724,15 @@ async def associate(message):
 		# quit
 		mcl = msg.content.lower()
 		if mcl in quit:break
+		# stats
+		if mcl == 'stats':
+			o='```'
+			for i in range(len(wordstats1)):
+				o+='\n'+wordstats1[i]+'\t'+str(round(wordstats2[2],4))
+			o+='```'
+			await bot.send_message(mc,o)
 		# was message in list?
-		if mcl in wordstats1:
+		elif mcl in wordstats1:
 			i = wordstats1.index(mcl)
 			await bot.send_message(mc,str(round(wordstats2[i]*100,2))+'% agree!')
 			# add
@@ -744,6 +751,7 @@ async def associate(message):
 			await bot.send_message(mc,x+'body agrees!')
 			# add
 			open("associate.txt", "a").write('\n'+word+'\t'+mcl+'\t1')
+	await bot.send_message(mc,'Bye-bye!~ ^_^')
 	return False
 
 async def verbrace(args,mc):
