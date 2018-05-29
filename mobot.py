@@ -722,9 +722,9 @@ async def associate(message):
 		await bot.send_message(mc,'A new game of **Associate** has begun! Your word is **'+word+'**! Type a word associated with it!')
 		msg = await bot.wait_for_message(channel=mc,author=ma)
 		# quit
-		if msg in quit:break
-		# was message in list?
 		mcl = msg.content.lower()
+		if mcl in quit:break
+		# was message in list?
 		if mcl in wordstats1:
 			i = wordstats1.index(mcl)
 			await bot.send_message(mc,str(round(wordstats2[i]*100,2))+'% agree!')
