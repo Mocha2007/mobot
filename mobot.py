@@ -701,9 +701,9 @@ def vrleaderboard(lang,verb,n):
 	return '```\ns \tusername\n'+oo+'```'
 
 async def associate(message):
-	await bot.send_message(mc,'A new game of **Associate** has begun!')
 	ma = message.author
 	mc = message.channel
+	await bot.send_message(mc,'A new game of **Associate** has begun!')
 	while 1:
 		# regenerate list
 		associatefile = open('associate.txt','r').read()
