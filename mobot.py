@@ -731,6 +731,8 @@ async def associate(message):
 				o+='\n'+wordstats1[i]+'\t'+str(round(wordstats2[2],4))
 			o+='```'
 			await bot.send_message(mc,o)
+		elif mcl in ('idk','skip','pass'):
+			pass
 		# was message in list?
 		elif mcl in wordstats1:
 			i = wordstats1.index(mcl)
