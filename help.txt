@@ -158,6 +158,8 @@ ling [command]
 		|naïve romanization of string
 	scrabble [word] (multiplier)
 		|generate the score in scrabble for a word
+	shuffle [string]
+		|shuffle the words of a sentence
 	soundex [word]
 		|generate soundex from string
 	unmojibake [string]

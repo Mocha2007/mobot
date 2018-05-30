@@ -330,6 +330,10 @@ def moling(string):
 		try:m = int(arg[2])
 		except:m = 1
 		return mochalang.scrabble(arg[1])*m
+	elif arg[0] == 'shuffle':
+		x = arg[1:]
+		shuffle(x)
+		return ' '.join(x)
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
 	elif arg[0] == 'romanize':
@@ -701,7 +705,7 @@ def vrleaderboard(lang,verb,n):
 	return '```\ns \tusername\n'+oo+'```'
 
 async def associate(message):
-	idk = ('idk','skip','pass')
+	idk = ('dunno','idk','pass','skip','unno')
 	ma = message.author
 	mc = message.channel
 	await bot.send_message(mc,'A new game of **Associate** has begun!')
