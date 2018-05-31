@@ -814,9 +814,10 @@ async def tests(message):
 				mcl = msg.content.lower()
 				if mcl == n[1]:score += 1
 			except:pass
+	else:return True
 	antiscore = length-score
 	w = mochatest.wilson(score,antiscore)
-	await bot.send_message(mc, '**'+ma.name.title()+'** correctly performs at least **'+str(round(w*100))+'%** of the time, with 95% confidence.')
+	await bot.send_message(mc, '**'+ma.name.title()+'** correctly performs at least **'+str(round(w*100))+'%** of the time, with 95% confidence.\n'+str(score)+'/'+str(length))
 	return True
 
 async def verbrace(args,mc):
