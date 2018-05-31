@@ -307,6 +307,14 @@ spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
 	|valid numbers are 0-3, inclusive
+test [area]
+	|tests a user for proficiency:
+	add
+		|addition
+	literacy
+		|fast spelling / grammar test
+	mul
+		|multiplication
 time (command)
 	|current time (UTC)
 	taken

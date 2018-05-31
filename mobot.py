@@ -10,7 +10,7 @@ from time import time,sleep
 from re import compile,findall,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate,mochatest
 from mochaxyz import *
 
 # CODE SHIT
@@ -782,6 +782,43 @@ async def associate(message):
 	await bot.send_message(mc,'Bye-bye!~ ^_^')
 	return False
 
+async def tests(message):
+	length = 20
+	ma = message.author
+	mc = message.channel
+	name = message.content[8:].lower()
+	score = 0
+	if name[:3] == 'add':
+		for i in range(length):
+			n = mochatest.rpair()
+			await bot.send_message(mc,str(n[0])+' + '+str(n[1]))
+			msg = await bot.wait_for_message(channel=mc,author=ma)
+			try:
+				if int(msg.content) == sum(n):score += 1
+			except:pass
+	elif name[:3] == 'mul':
+		for i in range(length):
+			n = mochatest.rpair()
+			await bot.send_message(mc,str(n[0])+' * '+str(n[1]))
+			msg = await bot.wait_for_message(channel=mc,author=ma)
+			try:
+				if int(msg.content) == n[0]*n[1]:score += 1
+			except:pass
+	elif name == 'literacy':
+		length = 5
+		for i in range(length):
+			n = mochatest.rgrammar()
+			await bot.send_message(mc,n[0])
+			msg = await bot.wait_for_message(channel=mc,author=ma)
+			try:
+				mcl = msg.content.lower()
+				if mcl == n[1]:score += 1
+			except:pass
+	antiscore = length-score
+	w = mochatest.wilson(score,antiscore)
+	await bot.send_message(mc, '**'+ma.name.title()+'** correctly performs at least **'+str(round(w*100))+'%** of the time, with 95% confidence.')
+	return True
+
 async def verbrace(args,mc):
 	forms = pronouns[args[1]]
 	word = c(verbs[args[1]])
@@ -1181,6 +1218,8 @@ async def on_message(message):
 				await bot.send_message(mc, str(moling(m[8:])))
 			elif na[1] == 'mbti':
 				await bot.send_message(mc, str(mbti(m[8:])))
+			elif na[1] == 'test':
+				await tests(message)
 			elif na[1] == 'time':
 				if na[2] == 'taken':
 					await bot.send_message(mc, 'm! time diff')

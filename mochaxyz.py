@@ -436,7 +436,25 @@ pronouns = {
 'la':('ego','tu','is','nos','vos','ei'), # using the masculine rather than the neuter due to the ambiguity of ea
 'mk-aorist':('јас','ти','тој','ние','вие','тие'),
 }
+
 quit = ('exit','quit')
+
+grammarq = (
+# spelling A
+("A melon with sweet orange flesh, rhyming with *elope*","cantaloupe"),
+# spelling B
+("[their/there/they're] going to that store over [their/there/they're] to get [their/there/they're] paychecks.","they're there their"),
+("[were/we're/where] are we going? Really? I thought we [were/we're/where] going over there instead.","where were"),
+("[your/you're] sister is being unreasonable. [your/you're] too much of a pushover! Just state [your/you're] desires!","your you're your"),
+("The death strongly [affected/effected] John, who recognized the [affects/effects] of his wife's death.","affected effects"),
+("Our right to [bare/bear] arms will never be impeded by your pointless lawmaking!","bear"),
+("I'm upset. Why? I think I'm gonna [loose/lose] my bow. My grip on the bow is simple too [loose/lose] to properly [loose/lose] any arrows.","lose loose loose"),
+("Hey John, I need your [advice/advise]. Sorry Dave, I'm too busy waxing my candle to [advice/advise].","advice advise"),
+("The asparagus in the meal greatly [complements/compliments] the beef - my [complements/compliments] to the chef!","complements compliments"),
+# grammar
+("If I ____ there, I would have been able to see the meteor shower too.","were"),
+("I'm going to _____ back and relax on this couch. (means *recline*, starts with an *L*)","lie"),
+)
 
 xskey = (
 ('b_<','ɓ'),
