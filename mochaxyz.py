@@ -67,7 +67,8 @@ quotefiles = [
 'prequel',
 'spidey',
 'tips',
-'tng'
+'tng',
+'vicious'
 ]
 
 wholequotefiles = [
