@@ -805,7 +805,7 @@ async def tests(message):
 				if int(msg.content) == n[0]*n[1]:score += 1
 			except:pass
 	elif name == 'literacy':
-		length = 5
+		length = 10
 		for i in range(length):
 			n = mochatest.rgrammar()
 			await bot.send_message(mc,n[0])

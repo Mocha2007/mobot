@@ -455,6 +455,15 @@ grammarq = (
 # grammar
 ("If I ____ there, I would have been able to see the meteor shower too.","were"),
 ("I'm going to _____ back and relax on this couch. (means *recline*, starts with an *L*)","lie"),
+("I'm _____ to the store, and when I _____ back I need you to _____ the dishwasher. (Conjugate **run**)","running run run"),
+("Ralph and Suzie are sitting [above/in/on/over] the tree, kissing.","in"),
+("You _____ need a bigger boat. (conjugate **be going to**)","are going to"),
+("Every time I get to class early I [do/make] sure to [do/make] my homework.","make do"),
+("It _____ over until it's over. (Conjugate **to not be** in the negative, making sure to **use a contraction**)","isn't"),
+# comprehension
+("I never _____ to school on an empty stomach, and I _____ sure to always pack a healthy lunch. (use **go, make**)","make do"),
+# wut wut in da butt
+("Wh'appenin'?! Wh'ever muh man, you guy are super yeh, y'know? Type **doot** for good bones and calcium","doot"),
 )
 
 xskey = (
