@@ -1,3 +1,7 @@
+albanian
+armenian
+basque
+bosnian
 breton
 catalan
 croatian
@@ -9,23 +13,33 @@ estoian
 finnish
 french
 frisian
+galician
+georgian
 german
 greek
 hungarian
 irish
 italian
+kashubian
 latvian
 lithuanian
 macedonian
 norwegian
+occitan
 polish
 portuguese
 romanian
 russian
+rusyn
+sardinian
 serbian
 scots
+sicilian
+slovak
+slovene
 spanish
 swedish
+tsakonian
 ukrainian
 
 arabic
@@ -52,24 +66,34 @@ malay
 
 amharic
 berber
+swahili
 taa
 xhosa
 
+blackfoot
 cherokee
+cree
 greenlandic
 iroquois
 kumeyaay
+mi'kmaq
 navajo
+ojibwe
 
+aymara
 guarani
+mapuche
 piraha
-
-esperanto
-toki pona
-volapuk
+quechuan
 
 akkadian
 etruscan
 latin
 oscan
 sumerian
+
+esperanto
+klingon
+solresol
+valyrian
+volapuk
