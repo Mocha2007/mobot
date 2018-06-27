@@ -5,14 +5,18 @@ czech
 danish
 dutch
 english
+estoian
+finnish
 french
+frisian
 german
 greek
 hungarian
 irish
 italian
+latvian
+lithuanian
 macedonian
-mandarin
 norwegian
 polish
 portuguese
@@ -25,10 +29,14 @@ swedish
 ukrainian
 
 arabic
+aramaic
+cantonese
 japanese
 kannada
+mandarin
 turkish
 
+amharic
 berber
 taa
 xhosa
@@ -47,7 +55,6 @@ toki pona
 volapuk
 
 akkadian
-ancient greek
 etruscan
 latin
 oscan
