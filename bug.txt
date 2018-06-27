@@ -1,8 +1,7 @@
 CHESS
 m! birthday
 add biomes
-wiktionary synonyms
-wt abbr/pl/etc
+wiktionary synonyms, abbr/pl/etc
 add systems of equations solver
 How about a storyteller? Program some old folk tales that you like or that you run into From all over the place
 tarot
@@ -11,5 +10,3 @@ METAR api
 jisho.org API
 USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
-game star > raspberry > yellow ...
-en-languages hangman mode

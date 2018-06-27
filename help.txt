@@ -91,7 +91,7 @@ game [command]
 		|begin a game of hangman
 		|if no language is specified,
 		|English will be selected:
-		|en, fr, la
+		|en, en-languages, fr, la
 	llama
 		|port of Llama Adventure for Mobot
 		|WIP, under construction.

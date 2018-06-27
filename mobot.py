@@ -493,6 +493,7 @@ def rword(lang,min):
 	replace = '\n.?,!0123456789[]()":;'
 	if lang == 'la':corpus = open("cdbg.txt", "r").read()
 	elif lang == 'fr':corpus = open("lg.txt", "r").read()
+	elif lang[:7] == 'en-lang':corpus = open("en-languages.txt", "r").read()
 	else:corpus = open("bee.txt", "r").read()
 	for char in replace:
 		corpus = corpus.replace(char,' ')
@@ -687,6 +688,8 @@ async def hangman(args,mc):
 						await bot.send_message(mc, '**'+guess+'** is not in the word.')
 				elif guess == word:
 					await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
+					if 'en-lang' in lang: # To Appease Yata
+						await bot.send_message(mc,'https://en.wikipedia.org/wiki/'+word.title()+'_language')
 					return False
 				#display word
 				await bot.send_message(mc, '**'+known+'**\n'+faill)
