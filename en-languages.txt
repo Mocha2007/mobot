@@ -89,12 +89,23 @@ yakan
 afrikaans
 amharic
 berber
+chewa
+comorian
+kinyarwanda
+kirundi
 malagasy
+ndebele
+sepedi
 sesotho
+setswana
+shona
 somali
 swahili
+swati
 taa
 tigrinya
+tsonga
+venda
 xhosa
 zulu
 
