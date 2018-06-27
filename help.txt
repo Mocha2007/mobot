@@ -90,7 +90,8 @@ game [command]
 	hangman (language_code)
 		|begin a game of hangman
 		|if no language is specified,
-		|English will be selected
+		|English will be selected:
+		|en, fr, la
 	llama
 		|port of Llama Adventure for Mobot
 		|WIP, under construction.
@@ -109,7 +110,7 @@ game [command]
 		|eo (2 verbs)
 		|fr (21 verbs)
 		|la (4 verbs)
-		|mk-aorist (2 verbs)
+		|mk-aorist (6 verbs)
 	word (word)
 		|begin a game of mastermind
 		|if no word is specified,
