@@ -154,8 +154,16 @@ oscan
 phrygian
 sumerian
 
+eremoran
 esperanto
+interslavic
+ithkuil
 klingon
+laadan
+lojban
+navi
+quenya
+sindarin
 solresol
 valyrian
 volapuk
