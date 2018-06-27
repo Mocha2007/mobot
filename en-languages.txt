@@ -49,6 +49,8 @@ cantonese
 japanese
 hindi
 kannada
+khmer
+korean
 mandarin
 marathi
 punjabi
@@ -133,9 +135,15 @@ piraha
 quechuan
 
 akkadian
+elamite
 etruscan
+gaulish
+harappan
+hattic
+hurrian
 latin
 oscan
+phrygian
 sumerian
 
 esperanto
