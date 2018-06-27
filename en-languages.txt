@@ -30,11 +30,25 @@ ukrainian
 
 arabic
 aramaic
+bengali
 cantonese
 japanese
+hindi
 kannada
 mandarin
+marathi
+punjabi
+tamil
+telugu
+thai
 turkish
+urdu
+vietnamese
+wu
+yue
+
+javanese
+malay
 
 amharic
 berber
