@@ -61,14 +61,42 @@ vietnamese
 wu
 yue
 
+aklanon
+bikol
+cebuano
+chavacano
+filipino
+hiligaynon
+ibanag
+ilocano
+ivatan
 javanese
+kapampangan
+madurese
+maguindanao
 malay
+maranao
+minangkabau
+pangasinan
+sambal
+sundanese
+surigaonon
+tagalog
+tausug
+waray
+yakan
 
+afrikaans
 amharic
 berber
+malagasy
+sesotho
+somali
 swahili
 taa
+tigrinya
 xhosa
+zulu
 
 blackfoot
 cherokee
