@@ -87,14 +87,20 @@ waray
 yakan
 
 afrikaans
+akan
 amharic
 berber
 chewa
 comorian
+fulani
+hausa
+igbo
 kinyarwanda
 kirundi
 malagasy
+mossi
 ndebele
+oromo
 sepedi
 sesotho
 setswana
@@ -107,6 +113,7 @@ tigrinya
 tsonga
 venda
 xhosa
+yoruba
 zulu
 
 blackfoot
