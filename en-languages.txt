@@ -63,8 +63,10 @@ vietnamese
 wu
 yue
 
+ainu
 aklanon
 bikol
+burushaski
 cebuano
 chavacano
 filipino
@@ -74,17 +76,21 @@ ilocano
 ivatan
 javanese
 kapampangan
+kusunda
 madurese
 maguindanao
 malay
 maranao
 minangkabau
+nihali
+nivkh
 pangasinan
 sambal
 sundanese
 surigaonon
 tagalog
 tausug
+walmiki
 waray
 yakan
 
@@ -122,9 +128,11 @@ blackfoot
 cherokee
 cree
 greenlandic
+hopi
 iroquois
 kumeyaay
 mi'kmaq
+natchez
 navajo
 ojibwe
 
