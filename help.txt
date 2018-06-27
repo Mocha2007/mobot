@@ -162,6 +162,10 @@ ling [command]
 		|shuffle the words of a sentence
 	soundex [word]
 		|generate soundex from string
+	square [#] (freq/scrabble)
+		|make an NxN square of random letters
+		|...optionally, using scrabble frequencies,
+		|or average English-language frequencies.
 	unmojibake [string]
 		|undoes most common form of mojibake
 		|(windows-1252 -> utf-8)

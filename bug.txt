@@ -12,3 +12,4 @@ jisho.org API
 USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
 game star > raspberry > yellow ...
+en-languages hangman mode

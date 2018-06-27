@@ -336,6 +336,13 @@ def moling(string):
 		return ' '.join(x)
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
+	elif arg[0] == 'square':
+		try:
+			if arg[2] in ('scrabble','freq'):second = arg[2]
+			else:second = 0
+		except:second = 0
+		try:return mochalang.lettersquare(int(arg[1]),second)
+		except:return '>:U'
 	elif arg[0] == 'romanize':
 		return mochalang.romanize(' '.join(arg[1:]))
 	elif arg[0] == 'unmojibake':
