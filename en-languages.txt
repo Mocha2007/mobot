@@ -9,7 +9,7 @@ czech
 danish
 dutch
 english
-estoian
+estonian
 finnish
 french
 frisian
