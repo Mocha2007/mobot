@@ -1278,6 +1278,9 @@ async def on_message(message):
 			elif na[1] == 'weather':
 				try:await bot.send_message(mc, mochaweather.main(m[11:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
+			elif na[1] == 'welcome':
+				try:await bot.send_message(mc, welcome[m[11:]])
+				except:await bot.send_message(mc, 'Welcome!')
 			elif na[1] == 'hurricane':
 				try:await bot.send_message(mc, mochaweather.hurricane(m[13:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisories')

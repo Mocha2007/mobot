@@ -148,6 +148,18 @@ rspecial = {
 'right, mobot':mobotyes,
 }
 
+welcome = {
+'de':'Willkommen!',
+'en':'Welcome!',
+'eo':'Bonvenon!',
+'es':'Bienvenido!',
+'fr':'Bienvenue!',
+'haw':'Aloha!',
+'la':'Salve!',
+'nl':'Welkom!',
+'tr':'Hoş geldin!',
+}
+
 units = {
 'a':(1,'ampere\ncurrent - metric\nThe ampere is that constant current which, if maintained in two straight parallel conductors of infinite length, of negligible circular cross-section, and placed one meter apart in vacuum, would produce between these conductors a force equal to 2e-7 newtons per meter of length.'),
 'atm':(101325,'atmosphere\npressure - nonstandard\nroughly the surface pressure of the earth'),
