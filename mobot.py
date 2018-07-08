@@ -661,6 +661,7 @@ async def hangman(args,mc):
 	await bot.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
 	faill = ''
+	won = False
 	while fails<10:
 		msg = await bot.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
@@ -679,22 +680,25 @@ async def hangman(args,mc):
 								known = ''.join(known)
 						#won?
 						if 'X' not in known:
-							await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
-							mochagive(1,msg.author.name.lower())
-							return False
+							won = True
+							break
 					else:
 						fails+=1
 						faill+=guess+' '
 						await bot.send_message(mc, '**'+guess+'** is not in the word.')
 				elif guess == word:
-					await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
-					if 'en-lang' in lang: # To Appease Yata
-						await bot.send_message(mc,'https://en.wikipedia.org/wiki/'+word.title()+'_language')
-					return False
+					won = True
+					break
 				#display word
 				await bot.send_message(mc, '**'+known+'**\n'+faill)
 			except:pass
-	await bot.send_message(mc, 'You lost. The word was **'+word+'**. uwu')
+	if won:
+		await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
+		if 'en-lang' in lang: # To Appease Yata
+			await bot.send_message(mc,'https://en.wikipedia.org/wiki/'+word.title()+'_language')
+		mochagive(1,msg.author.name.lower())
+	else:
+		await bot.send_message(mc, 'You lost. The word was **'+word+'**. uwu')
 	return False
 
 def vrleaderboard(lang,verb,n):
@@ -1032,7 +1036,7 @@ async def mfilter(message):
 
 mochaid = open('../mocha.txt','r').read()
 def bankwrite(bank):
-	del bank[mochaid]
+	#del bank[mochaid]
 	s = ''
 	for account in bank:
 		s+='\n'+account+'\t'+str(bank[account])
