@@ -152,12 +152,20 @@ welcome = {
 'de':'willkommen',
 'en':'welcome',
 'eo':'bonvenon',
+'esperant\'':'je bonven\'',
+'eremoran':'henlôm',
 'es':'bienvenido',
 'fr':'bienvenue',
 'haw':'aloha',
+'jp':'ようこそ',
+'kelen':'anlāsi',
 'la':'salve',
 'nl':'welkom',
+'sk':'vitajte',
 'tr':'hoş geldin',
+'verdurian':'dobrezhanul',
+'waj':'beec',
+'wenedyk':'bieńwięty',
 }
 
 units = {
