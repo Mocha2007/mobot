@@ -149,6 +149,7 @@ rspecial = {
 }
 
 welcome = {
+'akk':'𒁲',
 'de':'willkommen',
 'en':'welcome',
 'eo':'bonvenon',
@@ -161,7 +162,9 @@ welcome = {
 'kelen':'anlāsi',
 'la':'salve',
 'nl':'welkom',
+'pl':'vitaj',
 'sk':'vitajte',
+'tlh':' nuqneH', # needs space so capitalization doesn't affect its case-sensitive orthography
 'tr':'hoş geldin',
 'verdurian':'dobrezhanul',
 'waj':'beec',
