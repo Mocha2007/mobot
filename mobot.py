@@ -116,9 +116,9 @@ def momath(string):
 		elif arg[1] in ('trapezoid','trapezium'):
 			return float(arg[4])*(float(arg[2])+float(arg[3]))/2
 		elif arg[1] == 'triangle':
-			a = arg[2]
-			b = arg[3]
-			c = arg[4]
+			a = float(arg[2])
+			b = float(arg[3])
+			c = float(arg[4])
 			s = (a+b+c)/2
 			return (s*(s-a)*(s-b)*(s-c))**.5
 		elif arg[1] == 'trigon':
