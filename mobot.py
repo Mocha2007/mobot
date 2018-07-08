@@ -1287,6 +1287,7 @@ async def on_message(message):
 					code = na[2]
 					try:
 						bonus = ' '.join(na[3:])
+						if bonus == '':raise ValueError('no blenk plox')
 						await bot.send_message(mc, welcome[code].title()+', '+bonus+'!')
 					except:await bot.send_message(mc, welcome[code].title()+'!')
 				except:await bot.send_message(mc, 'Welcome!')
