@@ -149,15 +149,15 @@ rspecial = {
 }
 
 welcome = {
-'de':'Willkommen!',
-'en':'Welcome!',
-'eo':'Bonvenon!',
-'es':'Bienvenido!',
-'fr':'Bienvenue!',
-'haw':'Aloha!',
-'la':'Salve!',
-'nl':'Welkom!',
-'tr':'Hoş geldin!',
+'de':'willkommen',
+'en':'welcome',
+'eo':'bonvenon',
+'es':'bienvenido',
+'fr':'bienvenue',
+'haw':'aloha',
+'la':'salve',
+'nl':'welkom',
+'tr':'hoş geldin',
 }
 
 units = {
