@@ -103,7 +103,7 @@ nobody can stop me!!
 'rank':'I know you are, but how do *I* smell?',
 'rasputin':'https://www.youtube.com/watch?v=2wGQUXpWMEI',
 'techmology':'What is it all about?\nIs it good? Or is it whack?',
-'tng':'https://www.youtube.com/watch?v=kRXry95Q6e0',
+'tngclips':'https://www.youtube.com/watch?v=kRXry95Q6e0',
 'up':'five more minutes sky daddy',
 'vc':'\U0001F1FB \U0001F1E8',
 'what is love':'baby don\'t hurt me\ndon\'t hurt me\nno more',
