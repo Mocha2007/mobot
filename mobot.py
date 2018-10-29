@@ -1172,6 +1172,7 @@ async def on_message(message):
 	await bot.process_commands(message)
 	global anchor
 	global lastmessage
+	global timecheck
 	m = message.content
 	mc = message.channel
 	n = m.lower()
@@ -1349,10 +1350,10 @@ async def on_message(message):
 			elif na[1][:4] == 'moki':
 				await bot.send_message(mc, mochapoint(message))
 			# SECRET DEBUG
-			elif na[1] == 'anchor' and message.author.name=='mocha':
+			elif na[1] == 'anchor' and message.author.id==mid:
 				anchor = mc
 				await bot.delete_message(message)
-			elif na[1] == 'torpedo' and message.author.name=='mocha':
+			elif na[1] == 'torpedo' and message.author.id==mid:
 				await bot.send_message(anchor,m[11:])
 				await bot.delete_message(message)
 			# QUOTES
@@ -1398,6 +1399,12 @@ async def on_message(message):
 			elif type == 'without' and not search(compile(lookfor),m):
 				await bot.delete_message(message)
 	except discord.errors.Forbidden:pass
+	# status
+	timecheck[1] = time()
+	if timecheck[1] > timecheck[0] + 60 or ('1453' in message.content and message.author.id == mochaid):
+		await bot.change_presence(game=discord.Game(name=c(open('status.txt', 'r').read().split('\n'))))
+		timecheck[0] = time()
 
 print('Connecting...')
+timecheck = [time()]*2
 bot.run(token)
