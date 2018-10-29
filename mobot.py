@@ -10,7 +10,7 @@ from time import time,sleep
 from re import compile,findall,search,sub
 from statistics import median,mode,stdev
 from winsound import PlaySound,SND_FILENAME
-import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate,mochatest
+import mochaastro,mochabf,mochagolfscript,mochalang,mochallama,mochamath,mocharpn,mochastargen,mochattt,mochamw,mochaweb,mochaweather,moclimate,mochatest,hello
 from mochaxyz import *
 
 # CODE SHIT
@@ -993,7 +993,7 @@ async def llama(message):
 	room = -1
 	state = 0
 	inv = False
-	await bot.send_message(message.channel, 'A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
+	await bot.send_message(mc, 'A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
 	while 1:
 		msg = await bot.wait_for_message(channel=mc,author=message.author)
 		if room == -1 == state:return True # exit
@@ -1001,6 +1001,45 @@ async def llama(message):
 		await bot.send_message(mc, ml[3])
 		room = ml[0]
 		state = ml[1]
+	return False
+
+async def hello_game(message):
+	ma = message.author
+	mc = message.channel
+	await bot.send_message(mc, 'A new HELLO has begun!')
+	hello.questions = eval(open('../hello_q.txt', 'r').read()) # I'm so sorry
+	hello.users = eval(open('../hello_u.txt', 'r').read()) # I'm so sorry
+	if ma.id not in hello.users:
+		hello.users[ma.id] = [[1000, 1], []]
+	while 1:
+		# await bot.send_message(mc, str(ma.name) + str(ma.id))
+		p_elo = hello.elo(hello.users[ma.id][0])
+		for i in range(10):
+			qid = randint(0, len(hello.questions)-1)
+			if qid not in hello.users[ma.id][1]:
+				break
+			elif i == 9:
+				await bot.send_message(mc, 'You appear to have answered all available questions.\nFinal Elo: '+str(p_elo))
+				return False
+		q_elo = round(hello.elo(hello.questions[qid][0]))
+		await bot.send_message(mc, hello.ask_question(qid)+'\nQuestion Elo: '+str(q_elo)+'\n Your Elo: '+str(p_elo))
+		msg = await bot.wait_for_message(channel=mc,author=ma)
+		if msg.content.lower() in quit:
+			await bot.send_message(mc, 'c r i e ;-;')
+			return True
+		else:
+			result = hello.check_answer(qid, msg.content)
+			hello.addgame(qid, p_elo, result)
+			if result:
+				await bot.send_message(mc, ':)')
+			else:
+				await bot.send_message(mc, ':(')
+			hello.users[ma.id][0][0] += q_elo + 400 * (1 if result else -1)
+			hello.users[ma.id][0][1] += 1
+			hello.users[ma.id][1].append(qid)
+			# update p + q files
+			open('../hello_q.txt', 'w').write(str(hello.questions))
+			open('../hello_u.txt', 'w').write(str(hello.users))
 	return False
 
 filters = {}
@@ -1330,6 +1369,8 @@ async def on_message(message):
 					await g23(mc)
 				elif na[2] == 'hangman':
 					await hangman(args,mc)
+				elif na[2] == 'hello':
+					await hello_game(message)
 				elif na[2] == 'llama':
 					await llama(message)
 				elif na[2] == 'numbers':

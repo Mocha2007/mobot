@@ -92,6 +92,8 @@ game [command]
 		|if no language is specified,
 		|English will be selected:
 		|en, en-languages, fr, la
+	hello
+		|begin a game of Hello!
 	llama
 		|port of Llama Adventure for Mobot
 		|WIP, under construction.
