@@ -1032,6 +1032,7 @@ async def hello_game(message):
 			hello.addgame(qid, p_elo, result)
 			if result:
 				await bot.send_message(mc, ':)')
+				mochagive(1, ma.name.lower())
 			else:
 				await bot.send_message(mc, ':(')
 			hello.users[ma.id][0][0] += q_elo + 400 * (1 if result else -1)
@@ -1155,7 +1156,7 @@ def mochapoint(message):
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	elif subcommand[0] == 'help':
-		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! word`, `m! hangman`, and `m! verbrace`.'
+		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! game word`, `m! game hangman`, `m! game hello`, and `m! game verbrace`.'
 
 	return ':/'
 
