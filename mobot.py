@@ -1101,7 +1101,10 @@ def mochapoint(message):
 	bank = {}
 	for line in file:
 		l = line.split('\t')
-		bank[l[0]]=int(l[1])
+		try:
+			bank[l[0]]=int(l[1])
+		except ValueError:
+			pass
 	bank[mochaid] = float('inf')
 	#string edit
 	subcommand = string.split(' ')
