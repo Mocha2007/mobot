@@ -1350,10 +1350,10 @@ async def on_message(message):
 			elif na[1][:4] == 'moki':
 				await bot.send_message(mc, mochapoint(message))
 			# SECRET DEBUG
-			elif na[1] == 'anchor' and message.author.id==mid:
+			elif na[1] == 'anchor' and message.author.id==mochaid:
 				anchor = mc
 				await bot.delete_message(message)
-			elif na[1] == 'torpedo' and message.author.id==mid:
+			elif na[1] == 'torpedo' and message.author.id==mochaid:
 				await bot.send_message(anchor,m[11:])
 				await bot.delete_message(message)
 			# QUOTES
