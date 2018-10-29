@@ -1155,7 +1155,7 @@ def mochapoint(message):
 				return 'Successfully transfered **'+str(amt)+'** mokis to '+user+'!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
-	elif subcommand[0] == 'help':
+	else: #if subcommand[0] == 'help':
 		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! game word`, `m! game hangman`, `m! game hello`, and `m! game verbrace`.'
 
 	return ':/'
