@@ -1155,7 +1155,7 @@ def mochapoint(message):
 					bank[tgt] = amt
 				bankwrite(bank)
 				user = 'user' if subcommand[0][:3] in giving else '<@!'+tgt+'>'
-				return 'Successfully transfered **'+str(amt)+'** mokis to '+user+'!'
+				return 'Successfully transfered **'+str(amt)+'** moki'+('s' if amt > 1 else '')+' to '+user+'!'
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	else: #if subcommand[0] == 'help':
