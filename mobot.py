@@ -1146,10 +1146,13 @@ def mochapoint(message):
 			amt = int(subcommand[2])
 			if amt<1:raise ValueError('SKREE')
 			try:
+				if bank[id] < amt:
+					raise ValueError('SKREE')
 				bank[id] -= amt
-				if bank[id]<0:raise ValueError('SKREE')
-				try:bank[tgt] += amt
-				except:bank[tgt] = amt
+				if tgt in bank:
+					bank[tgt] += amt
+				else:
+					bank[tgt] = amt
 				bankwrite(bank)
 				user = 'user' if subcommand[0][:3] in giving else '<@!'+tgt+'>'
 				return 'Successfully transfered **'+str(amt)+'** mokis to '+user+'!'
