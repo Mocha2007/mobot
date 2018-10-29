@@ -1221,7 +1221,7 @@ async def on_message(message):
 			open("log.txt", "a").write(loglook+'\n')
 			#find command
 			try:
-				if na[1] in open('../disable.txt', 'r'):
+				if na[1] in open('../disable.txt', 'r').read().split('\n'):
 					await bot.send_message(mc, "Command temporarily disabled for repairs")
 					return True
 			except FileNotFoundError:
