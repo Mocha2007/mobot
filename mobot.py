@@ -368,10 +368,12 @@ def trivia(string):
 	elif arg[0] == 'number':
 		try:
 			x = int(arg[1])
-			try:return mochaweb.numbersapi(arg[1])
-			except:pass
-		except:pass
-
+			try:
+				return mochaweb.numbersapi(arg[1])
+			except:
+				return 'unable to connect to numbersapi'
+		except:
+			return 'unknown positive integer '+arg[1]
 	return ':/'
 
 def sto(string):
