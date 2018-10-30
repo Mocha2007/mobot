@@ -2,17 +2,22 @@ from json import load
 from io import StringIO
 import urllib.request
 from re import compile,sub,findall,search
+import gzip
 
 linkpattern = r'\[\[[^\]]+?\]\]'
 limit = 499
 
 user_agent = 'MochaMW/1.0 (https://github.com/Mocha2007/mochalib)'
-headers={'User-Agent':user_agent,}
+headers={'User-Agent':user_agent,'Accept-Encoding':'gzip'}
 
 def l(site,page): #load
-	url='http://'+site+'/api.php?action=query&titles='+page+'&prop=revisions&rvprop=content&format=json&formatversion=2'
-	request=urllib.request.Request(url,None,headers)
-	webpage=urllib.request.urlopen(request).read().decode("utf-8")
+	url = 'http://'+site+'/api.php?action=query&titles='+page+'&prop=revisions&rvprop=content&format=json&formatversion=2'
+	request = urllib.request.Request(url,None,headers)
+	webpage = urllib.request.urlopen(request).read()
+	try:
+		webpage = webpage.decode("utf-8")
+	except UnicodeDecodeError:
+		webpage = gzip.decompress(webpage).decode("utf-8")
 	return load(StringIO(webpage))
 
 def read(site,page):
