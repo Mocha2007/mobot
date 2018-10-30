@@ -360,7 +360,8 @@ def trivia(string):
 	try:
 		x = int(arg[0])
 		number = True
-	except:number = False
+	except:
+		number = False
 
 	if number:
 		return mochaweb.numbersapi(arg[0])
