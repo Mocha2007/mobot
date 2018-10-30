@@ -1316,7 +1316,7 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
 			elif na[1] == 'metar':
 				try:await bot.send_message(mc, mochaweb.metar(m[9:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch metar data for '+m[9:])
+				except:await bot.send_message(mc, 'Can\'t seem to fetch metar data for '+m[9:]+'\nhttps://aviationweather.gov/dataserver/example?datatype=metar')
 			elif na[1] == 'quote':
 				try:await bot.send_message(mc, str(sto(m[9:])))
 				except:await bot.send_message(mc,'Message too Long')
