@@ -16,7 +16,11 @@ def l(url): #load
 	webpage=urllib.request.urlopen(request).read().decode("utf-8", errors='ignore')
 	return webpage
 
-swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
+try:
+	swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
+	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')
+except:
+	swears = []
 
 def udcleanup(string):
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
