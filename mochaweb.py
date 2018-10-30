@@ -18,7 +18,7 @@ def l(url): #load
 
 try:
 	swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
-	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')
+	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')[:-1]
 except:
 	swears = []
 
