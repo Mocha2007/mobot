@@ -1148,6 +1148,10 @@ def mochapoint(message):
 		except:return 'Invalid user'
 		if id == tgt:return '...no.'
 		try:
+			# easter egg
+			if 'respect' in subcommand[2]:
+				return '**respecc**\nhttps://www.youtube.com/watch?v=6FOUqQt3Kg0'
+			# main
 			amt = int(subcommand[2])
 			if amt<1:raise ValueError('SKREE')
 			try:
