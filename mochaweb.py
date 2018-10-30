@@ -40,6 +40,7 @@ def wtcleanup(string):
 
 def wikicleanup(string):
 	string = sub(r'\s?\(.*?\)','',string) # text in parens
+	string = sub(r'<ref.+?ref>','',string) # references
 	return ''.join(findall('[^.]+.',string)[:3]) # first three sentences
 
 def ud(word):
