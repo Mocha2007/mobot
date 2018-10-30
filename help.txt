@@ -253,6 +253,7 @@ mc [string]
 	|search mcwiki for string
 metar [string]
 	|get metar data
+	|-> https://aviationweather.gov/dataserver/example?datatype=metar
 moki [subcommand]
 	|currency
 	balance
