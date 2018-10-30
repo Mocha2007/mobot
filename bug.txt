@@ -11,5 +11,4 @@ jisho.org API
 USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
 trivia test
-http://iscaliforniaonfire.com/
 leaderboard for hello!

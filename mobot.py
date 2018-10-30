@@ -1356,6 +1356,9 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisories')
 			elif na[1] == 'asmrname':
 				await bot.send_message(mc,asmr(m[12:]))
+			elif na[1] == 'califire':
+				try:await bot.send_message(mc, mochaweb.califire())
+				except:await bot.send_message(mc, 'Can\'t seem to fetch california fire data')
 			elif na[1] == 'religion':
 				await bot.send_message(mc, str(religion(m[12:])))
 			elif na[1] == 'worldgen':

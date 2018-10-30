@@ -53,6 +53,8 @@ bf [program]
 	|use newlines to separate inputs
 bug [string]
 	|submit bug report/feature request
+califire
+	|is california on fire?
 coffee (string)
 	|information regarding coffee
 convert [number/subcommand] [from-unit] [to-unit]

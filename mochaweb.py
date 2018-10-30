@@ -94,3 +94,9 @@ def currency(a,b):
 	else:b = 1
 	
 	return b/a
+
+def califire():
+	page = l('http://iscaliforniaonfire.com/').split('\n')[5:7] # just the two relevant lines
+	page = '\n'.join(page) # reconnect
+	page = page.replace('<h1>', '**').replace('</h1>', '**')
+	return page
