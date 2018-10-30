@@ -12,6 +12,4 @@ USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
 trivia test
 http://iscaliforniaonfire.com/
-add hp to units (700-something watts)
-moki kul
 leaderboard for hello!

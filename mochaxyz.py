@@ -194,6 +194,7 @@ units = {
 'g':(.001,'gram\nmass - metric\nequivalent to one thousandth of a kilogram'),
 'gal':(.00454609,'gallon\nvolume - imperial\nequivalent to sixteen cups'),
 'h':(3600,'hour\ntime - SI\nequivalent to one twenty-fourth of a day, or sixty minutes'),
+'hp':(735.5,'horsepower\npower - nonstandard\nequivalent to 735.5 watts'),
 'in':(.0254,'inch\nlength - imperial\nequivalent to one-twelfth of a foot'),
 'j':(1,'joule\nenergy - metric\nequivalent to one newton-meter'),
 'jyr':(31536000,'julian year\ntime - nonstandard\nequivalent to three hundred sixty-five days'),
