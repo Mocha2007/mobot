@@ -45,9 +45,14 @@ def wtcleanup(string):
 			string = string.replace(c,'**'+str(n)+'.**',1)
 	return string[:2000]
 
+def htmlescape(string):
+	string = sub(r'&nbsp;',' ',string) # nbsp
+	return string
+
 def wikicleanup(string):
 	string = sub(r'\s?\(.*?\)','',string) # text in parens
 	string = sub(r'<ref.+?ref>','',string) # references
+	string = htmlescape(string) # escape chars
 	return ''.join(findall('[^.]+.',string)[:3]) # first three sentences
 
 def ud(word):
