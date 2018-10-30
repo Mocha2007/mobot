@@ -105,6 +105,9 @@ def metar(string):
 	page = l('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=csv&stationString='+string+'&hoursBeforeNow=1')
 	page = page.split('\n')[5:] # split & get only relevant lines
 	# halve
-	page1 = page[0].replace(',', '\t')
-	page2 = page[1].replace(',', '\t')
-	return '```\n' + page1 + '\n' + page2 + '```'
+	page1 = page[0].split(',')
+	page2 = page[1].split(',')
+	s = 'METAR data for '+string
+	for title, entry in zip(page1, page2):
+		s += '\n'+title+'\t'+entry
+	return '```\n' + s + '```'
