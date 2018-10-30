@@ -247,10 +247,12 @@ mat [command]
 		|frustrum [r1] [r2] [h]
 		|sphere [r]
 		|wedge [a] [b] [c] [h]
-mc [string]
-	|search mcwiki for string
 mbti [string]
 	|information regarding the specified mbti
+mc [string]
+	|search mcwiki for string
+metar [string]
+	|get metar data
 moki [subcommand]
 	|currency
 	balance

@@ -100,3 +100,11 @@ def califire():
 	page = '\n'.join(page) # reconnect
 	page = page.replace('<h1>', '**').replace('</h1>', '**')
 	return page
+
+def metar(string):
+	page = l('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=csv&stationString='+string+'&hoursBeforeNow=1')
+	page = page.split('\n')[5:] # split & get only relevant lines
+	# halve
+	page1 = page[0].replace(',', '\t')
+	page2 = page[1].replace(',', '\t')
+	return '```\n' + page1 + '\n' + page2 + '```'
