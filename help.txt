@@ -122,6 +122,8 @@ game [command]
 		|Key:
 		|x = one correct letter in the correct position
 		|* = one correct letter in an incorrect position
+gi [search]
+	|search google images
 gp [g] [ways]
 	|split x gp n ways
 gs [program]

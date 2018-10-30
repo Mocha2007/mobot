@@ -10,3 +10,5 @@ jisho.org API
 USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
 trivia test
+rich content https://stackoverflow.com/questions/44862112/how-can-i-send-an-embed-via-my-discord-bot-w-python
+april fools

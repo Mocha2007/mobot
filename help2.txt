@@ -25,6 +25,8 @@ filter
 	|filter setup
 game [command]
 	|games
+gi [search]
+	|search google images
 gp [g] [ways]
 	|split x gp n ways
 gs [program]

@@ -1248,6 +1248,8 @@ async def on_message(message):
 			elif na[1] == 'bf':
 				args = m[6:].split('\n')
 				await bot.send_message(mc, str(mochabf.run(args[0],args[1:])))
+			elif na[1] == 'gi':
+				await bot.send_message(mc, embed=mochaweb.gi(m[6:]))
 			elif na[1] == 'gs':
 				await bot.send_message(mc, str(mochagolfscript.run(m[6:])))
 			elif na[1] == 'gp':

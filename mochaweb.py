@@ -3,6 +3,7 @@ from re import compile,sub,findall,search,M
 from random import randint
 from json import load
 from io import StringIO
+from discord import Embed
 
 linkpattern = r'\[\[[^\]]+?\]\]'
 limit = 499
@@ -12,7 +13,7 @@ headers={'User-Agent':user_agent,}
 
 def l(url): #load
 	request=urllib.request.Request(url,None,headers)
-	webpage=urllib.request.urlopen(request).read().decode("utf-8")
+	webpage=urllib.request.urlopen(request).read().decode("utf-8", errors='ignore')
 	return webpage
 
 def udcleanup(string):
@@ -112,3 +113,18 @@ def metar(string):
 	for title, entry in zip(page1, page2):
 		s += '\n'+title+'\t'+entry
 	return '```\n' + s + '```'
+
+def gi(searchstring: str):
+	url = 'https://www.google.com/search?tbm=isch&q='+searchstring.replace(' ', '%20')
+	o = Embed(title=searchstring, type="rich", url=url, color=0x00ff00)
+	# now time to find an image!
+	page = l(url)
+	# delete first 562 lines; it's just bloated js
+	line = page.split('\n')[-1]
+	images = findall('<img.+?>', line)
+	images = list(map(lambda x: search(r'(?<=src=").+?(?=")', x), images))
+	# set image and return
+	image = images[0].group(0)
+	print(image)
+	o.set_image(url=image) # 'https://i.ytimg.com/vi/_9v1Q5MurnM/maxresdefault.jpg'
+	return o
