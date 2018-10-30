@@ -16,6 +16,8 @@ def l(url): #load
 	webpage=urllib.request.urlopen(request).read().decode("utf-8", errors='ignore')
 	return webpage
 
+swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
+
 def udcleanup(string):
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
 	string = string.replace('<br/>','\n') # newline
@@ -115,6 +117,9 @@ def metar(string):
 	return '```\n' + s + '```'
 
 def gi(searchstring: str):
+	for swear in swears:
+		if swear in searchstring:
+			return gi('nope')
 	url = 'https://www.google.com/search?tbm=isch&q='+searchstring.replace(' ', '%20')
 	o = Embed(title=searchstring, type="rich", url=url, color=0x00ff00)
 	# now time to find an image!
@@ -125,6 +130,5 @@ def gi(searchstring: str):
 	images = list(map(lambda x: search(r'(?<=src=").+?(?=")', x), images))
 	# set image and return
 	image = images[0].group(0)
-	print(image)
 	o.set_image(url=image) # 'https://i.ytimg.com/vi/_9v1Q5MurnM/maxresdefault.jpg'
 	return o
