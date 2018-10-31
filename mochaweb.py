@@ -151,14 +151,13 @@ def jisho(searchstring: str):
 	except UnicodeEncodeError:
 		return embed
 	jp_word = json['data'][0]['japanese'][0] # {} with word and reading
-	embed.add_field(name='Word', value=jp_word['word'])
-	embed.add_field(name='Reading', value=jp_word['reading'])
+	embed.add_field(name='Word', value=jp_word['word'], inline=False)
+	embed.add_field(name='Reading', value=jp_word['reading'], inline=False)
 	# o = jp_word['word']+'\n'+jp_word['reading']
-	o = '```'
+	o = ''
 	en_senses = []
 	for sense in json['data'][0]['senses']:
 		o += '\n'+', '.join(sense['parts_of_speech'])
 		o += '\n\t* '.join(['']+sense['english_definitions'])
-	o += '```'
-	embed.add_field(name='Entry', value=o)
+	embed.add_field(name='Entry', value=o, inline=False)
 	return embed
