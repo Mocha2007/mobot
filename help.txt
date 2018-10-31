@@ -145,6 +145,8 @@ hi (number)
 	|valid numbers are 0-5, inclusive
 info
 	|mobot info
+jisho [search]
+	|search jisho.org for word
 ling [command]
 	ipa [language code] [word]
 		|attempt to generate IPA for a word in language

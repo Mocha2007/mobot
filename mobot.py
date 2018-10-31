@@ -1320,6 +1320,10 @@ async def on_message(message):
 				entry = m[8:].replace(' ','%20')
 				try:await bot.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
+			elif na[1] == 'jisho':
+				#try:
+				await bot.send_message(mc, embed=mochaweb.jisho(m[9:]))
+				#except:await bot.send_message(mc, 'Can\'t seem to fetch Jisho data for '+m[9:])
 			elif na[1] == 'metar':
 				try:await bot.send_message(mc, mochaweb.metar(m[9:]))
 				except:await bot.send_message(mc, 'Can\'t seem to fetch metar data for '+m[9:]+'\nhttps://aviationweather.gov/dataserver/example?datatype=metar')

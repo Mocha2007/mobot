@@ -37,6 +37,8 @@ hurricane (area)
 	|fetch hurricane advisories
 info
 	|mobot info
+jisho [search]
+	|search jisho.org for word
 ling [command]
 	|many, many language calculations
 link

@@ -141,3 +141,24 @@ def gi(searchstring: str):
 	image = images[0].group(0)
 	o.set_image(url=image) # 'https://i.ytimg.com/vi/_9v1Q5MurnM/maxresdefault.jpg'
 	return o
+
+def jisho(searchstring: str):
+	url = 'https://jisho.org/api/v1/search/words?keyword='+searchstring
+	embed = Embed(title=searchstring, type="rich", url=url, color=0x56D926)
+	true, false = True, False
+	try:
+		json = eval(l(url))
+	except UnicodeEncodeError:
+		return embed
+	jp_word = json['data'][0]['japanese'][0] # {} with word and reading
+	embed.add_field(name='Word', value=jp_word['word'])
+	embed.add_field(name='Reading', value=jp_word['reading'])
+	# o = jp_word['word']+'\n'+jp_word['reading']
+	o = '```'
+	en_senses = []
+	for sense in json['data'][0]['senses']:
+		o += '\n'+', '.join(sense['parts_of_speech'])
+		o += '\n\t* '.join(['']+sense['english_definitions'])
+	o += '```'
+	embed.add_field(name='Entry', value=o)
+	return embed
