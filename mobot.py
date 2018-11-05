@@ -1130,11 +1130,13 @@ def mochapoint(message):
 			wealth.pop()
 		rich = str(round((1 - len(wealth) / people)*100,2))
 		# continue
-		try:
-			percent = str(round(int(bank[id])/summation*100,2))
-		except KeyError:
-			percent = '0'
-		if id == mochaid:percent='errythin'
+		if id == mochaid:
+			percent='errythin'
+		else:
+			try:
+				percent = str(round(int(bank[id])/summation*100,2))
+			except KeyError:
+				percent = '0'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'%**.\n**'+rich+'%** of people own **95%** of the wealth!'
 	elif subcommand[0][:3] in donating+giving:
 		if subcommand[0][:3] in donating:
