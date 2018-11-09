@@ -1345,6 +1345,8 @@ async def on_message(message):
 				except:await bot.send_message(mc, 'Can\'t seem to fetch earthquake information')
 			elif na[1] == 'solve':
 				await bot.send_message(mc, mocharpn.infix(m[9:]))
+			elif na[1] == 'tarot':
+				await bot.send_message(mc, embed=mochaweb.tarot())
 			elif na[1] == 'filter':
 				await mfilter(message)
 			elif na[1] == 'zodiac':

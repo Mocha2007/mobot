@@ -1,6 +1,6 @@
 import urllib.request,mochamw,telnetlib
 from re import compile,sub,findall,search,M
-from random import randint
+from random import choice, randint
 from json import load
 from io import StringIO
 from discord import Embed
@@ -160,4 +160,17 @@ def jisho(searchstring: str):
 		o += '\n'+', '.join(sense['parts_of_speech'])
 		o += '\n\t* '.join(['']+sense['english_definitions'])
 	embed.add_field(name='Entry', value=o, inline=False)
+	return embed
+
+def tarot():
+	json = eval(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json'))
+	cards = json["tarot_interpretations"]
+	card = choice(cards)
+	#
+	embed = Embed(title=card['name'], type="rich", color=0x8000FF)
+	embed.add_field(name='Fortune Telling', value='\n'.join(card['fortune_telling']), inline=False)
+	embed.add_field(name='Keywords', value='\n'.join(card['keywords']), inline=False)
+	embed.add_field(name='Rank', value=str(card['rank']), inline=False)
+	embed.add_field(name='Suit', value=card['suit'], inline=False)
+	# todo meanings
 	return embed

@@ -323,6 +323,8 @@ spidey (number)
 	|line #number from spidey file
 	|leave out number for random line
 	|valid numbers are 0-3, inclusive
+tarot
+	|getcho fortune
 test [area]
 	|tests a user for proficiency:
 	add
