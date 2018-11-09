@@ -4,7 +4,6 @@ add biomes
 wiktionary synonyms, abbr/pl/etc
 add systems of equations solver
 How about a storyteller? Program some old folk tales that you like or that you run into From all over the place
-tarot
 better dice incl. `m! dice 2d4+2`
 USDA API https://ndb.nal.usda.gov/ndb/api/doc
 union/intersection of user roles
