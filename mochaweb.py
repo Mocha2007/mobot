@@ -169,9 +169,9 @@ def tarot():
 	#
 	embed = Embed(title=card['name'].title(), type="rich", color=0x8000FF)
 	embed.add_field(name='Fortune Telling', value='\n'.join(card['fortune_telling']), inline=False)
-	embed.add_field(name='Keywords', value='\n'.join(card['keywords']), inline=False)
+	embed.add_field(name='Keywords', value='\n'.join(card['keywords']).title(), inline=False)
 	embed.add_field(name='Meanings (Light)', value='\n'.join(card['meanings']['light']), inline=False)
 	embed.add_field(name='Meanings (Shadow)', value='\n'.join(card['meanings']['shadow']), inline=False)
 	embed.add_field(name='Rank', value=str(card['rank']), inline=False)
-	embed.add_field(name='Suit', value=card['suit'], inline=False)
+	embed.add_field(name='Suit', value=card['suit'].title(), inline=False)
 	return embed
