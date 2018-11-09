@@ -1053,7 +1053,7 @@ async def jeopardy(message):
 	while 1:
 		attempt = await bot.wait_for_message(channel=mc)
 		if attempt.content.lower() == answer.lower():
-			await bot.send_message(mc, '"'+answer+'" is correct!')
+			await bot.send_message(mc, '**'+answer+'** is correct!')
 			break
 		elif attempt.content.lower() in quit:
 			await bot.send_message(mc, ':(\nThe answer was **'+answer+'**.')
