@@ -180,7 +180,8 @@ def jeopardy():
 	null = None
 	json = eval(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/games/jeopardy_questions.json'))
 	card = choice(json["questions"])
-	#
-	embed = Embed(title='Category: '+card['category'], type="rich", color=0x000080)
+
+	embed = Embed(title='Jeopardy', type="rich", color=0x000080)
+	embed.add_field(name='Category', value=card['category'], inline=False)
 	embed.add_field(name='Question', value=card['question'], inline=False)
 	return embed, card['answer']
