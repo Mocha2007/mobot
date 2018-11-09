@@ -1174,6 +1174,11 @@ def mochapoint(message):
 
 	return ':/'
 
+def new_status():
+	lines = open('status.txt', 'r').read().split('\n')
+	lines = list(filter(lambda x: x[0] != '/', lines))
+	return c(lines)
+
 # ACTUAL BOT SHIT
 bot_prefix = "m!"
 token = open("../token.txt", "r").read()
@@ -1434,7 +1439,7 @@ async def on_message(message):
 	# status
 	timecheck[1] = time()
 	if timecheck[1] > timecheck[0] + 60 or ('1453' in message.content and message.author.id == mochaid):
-		await bot.change_presence(game=discord.Game(name=c(open('status.txt', 'r').read().split('\n'))))
+		await bot.change_presence(game=discord.Game(name=new_status()))
 		timecheck[0] = time()
 
 print('Connecting...')
