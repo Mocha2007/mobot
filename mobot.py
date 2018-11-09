@@ -1035,7 +1035,7 @@ async def hello_game(message):
 			hello.addgame(qid, p_elo, result)
 			if result:
 				await bot.send_message(mc, ':)')
-				mochagive(1, ma.name.lower())
+				mochagive(1, ma.id)
 			else:
 				await bot.send_message(mc, ':(')
 			hello.users[ma.id][0][0] += q_elo + 400 * (1 if result else -1)
@@ -1053,7 +1053,8 @@ async def jeopardy(message):
 	while 1:
 		attempt = await bot.wait_for_message(channel=mc)
 		if attempt.content.lower() == answer.lower():
-			await bot.send_message(mc, '**'+answer+'** is correct!')
+			await bot.send_message(mc, '**'+answer+'** is correct!\n+1 moki to **'+attempt.author.name+'**')
+			mochagive(1, attempt.author.id)
 			break
 		elif attempt.content.lower() in quit:
 			await bot.send_message(mc, ':(\nThe answer was **'+answer+'**.')
@@ -1099,11 +1100,15 @@ def bankwrite(bank):
 	open("bank.txt", "w").write(s[1:])
 
 def mochagive(amt,acct):
+	# acct = user.id
 	file = open("bank.txt", "r").read().split('\n')
 	bank = {}
 	for line in file:
 		l = line.split('\t')
-		bank[l[0]]=int(l[1])
+		try:
+			bank[l[0]] = int(l[1])
+		except ValueError: # inf from mocha
+			pass
 	try:bank[acct] += amt
 	except:bank[acct] = amt
 	bankwrite(bank)
@@ -1183,7 +1188,15 @@ def mochapoint(message):
 			except:return 'Insufficient Funds'
 		except:return 'Invalid Amount; require a natural number.'
 	else: #if subcommand[0] == 'help':
-		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! game word`, `m! game hangman`, `m! game hello`, and `m! game verbrace`.'
+		mokicommands = (
+			'game hangman',
+			'game hello',
+			'game verbrace',
+			'game word',
+			'jeopardy'
+		)
+		commandslist = '`, `m! '.join(mokicommands)
+		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! '+commandslist+'`.'
 
 	return ':/'
 
