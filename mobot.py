@@ -1046,6 +1046,19 @@ async def hello_game(message):
 			open('../hello_u.txt', 'w').write(str(hello.users))
 	return False
 
+async def jeopardy(message):
+	mc = message.channel
+	question, answer = mochaweb.jeopardy()
+	await bot.send_message(mc, embed=question)
+	while 1:
+		attempt = await bot.wait_for_message(channel=mc)
+		if attempt.content.lower() == answer.lower():
+			await bot.send_message(mc, '"'+answer+'" is correct!')
+			break
+		elif attempt.content.lower() in quit:
+			await bot.send_message(mc, ':(\nThe answer was **'+answer+'**.')
+			break
+
 filters = {}
 def reloadfilter():
 	global filters
@@ -1381,6 +1394,8 @@ async def on_message(message):
 			elif na[1] == 'califire':
 				try:await bot.send_message(mc, mochaweb.califire())
 				except:await bot.send_message(mc, 'Can\'t seem to fetch california fire data')
+			elif na[1] == 'jeopardy':
+				await jeopardy(message)
 			elif na[1] == 'religion':
 				await bot.send_message(mc, str(religion(m[12:])))
 			elif na[1] == 'worldgen':

@@ -175,3 +175,12 @@ def tarot():
 	embed.add_field(name='Rank', value=str(card['rank']), inline=False)
 	embed.add_field(name='Suit', value=card['suit'].title(), inline=False)
 	return embed
+
+def jeopardy():
+	null = None
+	json = eval(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/games/jeopardy_questions.json'))
+	card = choice(json["questions"])
+	#
+	embed = Embed(title='Category: '+card['category'], type="rich", color=0x000080)
+	embed.add_field(name='Question', value=card['question'], inline=False)
+	return embed, card['answer']

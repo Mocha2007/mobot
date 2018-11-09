@@ -145,6 +145,8 @@ hi (number)
 	|valid numbers are 0-5, inclusive
 info
 	|mobot info
+jeopardy
+	|get a random jeopardy question to answer
 jisho [search]
 	|search jisho.org for word
 ling [command]
