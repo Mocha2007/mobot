@@ -1,8 +1,9 @@
-import urllib.request,mochamw,telnetlib
+import urllib.request,mochamw
 from re import compile,sub,findall,search,M
 from random import choice, randint
 from json import loads
 from discord import Embed
+from telnetlib import Telnet
 
 linkpattern = r'\[\[[^\]]+?\]\]'
 limit = 499
@@ -83,15 +84,16 @@ def numbersapi(n: str) -> str:
 	if 'numbersapi' in x:return n+' is a gay-ass number.'
 	return x
 
-htn = telnetlib.Telnet(host='horizons.jpl.nasa.gov',port=6775)
 def horizons(name: str) -> str:
-	htn.read_until(b'Horizons> ',timeout=1)
+	htn = Telnet(host='horizons.jpl.nasa.gov', port=6775)
+	htn.read_until(b'Horizons> ', timeout=10)
 	htn.write(name.encode('ascii')+b'\n')
-	x = htn.read_until(b'Horizons> ',timeout=1)
+	x = htn.read_until(b'Horizons> ', timeout=1)
 	if b'<cr>=yes' in x:
 		htn.write(b'\n')
-		x = htn.read_until(b'Select ...',timeout=1)
-	return sub(r'^[^*]*\*+|\*+[^*]*$','',x.decode('ascii'))
+		x = htn.read_until(b'Select ...', timeout=1)
+	htn.close()
+	return sub(r'^[^*]*\*+|\*+[^*]*$','', x.decode('ascii'))
 
 fixerioapikey = open('../fixer.io.txt','r').read()
 j = False
