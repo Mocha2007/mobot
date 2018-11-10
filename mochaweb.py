@@ -1,7 +1,7 @@
 import urllib.request,mochamw,telnetlib
 from re import compile,sub,findall,search,M
 from random import choice, randint
-from json import load
+from json import loads
 from io import StringIO
 from discord import Embed
 
@@ -98,7 +98,7 @@ fixerioapikey = open('../fixer.io.txt','r').read()
 j = False
 def currency(a,b):
 	global j
-	if not j:j = load(StringIO(l('http://data.fixer.io/api/latest?access_key='+fixerioapikey)))
+	if not j:j = loads(l('http://data.fixer.io/api/latest?access_key='+fixerioapikey))
 
 	if a != 'EUR':a = j['rates'][a]
 	else:a = 1
@@ -145,9 +145,8 @@ def gi(searchstring: str):
 def jisho(searchstring: str):
 	url = 'https://jisho.org/api/v1/search/words?keyword='+searchstring
 	embed = Embed(title=searchstring, type="rich", url=url, color=0x56D926)
-	true, false = True, False
 	try:
-		json = eval(l(url))
+		json = loads(l(url))
 	except UnicodeEncodeError:
 		return embed
 	jp_word = json['data'][0]['japanese'][0] # {} with word and reading
@@ -163,7 +162,7 @@ def jisho(searchstring: str):
 	return embed
 
 def tarot():
-	json = eval(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json'))
+	json = loads(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json'))
 	cards = json["tarot_interpretations"]
 	card = choice(cards)
 	#
@@ -177,8 +176,7 @@ def tarot():
 	return embed
 
 def jeopardy():
-	null = None
-	json = eval(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/games/jeopardy_questions.json'))
+	json = loads(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/games/jeopardy_questions.json'))
 	card = choice(json["questions"])
 
 	embed = Embed(title='Jeopardy', type="rich", color=0x000080)
