@@ -5,8 +5,7 @@ asmrname
 ast
 	|many astronomical/physics/orbital mechanics calculations
 bf (program)
-	|brainfuck interpreter
-	|use newlines to separate inputs
+	|bf interpreter
 bug [string]
 	|submit bug report/feature request
 coffee (string)
@@ -17,8 +16,6 @@ currency [amt] [from] [to]
 	|convert between currencies
 df [string]
 	|search dfwiki for string (WIP)
-dfprop [material]
-	|search dfwiki for properties of a material
 dice [number] [number]
 	|stats for that roll
 filter
@@ -30,7 +27,7 @@ gi [search]
 gp [g] [ways]
 	|split x gp n ways
 gs [program]
-	|golfscript interpreter, WIP
+	|WIP gs interpreter
 help ((sub)command)
 	|>this
 hurricane (area)
@@ -38,9 +35,9 @@ hurricane (area)
 info
 	|mobot info
 jisho [search]
-	|search jisho.org for word
+	|search jisho.org
 ling [command]
-	|many, many language calculations
+	|many language functions
 link
 	|get the link for adding this bot to a server
 mat
