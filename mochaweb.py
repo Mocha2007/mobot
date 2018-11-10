@@ -2,7 +2,6 @@ import urllib.request,mochamw,telnetlib
 from re import compile,sub,findall,search,M
 from random import choice, randint
 from json import loads
-from io import StringIO
 from discord import Embed
 
 linkpattern = r'\[\[[^\]]+?\]\]'
@@ -11,7 +10,7 @@ limit = 499
 user_agent = 'MochaWeb/1.0 (https://github.com/Mocha2007/mochalib)'
 headers={'User-Agent':user_agent,}
 
-def l(url): #load
+def l(url: str) -> str: #load
 	request=urllib.request.Request(url,None,headers)
 	webpage=urllib.request.urlopen(request).read().decode("utf-8", errors='ignore')
 	return webpage
@@ -22,14 +21,14 @@ try:
 except:
 	swears = []
 
-def udcleanup(string):
+def udcleanup(string: str) -> str:
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
 	string = string.replace('<br/>','\n') # newline
 	string = string.replace('&quot;','"') # quote
 	string = sub(compile(r'<.+?>'),'',string)#.group(0) # remove links
 	return string
 
-def wtcleanup(string):
+def wtcleanup(string: str) -> str:
 	string = sub(r'----[\w\W]+','',string) # crap in end
 	string = sub('^[^#].+$','',string,flags=M) # delete ANY line not beginning with a hash
 	string = string.replace('#','\n#') # ol
@@ -45,21 +44,21 @@ def wtcleanup(string):
 			string = string.replace(c,'**'+str(n)+'.**',1)
 	return string[:2000]
 
-def htmlescape(string):
+def htmlescape(string: str) -> str:
 	string = sub(r'&nbsp;',' ',string) # nbsp
 	return string
 
-def wikicleanup(string):
+def wikicleanup(string: str) -> str:
 	string = sub(r'\s?\(.*?\)','',string) # text in parens
 	string = sub(r'<ref.+?ref>','',string) # references
 	string = htmlescape(string) # escape chars
 	return ''.join(findall('[^.]+.',string)[:3]) # first three sentences
 
-def ud(word):
+def ud(word: str) -> str:
 	# eg ud('test')
 	return udcleanup(l('https://www.urbandictionary.com/define.php?term='+word))
 
-def dfprop(word):
+def dfprop(word: str) -> str:
 	art = mochamw.read2('dwarffortresswiki.org','DF2014:'+word)
 	temps = findall(compile(r'{{ct\|\d+}}'),art)
 	for m in temps: # template ct
@@ -67,25 +66,25 @@ def dfprop(word):
 	props = search(compile(r'(?<=properties=\n)[\w\W]+?(?=}}{{av}})'),art).group(0)
 	return mochamw.cleanup(props)
 
-def xkcdcleanup(string):
+def xkcdcleanup(string: str) -> str:
 	string = string.replace('&#39;','\'').replace('&quot;','"')
 	title = search(r'(?<=ctitle">)[^<]+?(?=<)',string).group(0)
 	img = 'https:'+search(r'(?<=src=")[^"]+?(?=" t)',string).group(0)
 	alt = search(r'(?<=title=")[^"]+?(?=" a)',string).group(0)
 	return '**'+title+'**\n*'+alt+'*\n'+img
 
-def xkcd(arg):
+def xkcd(arg: str) -> str:
 	try:arg = 'https://xkcd.com/'+str(int(arg))
 	except:arg = 'https://c.xkcd.com/random/comic/'
 	return xkcdcleanup(l(arg))
 
-def numbersapi(n):
+def numbersapi(n: str) -> str:
 	x = l('http://numbersapi.com/'+n)
 	if 'numbersapi' in x:return n+' is a gay-ass number.'
 	return x
 
 htn = telnetlib.Telnet(host='horizons.jpl.nasa.gov',port=6775)
-def horizons(name):
+def horizons(name: str) -> str:
 	htn.read_until(b'Horizons> ',timeout=1)
 	htn.write(name.encode('ascii')+b'\n')
 	x = htn.read_until(b'Horizons> ',timeout=1)
@@ -96,7 +95,7 @@ def horizons(name):
 
 fixerioapikey = open('../fixer.io.txt','r').read()
 j = False
-def currency(a,b):
+def currency(a: str, b: str) -> float:
 	global j
 	if not j:j = loads(l('http://data.fixer.io/api/latest?access_key='+fixerioapikey))
 
@@ -108,13 +107,13 @@ def currency(a,b):
 	
 	return b/a
 
-def califire():
+def califire() -> str:
 	page = l('http://iscaliforniaonfire.com/').split('\n')[5:7] # just the two relevant lines
 	page = '\n'.join(page) # reconnect
 	page = page.replace('<h1>', '**').replace('</h1>', '**')
 	return page
 
-def metar(string):
+def metar(string: str) -> str:
 	page = l('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=csv&stationString='+string+'&hoursBeforeNow=1')
 	page = page.split('\n')[5:] # split & get only relevant lines
 	# halve
@@ -125,7 +124,7 @@ def metar(string):
 		s += '\n'+title+'\t'+entry
 	return '```\n' + s + '```'
 
-def gi(searchstring: str):
+def gi(searchstring: str) -> Embed:
 	for swear in swears:
 		if swear in searchstring:
 			return gi('nope')
@@ -142,7 +141,7 @@ def gi(searchstring: str):
 	o.set_image(url=image) # 'https://i.ytimg.com/vi/_9v1Q5MurnM/maxresdefault.jpg'
 	return o
 
-def jisho(searchstring: str):
+def jisho(searchstring: str) -> Embed:
 	url = 'https://jisho.org/api/v1/search/words?keyword='+searchstring
 	embed = Embed(title=searchstring, type="rich", url=url, color=0x56D926)
 	try:
@@ -161,7 +160,7 @@ def jisho(searchstring: str):
 	embed.add_field(name='Entry', value=o, inline=False)
 	return embed
 
-def tarot():
+def tarot() -> Embed:
 	json = loads(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json'))
 	cards = json["tarot_interpretations"]
 	card = choice(cards)
@@ -175,7 +174,7 @@ def tarot():
 	embed.add_field(name='Suit', value=card['suit'].title(), inline=False)
 	return embed
 
-def jeopardy():
+def jeopardy() -> (Embed, str):
 	json = loads(l('https://raw.githubusercontent.com/dariusk/corpora/master/data/games/jeopardy_questions.json'))
 	card = choice(json["questions"])
 
