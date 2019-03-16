@@ -25,6 +25,7 @@ coffees = {
 'long black':'double-shot of espresso or ristretto poured over\nhot water.',
 'macchiato':'espresso\nhot milk',
 'microfoam':'steamed milk with small, fine bubbles with a glossy or velvety consistency',
+'milk':'cow\nyankin them tiddies real hard',
 'mocha':'chocolate\nespresso\nhot milk\n\n(also my senpai uwu)',
 'ristretto':'Ristretto is traditionally a short shot of espresso coffee made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.',
 'tall':'8 oz cup',
