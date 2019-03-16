@@ -114,6 +114,7 @@ nobody can stop me!!
 
 specialer = {
 '<@!431483983088451584>':'whazaa??~ ;3',
+'always listening':'always OwO',
 'cobot':'...not happening.',
 'maltese falcon':'It\'s the stuff that dreams are made of.',
 'mobot':'das meee!~~ :3',
