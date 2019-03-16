@@ -120,7 +120,7 @@ specialer = {
 'mobot':'das meee!~~ :3',
 'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮',
-'I didn\'t expect the spanish inquisition':'NOBODY EXPECTS THE SPANISH INQUISITION!',
+'i didn\'t expect the spanish inquisition':'NOBODY EXPECTS THE SPANISH INQUISITION!',
 # HUGS
 'get a hug':'**\*huggu\*!!!~~~** :333',
 'get hugs':'**\*huggu\*!!!~~~** :333',
