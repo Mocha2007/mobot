@@ -107,7 +107,6 @@ nobody can stop me!!
 'tngclips':'https://www.youtube.com/watch?v=kRXry95Q6e0',
 'up':'five more minutes sky daddy',
 'vc':'\U0001F1FB \U0001F1E8',
-'what is love':'baby don\'t hurt me\ndon\'t hurt me\nno more',
 'you\'re matched':'say hello! ;)',
 'yuri':'https://yuri.dance/'
 }
@@ -121,6 +120,7 @@ specialer = {
 'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮',
 'i didn\'t expect the spanish inquisition':'NOBODY EXPECTS THE SPANISH INQUISITION!',
+'what is love':'baby don\'t hurt me\ndon\'t hurt me\nno more',
 # HUGS
 'get a hug':'**\*huggu\*!!!~~~** :333',
 'get hugs':'**\*huggu\*!!!~~~** :333',
