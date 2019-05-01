@@ -22,7 +22,8 @@ try:
 except:
 	swears = []
 swears += [
-	'naked'
+	'naked',
+	'nakid',
 ]
 
 def udcleanup(string: str) -> str:
