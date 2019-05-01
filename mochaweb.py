@@ -21,6 +21,9 @@ try:
 	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')[:-1]
 except:
 	swears = []
+swears += [
+	'naked'
+]
 
 def udcleanup(string: str) -> str:
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
