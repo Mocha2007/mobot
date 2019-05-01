@@ -1092,6 +1092,7 @@ async def mfilter(message):
 	return False
 
 mochaid = open('../mocha.txt','r').read()
+mobotid = open('../mobot.txt','r').read()
 def bankwrite(bank):
 	#del bank[mochaid]
 	s = ''
@@ -1338,7 +1339,7 @@ async def on_message(message):
 				if na[2] == 'taken':
 					await bot.send_message(mc, 'm! time diff')
 					lastmessage = message
-				elif n == 'm! time diff' and message.author.name == 'Mobot':
+				elif n == 'm! time diff' and message.author.id == mobotid:
 					await bot.edit_message(message,'Calculating...')
 					sleep(1)
 					old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
