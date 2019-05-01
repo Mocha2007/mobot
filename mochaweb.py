@@ -16,12 +16,12 @@ def l(url: str) -> str: #load
 	webpage=urllib.request.urlopen(request).read().decode("utf-8", errors='ignore')
 	return webpage
 
-try:
-	swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
-	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')[:-1]
-except:
-	swears = []
-swears += open('swears.txt', 'r+').read().split('\n')
+# try:
+# 	swears = l('http://www.bannedwordlist.com/lists/swearWords.txt').split('\r\n')
+# 	swears += l('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en').split('\n')[:-1]
+# except:
+# 	swears = []
+# swears += open('swears.txt', 'r+').read().split('\n')
 
 def udcleanup(string: str) -> str:
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
@@ -130,10 +130,7 @@ def metar(string: str) -> str:
 	return '```\n' + s + '```'
 
 def gi(searchstring: str) -> Embed:
-	for swear in swears:
-		if swear in searchstring:
-			return gi('nope')
-	url = 'https://www.google.com/search?tbm=isch&q='+searchstring.replace(' ', '%20')
+	url = 'https://www.google.com/search?tbm=isch&q='+searchstring.replace(' ', '%20')+'&safe=active'
 	o = Embed(title=searchstring, type="rich", url=url, color=0x00ff00)
 	# now time to find an image!
 	page = l(url)
