@@ -25,7 +25,9 @@ except:
 def udcleanup(string: str) -> str:
 	string = search(compile(r'(?<=class="meaning">)[^\0]+?(?=<\/div>)'),string).group(0) # get first def
 	string = string.replace('<br/>','\n') # newline
+	string = string.replace('&apos;','’') # apostrophe
 	string = string.replace('&quot;','"') # quote
+	string = string.replace('&amp;','&') # ampersands, leave this check at the end out of alphabetical order pls
 	string = sub(compile(r'<.+?>'),'',string)#.group(0) # remove links
 	return string
 
