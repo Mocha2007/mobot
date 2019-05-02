@@ -1061,6 +1061,53 @@ async def jeopardy(message):
 			await bot.send_message(mc, ':(\nThe answer was **'+answer+'**.')
 			break
 
+def moore(array: list, coords: (int, int)) -> list:
+	x, y = coords
+	neighbors = []
+	if 0 < y:
+		if 0 < x:
+			# UL
+			neighbors.append(array[y-1][x-1])
+		if x+1 < len(array):
+			# UR
+			neighbors.append(array[y-1][x+1])
+		# U
+		neighbors.append(array[y-1][x])
+	if y+1 < len(array):
+		if 0 < x:
+			# DL
+			neighbors.append(array[y+1][x-1])
+		if x+1 < len(array):
+			# DR
+			neighbors.append(array[y+1][x+1])
+		# D
+		neighbors.append(array[y+1][x])
+	if 0 < x:
+		# L
+		neighbors.append(array[y][x-1])
+	if x+1 < len(array[0]):
+		# R
+		neighbors.append(array[y][x+1])
+	return neighbors
+
+def minesweeper(length: int=10, bombs: int=20) -> str:
+	title = 'Minesweeper ({0}x{0}, {1} mines)'.format(length, bombs)
+	number_names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']
+	mine = 'boom'
+	tiles = [False] * (length**2 - bombs) + [True] * bombs
+	shuffle(tiles)
+	grid = [[tiles.pop() for _ in range(length)] for _ in range(length)]
+	text_grid = ''
+	for y, row in enumerate(grid):
+		text_grid += '\n'
+		for x, tile in enumerate(row):
+			neighbor_count = moore(grid, (x, y)).count(True)
+			text_grid += '||:'
+			text_grid += mine if tile else number_names[neighbor_count]
+			text_grid += ':||'
+	return title + '\n' + text_grid
+
+
 filters = {}
 def reloadfilter():
 	global filters
@@ -1416,6 +1463,8 @@ async def on_message(message):
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
+			elif na[1] == 'minesweeper':
+				await bot.send_message(mc, minesweeper(*list(map(int, na[2:]))))
 			elif na[1][:4] == 'moki':
 				await bot.send_message(mc, mochapoint(message))
 			# SECRET DEBUG

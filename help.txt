@@ -260,6 +260,11 @@ mc [string]
 metar [string]
 	|get metar data
 	|-> https://aviationweather.gov/dataserver/example?datatype=metar
+minesweeper (size) (mines)
+	|spoiler minesweeper
+	|default:
+	|minesweeper 10 20
+	|max size is 14 due to discord message length limitations
 moki [subcommand]
 	|currency
 	balance
