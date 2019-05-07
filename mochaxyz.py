@@ -120,6 +120,7 @@ specialer = {
 'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮',
 'i didn\'t expect the spanish inquisition':'NOBODY EXPECTS THE SPANISH INQUISITION!',
+'this is so sad':'Alexa, play Despacito.\nhttps://www.youtube.com/watch?v=kJQP7kiw5Fk',
 'what is love':'baby don\'t hurt me\ndon\'t hurt me\nno more',
 # HUGS
 'get a hug':'**\*huggu\*!!!~~~** :333',
