@@ -571,11 +571,11 @@ def asmr(s):
 	elif bin(asmrstyle)[-1] == '1':name+=' ASMR'
 	return name
 
+
 # GAMES
-	
 async def g23(mc):
 	timer = 30
-	await bot.send_message(mc, 'Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
+	await mc.send('Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
 	start = time()
 	guesses = []
 	while time()<start+timer:#30s should be enough
@@ -589,10 +589,10 @@ async def g23(mc):
 		avg23 = sum(a1)*2/3/len(a1)
 		a2 = list(map(lambda x:abs(x-avg23),a1))
 		winner = a2.index(min(a2))
-		await bot.send_message(mc, guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
+		await mc.send(guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
 		return False
 	except ZeroDivisionError:
-		await bot.send_message(mc, 'N-nobody??? ;-;')
+		await mc.send('N-nobody??? ;-;')
 		return True
 
 async def gtn(args,mc):
@@ -608,18 +608,18 @@ async def gtn(args,mc):
 		if msg:
 			try:
 				if int(msg.content) < answer:
-					await bot.send_message(mc, '>')
+					await mc.send('>')
 				else:
-					await bot.send_message(mc, '<')
+					await mc.send('<')
 			except:pass
 		else:
-			await bot.send_message(mc, 'Guess a number between '+str(minn)+' and '+str(maxn)+'!')
+			await mc.send('Guess a number between '+str(minn)+' and '+str(maxn)+'!')
 		msg = await bot.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
-			await bot.send_message(mc, 'o oki ;-;')
+			await mc.send('o oki ;-;')
 			return True
 		elif msg.content == str(answer):
-			await bot.send_message(mc, msg.author.name+', you win! ^o^')
+			await mc.send(msg.author.name+', you win! ^o^')
 			return False
 	return True
 
@@ -630,11 +630,11 @@ async def word(args,message):
 		await bot.delete_message(message)
 		if word == 'latin':word = rword('la',1)
 	except:word = rword('en',4)
-	await bot.send_message(mc, 'A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
+	await mc.send('A new game of **Word** has begun:\n**'+'X'*len(word)+'**')
 	while 1:
 		msg = await bot.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
-			await bot.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
+			await mc.send('c r i e ;-;\nthe word was **'+word+'**.')
 			return True
 		pips = ''
 		if msg.author.name!='Mobot':
@@ -642,7 +642,7 @@ async def word(args,message):
 				guess = msg.content.lower()
 				if len(guess) == len(word): # NO CHEATING
 					if guess == word:
-						await bot.send_message(mc, msg.author.name+', you won with your guess of '+guess+'! ^o^')
+						await mc.send(msg.author.name+', you won with your guess of '+guess+'! ^o^')
 						mochagive(5,msg.author.name.lower())
 						return False
 					mr = range(min(len(word),len(guess)))
@@ -651,7 +651,7 @@ async def word(args,message):
 						if guess[i]==word[i]:pips+='x'
 					for i in mr:
 						if guess[i] in word and guess[i]!=word[i]:pips+='*'
-					await bot.send_message(mc, msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+					await mc.send(msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
 			except:pass
 	return True
 
@@ -661,14 +661,14 @@ async def hangman(args,mc):
 	word = rword(lang,4)
 	#print('\t\t'+lang,word)
 	known = 'X'*len(word)
-	await bot.send_message(mc, 'A new game of **Hangman** has begun:\n**'+known+'**')
+	await mc.send('A new game of **Hangman** has begun:\n**'+known+'**')
 	fails = 0
 	faill = ''
 	won = False
 	while fails<10:
 		msg = await bot.wait_for_message(channel=mc)
 		if msg.content.lower() in quit:
-			await bot.send_message(mc, 'c r i e ;-;\nthe word was **'+word+'**.')
+			await mc.send('c r i e ;-;\nthe word was **'+word+'**.')
 			return True
 		if msg.author.name!='Mobot':
 			try:
@@ -688,20 +688,20 @@ async def hangman(args,mc):
 					else:
 						fails+=1
 						faill+=guess+' '
-						await bot.send_message(mc, '**'+guess+'** is not in the word.')
+						await mc.send('**'+guess+'** is not in the word.')
 				elif guess == word:
 					won = True
 					break
 				#display word
-				await bot.send_message(mc, '**'+known+'**\n'+faill)
+				await mc.send('**'+known+'**\n'+faill)
 			except:pass
 	if won:
-		await bot.send_message(mc, '**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
+		await mc.send('**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
 		if 'en-lang' in lang: # To Appease Yata
-			await bot.send_message(mc,'https://en.wikipedia.org/wiki/'+word.title()+'_language')
+			await mc.send('https://en.wikipedia.org/wiki/'+word.title()+'_language')
 		mochagive(1,msg.author.name.lower())
 	else:
-		await bot.send_message(mc, 'You lost. The word was **'+word+'**. uwu')
+		await mc.send('You lost. The word was **'+word+'**. uwu')
 	return False
 
 def vrleaderboard(lang,verb,n):
@@ -725,7 +725,7 @@ async def associate(message):
 	idk = ('dunno','idk','pass','skip','unno')
 	ma = message.author
 	mc = message.channel
-	await bot.send_message(mc,'A new game of **Associate** has begun!')
+	await mc.send('A new game of **Associate** has begun!')
 	used = []
 	while 1:
 		# regenerate list
@@ -750,18 +750,18 @@ async def associate(message):
 		s = sum(wordstats2)
 		wordstats2 = list(map(lambda x:x/s,wordstats2))
 		# text
-		await bot.send_message(mc,'Your word is **'+word+'**! Type a word associated with it!')
+		await mc.send('Your word is **'+word+'**! Type a word associated with it!')
 		while 1:
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			mcl = msg.content.lower()
 			if mcl in idk or mcl in quit or mcl == 'stats':break
 			if not search('[^a-z]', mcl):
 				if mcl in word or word in mcl:
-					await bot.send_message(mc,'Your word must not contain the word, and the word must not contain yours.')
+					await mc.send('Your word must not contain the word, and the word must not contain yours.')
 				else:
 					break
 			else:
-				await bot.send_message(mc,'Your word must contain only the letters a-z.')
+				await mc.send('Your word must contain only the letters a-z.')
 		# quit
 		if mcl in quit:break
 		# stats
@@ -771,15 +771,15 @@ async def associate(message):
 				for i in range(len(wordstats1)):
 					o+='\n'+wordstats1[i]+'\t'+str(round(wordstats2[2],4))
 				o+='```'
-				await bot.send_message(mc,o)
+				await mc.send(o)
 			except:
-				await bot.send_message(mc,'No stats for this word!')
+				await mc.send('No stats for this word!')
 		elif mcl in idk:
 			pass
 		# was message in list?
 		elif mcl in wordstats1:
 			i = wordstats1.index(mcl)
-			await bot.send_message(mc,str(round(wordstats2[i]*100,2))+'% agree!')
+			await mc.send(str(round(wordstats2[i]*100,2))+'% agree!')
 			# add
 			target = word+'\t'+mcl
 			for line in associatefile.split('\n'):
@@ -793,11 +793,11 @@ async def associate(message):
 		else:
 			# I feel clever for the following couple lines... :^)
 			x = 'No' if len(wordstats1) else 'Every'
-			await bot.send_message(mc,x+'body agrees!')
+			await mc.send(x+'body agrees!')
 			# add
 			open("associate.txt", "a").write('\n'+word+'\t'+mcl+'\t1')
 		used.append(word)
-	await bot.send_message(mc,'Bye-bye!~ ^_^')
+	await mc.send('Bye-bye!~ ^_^')
 	return False
 
 async def tests(message):
@@ -809,7 +809,7 @@ async def tests(message):
 	if name[:3] == 'add':
 		for i in range(length):
 			n = mochatest.rpair()
-			await bot.send_message(mc,str(n[0])+' + '+str(n[1]))
+			await mc.send(str(n[0])+' + '+str(n[1]))
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			try:
 				if int(msg.content) == sum(n):score += 1
@@ -817,7 +817,7 @@ async def tests(message):
 	elif name[:3] == 'mul':
 		for i in range(length):
 			n = mochatest.rpair()
-			await bot.send_message(mc,str(n[0])+' * '+str(n[1]))
+			await mc.send(str(n[0])+' * '+str(n[1]))
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			try:
 				if int(msg.content) == n[0]*n[1]:score += 1
@@ -826,7 +826,7 @@ async def tests(message):
 		length = 10
 		for i in range(length):
 			n = mochatest.rgrammar()
-			await bot.send_message(mc,n[0])
+			await mc.send(n[0])
 			msg = await bot.wait_for_message(channel=mc,author=ma)
 			try:
 				mcl = msg.content.lower()
@@ -835,14 +835,14 @@ async def tests(message):
 	else:return True
 	antiscore = length-score
 	w = mochatest.wilson(score,antiscore)
-	await bot.send_message(mc, '**'+ma.name.title()+'** correctly performs at least **'+str(round(w*100))+'%** of the time, with 95% confidence.\n'+str(score)+'/'+str(length))
+	await mc.send('**'+ma.name.title()+'** correctly performs at least **'+str(round(w*100))+'%** of the time, with 95% confidence.\n'+str(score)+'/'+str(length))
 	return True
 
 async def verbrace(args,mc):
 	forms = pronouns[args[1]]
 	word = c(verbs[args[1]])
 	limit = 30
-	await bot.send_message(mc, 'A new game of **Verb Race** has begun! You have **'+str(limit)+'** seconds to type `join`!')
+	await mc.send('A new game of **Verb Race** has begun! You have **'+str(limit)+'** seconds to type `join`!')
 	form = 0
 	start = time()
 	players = []
@@ -853,7 +853,7 @@ async def verbrace(args,mc):
 			if msg.content.lower() == 'join' and msg.author.name!='Mobot':
 				players.append(msg.author)
 				await bot.delete_message(msg)
-				await bot.send_message(mc, '**'+msg.author.name+'** has joined!')
+				await mc.send('**'+msg.author.name+'** has joined!')
 		except:pass
 	if len(players)<finalform: # for small games
 		players = players*ceil(finalform/len(players))
@@ -861,33 +861,33 @@ async def verbrace(args,mc):
 	pbu = players[:] # player backup
 	choice = False
 	start = time()
-	await bot.send_message(mc, 'A new game of **Verb Race** has begun!\nYour verb is: **'+word[finalform]+'**!')
+	await mc.send('A new game of **Verb Race** has begun!\nYour verb is: **'+word[finalform]+'**!')
 	allcorrect = True
 	while form<finalform:
 		if choice:
 			msg = await bot.wait_for_message(channel=mc)
 			if msg.content.lower() in quit and msg.author in players:
-				await bot.send_message(mc, 'c r i e ;-;')
+				await mc.send('c r i e ;-;')
 				break#return True
 			elif msg.author == choice:
 				await bot.delete_message(msg)
 				if msg.content == word[form]:
-					await bot.send_message(mc, 'Correct!')
+					await mc.send('Correct!')
 				else:
-					await bot.send_message(mc, 'Incorrect! The correct form was **'+word[form]+'**')
+					await mc.send('Incorrect! The correct form was **'+word[form]+'**')
 					allcorrect = False
 				form+=1
 				choice = False
 		else:
 			choice = players.pop()
-			await bot.send_message(mc, '**'+choice.name+'**, conjugate **'+word[finalform]+'** for **'+forms[form]+'**!')
-	await bot.send_message(mc, 'The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
+			await mc.send('**'+choice.name+'**, conjugate **'+word[finalform]+'** for **'+forms[form]+'**!')
+	await mc.send('The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
 	#check to see if eligible for leaderboard
 	if allcorrect and len(set(pbu[:finalform])) == 1:
 		mochagive(1,pbu[0].name.lower())
 		open("vrleaderboard.txt", "a").write('\n'+'\t'.join([args[1],word[finalform],str(int(time()-start)),pbu[0].name]))
 	#print leaders
-	await bot.send_message(mc, 'Leaderboard for **'+word[finalform]+'**:\n'+vrleaderboard(args[1],word[finalform],5))
+	await mc.send('Leaderboard for **'+word[finalform]+'**:\n'+vrleaderboard(args[1],word[finalform],5))
 	return False
 
 async def numbers(mc):
@@ -911,8 +911,8 @@ async def numbers(mc):
 	#shuffle again to prevent exploit
 	shuffle(ns)
 	#Begin!
-	await bot.send_message(mc, 'A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+' '.join(map(str,ns))+'**!')
-	await bot.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
+	await mc.send('A new game of **Numbers** has begun!\nYour target is **'+str(target)+'**, and your numbers are **'+' '.join(map(str,ns))+'**!')
+	await mc.send('You have **'+str(limit)+'** seconds to solve!')
 	start = time()
 	guesses1 = []
 	guesses2 = []
@@ -921,25 +921,25 @@ async def numbers(mc):
 		msg = await bot.wait_for_message(channel=mc,timeout=1)
 		try:
 			if msg.content.lower() in quit:
-				await bot.send_message(mc, 'c r i e ;-;')
+				await mc.send('c r i e ;-;')
 				return True
 			elif msg.author.name not in guesses2:
 				if msg.author.name!='Mobot':
 					guesses1.append(msg.content)
 					guesses2.append(msg.author.name)
 					await bot.delete_message(msg)
-					await bot.send_message(mc, '**'+msg.author.name+'**, your answer has been submitted!')
+					await mc.send('**'+msg.author.name+'**, your answer has been submitted!')
 			else:
-				await bot.send_message(mc, 'u already gone shoo shoo')
+				await mc.send('u already gone shoo shoo')
 		except AttributeError:pass
 		if time()+5>start+limit and not warned:
-			await bot.send_message(mc, 'You have **5** seconds left to solve!')
+			await mc.send('You have **5** seconds left to solve!')
 			warned = True
-	await bot.send_message(mc, 'The game of **Numbers** has ended! Check your answers!')
+	await mc.send('The game of **Numbers** has ended! Check your answers!')
 	for i in range(len(guesses1)):
 		result = mocharpn.rpn(guesses1[i])[0]
-		await bot.send_message(mc, guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
-	await bot.send_message(mc, 'The Math Corner notes that **'+str(target)+'** was achievable using the following solution:\n`'+owo+'`')
+		await mc.send(guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
+	await mc.send('The Math Corner notes that **'+str(target)+'** was achievable using the following solution:\n`'+owo+'`')
 	return False
 
 async def twentyfour(mc):
@@ -961,8 +961,8 @@ async def twentyfour(mc):
 			if time()-start>1:break
 	# now a valid sample is established
 	#Begin!
-	await bot.send_message(mc, 'A new game of **24** has begun!\nYour numbers are **'+whatsthis+'**!')
-	await bot.send_message(mc, 'You have **'+str(limit)+'** seconds to solve!')
+	await mc.send('A new game of **24** has begun!\nYour numbers are **'+whatsthis+'**!')
+	await mc.send('You have **'+str(limit)+'** seconds to solve!')
 	start = time()
 	guesses1 = []
 	guesses2 = []
@@ -971,25 +971,25 @@ async def twentyfour(mc):
 		msg = await bot.wait_for_message(channel=mc,timeout=1)
 		try:
 			if msg.content.lower() in quit:
-				await bot.send_message(mc, 'c r i e ;-;')
+				await mc.send('c r i e ;-;')
 				return True
 			elif msg.author.name not in guesses2:
 				if msg.author.name!='Mobot':
 					guesses1.append(msg.content)
 					guesses2.append(msg.author.name)
 					await bot.delete_message(msg)
-					await bot.send_message(mc, '**'+msg.author.name+'**, your answer has been submitted!')
+					await mc.send('**'+msg.author.name+'**, your answer has been submitted!')
 			else:
-				await bot.send_message(mc, 'u already gone shoo shoo')
+				await mc.send('u already gone shoo shoo')
 		except AttributeError:pass
 		if time()+5>start+limit and not warned:
-			await bot.send_message(mc, 'You have **5** seconds left to solve!')
+			await mc.send('You have **5** seconds left to solve!')
 			warned = True
-	await bot.send_message(mc, 'The game of **24** has ended! Check your answers!')
+	await mc.send('The game of **24** has ended! Check your answers!')
 	for i in range(len(guesses1)):
 		result = mocharpn.rpn(guesses1[i])[0]
-		await bot.send_message(mc, guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
-	await bot.send_message(mc, 'The Math Corner notes that **24** was achievable using the following solution:\n`'+owo+'`')
+		await mc.send(guesses2[i]+' `'+guesses1[i]+'` = `'+str(result)+'` (`'+str(abs(result-target))+'` off)')
+	await mc.send('The Math Corner notes that **24** was achievable using the following solution:\n`'+owo+'`')
 	return False
 
 async def llama(message):
@@ -997,12 +997,12 @@ async def llama(message):
 	room = -1
 	state = 0
 	inv = False
-	await bot.send_message(mc, 'A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
+	await mc.send('A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
 	while 1:
 		msg = await bot.wait_for_message(channel=mc,author=message.author)
 		if room == -1 == state:return True # exit
 		ml = mochallama.llama(room,state,inv,msg)
-		await bot.send_message(mc, ml[3])
+		await mc.send(ml[3])
 		room = ml[0]
 		state = ml[1]
 	return False
@@ -1010,35 +1010,35 @@ async def llama(message):
 async def hello_game(message):
 	ma = message.author
 	mc = message.channel
-	await bot.send_message(mc, 'A new HELLO has begun!')
+	await mc.send('A new HELLO has begun!')
 	hello.questions = eval(open('../hello_q.txt', 'r').read()) # I'm so sorry
 	hello.users = eval(open('../hello_u.txt', 'r').read()) # I'm so sorry
 	if ma.id not in hello.users:
 		hello.users[ma.id] = [[1000, 1], []]
 	while 1:
-		# await bot.send_message(mc, str(ma.name) + str(ma.id))
+		# await mc.send(str(ma.name) + str(ma.id))
 		p_elo = hello.elo(hello.users[ma.id][0])
 		for i in range(10):
 			qid = randint(0, len(hello.questions)-1)
 			if qid not in hello.users[ma.id][1]:
 				break
 			elif i == 9:
-				await bot.send_message(mc, 'You appear to have answered all available questions.\nFinal Elo: '+str(p_elo))
+				await mc.send('You appear to have answered all available questions.\nFinal Elo: '+str(p_elo))
 				return False
 		q_elo = round(hello.elo(hello.questions[qid][0]))
-		await bot.send_message(mc, hello.ask_question(qid)+'\nQuestion Elo: '+str(q_elo)+'\n Your Elo: '+str(p_elo))
+		await mc.send(hello.ask_question(qid)+'\nQuestion Elo: '+str(q_elo)+'\n Your Elo: '+str(p_elo))
 		msg = await bot.wait_for_message(channel=mc,author=ma)
 		if msg.content.lower() in quit:
-			await bot.send_message(mc, 'c r i e ;-;')
+			await mc.send('c r i e ;-;')
 			return True
 		else:
 			result = hello.check_answer(qid, msg.content)
 			hello.addgame(qid, p_elo, result)
 			if result:
-				await bot.send_message(mc, ':)')
+				await mc.send(':)')
 				mochagive(1, ma.id)
 			else:
-				await bot.send_message(mc, ':(')
+				await mc.send(':(')
 			hello.users[ma.id][0][0] += q_elo + 400 * (1 if result else -1)
 			hello.users[ma.id][0][1] += 1
 			hello.users[ma.id][1].append(qid)
@@ -1050,15 +1050,15 @@ async def hello_game(message):
 async def jeopardy(message):
 	mc = message.channel
 	question, answer = mochaweb.jeopardy()
-	await bot.send_message(mc, embed=question)
+	await mc.send(embed=question)
 	while 1:
 		attempt = await bot.wait_for_message(channel=mc)
 		if attempt.content.lower() == answer.lower():
-			await bot.send_message(mc, '**'+answer+'** is correct!\n+1 moki to **'+attempt.author.name+'**')
+			await mc.send('**'+answer+'** is correct!\n+1 moki to **'+attempt.author.name+'**')
 			mochagive(1, attempt.author.id)
 			break
 		elif attempt.content.lower() in quit:
-			await bot.send_message(mc, ':(\nThe answer was **'+answer+'**.')
+			await mc.send(':(\nThe answer was **'+answer+'**.')
 			break
 
 def moore(array: list, coords: (int, int)) -> list:
@@ -1117,36 +1117,41 @@ def reloadfilter():
 		filters[lineargs[0]] = lineargs[1:]
 	return False
 
+
 async def mfilter(message):
+	mc = message.channel
 	if not message.author.server_permissions.administrator:
-		await bot.send_message(message.channel, 'Not happening.')
+		await mc.send('Not happening.')
 		return True
 
 	mc = message.channel
 	# filter messages containing OR filter messages NOT containing?
-	await bot.send_message(message.channel, 'Filter messages WITH regex or WITHOUT regex?')
+	await mc.send('Filter messages WITH regex or WITHOUT regex?')
 	msg = False
 	while msg not in ('with','without'):
-		msg = await bot.wait_for_message(channel=mc,author=message.author)
+		msg = await bot.wait_for_message(channel=mc, author=message.author)
 		msg = msg.content.lower()
-	await bot.send_message(message.channel, 'Enter regex filter:')
-	refilter = await bot.wait_for_message(channel=mc,author=message.author)
+	await mc.send('Enter regex filter:')
+	refilter = await bot.wait_for_message(channel=mc, author=message.author)
 	refilter = refilter.content
-	await bot.send_message(message.channel, 'Successfully set up **'+msg+'** filter **/'+refilter+'/** for **'+message.channel.name+'**.')
+	await mc.send('Successfully set up **'+msg+'** filter **/'+refilter+'/** for **'+message.channel.name+'**.')
 	
-	open('filter.txt','a').write('\n'+message.channel.id+'\t'+msg+'\t'+refilter)
-	#reload filters
+	open('filter.txt', 'a').write('\n'+message.channel.id+'\t'+msg+'\t'+refilter)
+	# reload filters
 	reloadfilter()
 	return False
 
-mochaid = open('../mocha.txt','r').read()
-mobotid = open('../mobot.txt','r').read()
+
+mochaid = open('../mocha.txt', 'r').read()
+mobotid = open('../mobot.txt', 'r').read()
+
+
 def bankwrite(bank):
-	#del bank[mochaid]
 	s = ''
 	for account in bank:
-		s+='\n'+account+'\t'+str(bank[account])
+		s += '\n'+account+'\t'+str(bank[account])
 	open("bank.txt", "w").write(s[1:])
+
 
 def mochagive(amt,acct):
 	# acct = user.id
@@ -1208,7 +1213,7 @@ def mochapoint(message):
 	elif subcommand[0][:3] in donating+giving:
 		if subcommand[0][:3] in donating:
 			subcommand.append(subcommand[1])
-			subcommand[1] = c(list(message.server.members)).id
+			subcommand[1] = c(list(message.guild.members)).id
 			tgt = subcommand[1]
 		else:
 			tgt = subcommand[1][3:-1]
@@ -1294,13 +1299,13 @@ async def on_message(message):
 		notmobot = message.author.name!='Mobot'
 		if notmobot:
 			if goatcondition: #needed due to complicated conditions
-				try:await bot.send_message(mc,'MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0')
+				try:await mc.send('MOBOT IS GOAT\nhttps://www.youtube.com/watch?v=wsj0XFdmxZ0')
 				except:pass
 			else: #special triggers
 				done = False
 				for i in rspecial:
 					if i in n:
-						try:await bot.send_message(mc, c(rspecial[i]))
+						try:await mc.send(c(rspecial[i]))
 						except:pass
 						done = True
 						break
@@ -1308,165 +1313,165 @@ async def on_message(message):
 					for i in specialer:
 						ret = compile('^'+i+'$|^'+i+'\\W|\\W'+i+'$|\\W'+i+'\\W')
 						if search(ret,n):
-							try:await bot.send_message(mc, specialer[i])
+							try:await mc.send(specialer[i])
 							except:pass
 							break
-		#real commands
+		# real commands
 		if na[0] == bot_prefix and len(na)>1:
-			#logging
-			loglook = str(message.timestamp)[:19]+' - @'+str(message.author)+' (#'+str(mc)+' in '+str(message.server)+')\n\t'+m
+			# logging
+			loglook = str(message.created_at)[:19]+' - @'+str(message.author)+' (#'+str(mc)+' in '+str(message.guild)+')\n\t'+m
 			loglook = sub(compile(r'[^!-~\s]'),'?',loglook)
 			print(loglook)
 			open("log.txt", "a").write(loglook+'\n')
-			#find command
+			# find command
 			try:
 				if na[1] in open('../disable.txt', 'r').read().split('\n'):
-					await bot.send_message(mc, "Command temporarily disabled for repairs")
+					await mc.send("Command temporarily disabled for repairs")
 					return True
 			except FileNotFoundError:
 				pass
 			if na[1] == 'help':
-				await bot.send_message(mc, help(m[8:]))
+				await mc.send(help(m[8:]))
 			elif na[1] == 'bf':
 				args = m[6:].split('\n')
-				await bot.send_message(mc, str(mochabf.run(args[0],args[1:])))
+				await mc.send(str(mochabf.run(args[0], args[1:])))
 			elif na[1] == 'gi':
-				await bot.send_message(mc, embed=mochaweb.gi(m[6:]))
+				await mc.send(embed=mochaweb.gi(m[6:]))
 			elif na[1] == 'gs':
-				await bot.send_message(mc, str(mochagolfscript.run(m[6:])))
+				await mc.send(str(mochagolfscript.run(m[6:])))
 			elif na[1] == 'gp':
-				await bot.send_message(mc, gp(m[6:]))
+				await mc.send(gp(m[6:]))
 			elif na[1] == 'dfprop':
 				entry = m[10:].replace(' ','%20')
-				try:await bot.send_message(mc, mochaweb.dfprop(entry))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch properties for '+m[10:])
+				try:await mc.send(mochaweb.dfprop(entry))
+				except:await mc.send('Can\'t seem to fetch properties for '+m[10:])
 			elif na[1] == 'df':
 				entry = m[6:].replace(' ','%20')
-				try:await bot.send_message(mc, mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+				try:await mc.send(mochamw.main2('dwarffortresswiki.org','DF2014:'+entry))
+				except:await mc.send('Can\'t seem to fetch article for '+m[6:])
 			elif na[1] == 'mc':
 				entry = m[6:].replace(' ','%20')
-				try:await bot.send_message(mc, mochamw.main('minecraft.gamepedia.com',entry))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[6:])
+				try:await mc.send(mochamw.main('minecraft.gamepedia.com',entry))
+				except:await mc.send('Can\'t seem to fetch article for '+m[6:])
 			elif na[1] == 'sc2':
 				entry = m[7:].replace(' ','%20')
 				try:
-					await bot.send_message(mc, mochamw.main('liquipedia.net/starcraft2',entry))
+					await mc.send(mochamw.main('liquipedia.net/starcraft2',entry))
 				except:
-					await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[7:])
+					await mc.send('Can\'t seem to fetch article for '+m[7:])
 			elif na[1] == 'ud':
-				try:await bot.send_message(mc, mochaweb.ud(m[6:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+				try:await mc.send(mochaweb.ud(m[6:]))
+				except:await mc.send('Can\'t seem to fetch entry for '+m[6:])
 			elif na[1] == 'wc':
 				entry = m[6:].replace(' ','%20')
-				try:await bot.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch recipe for '+m[6:])
+				try:await mc.send(mochaweb.wtcleanup(mochamw.main('en.wikibooks.org/w','Cookbook:'+entry)))
+				except:await mc.send('Can\'t seem to fetch recipe for '+m[6:])
 			elif na[1] == 'wt':
 				entry = m[6:].replace(' ','%20')
-				try:await bot.send_message(mc, mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch entry for '+m[6:])
+				try:await mc.send(mochaweb.wtcleanup(mochamw.main('en.wiktionary.org/w',entry)))
+				except:await mc.send('Can\'t seem to fetch entry for '+m[6:])
 			elif na[1] == 'ast':
-				await bot.send_message(mc, str(moastro(m[7:])))
+				await mc.send(str(moastro(m[7:])))
 			elif na[1] == 'bug':
-				await bot.send_message(mc, str(bug(m[7:])))
+				await mc.send(str(bug(m[7:])))
 			elif na[1] == 'mat':
-				await bot.send_message(mc, str(momath(m[7:])))
+				await mc.send(str(momath(m[7:])))
 			elif na[1] == 'rpn':
-				await bot.send_message(mc, str(mocharpn.rpn(m[7:])))
+				await mc.send(str(mocharpn.rpn(m[7:])))
 			elif na[1] == 'ttt':
-				await bot.send_message(mc, str(mochattt.ai(m[7:])))
+				await mc.send(str(mochattt.ai(m[7:])))
 			elif na[1] == 'dice':
-				await bot.send_message(mc, str(dicemat(m[8:])))
+				await mc.send(str(dicemat(m[8:])))
 			elif na[1] == 'ling':
-				await bot.send_message(mc, str(moling(m[8:])))
+				await mc.send(str(moling(m[8:])))
 			elif na[1] == 'mbti':
-				await bot.send_message(mc, str(mbti(m[8:])))
+				await mc.send(str(mbti(m[8:])))
 			elif na[1] == 'test':
 				await tests(message)
 			elif na[1] == 'time':
 				if na[2] == 'taken':
-					await bot.send_message(mc, 'm! time diff')
+					await mc.send('m! time diff')
 					lastmessage = message
 				elif n == 'm! time diff' and message.author.id == mobotid:
 					await bot.edit_message(message,'Calculating...')
 					sleep(1)
-					old = lastmessage.timestamp.replace(tzinfo=timezone.utc).timestamp()
-					new = message.timestamp.replace(tzinfo=timezone.utc).timestamp()
+					old = lastmessage.created_at.replace(tzinfo=timezone.utc).created_at()
+					new = message.created_at.replace(tzinfo=timezone.utc).created_at()
 					await bot.edit_message(message,str(int((new-old)*1000))+' ms')
 				else:
-					await bot.send_message(mc, str(message.timestamp)[:19]+' UTC')
+					await mc.send(str(message.created_at)[:19]+' UTC')
 			elif na[1] == 'xkcd':
-				try:await bot.send_message(mc, mochaweb.xkcd(m[8:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch comic #'+m[8:])
+				try:await mc.send(mochaweb.xkcd(m[8:]))
+				except:await mc.send('Can\'t seem to fetch comic #'+m[8:])
 			elif na[1] == 'wiki':
 				entry = m[8:].replace(' ','%20')
-				try:await bot.send_message(mc, mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch article for '+m[8:])
+				try:await mc.send(mochaweb.wikicleanup(mochamw.main('en.wikipedia.org/w',entry)))
+				except:await mc.send('Can\'t seem to fetch article for '+m[8:])
 			elif na[1] == 'jisho':
 				#try:
-				await bot.send_message(mc, embed=mochaweb.jisho(m[9:]))
-				#except:await bot.send_message(mc, 'Can\'t seem to fetch Jisho data for '+m[9:])
+				await mc.send(embed=mochaweb.jisho(m[9:]))
+				#except:await mc.send('Can\'t seem to fetch Jisho data for '+m[9:])
 			elif na[1] == 'metar':
-				try:await bot.send_message(mc, mochaweb.metar(m[9:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch metar data for '+m[9:]+'\nhttps://aviationweather.gov/dataserver/example?datatype=metar')
+				try:await mc.send(mochaweb.metar(m[9:]))
+				except:await mc.send('Can\'t seem to fetch metar data for '+m[9:]+'\nhttps://aviationweather.gov/dataserver/example?datatype=metar')
 			elif na[1] == 'quote':
-				try:await bot.send_message(mc, str(sto(m[9:])))
-				except:await bot.send_message(mc,'Message too Long')
+				try:await mc.send(str(sto(m[9:])))
+				except:await mc.send('Message too Long')
 			elif na[1] == 'phoon':
-				try:await bot.send_message(mc, mochaweather.phoon())
-				except:await bot.send_message(mc, 'Can\'t seem to fetch current lunar phase')
+				try:await mc.send(mochaweather.phoon())
+				except:await mc.send('Can\'t seem to fetch current lunar phase')
 			elif na[1] == 'quake':
-				try:await bot.send_message(mc, mochaweather.quake())
-				except:await bot.send_message(mc, 'Can\'t seem to fetch earthquake information')
+				try:await mc.send(mochaweather.quake())
+				except:await mc.send('Can\'t seem to fetch earthquake information')
 			elif na[1] == 'solve':
-				await bot.send_message(mc, mocharpn.infix(m[9:]))
+				await mc.send(mocharpn.infix(m[9:]))
 			elif na[1] == 'tarot':
-				await bot.send_message(mc, embed=mochaweb.tarot())
+				await mc.send(embed=mochaweb.tarot())
 			elif na[1] == 'filter':
 				await mfilter(message)
 			elif na[1] == 'zodiac':
-				await bot.send_message(mc, zodiac(n[10:]))
+				await mc.send(zodiac(n[10:]))
 			elif na[1] == 'coffee':
-				await bot.send_message(mc, str(coffee(m[10:])))
+				await mc.send(str(coffee(m[10:])))
 			elif na[1] == 'trivia':
-				await bot.send_message(mc, str(trivia(m[10:])))
+				await mc.send(str(trivia(m[10:])))
 			elif na[1][:6] == 'secret':
-				await bot.send_message(mc, '**'+str(len(quotefiles)+len(special)+len(specialer)+len(rspecial))+'** secret commands, of which:\n\n**'+str(len(specialer)+len(rspecial))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
+				await mc.send('**'+str(len(quotefiles)+len(special)+len(specialer)+len(rspecial))+'** secret commands, of which:\n\n**'+str(len(specialer)+len(rspecial))+'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**'+str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 			elif na[1] == 'convert':
-				await bot.send_message(mc, str(convert(n[11:])))
+				await mc.send(str(convert(n[11:])))
 			elif na[1] == 'currency':
-				await bot.send_message(mc, str(convertcurrency(n[12:])))
+				await mc.send(str(convertcurrency(n[12:])))
 			elif na[1] == 'weather':
-				try:await bot.send_message(mc, mochaweather.main(m[11:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch weather for '+m[11:])
+				try:await mc.send(mochaweather.main(m[11:]))
+				except:await mc.send('Can\'t seem to fetch weather for '+m[11:])
 			elif na[1] == 'welcome':
 				try:
 					code = na[2]
 					try:
 						bonus = ' '.join(na[3:])
 						if bonus == '':raise ValueError('no blenk plox')
-						await bot.send_message(mc, welcome[code].title()+', '+bonus+'!')
-					except:await bot.send_message(mc, welcome[code].title()+'!')
-				except:await bot.send_message(mc, 'Welcome!')
+						await mc.send(welcome[code].title()+', '+bonus+'!')
+					except:await mc.send(welcome[code].title()+'!')
+				except:await mc.send('Welcome!')
 			elif na[1] == 'hurricane':
-				try:await bot.send_message(mc, mochaweather.hurricane(m[13:]))
-				except:await bot.send_message(mc, 'Can\'t seem to fetch hurricane advisories')
+				try:await mc.send(mochaweather.hurricane(m[13:]))
+				except:await mc.send('Can\'t seem to fetch hurricane advisories')
 			elif na[1] == 'asmrname':
-				await bot.send_message(mc,asmr(m[12:]))
+				await mc.send(asmr(m[12:]))
 			elif na[1] == 'califire':
-				try:await bot.send_message(mc, mochaweb.califire())
-				except:await bot.send_message(mc, 'Can\'t seem to fetch california fire data')
+				try:await mc.send(mochaweb.califire())
+				except:await mc.send('Can\'t seem to fetch california fire data')
 			elif na[1] == 'jeopardy':
 				await jeopardy(message)
 			elif na[1] == 'religion':
-				await bot.send_message(mc, str(religion(m[12:])))
+				await mc.send(str(religion(m[12:])))
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await bot.send_file(mc,'img/temp.png')
 			elif na[1] == 'minesweeper':
-				await bot.send_message(mc, minesweeper(*list(map(int, na[2:]))))
+				await mc.send(minesweeper(*list(map(int, na[2:]))))
 			elif na[1][:4] == 'moki':
-				await bot.send_message(mc, mochapoint(message))
+				await mc.send(mochapoint(message))
 			# SECRET DEBUG
 			elif na[1] == 'anchor' and message.author.id==mochaid:
 				anchor = mc
@@ -1479,8 +1484,8 @@ async def on_message(message):
 				if n[3:] in wholequotefiles:o = open(n[3:]+'.txt','r').read()
 				else:o = quotefile(' '.join(ma[2:]),ma[1].lower())
 
-				try:await bot.send_message(mc,o)
-				except discord.errors.HTTPException:await bot.send_message(mc,'Too many matches ('+str(o.count('\n'))+')')
+				try:await mc.send(o)
+				except discord.errors.HTTPException:await mc.send('Too many matches ('+str(o.count('\n'))+')')
 			# GAMES
 			elif na[1] == 'game':
 				args = n.split(' ')[2:]
@@ -1506,8 +1511,8 @@ async def on_message(message):
 					await word(args,message)
 			# ELSE
 			elif n.startswith(bot_prefix):
-				try:await bot.send_message(mc, special[m[3:].lower()]) # specials
-				except KeyError:await bot.send_message(mc,'me confufu uwu')
+				try:await mc.send(special[m[3:].lower()]) # specials
+				except KeyError:await mc.send('me confufu uwu')
 		# Check filters
 		if mc.id in filters:
 			type = filters[mc.id][0]
