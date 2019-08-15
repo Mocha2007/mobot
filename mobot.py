@@ -1520,7 +1520,7 @@ async def on_message(message):
 	# status
 	timecheck[1] = time()
 	if timecheck[1] > timecheck[0] + 60 or ('1453' in message.content and message.author.id == mochaid):
-		await bot.change_presence(game=discord.Game(name=new_status()))
+		await bot.change_presence(activity=discord.Game(name=new_status()))
 		timecheck[0] = time()
 
 print('Connecting...')
