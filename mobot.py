@@ -306,9 +306,9 @@ def moastro(string: str):
 		a = float(arg[1])
 		b = float(arg[2])
 		return mochaastro.synodic(a, b)
-	try:
+	if 1 < len(arg) and set(arg[:2]) <= set(object):
 		return object[arg[0]][arg[1]]
-	except (IndexError, KeyError):
+	else:
 		return ':/'
 
 
@@ -382,8 +382,8 @@ def moling(string: str) -> str:
 			return mochalang.unmojibake(' '.join(arg[1:]), 'windows-1252', 'utf-8')
 		except UnicodeDecodeError:
 			return 'Invalid... probably missing some characters?'
-		except:
-			return 'Invalid... just really, really invalid.'
+		except IndexError:
+			return 'You need to put in a string, silly~!'
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
 		if 1 < len(arg):
 			return xsampa(arg[1])
@@ -397,12 +397,14 @@ def trivia(string: str) -> str:
 	try:
 		int(arg[0])
 		number = True
-	except (IndexError, ValueError):
+	except ValueError:
 		number = False
 
 	if number:
 		return mochaweb.numbersapi(arg[0])
 	elif arg[0] == 'number':
+		if len(arg) == 1:
+			return 'I don\'t see a number there, silly~!'
 		try:
 			return mochaweb.numbersapi(arg[1])
 		except:
@@ -441,13 +443,10 @@ def sto(string: str) -> str:
 
 def bug(string: str) -> str:
 	try:
-		open("bug.txt", "a").write('\n'+string)
-	except:
+		open("bug.txt", "a+").write('\n'+string)
+	except FileNotFoundError:
 		return ':/'
-	try:
-		play('../bug.wav')
-	except:
-		print('\a')
+	print('\a')
 	return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 
 
@@ -864,12 +863,12 @@ async def associate(message: discord.Message) -> bool:
 	while 1:
 		# regenerate list
 		associatefile = open('associate.txt', 'r').read()
-		wordlist = list(map(lambda x: x[0:2]+[int(x[2])], map(lambda x: x.split('\t'), associatefile.split('\n'))))
+		wordlist = list(map(lambda xx: xx[0:2]+[int(xx[2])], map(lambda xx: xx.split('\t'), associatefile.split('\n'))))
 		# choose word
 		i = 0
 		while 1:
-			word = c(wordlist)[c([0, 1])]
-			if word not in used:
+			wordc = c(wordlist)[c([0, 1])]
+			if wordc not in used:
 				break
 			if i > 999:
 				used = []
@@ -879,20 +878,20 @@ async def associate(message: discord.Message) -> bool:
 		wordstats1 = []
 		wordstats2 = []
 		for match in wordlist:
-			if match[0] == word:
+			if match[0] == wordc:
 				wordstats1.append(match[1])
 				wordstats2.append(match[2])
 		s = sum(wordstats2)
 		wordstats2 = list(map(lambda x: x/s, wordstats2))
 		# text
-		await mc.send('Your word is **'+word+'**! Type a word associated with it!')
+		await mc.send('Your word is **'+wordc+'**! Type a word associated with it!')
 		while 1:
 			msg = await bot.wait_for('message', check=check)
 			mcl = msg.content.lower()
 			if mcl in idk or mcl in quit or mcl == 'stats':
 				break
 			if not search('[^a-z]', mcl):
-				if mcl in word or word in mcl:
+				if mcl in wordc or wordc in mcl:
 					await mc.send('Your word must not contain the word, and the word must not contain yours.')
 				else:
 					break
@@ -918,7 +917,7 @@ async def associate(message: discord.Message) -> bool:
 			i = wordstats1.index(mcl)
 			await mc.send(str(round(wordstats2[i]*100, 2))+'% agree!')
 			# add
-			target = word+'\t'+mcl
+			target = wordc+'\t'+mcl
 			for line in associatefile.split('\n'):
 				if line[:len(target)] == target:
 					n = int(line[len(target)+1:])
@@ -932,8 +931,8 @@ async def associate(message: discord.Message) -> bool:
 			x = 'No' if len(wordstats1) else 'Every'
 			await mc.send(x+'body agrees!')
 			# add
-			open("associate.txt", "a").write('\n'+word+'\t'+mcl+'\t1')
-		used.append(word)
+			open("associate.txt", "a").write('\n'+wordc+'\t'+mcl+'\t1')
+		used.append(wordc)
 	await mc.send('Bye-bye!~ ^_^')
 	return False
 
@@ -955,7 +954,7 @@ async def tests(message: discord.Message) -> bool:
 			try:
 				if int(msg.content) == sum(n):
 					score += 1
-			except:
+			except ValueError:
 				pass
 	elif name[:3] == 'mul':
 		for i in range(length):
@@ -965,7 +964,7 @@ async def tests(message: discord.Message) -> bool:
 			try:
 				if int(msg.content) == n[0]*n[1]:
 					score += 1
-			except:
+			except ValueError:
 				pass
 	elif name == 'literacy':
 		length = 10
@@ -973,12 +972,9 @@ async def tests(message: discord.Message) -> bool:
 			n = mochatest.rgrammar()
 			await mc.send(n[0])
 			msg = await bot.wait_for('message', check=check)
-			try:
-				mcl = msg.content.lower()
-				if mcl == n[1]:
-					score += 1
-			except:
-				pass
+			mcl = msg.content.lower()
+			if mcl == n[1]:
+				score += 1
 	else:
 		return True
 	antiscore = length-score
@@ -992,7 +988,7 @@ async def verbrace(args: List[str], mc: discord.TextChannel) -> bool:
 	def check(m: discord.Message) -> bool:
 		return m.channel == mc
 	forms = pronouns[args[1]]
-	word = c(verbs[args[1]])
+	wordc = c(verbs[args[1]])
 	limit = 30
 	await mc.send('A new game of **Verb Race** has begun! You have **'+str(limit)+'** seconds to type `join`!')
 	form = 0
@@ -1014,7 +1010,7 @@ async def verbrace(args: List[str], mc: discord.TextChannel) -> bool:
 	pbu = players[:] # player backup
 	choice = False
 	start = time()
-	await mc.send('A new game of **Verb Race** has begun!\nYour verb is: **'+word[finalform]+'**!')
+	await mc.send('A new game of **Verb Race** has begun!\nYour verb is: **'+wordc[finalform]+'**!')
 	allcorrect = True
 	while form < finalform:
 		if choice:
@@ -1024,23 +1020,23 @@ async def verbrace(args: List[str], mc: discord.TextChannel) -> bool:
 				break # return True
 			elif msg.author == choice:
 				await msg.delete()
-				if msg.content == word[form]:
+				if msg.content == wordc[form]:
 					await mc.send('Correct!')
 				else:
-					await mc.send('Incorrect! The correct form was **'+word[form]+'**')
+					await mc.send('Incorrect! The correct form was **'+wordc[form]+'**')
 					allcorrect = False
 				form += 1
 				choice = False
 		else:
 			choice = players.pop()
-			await mc.send('**'+choice.name+'**, conjugate **'+word[finalform]+'** for **'+forms[form]+'**!')
+			await mc.send('**'+choice.name+'**, conjugate **'+wordc[finalform]+'** for **'+forms[form]+'**!')
 	await mc.send('The game of **Verb Race** has ended! You took '+str(int(time()-start))+' seconds!')
 	# check to see if eligible for leaderboard
 	if allcorrect and len(set(pbu[:finalform])) == 1:
 		mochagive(1, pbu[0].name.lower())
-		open("vrleaderboard.txt", "a").write('\n'+'\t'.join([args[1], word[finalform], str(int(time()-start)), pbu[0].name]))
+		open("vrleaderboard.txt", "a").write('\n'+'\t'.join([args[1], wordc[finalform], str(int(time()-start)), pbu[0].name]))
 	# print leaders
-	await mc.send('Leaderboard for **'+word[finalform]+'**:\n'+vrleaderboard(args[1], word[finalform], 5))
+	await mc.send('Leaderboard for **'+wordc[finalform]+'**:\n'+vrleaderboard(args[1], wordc[finalform], 5))
 	return False
 
 
@@ -1356,7 +1352,7 @@ def mochagive(amt: int, acct: str):
 def mochapoint(message: discord.Message) -> str:
 	donating = ['del', 'don']
 	giving = ['giv']
-	id = message.author.id
+	uid = message.author.id
 	string = ' '.join(message.content.lower().split(' ')[2:])
 	# ["user\t$",...]
 	file = open("bank.txt", "r").read().split('\n')
@@ -1371,12 +1367,12 @@ def mochapoint(message: discord.Message) -> str:
 	# string edit
 	subcommand = string.split(' ')
 	if subcommand[0][:3] == 'bal':
-		if id == mochaid:
+		if uid == mochaid:
 			return 'https://youtu.be/7sWpSvQ_hwo'
 		try:
-			return message.author.name+': **'+str(bank[id])+'**'
+			return message.author.name+': **'+str(bank[uid])+'**'
 		except KeyError: # not in there
-			open("bank.txt", "a").write('\n'+id+'\t0')
+			open("bank.txt", "a").write('\n'+uid+'\t0')
 			return message.author.name+': **0**'
 	elif subcommand[0][:3] == 'eco':
 		people = len(bank)
@@ -1391,11 +1387,11 @@ def mochapoint(message: discord.Message) -> str:
 			wealth.pop()
 		rich = str(round((1 - len(wealth) / people)*100, 2))
 		# continue
-		if id == mochaid:
+		if uid == mochaid:
 			percent = 'errythin'
 		else:
 			try:
-				percent = str(round(int(bank[id])/summation*100, 2))
+				percent = str(round(int(bank[uid])/summation*100, 2))
 			except KeyError:
 				percent = '0'
 		return '**'+str(summation)+'** mokis in circulation\nYou own **'+percent+'%**.\n**'+rich + \
@@ -1409,9 +1405,9 @@ def mochapoint(message: discord.Message) -> str:
 			tgt = subcommand[1][3:-1]
 		try:
 			int(tgt)
-		except:
+		except ValueError:
 			return 'Invalid user'
-		if id == tgt:
+		if uid == tgt:
 			return '...no.'
 		try:
 			# easter egg
@@ -1422,9 +1418,9 @@ def mochapoint(message: discord.Message) -> str:
 			if amt < 1:
 				raise ValueError('SKREE')
 			try:
-				if bank[id] < amt:
+				if bank[uid] < amt:
 					raise ValueError('SKREE')
-				bank[id] -= amt
+				bank[uid] -= amt
 				if tgt in bank:
 					bank[tgt] += amt
 				else:
@@ -1432,9 +1428,9 @@ def mochapoint(message: discord.Message) -> str:
 				bankwrite(bank)
 				user = 'user' if subcommand[0][:3] in giving else '<@!'+tgt+'>'
 				return 'Successfully transfered **'+str(amt)+'** moki'+('s' if amt > 1 else '')+' to '+user+'!'
-			except:
+			except ValueError:
 				return 'Insufficient Funds'
-		except:
+		except ValueError:
 			return 'Invalid Amount; require a natural number.'
 	else: # if subcommand[0] == 'help':
 		mokicommands = (
@@ -1479,9 +1475,9 @@ async def on_message(message: discord.Message) -> bool:
 	ma = m.split(' ')
 	na = n.split(' ')
 	# quotefile
-	try:
+	if 1 < len(na):
 		qfcondition = na[0] == 'm!' and na[1] in quotefiles+wholequotefiles
-	except:
+	else:
 		qfcondition = False
 	# GOAT
 	try:
@@ -1497,7 +1493,7 @@ async def on_message(message: discord.Message) -> bool:
 		goatcondition = False
 
 	try:
-		notmobot = message.author.name!='Mobot'
+		notmobot = message.author.name != 'Mobot'
 		if notmobot:
 			if goatcondition: # needed due to complicated conditions
 				try:

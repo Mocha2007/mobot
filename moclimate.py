@@ -17,7 +17,7 @@ mountains = pygame.image.load("img/stone.png")
 sea = pygame.image.load("img/sea.png")
 
 
-def random_world(sc: float, conv: float, lf: float, mc: float) -> List[List[pygame.image]]:
+def random_world(sc: float, conv: float, lf: float, mc: float) -> List[list]: # List[List[pygame.image]]
 	s = time.time()
 	w = []
 
