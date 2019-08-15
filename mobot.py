@@ -15,7 +15,7 @@ from mochaxyz import *
 
 
 # CODE SHIT
-def help(command):
+def help(command: str) -> str:
 	"""Help"""
 	if command == '':
 		return open("help2.txt", "r").read()
@@ -53,13 +53,15 @@ def play(x: str):
 	PlaySound(x, SND_FILENAME)
 
 
-def product(numlist):
-	if len(numlist) == 0:return 0
-	if len(numlist) == 1:return numlist[0]
+def product(numlist) -> int:
+	if len(numlist) == 0:
+		return 0
+	if len(numlist) == 1:
+		return numlist[0]
 	return numlist[0] * product(numlist[1:])
 
 
-def momath(string):
+def momath(string: str):
 	arg = string.lower().split(' ')
 
 	# simple
@@ -220,7 +222,7 @@ def momath(string):
 	return ':/'
 
 
-def moastro(string):
+def moastro(string: str):
 	arg = string.lower().split(' ')
 
 	if arg[0] == 'delay':
@@ -385,7 +387,6 @@ def moling(string: str):
 			return xsampa(arg[1])
 		except:
 			return 'https://en.wikipedia.org/wiki/X-SAMPA'
-
 	return ':/'
 
 
@@ -464,7 +465,7 @@ def quotefile(line: str, file: str) -> str:
 	return quotefile('', file) if q == '' else q
 
 
-def qfsearch(pattern, file: str) -> str:
+def qfsearch(pattern: str, file: str) -> str:
 	p = compile(pattern)
 	q = open(file+".txt", "r").read().split('\n')
 	l = []
@@ -496,7 +497,7 @@ def zodiac(arg: str) -> str:
 	return '**'+signs[n].title()+'**\nElement: '+signelements[n % 4]+'\nQuality: '+signqualities[n % 3]+'\nRuler: '+signrulers[n]
 
 
-def mbti(arg):
+def mbti(arg) -> str:
 	arg = arg[:4].lower()
 	ids = (('e', 'i'), ('s', 'n'), ('t', 'f'), ('j', 'p'))
 	idz = (('extroverted', 'introverted'), ('sensing', 'intuition'), ('thinking', 'feeling'), ('judging', 'perceiving'))
@@ -523,7 +524,7 @@ def coffee(arg: str) -> str:
 		return ':/'
 
 
-def convert(uwaa: str):
+def convert(uwaa: str) -> str:
 	arg = uwaa.split(' ')
 	# desc
 	if arg[0][:4] in ('desc', 'help'):
@@ -533,12 +534,12 @@ def convert(uwaa: str):
 		return 'No, I meant the **other** kind of convert!'
 	
 	try:
-		return float(arg[0]) * units[arg[1]][0] / units[arg[2]][0]
+		return str(float(arg[0]) * units[arg[1]][0] / units[arg[2]][0])
 	except KeyError:
 		return 'invalid unit... did you try using its abbreviation?'
 
 
-def convertcurrency(uwaa):
+def convertcurrency(uwaa: str):
 	arg = uwaa.split(' ')
 	try:
 		return round(float(arg[0])*mochaweb.currency(arg[1].upper(), arg[2].upper()), 2)
@@ -546,33 +547,37 @@ def convertcurrency(uwaa):
 		return 'invalid currency... did you try using its abbreviation?'
 
 
-def religion(uwaa):
+def religion(uwaa: str) -> str:
 	try:
 		return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
 	except KeyError:
 		return ':/'
 
 
-def xsampa(string):
+def xsampa(string: str) -> str:
 	for replacement in xskey:
 		string = string.replace(replacement[0], replacement[1])
 	return string
 
 
-def pie(string):
+def pie(string: str) -> str:
 	for replacement in piekey:
 		string = string.replace(replacement[0], replacement[1])
 	return string
 
 
-def rword(lang, min):
+def rword(lang: str, min: int) -> str:
 	replace = '\n.?,!0123456789[]()":;'
-	if lang == 'la':corpus = open("cdbg.txt", "r").read()
-	elif lang == 'fr':corpus = open("lg.txt", "r").read()
-	elif lang[:7] == 'en-lang':corpus = open("en-languages.txt", "r").read()
-	else:corpus = open("bee.txt", "r").read()
+	if lang == 'la':
+		corpus = open("cdbg.txt", "r").read()
+	elif lang == 'fr':
+		corpus = open("lg.txt", "r").read()
+	elif lang[:7] == 'en-lang':
+		corpus = open("en-languages.txt", "r").read()
+	else:
+		corpus = open("bee.txt", "r").read()
 	for char in replace:
-		corpus = corpus.replace(char,' ')
+		corpus = corpus.replace(char, ' ')
 	corpus = corpus.split(' ')
 	while 1:
 		attempt = c(corpus).lower()
@@ -581,12 +586,12 @@ def rword(lang, min):
 				return attempt
 
 
-def d(m,n):
+def d(m: int, n: int) -> int:
 	if m*n == 0:
 		return 0
-	if m<0:
+	if m < 0:
 		return -d(-m, n)
-	if n<0:
+	if n < 0:
 		return -d(m, -n)
 	s = 0
 	for i in range(m):
@@ -594,7 +599,7 @@ def d(m,n):
 	return s
 
 
-def dice(m,n):
+def dice(m: int, n: int) -> str:
 	maxrolls = 10000
 	rolls = []
 	for i in range(maxrolls):
@@ -608,7 +613,7 @@ def dice(m,n):
 	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
 
 
-def dicemat(x):
+def dicemat(x: str) -> str:
 	x = x.lower().replace('d', ' ')
 	x = x.split(' ')
 	try:
@@ -621,7 +626,7 @@ def dicemat(x):
 		return 'Space-separated!'
 
 
-def gp(x):
+def gp(x: str) -> str:
 	args = x.split(' ')
 	try:
 		gold = float(args[0])
@@ -643,7 +648,7 @@ def gp(x):
 	return g+'g '+s+'s '+c+'c'
 
 
-def asmr(s):
+def asmr(s: str) -> str:
 	if len(s):
 		seed(s)
 	#		S1					S2					S3
@@ -668,7 +673,7 @@ def asmr(s):
 
 
 # GAMES
-async def g23(mc):
+async def g23(mc: discord.TextChannel) -> bool:
 	timer = 30
 	await mc.send('Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
 	start = time()
@@ -694,7 +699,7 @@ async def g23(mc):
 		return True
 
 
-async def gtn(args, mc: discord.TextChannel):
+async def gtn(args, mc: discord.TextChannel) -> bool:
 	try:
 		minn = int(args[1])
 		maxn = int(args[2])
@@ -726,7 +731,7 @@ async def gtn(args, mc: discord.TextChannel):
 			return False
 
 
-async def word(args, message):
+async def word(args, message: discord.Message) -> bool:
 	mc = message.channel
 	try:
 		word = args[1].lower()
@@ -765,7 +770,7 @@ async def word(args, message):
 				pass
 
 
-async def hangman(args, mc: discord.TextChannel):
+async def hangman(args, mc: discord.TextChannel) -> bool:
 	if 1 < len(args):
 		lang = args[1]
 	else:
@@ -820,14 +825,15 @@ async def hangman(args, mc: discord.TextChannel):
 	return False
 
 
-def vrleaderboard(lang: str, verb: str, n: int):
+def vrleaderboard(lang: str, verb: str, n: int) -> str:
 	# [(lang,verb,##,user),...]
-	wholelist = list(map(lambda x:(x[0],x[1],int(x[2]),x[3]),map(lambda x:x.split('\t'),open("vrleaderboard.txt", "r").read().split('\n'))))
+	wholelist = list(map(lambda x: (x[0], x[1], int(x[2]), x[3]), map(lambda x: x.split('\t'), open("vrleaderboard.txt", "r").read().split('\n'))))
 	# the above is CONFIRMED to work correctly. the problem is below this point
 	# find relevant entries
 	o = []
 	for entry in wholelist:
-		if entry[0] == lang and entry[1] == verb:o.append((entry[2],entry[3]))
+		if entry[0] == lang and entry[1] == verb:
+			o.append((entry[2], entry[3]))
 	# sort by time
 	o = sorted(o, key=lambda x: x[0])
 	# now turn to text
@@ -838,7 +844,7 @@ def vrleaderboard(lang: str, verb: str, n: int):
 	return '```\ns \tusername\n'+oo+'```'
 
 
-async def associate(message: discord.Message):
+async def associate(message: discord.Message) -> bool:
 	idk = {'dunno', 'idk', 'pass', 'skip', 'unno'}
 	ma = message.author
 	mc = message.channel
@@ -920,7 +926,7 @@ async def associate(message: discord.Message):
 	return False
 
 
-async def tests(message):
+async def tests(message: discord.Message) -> bool:
 	length = 20
 	ma = message.author
 	mc = message.channel
@@ -968,7 +974,7 @@ async def tests(message):
 	return True
 
 
-async def verbrace(args, mc: discord.TextChannel):
+async def verbrace(args, mc: discord.TextChannel) -> bool:
 	def check(m: discord.Message) -> bool:
 		return m.channel == mc
 	forms = pronouns[args[1]]
@@ -1024,7 +1030,7 @@ async def verbrace(args, mc: discord.TextChannel):
 	return False
 
 
-async def numbers(mc: discord.TextChannel):
+async def numbers(mc: discord.TextChannel) -> bool:
 	def check(m: discord.Message) -> bool:
 		return m.channel == mc
 	limit = 45
@@ -1082,7 +1088,7 @@ async def numbers(mc: discord.TextChannel):
 	return False
 
 
-async def twentyfour(mc: discord.TextChannel):
+async def twentyfour(mc: discord.TextChannel) -> bool:
 	def check(m: discord.Message) -> bool:
 		return m.channel == mc
 	limit = 30
@@ -1138,7 +1144,7 @@ async def twentyfour(mc: discord.TextChannel):
 	return False
 
 
-async def llama(message: discord.Message):
+async def llama(message: discord.Message) -> bool:
 	ma, mc = message.author, message.channel
 
 	def check(m: discord.Message) -> bool:
@@ -1157,7 +1163,7 @@ async def llama(message: discord.Message):
 		state = ml[1]
 
 
-async def hello_game(message):
+async def hello_game(message: discord.Message) -> bool:
 	ma = message.author
 	mc = message.channel
 
@@ -1201,7 +1207,7 @@ async def hello_game(message):
 			open('../hello_u.txt', 'w').write(str(hello.users))
 
 
-async def jeopardy(message):
+async def jeopardy(message: discord.Message):
 	mc = message.channel
 
 	def check(m: discord.Message) -> bool:
@@ -1276,10 +1282,9 @@ def reloadfilter():
 	for line in open('filter.txt', 'r').read().split('\n'):
 		lineargs = line.split('\t')
 		filters[lineargs[0]] = lineargs[1:]
-	return False
 
 
-async def mfilter(message):
+async def mfilter(message: discord.Message) -> bool:
 	ma, mc = message.author, message.channel
 
 	def check(m: discord.Message) -> bool:
@@ -1310,7 +1315,7 @@ mochaid = open('../mocha.txt', 'r').read()
 mobotid = open('../mobot.txt', 'r').read()
 
 
-def bankwrite(bank):
+def bankwrite(bank: dict):
 	s = ''
 	for account in bank:
 		s += '\n'+account+'\t'+str(bank[account])
@@ -1334,7 +1339,7 @@ def mochagive(amt, acct):
 	bankwrite(bank)
 
 
-def mochapoint(message):
+def mochapoint(message: discord.Message) -> str:
 	donating = ['del','don']
 	giving = ['giv']
 	id = message.author.id
@@ -1448,7 +1453,7 @@ async def on_ready():
 
 
 @bot.event
-async def on_message(message):
+async def on_message(message: discord.Message):
 	await bot.process_commands(message)
 	global anchor
 	global lastmessage
