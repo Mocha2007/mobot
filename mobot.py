@@ -678,7 +678,7 @@ def asmr(s: str) -> str:
 
 
 # GAMES
-async def g23(mc: discord.TextChannel) -> bool:
+async def g23(mc: discord.TextChannel) -> None:
 	timer = 30
 	await mc.send('Start guessing! You have **'+str(timer)+'** seconds! Clock starts *now*!~')
 	start = time()
@@ -700,14 +700,15 @@ async def g23(mc: discord.TextChannel) -> bool:
 		winner = a2.index(min(a2))
 		await mc.send(guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0]) +
 						' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
-		return False
 	except ZeroDivisionError:
 		await mc.send('N-nobody??? ;-;')
-		return True
 
 
 async def gtn(args: List[str], msg: discord.Message) -> bool:
 	mc = msg.channel
+
+	def check(m: discord.Message) -> bool:
+		return m.channel == mc
 	try:
 		minn = int(args[1])
 		maxn = int(args[2])
@@ -726,9 +727,6 @@ async def gtn(args: List[str], msg: discord.Message) -> bool:
 				pass
 		else:
 			await mc.send('Guess a number between '+str(minn)+' and '+str(maxn)+'!')
-
-		def check(m: discord.Message) -> bool:
-			return m.channel == mc
 		msg = await bot.wait_for('message', check=check)
 		if msg.content == str(answer):
 			await mc.send(msg.author.name+', you win! ^o^')
@@ -739,6 +737,9 @@ async def gtn(args: List[str], msg: discord.Message) -> bool:
 
 async def word(args: List[str], message: discord.Message) -> bool:
 	mc = message.channel
+
+	def check(m: discord.Message) -> bool:
+		return m.channel == mc
 	try:
 		w = args[1].lower()
 		await message.delete()
@@ -748,8 +749,6 @@ async def word(args: List[str], message: discord.Message) -> bool:
 		w = rword('en', 4)
 	await mc.send('A new game of **Word** has begun:\n**'+'X'*len(w)+'**')
 	while 1:
-		def check(m: discord.Message) -> bool:
-			return m.channel == mc
 		msg = await bot.wait_for('message', check=check)
 		if msg.content.lower() in quit:
 			await mc.send('c r i e ;-;\nthe word was **'+w+'**.')
@@ -778,6 +777,9 @@ async def word(args: List[str], message: discord.Message) -> bool:
 
 async def hangman(args: List[str], msg: discord.Message) -> bool:
 	mc = msg.channel
+
+	def check(m: discord.Message) -> bool:
+		return m.channel == mc
 	if 1 < len(args):
 		lang = args[1]
 	else:
@@ -790,8 +792,6 @@ async def hangman(args: List[str], msg: discord.Message) -> bool:
 	faill = ''
 	won = False
 	while fails < 10:
-		def check(m: discord.Message) -> bool:
-			return m.channel == mc
 		msg = await bot.wait_for('message', check=check)
 		if msg.content.lower() in quit:
 			await mc.send('c r i e ;-;\nthe word was **'+w+'**.')
@@ -856,6 +856,9 @@ async def associate(message: discord.Message) -> bool:
 	idk = {'dunno', 'idk', 'pass', 'skip', 'unno'}
 	ma = message.author
 	mc = message.channel
+
+	def check(m: discord.Message) -> bool:
+		return m.channel == mc and m.author == ma
 	await mc.send('A new game of **Associate** has begun!')
 	used = []
 	while 1:
@@ -884,8 +887,6 @@ async def associate(message: discord.Message) -> bool:
 		# text
 		await mc.send('Your word is **'+word+'**! Type a word associated with it!')
 		while 1:
-			def check(m: discord.Message) -> bool:
-				return m.channel == mc and m.author == ma
 			msg = await bot.wait_for('message', check=check)
 			mcl = msg.content.lower()
 			if mcl in idk or mcl in quit or mcl == 'stats':
