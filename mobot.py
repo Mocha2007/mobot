@@ -1163,7 +1163,7 @@ async def llama(message: discord.Message) -> bool:
 		return m.channel == mc and m.author == ma
 	room = -1
 	state = 0
-	inv = False
+	inv = ''
 	await mc.send('A new emulation of **Llama Adventure** has been initiated! Type anything to begin, and have fun!~ ^_^')
 	while 1:
 		msg = await bot.wait_for('message', check=check)
