@@ -1,5 +1,4 @@
 from discord.ext.commands import Bot
-from discord.ext import commands
 import discord
 
 from datetime import timezone
@@ -15,7 +14,7 @@ from mochaxyz import *
 
 
 # CODE SHIT
-def help(command: str) -> str:
+def help_function(command: str) -> str:
 	"""Help"""
 	if command == '':
 		return open("help2.txt", "r").read()
@@ -23,12 +22,10 @@ def help(command: str) -> str:
 	doclines = doc.split('\n')
 	clen = len(command)
 	relevant = '```\n'
-	begin = 0
 	# try to find command
 	depth = 0 # to prevent UnboundLocalError on a wrong command
 	i, lastmajor = 0, ''
 	for i in range(len(doclines)):
-		begin = i
 		line = doclines[i]
 		if line[0] != '\t':
 			lastmajor = line
@@ -130,15 +127,15 @@ def momath(string: str):
 		elif arg[1] == 'triangle':
 			a = float(arg[2])
 			b = float(arg[3])
-			c = float(arg[4])
-			s = (a+b+c)/2
-			return (s*(s-a)*(s-b)*(s-c))**.5
+			cc = float(arg[4])
+			s = (a+b+cc)/2
+			return (s*(s-a)*(s-b)*(s-cc))**.5
 		elif arg[1] == 'trigon':
 			return 3**.5/4*float(arg[2])**2
 	elif arg[0] == 'd':
-		d = int(arg[1])
+		dd = int(arg[1])
 		poly = list(map(float, arg[2:]))
-		return mochamath.dpoly(poly, d)
+		return mochamath.dpoly(poly, dd)
 	elif arg[0] == 'i':
 		i = int(arg[1])
 		poly = list(map(float, arg[2:]))
@@ -149,16 +146,16 @@ def momath(string: str):
 		if floating < 0:
 			floating = -floating
 			neg = True
-		d = 0
+		dd = 0
 		while floating != int(floating):
 			floating = floating*10
-			d += 1
+			dd += 1
 		floating = int(floating)
-		d = 10**d
-		g = gcd(floating, d)
+		dd = 10**dd
+		g = gcd(floating, dd)
 		floating = int(floating/g)
-		d = int(d/g)
-		return int(('-' if neg else '')+str(floating)), d
+		dd = int(dd/g)
+		return int(('-' if neg else '')+str(floating)), dd
 	elif arg[0] == 'gcd':
 		return gcd(int(arg[1]), int(arg[2]))
 	elif arg[0] == 'lcm':
@@ -183,9 +180,9 @@ def momath(string: str):
 	elif arg[0] == 'root':
 		a = float(arg[1])
 		b = float(arg[2])
-		c = float(arg[3])
-		d = (b**2-4*a*c)**.5
-		return (-b+d)/2, (-b-d)/2
+		cc = float(arg[3])
+		dd = (b**2-4*a*cc)**.5
+		return (-b+dd)/2, (-b-dd)/2
 	elif arg[0] == 'random':
 		if arg[1] == 'card':
 			return mochamath.card()
@@ -217,9 +214,9 @@ def momath(string: str):
 		elif arg[1] == 'wedge':
 			a = float(arg[2])
 			b = float(arg[3])
-			c = float(arg[4])
+			cc = float(arg[4])
 			h = float(arg[5])
-			return b*h*(a/3+c/6)
+			return b*h*(a/3+cc/6)
 
 	return ':/'
 
@@ -228,7 +225,7 @@ def moastro(string: str):
 	arg = string.lower().split(' ')
 
 	if arg[0] == 'delay':
-		c = 299792458
+		cc = 299792458
 		if 1 < len(arg) and arg[1] in object and 'a' in object[arg[1]]:
 			a1 = object[arg[1]]['a']
 		else:
@@ -237,8 +234,8 @@ def moastro(string: str):
 			a2 = object[arg[2]]['a']
 		else:
 			a2 = 0
-		bigd = (a1+a2)/c
-		littled = abs(a1-a2)/c
+		bigd = (a1+a2)/cc
+		littled = abs(a1-a2)/cc
 		seconds = 'Between '+str(int(littled))+' and '+str(ceil(bigd))+' seconds'
 		if bigd < 60:
 			return seconds
@@ -254,7 +251,7 @@ def moastro(string: str):
 	elif arg[0] == 'density' or arg[0] == 'rho':
 		mass = float(arg[1])
 		radius = float(arg[2])
-		return mochaastro.density(mass,radius)
+		return mochaastro.density(mass, radius)
 	elif arg[0] == 'escapevelocity' or arg[0] == 've':
 		mass = float(arg[1])
 		radius = float(arg[2])
@@ -282,17 +279,21 @@ def moastro(string: str):
 		return mochaastro.p(mass, sma)
 	elif arg[0] == 'roche':
 		m = float(arg[1])
-		d = float(arg[2])
-		return mochaastro.roche(m, d)
+		dd = float(arg[2])
+		return mochaastro.roche(m, dd)
 	elif arg[0] == 'soi':
 		m = float(arg[1])
-		M = float(arg[2])
+		mm = float(arg[2])
 		a = float(arg[3])
-		return mochaastro.soi(m, M, a)
+		return mochaastro.soi(m, mm, a)
 	elif arg[0] == 'star':
 		m = float(arg[1])
 		s = mochaastro.star(m)
-		return '```\nMass: '+str(m)+' kg\nRadius: '+str(s[0])+' m\nLuminosity: '+str(s[1])+' W\nTemperature: '+str(s[2])+' K\nLifespan: '+str(s[3])+' s```'
+		return '```\nMass: '+str(m) + \
+				' kg\nRadius: '+str(s[0]) + \
+				' m\nLuminosity: '+str(s[1]) + \
+				' W\nTemperature: '+str(s[2]) + \
+				' K\nLifespan: '+str(s[3])+' s```'
 	elif arg[0] == 'stargen':
 		try:
 			m = float(arg[1])
@@ -309,11 +310,11 @@ def moastro(string: str):
 		return ':/'
 
 
-def lf(x):
-	l = mochalang.sortdict(mochalang.letterfreq(x))
+def lf(x: str) -> str:
+	letters = mochalang.sortdict(mochalang.letterfreq(x))
 	s = '```\n'
-	for i in l:
-		s+=i[0]+' '+str(i[1])+'\n'
+	for i in letters:
+		s += i[0]+' '+str(i[1])+'\n'
 	return s+'```'
 
 
@@ -1516,7 +1517,7 @@ async def on_message(message: discord.Message):
 			except FileNotFoundError:
 				pass
 			if na[1] == 'help':
-				await mc.send(help(m[8:]))
+				await mc.send(help_function(m[8:]))
 			elif na[1] == 'bf':
 				args = m[6:].split('\n')
 				await mc.send(str(mochabf.run(args[0], args[1:])))
