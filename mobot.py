@@ -319,7 +319,7 @@ def lf(x: str) -> str:
 	return s+'```'
 
 
-def moling(string: str):
+def moling(string: str) -> str:
 	arg = string.split(' ')
 
 	if arg[0] == 'freq':
@@ -358,7 +358,7 @@ def moling(string: str):
 			m = int(arg[2])
 		except (IndexError, ValueError):
 			m = 1
-		return mochalang.scrabble(arg[1])*m
+		return str(mochalang.scrabble(arg[1])*m)
 	elif arg[0] == 'shuffle':
 		x = arg[1:]
 		shuffle(x)
@@ -1539,11 +1539,11 @@ async def on_message(message: discord.Message):
 				await mc.send(help_function(m[8:]))
 			elif na[1] == 'bf':
 				args = m[6:].split('\n')
-				await mc.send(str(mochabf.run(args[0], args[1:])))
+				await mc.send(mochabf.run(args[0], args[1:]))
 			elif na[1] == 'gi':
 				await mc.send(embed=mochaweb.gi(m[6:]))
 			elif na[1] == 'gs':
-				await mc.send(str(mochagolfscript.run(m[6:])))
+				await mc.send(mochagolfscript.run(m[6:]))
 			elif na[1] == 'gp':
 				await mc.send(gp(m[6:]))
 			elif na[1] == 'dfprop':
@@ -1590,7 +1590,7 @@ async def on_message(message: discord.Message):
 			elif na[1] == 'ast':
 				await mc.send(str(moastro(m[7:])))
 			elif na[1] == 'bug':
-				await mc.send(str(bug(m[7:])))
+				await mc.send(bug(m[7:]))
 			elif na[1] == 'mat':
 				await mc.send(str(momath(m[7:])))
 			elif na[1] == 'rpn':
@@ -1598,11 +1598,11 @@ async def on_message(message: discord.Message):
 			elif na[1] == 'ttt':
 				await mc.send(str(mochattt.ai(m[7:])))
 			elif na[1] == 'dice':
-				await mc.send(str(dicemat(m[8:])))
+				await mc.send(dicemat(m[8:]))
 			elif na[1] == 'ling':
-				await mc.send(str(moling(m[8:])))
+				await mc.send(moling(m[8:]))
 			elif na[1] == 'mbti':
-				await mc.send(str(mbti(m[8:])))
+				await mc.send(mbti(m[8:]))
 			elif na[1] == 'test':
 				await tests(message)
 			elif na[1] == 'time':
@@ -1638,7 +1638,7 @@ async def on_message(message: discord.Message):
 								'\nhttps://aviationweather.gov/dataserver/example?datatype=metar')
 			elif na[1] == 'quote':
 				try:
-					await mc.send(str(sto(m[9:])))
+					await mc.send(sto(m[9:]))
 				except:
 					await mc.send('Message too Long')
 			elif na[1] == 'phoon':
@@ -1660,16 +1660,16 @@ async def on_message(message: discord.Message):
 			elif na[1] == 'zodiac':
 				await mc.send(zodiac(n[10:]))
 			elif na[1] == 'coffee':
-				await mc.send(str(coffee(m[10:])))
+				await mc.send(coffee(m[10:]))
 			elif na[1] == 'trivia':
-				await mc.send(str(trivia(m[10:])))
+				await mc.send(trivia(m[10:]))
 			elif na[1][:6] == 'secret':
 				await mc.send('**'+str(len(quotefiles)+len(special)+len(specialer)+len(rspecial)) +
 							'** secret commands, of which:\n\n**'+str(len(specialer)+len(rspecial)) +
 							'** are triggered by a string,\n**'+str(len(special))+'** are triggered by `m!`, and\n**' +
 							str(len(quotefiles))+'** are triggered by `m!` and an optional argument.')
 			elif na[1] == 'convert':
-				await mc.send(str(convert(n[11:])))
+				await mc.send(convert(n[11:]))
 			elif na[1] == 'currency':
 				await mc.send(str(convertcurrency(n[12:])))
 			elif na[1] == 'weather':
@@ -1704,7 +1704,7 @@ async def on_message(message: discord.Message):
 			elif na[1] == 'jeopardy':
 				await jeopardy(message)
 			elif na[1] == 'religion':
-				await mc.send(str(religion(m[12:])))
+				await mc.send(religion(m[12:]))
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
 				await mc.send(file='img/temp.png')

@@ -168,17 +168,17 @@ def scrabble(string):
 	return score
 
 
-def unmojibake(string, fro, to):
+def unmojibake(string: str, fro: str, to: str) -> str:
 	return bytes(string, fro).decode(to)
 
 
-def romanize(string):
+def romanize(string: str) -> str:
 	for i in romanizations:
 		string = sub(i[0], i[1], string)
 	return string
 
 
-def soundex(string):
+def soundex(string: str) -> str:
 	# Pre-rules
 	string = string.title()
 	# R1
