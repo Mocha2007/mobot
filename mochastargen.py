@@ -1,8 +1,9 @@
 from math import pi
 from random import random, uniform
+from typing import Union
 
 
-def stargen(x: str) -> str:
+def stargen(x: Union[float, str]) -> str:
 	outputstring = '```'
 	outputstring2 = []
 	outputstring3 = ''
