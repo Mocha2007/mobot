@@ -369,24 +369,24 @@ def moling(string: str):
 		if 2 < len(arg) and arg[2] in ('scrabble', 'freq'):
 			second = arg[2]
 		else:
-			second = 0
+			second = '0'
 		try:
 			return mochalang.lettersquare(int(arg[1]), second)
-		except:
+		except ValueError:
 			return '>:U'
 	elif arg[0] == 'romanize':
 		return mochalang.romanize(' '.join(arg[1:]))
 	elif arg[0] == 'unmojibake':
 		try:
-			return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
+			return mochalang.unmojibake(' '.join(arg[1:]), 'windows-1252', 'utf-8')
 		except UnicodeDecodeError:
 			return 'Invalid... probably missing some characters?'
 		except:
 			return 'Invalid... just really, really invalid.'
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
-		try:
+		if 1 < len(arg):
 			return xsampa(arg[1])
-		except:
+		else:
 			return 'https://en.wikipedia.org/wiki/X-SAMPA'
 	return ':/'
 
@@ -451,12 +451,14 @@ def bug(string: str) -> str:
 
 
 def quotefile(line: str, file: str) -> str:
-	l = line.split(' ')
-	if l[0].lower() == 'search':return qfsearch(' '.join(l[1:]), file)
+	words = line.split(' ')
+	if words[0].lower() == 'search':
+		return qfsearch(' '.join(words[1:]), file)
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
-	try:q = open(file+".txt", "r").read().split('\n')[int(line)]
+	try:
+		q = open(file+".txt", "r").read().split('\n')[int(line)]
 	except IndexError:
 		return 'That line is not present in the document.'
 	return quotefile('', file) if q == '' else q
@@ -465,13 +467,13 @@ def quotefile(line: str, file: str) -> str:
 def qfsearch(pattern: str, file: str) -> str:
 	p = compile(pattern)
 	q = open(file+".txt", "r").read().split('\n')
-	l = []
+	ll = []
 	r = ''
 	for i in range(len(q)):
 		line = q[i]
 		if search(p, line) is not None:
-			l.append((i, line))
-	for m in l:
+			ll.append((i, line))
+	for m in ll:
 		mmatch = m[1]
 		for mmmatch in findall(p, mmatch):
 			mmatch = mmatch.replace(mmmatch, '**'+mmmatch+'**')
@@ -480,18 +482,22 @@ def qfsearch(pattern: str, file: str) -> str:
 
 
 def zodiac(arg: str) -> str:
-	signs = ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','coffee']
-	signelements = ['Fire (Enthusiasm; drive to express self; faith)','Earth (Practicality; caution; material world)','Air (Communication; socialization; conceptualization)','Water (Emotion; empathy; sensitivity)']
-	signqualities = ['Cardinal (active; self-motivated; insightful; ambitious)','Fixed (stabilization; determination; depth; persistence)','Mutable (adaptability; flexibility; sympathy)']
-	signrulers = ['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter','Starbucks']
+	signs = 'aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces coffee'.split()
+	signelements = ['Fire (Enthusiasm; drive to express self; faith)', 'Earth (Practicality; caution; material world)',
+				'Air (Communication; socialization; conceptualization)', 'Water (Emotion; empathy; sensitivity)']
+	signqualities = ['Cardinal (active; self-motivated; insightful; ambitious)',
+					'Fixed (stabilization; determination; depth; persistence)',
+					'Mutable (adaptability; flexibility; sympathy)']
+	signrulers = 'Mars Venus Mercury Moon Sun Mercury Venus Mars Jupiter Saturn Saturn Jupiter Starbucks'.split()
 	vernal = 6884100 # Venal equinox 1970
 
 	if len(arg):
 		n = signs.index(arg.lower())
 	else:
-		n = int(((time()-vernal)%31556952)/2629746) # sign number 0-11
+		n = int(((time()-vernal) % 31556952)/2629746) # sign number 0-11
 
-	return '**'+signs[n].title()+'**\nElement: '+signelements[n % 4]+'\nQuality: '+signqualities[n % 3]+'\nRuler: '+signrulers[n]
+	return '**'+signs[n].title()+'**\nElement: '+signelements[n % 4]+'\nQuality: '+signqualities[n % 3]+'\nRuler: ' + \
+			signrulers[n]
 
 
 def mbti(arg) -> str:
@@ -509,7 +515,8 @@ def mbti(arg) -> str:
 		string += '\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
 	except (IndexError, KeyError, ValueError):
 		pass
-	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
+	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg + \
+			'-profile.png'
 
 
 def coffee(arg: str) -> str:
@@ -543,9 +550,10 @@ def convertcurrency(uwaa: str):
 
 
 def religion(uwaa: str) -> str:
-	try:
-		return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
-	except KeyError:
+	if uwaa in religions:
+		return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: ' + \
+				str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
+	else:
 		return ':/'
 
 
@@ -561,7 +569,7 @@ def pie(string: str) -> str:
 	return string
 
 
-def rword(lang: str, min: int) -> str:
+def rword(lang: str, minimum: int) -> str:
 	replace = '\n.?,!0123456789[]()":;'
 	if lang == 'la':
 		corpus = open("cdbg.txt", "r").read()
@@ -576,7 +584,7 @@ def rword(lang: str, min: int) -> str:
 	corpus = corpus.split(' ')
 	while 1:
 		attempt = c(corpus).lower()
-		if len(attempt) >= min: # obeys min
+		if len(attempt) >= minimum: # obeys min
 			if not compile("[^a-z-']").search(attempt): # must only contain a-z, hyphens, or apostrophes
 				return attempt
 
@@ -605,7 +613,8 @@ def dice(m: int, n: int) -> str:
 	except StatisticsError:
 		mmmm = 'No Unique Mode'
 	ssss = stdev(rolls)
-	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
+	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm + \
+			'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m, n))+'```'
 
 
 def dicemat(x: str) -> str:
@@ -637,16 +646,16 @@ def gp(x: str) -> str:
 	except IndexError:
 		s = '0'
 	try:
-		c = quotient[1][1]
+		copper = quotient[1][1]
 	except IndexError:
-		c = '0'
-	return g+'g '+s+'s '+c+'c'
+		copper = '0'
+	return g+'g '+s+'s '+copper+'c'
 
 
 def asmr(s: str) -> str:
 	if len(s):
 		seed(s)
-	#		S1					S2					S3
+	# .		S1					S2					S3
 	# (ADJ/NOUN/VERBing) [NOUN(s)/VERBing] <ASMR (front/back;optional)>
 	name = []
 	asmrstyle = randint(0, 2) # 0bXY X-beginning Y-end
@@ -676,7 +685,7 @@ async def g23(mc: discord.TextChannel) -> bool:
 	while time() < start+timer: # 30s should be enough
 		def check(m: discord.Message) -> bool:
 			return m.channel == mc
-		msg = await bot.wait_for('message', timeout=1, check=check)
+		msg = await bot.wait_for('message', timeout=1, check=check) # type: discord.Message
 		try:
 			ma = msg.author.name # type: str
 			guesses.append((float(msg.content), ma))
@@ -751,7 +760,7 @@ async def word(args, message: discord.Message) -> bool:
 				if len(guess) == len(w): # NO CHEATING
 					if guess == w:
 						await mc.send(msg.author.name+', you won with your guess of '+guess+'! ^o^')
-						mochagive(5,msg.author.name.lower())
+						mochagive(5, msg.author.name.lower())
 						return False
 					mr = range(min(len(w), len(guess)))
 					# look for EXACT matches
@@ -1351,9 +1360,9 @@ def mochapoint(message: discord.Message) -> str:
 	file = open("bank.txt", "r").read().split('\n')
 	bank = {}
 	for line in file:
-		l = line.split('\t')
+		ll = line.split('\t')
 		try:
-			bank[l[0]] = int(l[1])
+			bank[ll[0]] = int(ll[1])
 		except ValueError:
 			pass
 	bank[mochaid] = float('inf')
