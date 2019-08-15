@@ -195,13 +195,13 @@ def momath(string):
 		if arg[1] == 'cone':
 			r = float(arg[2])
 			h = float(arg[3])
-			return mochamath.volumecone(r,h)
+			return mochamath.volumecone(r, h)
 		elif arg[1] == 'cube':
 			return float(arg[2])**3
 		elif arg[1] == 'cylinder':
 			r = float(arg[2])
 			h = float(arg[3])
-			return mochamath.volumecylinder(r,h)
+			return mochamath.volumecylinder(r, h)
 		elif arg[1] == 'frustrum':
 			r1 = float(arg[2])
 			r2 = float(arg[3])
@@ -293,14 +293,17 @@ def moastro(string):
 		try:
 			m = float(arg[1])
 			return mochastargen.stargen(m)
-		except (IndexError,ValueError):return mochastargen.stargen('r')
+		except (IndexError, ValueError):
+			return mochastargen.stargen('r')
 	elif arg[0] == 'synodic':
 		a = float(arg[1])
 		b = float(arg[2])
-		return mochaastro.synodic(a,b)
+		return mochaastro.synodic(a, b)
+	try:
+		return object[arg[0]][arg[1]]
+	except:
+		return ':/'
 
-	try:return object[arg[0]][arg[1]]
-	except:return ':/'
 
 def lf(x):
 	l = mochalang.sortdict(mochalang.letterfreq(x))
@@ -309,13 +312,14 @@ def lf(x):
 		s+=i[0]+' '+str(i[1])+'\n'
 	return s+'```'
 
-def moling(string):
+
+def moling(string: str):
 	arg = string.split(' ')
 
 	if arg[0] == 'freq':
 		sss = ' '.join(arg[1:]).lower()
 		ppp = compile('[^a-z]')
-		return lf(sub(ppp,'',sss))
+		return lf(sub(ppp, '', sss))
 	elif arg[0] == 'freq2':
 		return lf(' '.join(arg[1:]))
 	elif arg[0] == 'ipa':
@@ -334,14 +338,20 @@ def moling(string):
 		elif arg[1] == 'pl':
 			return mochalang.polishipa(arg[2])
 	elif arg[0] == 'morse':
-		try:return mochalang.morse(' '.join(arg[1:]))
-		except:return 'https://en.wikipedia.org/wiki/Morse_code'
+		try:
+			return mochalang.morse(' '.join(arg[1:]))
+		except:
+			return 'https://en.wikipedia.org/wiki/Morse_code'
 	elif arg[0] == 'pie':
-		try:return pie(arg[1])
-		except:return 'https://en.wikipedia.org/wiki/Proto-Indo-European_phonology'
+		try:
+			return pie(arg[1])
+		except:
+			return 'https://en.wikipedia.org/wiki/Proto-Indo-European_phonology'
 	elif arg[0] == 'scrabble':
-		try:m = int(arg[2])
-		except:m = 1
+		try:
+			m = int(arg[2])
+		except:
+			m = 1
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'shuffle':
 		x = arg[1:]
@@ -351,24 +361,35 @@ def moling(string):
 		return mochalang.soundex(arg[1])
 	elif arg[0] == 'square':
 		try:
-			if arg[2] in ('scrabble','freq'):second = arg[2]
-			else:second = 0
-		except:second = 0
-		try:return mochalang.lettersquare(int(arg[1]),second)
-		except:return '>:U'
+			if arg[2] in ('scrabble', 'freq'):
+				second = arg[2]
+			else:
+				second = 0
+		except:
+			second = 0
+		try:
+			return mochalang.lettersquare(int(arg[1]),second)
+		except:
+			return '>:U'
 	elif arg[0] == 'romanize':
 		return mochalang.romanize(' '.join(arg[1:]))
 	elif arg[0] == 'unmojibake':
-		try:return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
-		except UnicodeDecodeError:return 'Invalid... probably missing some characters?'
-		except:return 'Invalid... just really, really invalid.'
+		try:
+			return mochalang.unmojibake(' '.join(arg[1:]),'windows-1252','utf-8')
+		except UnicodeDecodeError:
+			return 'Invalid... probably missing some characters?'
+		except:
+			return 'Invalid... just really, really invalid.'
 	elif arg[0] == 'x-sampa' or arg[0] == 'xsampa':
-		try:return xsampa(arg[1])
-		except:return 'https://en.wikipedia.org/wiki/X-SAMPA'
+		try:
+			return xsampa(arg[1])
+		except:
+			return 'https://en.wikipedia.org/wiki/X-SAMPA'
 
 	return ':/'
 
-def trivia(string):
+
+def trivia(string: str) -> str:
 	arg = string.split(' ')
 	try:
 		x = int(arg[0])
@@ -389,123 +410,162 @@ def trivia(string):
 			return 'unknown positive integer '+arg[1]
 	return ':/'
 
-def sto(string):
+
+def sto(string: str) -> str:
 	arg = string.split(' ')
 	try:
 		if arg[0] == 'search':
-			try:return qfsearch(arg[1],'temp')
-			except:return 'Bad RegEx'
-	except IndexError:pass
-
+			try:
+				return qfsearch(arg[1], 'temp')
+			except:
+				return 'Bad RegEx'
+	except IndexError:
+		pass
 	if arg[0] == 'sto':
 		inputendo = ' '.join(arg[1:])
-		if '<@!' in inputendo:return 'Not happening.'
-		if 'm!' == inputendo[:2]:return 'Not happening.'
-		if len(inputendo) == 0:return 'Not happening.'
+		if '<@!' in inputendo:
+			return 'Not happening.'
+		if 'm!' == inputendo[:2]:
+			return 'Not happening.'
+		if len(inputendo) == 0:
+			return 'Not happening.'
 		for line in open("temp.txt", "r").read():
-			if inputendo == line:return 'Quote Already Stored.'
+			if inputendo == line:
+				return 'Quote Already Stored.'
 		open("temp.txt", "a").write('\n'+inputendo)
 		return 'Success!'
+	try:
+		return quotefile(arg[0], 'temp')
+	except:
+		return quotefile('', 'temp')
 
-	try:return quotefile(arg[0],'temp')
-	except:return quotefile('','temp')
 
-def bug(string):
+def bug(string: str) -> str:
 	try:
 		open("bug.txt", "a").write('\n'+string)
-		try:play('../bug.wav')
-		except:print('\a')
+		try:
+			play('../bug.wav')
+		except:
+			print('\a')
 		return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 	except:
 		return ':/'
 
-def quotefile(line,file):
+
+def quotefile(line: str, file: str) -> str:
 	l = line.split(' ')
-	if l[0].lower() == 'search':return qfsearch(' '.join(l[1:]),file)
+	if l[0].lower() == 'search':return qfsearch(' '.join(l[1:]), file)
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
 	try:q = open(file+".txt", "r").read().split('\n')[int(line)]
-	except IndexError:return 'That line is not present in the document.'
-	return quotefile('',file) if q=='' else q
+	except IndexError:
+		return 'That line is not present in the document.'
+	return quotefile('', file) if q == '' else q
 
-def qfsearch(pattern,file):
+
+def qfsearch(pattern, file: str) -> str:
 	p = compile(pattern)
 	q = open(file+".txt", "r").read().split('\n')
 	l = []
 	r = ''
 	for i in range(len(q)):
 		line = q[i]
-		if search(p,line)!=None:l.append((i,line))
+		if search(p, line) is not None:
+			l.append((i, line))
 	for m in l:
 		mmatch = m[1]
-		for mmmatch in findall(p,mmatch):
-			mmatch = mmatch.replace(mmmatch,'**'+mmmatch+'**')
-		r+=str(m[0])+' '+mmatch+'\n'
-	return 'No Match' if r=='' else r
+		for mmmatch in findall(p, mmatch):
+			mmatch = mmatch.replace(mmmatch, '**'+mmmatch+'**')
+		r += str(m[0])+' '+mmatch+'\n'
+	return 'No Match' if r == '' else r
 
-def zodiac(arg):
+
+def zodiac(arg: str) -> str:
 	signs = ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','coffee']
 	signelements = ['Fire (Enthusiasm; drive to express self; faith)','Earth (Practicality; caution; material world)','Air (Communication; socialization; conceptualization)','Water (Emotion; empathy; sensitivity)']
-	signqualities= ['Cardinal (active; self-motivated; insightful; ambitious)','Fixed (stabilization; determination; depth; persistence)','Mutable (adaptability; flexibility; sympathy)']
-	signrulers= ['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter','Starbucks']
+	signqualities = ['Cardinal (active; self-motivated; insightful; ambitious)','Fixed (stabilization; determination; depth; persistence)','Mutable (adaptability; flexibility; sympathy)']
+	signrulers = ['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter','Starbucks']
 	vernal = 6884100 # Venal equinox 1970
 
-	if len(arg):n = signs.index(arg.lower())
-	else:n = int(((time()-vernal)%31556952)/2629746); # sign number 0-11
+	if len(arg):
+		n = signs.index(arg.lower())
+	else:
+		n = int(((time()-vernal)%31556952)/2629746) # sign number 0-11
 
-	return '**'+signs[n].title()+'**\nElement: '+signelements[n%4]+'\nQuality: '+signqualities[n%3]+'\nRuler: '+signrulers[n]
+	return '**'+signs[n].title()+'**\nElement: '+signelements[n % 4]+'\nQuality: '+signqualities[n % 3]+'\nRuler: '+signrulers[n]
+
 
 def mbti(arg):
 	arg = arg[:4].lower()
-	ids = (('e','i'),('s','n'),('t','f'),('j','p'))
-	idz = (('extroverted','introverted'),('sensing','intuition'),('thinking','feeling'),('judging','perceiving'))
+	ids = (('e', 'i'), ('s', 'n'), ('t', 'f'), ('j', 'p'))
+	idz = (('extroverted', 'introverted'), ('sensing', 'intuition'), ('thinking', 'feeling'), ('judging', 'perceiving'))
 
 	string = ''
 	for i in range(4):
-		try:string+=idz[i][ids[i].index(arg[i])]+'\n'
-		except (IndexError,ValueError):pass
+		try:
+			string += idz[i][ids[i].index(arg[i])]+'\n'
+		except (IndexError, ValueError):
+			pass
 
-	try:string+='\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
-	except (IndexError,KeyError,ValueError):pass
+	try:
+		string += '\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
+	except (IndexError, KeyError, ValueError):
+		pass
 
 	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
 
-def coffee(arg):
-	try:return '```\n'+coffees[arg]+'```'
-	except KeyError:return ':/'
 
-def convert(uwaa):
+def coffee(arg: str) -> str:
+	try:
+		return '```\n'+coffees[arg]+'```'
+	except KeyError:
+		return ':/'
+
+
+def convert(uwaa: str):
 	arg = uwaa.split(' ')
-	
-	#desc
-	if arg[0][:4] in ('desc','help'):return '```\n'+units[arg[1]][1]+'\n```'
+	# desc
+	if arg[0][:4] in ('desc', 'help'):
+		return '```\n'+units[arg[1]][1]+'\n```'
 
-	if arg[1] in religions or arg[2] in religions:return 'No, I meant the **other** kind of convert!'
+	if arg[1] in religions or arg[2] in religions:
+		return 'No, I meant the **other** kind of convert!'
 	
-	try:return float(arg[0]) * units[arg[1]][0] / units[arg[2]][0]
-	except KeyError:return 'invalid unit... did you try using its abbreviation?'
+	try:
+		return float(arg[0]) * units[arg[1]][0] / units[arg[2]][0]
+	except KeyError:
+		return 'invalid unit... did you try using its abbreviation?'
+
 
 def convertcurrency(uwaa):
 	arg = uwaa.split(' ')
-	try:return round(float(arg[0])*mochaweb.currency(arg[1].upper(),arg[2].upper()),2)
-	except KeyError:return 'invalid currency... did you try using its abbreviation?'
+	try:
+		return round(float(arg[0])*mochaweb.currency(arg[1].upper(), arg[2].upper()), 2)
+	except KeyError:
+		return 'invalid currency... did you try using its abbreviation?'
+
 
 def religion(uwaa):
-	try:return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
-	except KeyError:return ':/'
+	try:
+		return '**'+uwaa.title()+'**```\nPart of: '+religions[uwaa]['partof']+'\nMembers: '+str(religions[uwaa]['members'])+'```'+religions[uwaa]['url']
+	except KeyError:
+		return ':/'
+
 
 def xsampa(string):
 	for replacement in xskey:
-		string = string.replace(replacement[0],replacement[1])
+		string = string.replace(replacement[0], replacement[1])
 	return string
+
 
 def pie(string):
 	for replacement in piekey:
-		string = string.replace(replacement[0],replacement[1])
+		string = string.replace(replacement[0], replacement[1])
 	return string
 
-def rword(lang,min):
+
+def rword(lang, min):
 	replace = '\n.?,!0123456789[]()":;'
 	if lang == 'la':corpus = open("cdbg.txt", "r").read()
 	elif lang == 'fr':corpus = open("lg.txt", "r").read()
@@ -516,72 +576,94 @@ def rword(lang,min):
 	corpus = corpus.split(' ')
 	while 1:
 		attempt = c(corpus).lower()
-		if len(attempt)>=min:#obeys min
-			if not compile("[^a-z-']").search(attempt):#must only contain a-z, hyphens, or apostrophes
+		if len(attempt) >= min: # obeys min
+			if not compile("[^a-z-']").search(attempt): # must only contain a-z, hyphens, or apostrophes
 				return attempt
-	
+
+
 def d(m,n):
-	if m*n==0:return 0
-	if m<0:return -d(-m,n)
-	if n<0:return -d(m,-n)
+	if m*n == 0:
+		return 0
+	if m<0:
+		return -d(-m, n)
+	if n<0:
+		return -d(m, -n)
 	s = 0
 	for i in range(m):
-		s+=c(range(n))+1
+		s += c(range(n))+1
 	return s
+
 
 def dice(m,n):
 	maxrolls = 10000
 	rolls = []
 	for i in range(maxrolls):
-		rolls += [d(m,n)]
+		rolls += [d(m, n)]
 	mean = sum(rolls)/maxrolls
-	try:mmmm = str(mode(rolls))
-	except:mmmm = 'No Unique Mode'
+	try:
+		mmmm = str(mode(rolls))
+	except:
+		mmmm = 'No Unique Mode'
 	ssss = stdev(rolls)
 	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
 
+
 def dicemat(x):
-	x = x.lower().replace('d',' ')
+	x = x.lower().replace('d', ' ')
 	x = x.split(' ')
 	try:
 		m = int(x[0])
 		n = int(x[1])
-		if abs(m)<99>abs(n):return dice(m,n)
+		if abs(m) < 99 > abs(n):
+			return dice(m, n)
 		return 'Too High'
-	except:return 'Space-separated!'
+	except:
+		return 'Space-separated!'
+
 
 def gp(x):
 	args = x.split(' ')
 	try:
 		gold = float(args[0])
 		ways = float(args[1])
-	except:return 'if you need help: `m! help gp`'
-	if ways == 0:return 'Zero ways, eh?'
-	quotient = str(round(gold/ways,2)).split('.')
+	except:
+		return 'if you need help: `m! help gp`'
+	if ways == 0:
+		return 'Zero ways, eh?'
+	quotient = str(round(gold/ways, 2)).split('.')
 	g = quotient[0]
-	try:s = quotient[1][0]
-	except:s = '0'
-	try:c = quotient[1][1]
-	except:c = '0'
+	try:
+		s = quotient[1][0]
+	except:
+		s = '0'
+	try:
+		c = quotient[1][1]
+	except:
+		c = '0'
 	return g+'g '+s+'s '+c+'c'
 
+
 def asmr(s):
-	if len(s):seed(s)
+	if len(s):
+		seed(s)
 	#		S1					S2					S3
-	#(ADJ/NOUN/VERBing) [NOUN(s)/VERBing] <ASMR (front/back;optional)>
+	# (ADJ/NOUN/VERBing) [NOUN(s)/VERBing] <ASMR (front/back;optional)>
 	name = []
-	asmrstyle = randint(0,2) # 0bXY X-beginning Y-end
-	#S1 style
-	s1style = c(['adj','ing','n',False])
-	if s1style:name+=[c(asmrwords[s1style])]
-	#S2 style
-	s2style = c(['ing','n','pl'])
-	name+=[c(asmrwords[s2style])]
-	#ooo
+	asmrstyle = randint(0, 2) # 0bXY X-beginning Y-end
+	# S1 style
+	s1style = c(['adj', 'ing', 'n', False])
+	if s1style:
+		name += [c(asmrwords[s1style])]
+	# S2 style
+	s2style = c(['ing', 'n', 'pl'])
+	name += [c(asmrwords[s2style])]
+	# ooo
 	name = ' '.join(name).title()
-	#S3 style
-	if bin(asmrstyle)[-2] == '1':name='ASMR '+name
-	elif bin(asmrstyle)[-1] == '1':name+=' ASMR'
+	# S3 style
+	if bin(asmrstyle)[-2] == '1':
+		name = 'ASMR '+name
+	elif bin(asmrstyle)[-1] == '1':
+		name += ' ASMR'
 	return name
 
 
@@ -596,13 +678,14 @@ async def g23(mc):
 			return m.channel == mc
 		msg = await bot.wait_for('message', timeout=1, check=check)
 		try:
-			guesses.append((float(msg.content),msg.author.name))
+			guesses.append((float(msg.content), msg.author.name))
 			await msg.delete()
-		except:pass
-	a1 = list(map(lambda x:x[0],guesses))
+		except:
+			pass
+	a1 = list(map(lambda x: x[0], guesses))
 	try:
 		avg23 = sum(a1)*2/3/len(a1)
-		a2 = list(map(lambda x:abs(x-avg23),a1))
+		a2 = list(map(lambda x: abs(x-avg23), a1))
 		winner = a2.index(min(a2))
 		await mc.send(guesses[winner][1]+', you won with your guess of '+str(guesses[winner][0])+' (2/3 of the mean was actually '+str(avg23)+')! ^o^')
 		return False
@@ -672,9 +755,11 @@ async def word(args, message):
 					mr = range(min(len(word), len(guess)))
 					# look for EXACT matches
 					for i in mr:
-						if guess[i]==word[i]:pips+='x'
+						if guess[i] == word[i]:
+							pips += 'x'
 					for i in mr:
-						if guess[i] in word and guess[i]!=word[i]:pips+='*'
+						if guess[i] in word and guess[i] != word[i]:
+							pips += '*'
 					await mc.send(msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
 			except:
 				pass
@@ -729,7 +814,7 @@ async def hangman(args, mc: discord.TextChannel):
 		await mc.send('**'+msg.author.name+'**, you won! The word was **'+word+'**! ^o^')
 		if 'en-lang' in lang: # To Appease Yata
 			await mc.send('https://en.wikipedia.org/wiki/'+word.title()+'_language')
-		mochagive(1,msg.author.name.lower())
+		mochagive(1, msg.author.name.lower())
 	else:
 		await mc.send('You lost. The word was **'+word+'**. uwu')
 	return False
