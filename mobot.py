@@ -7,7 +7,7 @@ from random import choice as c, randint, seed, shuffle
 from math import ceil, gcd, hypot, pi
 from time import time, sleep
 from re import compile, findall, search, sub
-from statistics import median, mode, stdev
+from statistics import median, mode, StatisticsError, stdev
 from winsound import PlaySound, SND_FILENAME
 import mochaastro, mochabf, mochagolfscript, mochalang, mochallama, mochamath, mocharpn, mochastargen, mochattt, mochamw
 import mochaweb, mochaweather, moclimate, mochatest, hello
@@ -44,8 +44,10 @@ def help(command: str) -> str:
 		relevant += doclines[i]+'\n'
 		i += 1
 		try:
-			if doclines[i][:depth] != '\t'*depth:break # must be another command or end
-		except IndexError:break
+			if doclines[i][:depth] != '\t'*depth:
+				break # must be another command or end
+		except IndexError:
+			break
 	return relevant+'```'
 
 
@@ -227,13 +229,13 @@ def moastro(string: str):
 
 	if arg[0] == 'delay':
 		c = 299792458
-		try:
+		if 1 < len(arg) and arg[1] in object and 'a' in object[arg[1]]:
 			a1 = object[arg[1]]['a']
-		except:
+		else:
 			a1 = 0
-		try:
+		if 2 < len(arg) and arg[2] in object and 'a' in object[arg[2]]:
 			a2 = object[arg[2]]['a']
-		except:
+		else:
 			a2 = 0
 		bigd = (a1+a2)/c
 		littled = abs(a1-a2)/c
@@ -303,7 +305,7 @@ def moastro(string: str):
 		return mochaastro.synodic(a, b)
 	try:
 		return object[arg[0]][arg[1]]
-	except:
+	except (IndexError, KeyError):
 		return ':/'
 
 
@@ -342,17 +344,17 @@ def moling(string: str):
 	elif arg[0] == 'morse':
 		try:
 			return mochalang.morse(' '.join(arg[1:]))
-		except:
+		except (IndexError, KeyError):
 			return 'https://en.wikipedia.org/wiki/Morse_code'
 	elif arg[0] == 'pie':
-		try:
+		if 1 < len(arg):
 			return pie(arg[1])
-		except:
+		else:
 			return 'https://en.wikipedia.org/wiki/Proto-Indo-European_phonology'
 	elif arg[0] == 'scrabble':
 		try:
 			m = int(arg[2])
-		except:
+		except (IndexError, ValueError):
 			m = 1
 		return mochalang.scrabble(arg[1])*m
 	elif arg[0] == 'shuffle':
@@ -362,15 +364,12 @@ def moling(string: str):
 	elif arg[0] == 'soundex':
 		return mochalang.soundex(arg[1])
 	elif arg[0] == 'square':
-		try:
-			if arg[2] in ('scrabble', 'freq'):
-				second = arg[2]
-			else:
-				second = 0
-		except:
+		if 2 < len(arg) and arg[2] in ('scrabble', 'freq'):
+			second = arg[2]
+		else:
 			second = 0
 		try:
-			return mochalang.lettersquare(int(arg[1]),second)
+			return mochalang.lettersquare(int(arg[1]), second)
 		except:
 			return '>:U'
 	elif arg[0] == 'romanize':
@@ -395,20 +394,16 @@ def trivia(string: str) -> str:
 	try:
 		x = int(arg[0])
 		number = True
-	except:
+	except (IndexError, ValueError):
 		number = False
 
 	if number:
 		return mochaweb.numbersapi(arg[0])
 	elif arg[0] == 'number':
 		try:
-			x = int(arg[1])
-			try:
-				return mochaweb.numbersapi(arg[1])
-			except:
-				return 'unable to connect to numbersapi'
+			return mochaweb.numbersapi(arg[1])
 		except:
-			return 'unknown positive integer '+arg[1]
+			return 'unable to connect to numbersapi'
 	return ':/'
 
 
@@ -444,13 +439,13 @@ def sto(string: str) -> str:
 def bug(string: str) -> str:
 	try:
 		open("bug.txt", "a").write('\n'+string)
-		try:
-			play('../bug.wav')
-		except:
-			print('\a')
-		return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 	except:
 		return ':/'
+	try:
+		play('../bug.wav')
+	except:
+		print('\a')
+	return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 
 
 def quotefile(line: str, file: str) -> str:
@@ -508,19 +503,17 @@ def mbti(arg) -> str:
 			string += idz[i][ids[i].index(arg[i])]+'\n'
 		except (IndexError, ValueError):
 			pass
-
 	try:
 		string += '\nDom: '+functions[arg][0]+'\nAux: '+functions[arg][1]+'\n'
 	except (IndexError, KeyError, ValueError):
 		pass
-
 	return '**'+arg.upper()+'**\n```\n'+string+'```\nhttps://www.personalityclub.com/wp-content/uploads/2015/05/'+arg+'-profile.png'
 
 
 def coffee(arg: str) -> str:
-	try:
+	if arg in coffees:
 		return '```\n'+coffees[arg]+'```'
-	except KeyError:
+	else:
 		return ':/'
 
 
@@ -607,7 +600,7 @@ def dice(m: int, n: int) -> str:
 	mean = sum(rolls)/maxrolls
 	try:
 		mmmm = str(mode(rolls))
-	except:
+	except StatisticsError:
 		mmmm = 'No Unique Mode'
 	ssss = stdev(rolls)
 	return '```\nMin: '+str(m)+'\nMax: '+str(m*n)+'\nMean: '+str(mean)+'\nMedian: '+str(median(rolls))+'\nMode: '+mmmm+'\nσ: '+str(ssss)+'\n\tm-2σ: '+str(mean-2*ssss)+'\n\tm+2σ: '+str(mean+2*ssss)+'\n\nSample: '+str(d(m,n))+'```'
@@ -622,7 +615,7 @@ def dicemat(x: str) -> str:
 		if abs(m) < 99 > abs(n):
 			return dice(m, n)
 		return 'Too High'
-	except:
+	except (IndexError, ValueError):
 		return 'Space-separated!'
 
 
@@ -631,7 +624,7 @@ def gp(x: str) -> str:
 	try:
 		gold = float(args[0])
 		ways = float(args[1])
-	except:
+	except (IndexError, ValueError):
 		return 'if you need help: `m! help gp`'
 	if ways == 0:
 		return 'Zero ways, eh?'
@@ -639,11 +632,11 @@ def gp(x: str) -> str:
 	g = quotient[0]
 	try:
 		s = quotient[1][0]
-	except:
+	except IndexError:
 		s = '0'
 	try:
 		c = quotient[1][1]
-	except:
+	except IndexError:
 		c = '0'
 	return g+'g '+s+'s '+c+'c'
 
@@ -703,7 +696,7 @@ async def gtn(args, mc: discord.TextChannel) -> bool:
 	try:
 		minn = int(args[1])
 		maxn = int(args[2])
-	except:
+	except (IndexError, ValueError):
 		minn = 0
 		maxn = 99
 	answer = randint(minn, maxn)
