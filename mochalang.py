@@ -136,9 +136,10 @@ def lettersquare(n,mode):
 		o += r
 	return o+'\n```'
 
-def morse(string):
-	string = list(sub(r'[^\da-z ]','',string.lower()))
-	string = list(map(lambda x:morsekey[x],string))
+
+def morse(string: str) -> str:
+	string = list(sub(r'[^\da-z ]', '', string.lower()))
+	string = list(map(lambda x: morsekey[x], string))
 	return ' '.join(string)
 
 def letterfreq(string):
