@@ -1,23 +1,32 @@
 from random import choice
-commands = ('drop','eat','exit','gaze','get','go','grab','help','john','leave','look','muffin','open','pickup','see','take','tasselfoot','travel','turn','use','walk','?')
+from discord import Message
 
-def negative():
-	return choice(['I don\'t quite understand what you mean.','Pardon?',"Sorry, come again?","I don\'t understand that.","I cannot understand what you are saying.","That does not make sense to me.","I am not sure what that means.","That phrase does not make sense to me.","Try another phrase, please.","I wish I knew what that phrase meant.","That statement does not make sense to me."])
+commands = 'drop', 'eat', 'exit', 'gaze', 'get', 'go', 'grab', 'help', 'john', 'leave', 'look', 'muffin', 'open', \
+			'pickup', 'see', 'take', 'tasselfoot', 'travel', 'turn', 'use', 'walk', '?'
 
-def llama(room,state,inv,message):
+
+def negative() -> str:
+	return choice(['I don\'t quite understand what you mean.', 'Pardon?', "Sorry, come again?",
+	"I don\'t understand that.", "I cannot understand what you are saying.", "That does not make sense to me.",
+	"I am not sure what that means.", "That phrase does not make sense to me.", "Try another phrase, please.",
+	"I wish I knew what that phrase meant.", "That statement does not make sense to me."])
+
+
+def llama(room: int, state: int, inv: str, message: Message) -> (int, int, str, str):
 	mcl = message.content.lower()
 	o = ''
-	mc = message.channel
-	player = message.author #NOTE THIS IS NOT AUTHOR NAME
+	# mc = message.channel
+	# player = message.author # NOTE THIS IS NOT AUTHOR NAME
 	if mcl == 'quit': # not in original; can't use exit
-		return -1,-1,False,'Goodbye!'
+		return -1, -1, '', 'Goodbye!'
 	elif room == -2:
 		if state == 0:
-			return -2,0,inv,'Meow '*14
+			return -2, 0, inv, 'Meow '*14
 		elif state == 1:
-			return -2,1,inv,choice(['Mr Rubix SHUFFLE! >->->^^>->','Everybody DANCE!!!!!!!!!!']) # TODO after 500 times print 'I\'m a cat :-3"'
+			return -2, 1, inv, choice(['Mr Rubix SHUFFLE! >->->^^>->', 'Everybody DANCE!!!!!!!!!!'])
+			# TODO after 500 times print 'I\'m a cat :-3"'
 		elif state == 2:
-			return -2,2,inv,'succeed = try();' #only do 500 times
+			return -2, 2, inv, 'succeed = try();' # only do 500 times
 	iscommand = False
 	for c in commands:
 		if c in mcl:
@@ -25,22 +34,22 @@ def llama(room,state,inv,message):
 			break
 	if iscommand:
 		if 'help' in mcl or '?' in mcl:
-			o+='A bit lost are we llama?\n\n'
-			o+='Here are some keywords you can think about using:\n'
-			o+='**open use go look see gaze take grab pickup drop\n\n**'
-			o+='If you want to **get** a sense of what\'s in the room, **use** the phrase **look around**. Build short sentences!\n\n'
-			o+='Also remember that new words will crop up as you explore more.\n\n'
-			o+='You can always find **help** by mashing that term here!'
+			o += 'A bit lost are we llama?\n\n'
+			o += 'Here are some keywords you can think about using:\n'
+			o += '**open use go look see gaze take grab pickup drop\n\n**'
+			o += 'If you want to **get** a sense of what\'s in the room, **use** the phrase **look around**. Build short sentences!\n\n'
+			o += 'Also remember that new words will crop up as you explore more.\n\n'
+			o += 'You can always find **help** by mashing that term here!'
 		elif 'john' in mcl or 'jmtb02' in mcl:
-			o+='That\'s me!'
+			o += 'That\'s me!'
 		elif 'mocha' in mcl:
-			o+='That\'s *also* me!'
+			o += 'That\'s *also* me!'
 		elif 'armorgames' in mcl:
-			o+='Armor Games loves you too!'
+			o += 'Armor Games loves you too!'
 		elif 'joey' in mcl:
 			room = -2
 			state = 2
-			o+='while(!succeed)'
+			o += 'while(!succeed)'
 		elif 'muffin' in mcl:
 			room = -2
 			state = 0
@@ -228,6 +237,7 @@ def llama(room,state,inv,message):
 				o+='TODO'
 			o+='\n\nSpeaking of which, did you know that you can **look** at specific items for clues to the puzzle rooms? Anyway... carry on.'
 			state = 2
-	#NEXT: TODO
-	if o == '':o = negative()
-	return room,state,inv,o
+	# NEXT: TODO
+	if o == '':
+		o = negative()
+	return room, state, inv, o
