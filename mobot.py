@@ -5,6 +5,7 @@ from datetime import timezone
 from random import choice as c, randint, seed, shuffle
 from math import ceil, gcd, hypot, pi
 from time import time, sleep
+from typing import List
 from re import compile, findall, search, sub
 from statistics import median, mode, StatisticsError, stdev
 from winsound import PlaySound, SND_FILENAME
@@ -500,7 +501,7 @@ def zodiac(arg: str) -> str:
 			signrulers[n]
 
 
-def mbti(arg) -> str:
+def mbti(arg: str) -> str:
 	arg = arg[:4].lower()
 	ids = (('e', 'i'), ('s', 'n'), ('t', 'f'), ('j', 'p'))
 	idz = (('extroverted', 'introverted'), ('sensing', 'intuition'), ('thinking', 'feeling'), ('judging', 'perceiving'))
@@ -541,10 +542,10 @@ def convert(uwaa: str) -> str:
 		return 'invalid unit... did you try using its abbreviation?'
 
 
-def convertcurrency(uwaa: str):
+def convertcurrency(uwaa: str) -> str:
 	arg = uwaa.split(' ')
 	try:
-		return round(float(arg[0])*mochaweb.currency(arg[1].upper(), arg[2].upper()), 2)
+		return str(round(float(arg[0])*mochaweb.currency(arg[1].upper(), arg[2].upper()), 2))
 	except KeyError:
 		return 'invalid currency... did you try using its abbreviation?'
 
@@ -705,7 +706,7 @@ async def g23(mc: discord.TextChannel) -> bool:
 		return True
 
 
-async def gtn(args, msg: discord.Message) -> bool:
+async def gtn(args: List[str], msg: discord.Message) -> bool:
 	mc = msg.channel
 	try:
 		minn = int(args[1])
@@ -736,7 +737,7 @@ async def gtn(args, msg: discord.Message) -> bool:
 	return True
 
 
-async def word(args, message: discord.Message) -> bool:
+async def word(args: List[str], message: discord.Message) -> bool:
 	mc = message.channel
 	try:
 		w = args[1].lower()
@@ -775,7 +776,7 @@ async def word(args, message: discord.Message) -> bool:
 				pass
 
 
-async def hangman(args, msg: discord.Message) -> bool:
+async def hangman(args: List[str], msg: discord.Message) -> bool:
 	mc = msg.channel
 	if 1 < len(args):
 		lang = args[1]
@@ -986,7 +987,7 @@ async def tests(message: discord.Message) -> bool:
 	return True
 
 
-async def verbrace(args, mc: discord.TextChannel) -> bool:
+async def verbrace(args: List[str], mc: discord.TextChannel) -> bool:
 	def check(m: discord.Message) -> bool:
 		return m.channel == mc
 	forms = pronouns[args[1]]
@@ -1446,7 +1447,7 @@ def mochapoint(message: discord.Message) -> str:
 		return '*Mokis* are used to purchase **bragging rights**... or someshit.\nRewards are given by `m! '+commandslist+'`.'
 
 
-def new_status():
+def new_status() -> str:
 	lines = open('status.txt', 'r').read().split('\n')
 	lines = list(filter(lambda x: x[0] != '/', lines))
 	return c(lines)
@@ -1466,7 +1467,7 @@ async def on_ready():
 
 
 @bot.event
-async def on_message(message: discord.Message):
+async def on_message(message: discord.Message) -> bool:
 	await bot.process_commands(message)
 	global anchor
 	global lastmessage
@@ -1671,7 +1672,7 @@ async def on_message(message: discord.Message):
 			elif na[1] == 'convert':
 				await mc.send(convert(n[11:]))
 			elif na[1] == 'currency':
-				await mc.send(str(convertcurrency(n[12:])))
+				await mc.send(convertcurrency(n[12:]))
 			elif na[1] == 'weather':
 				try:
 					await mc.send(mochaweather.main(m[11:]))
