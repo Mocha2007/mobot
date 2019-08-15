@@ -23,7 +23,8 @@ def llama(room: int, state: int, inv: str, message: Message) -> (int, int, str, 
 		if state == 0:
 			return -2, 0, inv, 'Meow '*14
 		elif state == 1:
-			return -2, 1, inv, choice(['Mr Rubix SHUFFLE! >->->^^>->', 'Everybody DANCE!!!!!!!!!!'])
+			test = choice(['Mr Rubix SHUFFLE! >->->^^>->', 'Everybody DANCE!!!!!!!!!!']) # type: str
+			return -2, 1, inv, test
 			# TODO after 500 times print 'I\'m a cat :-3"'
 		elif state == 2:
 			return -2, 2, inv, 'succeed = try();' # only do 500 times
@@ -122,7 +123,7 @@ def llama(room: int, state: int, inv: str, message: Message) -> (int, int, str, 
 		elif 'drop' in mcl:
 			if inv:
 				o+='You put back the **'+inv+'** where you found it.'
-				inv = False
+				inv = ''
 			else:
 				o+='Your mouth is empty, you don\'t have anything to drop!'
 		elif 'open' in mcl or 'use' in mcl or 'turn' in mcl: # apparently, these are functionally equivalent...?
@@ -172,7 +173,7 @@ def llama(room: int, state: int, inv: str, message: Message) -> (int, int, str, 
 			if 'tastykey' in mcl:
 				if inv == 'tastykey':
 					o+='You ate the tastykey and it was delicious! What a great snack, Llama. Now I\'m going to have to make another.'
-					inv = False
+					inv = ''
 				else:
 					o+='You don\'t have **tastykey** right now, maybe you should **pickup** that object?'
 			elif inv:
