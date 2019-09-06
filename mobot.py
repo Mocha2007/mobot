@@ -8,7 +8,6 @@ from time import time, sleep
 from typing import List
 from re import compile, findall, search, sub
 from statistics import median, mode, StatisticsError, stdev
-from winsound import PlaySound, SND_FILENAME
 # noinspection PyUnresolvedReferences
 import mochaastro, mochabf, mochagolfscript, mochalang, mochallama, mochamath, mocharpn, mochastargen, mochattt, mochamw
 import mochaweb, mochaweather, moclimate, mochatest, hello
@@ -48,10 +47,6 @@ def help_function(command: str) -> str:
 		except IndexError:
 			break
 	return relevant+'```'
-
-
-def play(x: str):
-	PlaySound(x, SND_FILENAME)
 
 
 def product(numlist) -> int:
