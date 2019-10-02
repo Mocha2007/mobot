@@ -1700,7 +1700,7 @@ async def on_message(message: discord.Message) -> bool:
 				await mc.send(religion(m[12:]))
 			elif na[1] == 'worldgen':
 				moclimate.wg(m[12:])
-				await mc.send(file='img/temp.png')
+				await mc.send(file=discord.File('img/temp.png'))
 			elif na[1] == 'minesweeper':
 				await mc.send(minesweeper(*list(map(int, na[2:]))))
 			elif na[1][:4] == 'moki':
