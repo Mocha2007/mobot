@@ -764,7 +764,7 @@ async def word(args: List[str], message: discord.Message) -> bool:
 					for i in mr:
 						if guess[i] in w and guess[i] != w[i]:
 							pips += '*'
-					await mc.send(msg.author.name+', your guess of '+guess+' resulted in:\n'+pips)
+					await mc.send(msg.author.name+', your guess of '+guess+' resulted in:\n`'+pips+'`')
 			except:
 				pass
 
