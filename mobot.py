@@ -991,13 +991,13 @@ async def verbrace(args: List[str], mc: discord.TextChannel) -> bool:
 	players = []
 	finalform = len(forms)
 	while time() < start+limit:
-		msg = await bot.wait_for('message', check=check, timeout=1)
 		try:
+			msg = await bot.wait_for('message', check=check, timeout=limit)
 			if msg.content.lower() == 'join' and msg.author.name != 'Mobot':
 				players.append(msg.author)
 				await msg.delete()
 				await mc.send('**'+msg.author.name+'** has joined!')
-		except:
+		except: # concurrent.futures._base.TimeoutError
 			pass
 	if len(players) < finalform: # for small games
 		players = players*ceil(finalform/len(players))
