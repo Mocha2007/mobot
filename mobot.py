@@ -1133,7 +1133,7 @@ async def twentyfour(mc: discord.TextChannel) -> bool:
 					await mc.send('**'+msg.author.name+'**, your answer has been submitted!')
 			else:
 				await mc.send('u already gone shoo shoo')
-		except AttributeError:
+		except (AttributeError, UnboundLocalError):
 			pass
 		if time()+5 > start+limit and not warned:
 			await mc.send('You have **5** seconds left to solve!')
