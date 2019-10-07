@@ -1107,7 +1107,7 @@ async def twentyfour(mc: discord.TextChannel) -> bool:
 		while target != 24:
 			owo = whatsthis + ''.join(c(ops) for i in range(3))
 			target = mocharpn.rpn(owo)[0]
-			if time()-start > 1:
+			if time()-start > .1:
 				break
 	# now a valid sample is established
 	# Begin!
@@ -1119,7 +1119,7 @@ async def twentyfour(mc: discord.TextChannel) -> bool:
 	warned = False
 	while time() < start+limit:
 		try:
-			msg = await bot.wait_for('message', check=check, timeout=30)
+			msg = await bot.wait_for('message', check=check, timeout=1)
 		except: # concurrent.futures._base.TimeoutError
 			pass
 		try:
