@@ -1118,7 +1118,10 @@ async def twentyfour(mc: discord.TextChannel) -> bool:
 	guesses2 = []
 	warned = False
 	while time() < start+limit:
-		msg = await bot.wait_for('message', check=check, timeout=30)
+		try:
+			msg = await bot.wait_for('message', check=check, timeout=30)
+		except: # concurrent.futures._base.TimeoutError
+			pass
 		try:
 			if msg.content.lower() in quit:
 				await mc.send('c r i e ;-;')
