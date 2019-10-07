@@ -1102,12 +1102,11 @@ async def twentyfour(mc: discord.TextChannel) -> bool:
 	target = 0
 	owo, whatsthis = '', ''
 	while target != 24:
-		start = time()
 		whatsthis = ' '.join(str(randint(1, 10)) for i in range(4))
-		while target != 24:
+		for _ in range(100): # 100 tries
 			owo = whatsthis + ''.join(c(ops) for i in range(3))
 			target = mocharpn.rpn(owo)[0]
-			if time()-start > .1:
+			if target == 24:
 				break
 	# now a valid sample is established
 	# Begin!
