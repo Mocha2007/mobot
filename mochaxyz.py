@@ -117,6 +117,7 @@ specialer = {
 'cobot':'...not happening.',
 'maltese falcon':'It\'s the stuff that dreams are made of.',
 'mobot':'das meee!~~ :3',
+'moboot':'🥾',
 'mobutt':'\u0ca0_\u0ca0',
 'moobot':'🐮',
 'i didn\'t expect the spanish inquisition':'NOBODY EXPECTS THE SPANISH INQUISITION!',
