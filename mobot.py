@@ -457,7 +457,7 @@ def quotefile(line: str = '', file: str = 'temp') -> str:
 	return quotefile('', file) if q == '' else q
 
 
-def qfsearch(pattern: str, file: str) -> str:
+def qfsearch(pattern: str = '', file: str = 'temp') -> str:
 	p = compile(pattern)
 	q = open(file+".txt", "r").read().split('\n')
 	ll = []
