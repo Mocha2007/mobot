@@ -412,7 +412,7 @@ def sto(string: str) -> str:
 	try:
 		if arg[0] == 'search':
 			try:
-				return qfsearch(arg[1], 'temp')
+				return qfsearch(' '.join(arg[1:]))
 			except:
 				return 'Bad RegEx'
 	except IndexError:
@@ -431,9 +431,9 @@ def sto(string: str) -> str:
 		open("temp.txt", "a").write('\n'+inputendo)
 		return 'Success!'
 	try:
-		return quotefile(arg[0], 'temp')
+		return quotefile(arg[0])
 	except:
-		return quotefile('', 'temp')
+		return quotefile()
 
 
 def bug(string: str) -> str:
@@ -445,10 +445,8 @@ def bug(string: str) -> str:
 	return 'Success!\nhttps://youtu.be/bLHL75H_VEM'
 
 
-def quotefile(line: str, file: str) -> str:
+def quotefile(line: str = '', file: str = 'temp') -> str:
 	words = line.split(' ')
-	if words[0].lower() == 'search':
-		return qfsearch(' '.join(words[1:]), file)
 	if line == '':
 		q = c(open(file+".txt", "r").read().split('\n'))
 		return q
