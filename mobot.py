@@ -10,7 +10,7 @@ from re import compile, findall, search, sub
 from statistics import median, mode, StatisticsError, stdev
 # noinspection PyUnresolvedReferences
 import mochaastro, mochabf, mochagolfscript, mochalang, mochallama, mochamath, mocharpn, mochastargen, mochattt, mochamw
-import mochaweb, mochaweather, moclimate, mochatest, hello
+import mochaweb, mochaweather, mochatest, hello
 from mochaxyz import *
 
 
@@ -1696,6 +1696,7 @@ async def on_message(message: discord.Message) -> bool:
 			elif na[1] == 'religion':
 				await mc.send(religion(m[12:]))
 			elif na[1] == 'worldgen':
+				import moclimate
 				moclimate.wg(m[12:])
 				await mc.send(file=discord.File('img/temp.png'))
 			elif na[1] == 'minesweeper':
