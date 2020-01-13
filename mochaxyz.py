@@ -26,8 +26,11 @@ coffees = {
 'macchiato':'espresso\nhot milk',
 'microfoam':'steamed milk with small, fine bubbles with a glossy or velvety consistency',
 'milk':'cow\nyankin them tiddies real hard',
+'milk foam':'milk\nfoam',
 'mocha':'chocolate\nespresso\nhot milk\n\n(also my senpai uwu)',
 'ristretto':'Ristretto is traditionally a short shot of espresso coffee made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.',
+'steamed milk foam':'milk foam\nsteam',
+'steam':'water\nheat',
 'tall':'8 oz cup',
 'venti':'20 oz cup',
 }
