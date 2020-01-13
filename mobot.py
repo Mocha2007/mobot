@@ -425,10 +425,10 @@ def sto(string: str) -> str:
 			return 'Not happening.'
 		if len(inputendo) == 0:
 			return 'Not happening.'
-		for line in open("temp.txt", "r").read().split('\n'):
+		for line in open("temp.txt", "r", errors='ignore').read().split('\n'):
 			if inputendo == line:
 				return 'Quote Already Stored.'
-		open("temp.txt", "a").write('\n'+inputendo)
+		open("temp.txt", "a", errors='ignore').write('\n'+inputendo)
 		return 'Success!'
 	try:
 		return quotefile(arg[0])
@@ -448,10 +448,10 @@ def bug(string: str) -> str:
 def quotefile(line: str = '', file: str = 'temp') -> str:
 	words = line.split(' ')
 	if line == '':
-		q = c(open(file+".txt", "r").read().split('\n'))
+		q = c(open(file+".txt", "r", errors='ignore').read().split('\n'))
 		return q
 	try:
-		q = open(file+".txt", "r").read().split('\n')[int(line)]
+		q = open(file+".txt", "r", errors='ignore').read().split('\n')[int(line)]
 	except IndexError:
 		return 'That line is not present in the document.'
 	return quotefile('', file) if q == '' else q
@@ -459,7 +459,7 @@ def quotefile(line: str = '', file: str = 'temp') -> str:
 
 def qfsearch(pattern: str = '', file: str = 'temp') -> str:
 	p = compile(pattern)
-	q = open(file+".txt", "r").read().split('\n')
+	q = open(file+".txt", "r", errors='ignore').read().split('\n')
 	ll = []
 	r = ''
 	for i in range(len(q)):
