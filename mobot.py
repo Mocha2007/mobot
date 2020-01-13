@@ -425,7 +425,7 @@ def sto(string: str) -> str:
 			return 'Not happening.'
 		if len(inputendo) == 0:
 			return 'Not happening.'
-		for line in open("temp.txt", "r").read():
+		for line in open("temp.txt", "r").read().split('\n'):
 			if inputendo == line:
 				return 'Quote Already Stored.'
 		open("temp.txt", "a").write('\n'+inputendo)
