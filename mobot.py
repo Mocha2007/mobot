@@ -1313,8 +1313,8 @@ async def mfilter(message: discord.Message) -> bool:
 	return False
 
 
-mochaid = open('../mocha.txt', 'r').read()
-mobotid = open('../mobot.txt', 'r').read()
+mochaid = int(open('../mocha.txt', 'r').read())
+mobotid = int(open('../mobot.txt', 'r').read())
 
 
 def bankwrite(bank: dict):
