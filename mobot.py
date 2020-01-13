@@ -1320,7 +1320,7 @@ mobotid = open('../mobot.txt', 'r').read()
 def bankwrite(bank: dict):
 	s = ''
 	for account in bank:
-		s += '\n'+account+'\t'+str(bank[account])
+		s += '\n'+str(account)+'\t'+str(bank[account])
 	open("bank.txt", "w").write(s[1:])
 
 
