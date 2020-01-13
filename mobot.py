@@ -1743,7 +1743,7 @@ async def on_message(message: discord.Message) -> bool:
 				elif na[2] == 'word':
 					await word(args, message)
 			# ELSE
-			elif n.startswith(bot_prefix):
+			else:
 				try:
 					await mc.send(special[m[3:].lower()]) # specials
 				except KeyError:
