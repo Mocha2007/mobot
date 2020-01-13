@@ -1743,11 +1743,10 @@ async def on_message(message: discord.Message) -> bool:
 				elif na[2] == 'word':
 					await word(args, message)
 			# ELSE
+			elif m[3:].lower() in special: # specials
+				await mc.send(special[m[3:].lower()])
 			else:
-				try:
-					await mc.send(special[m[3:].lower()]) # specials
-				except KeyError:
-					await mc.send('me confufu uwu')
+				await mc.send('me confufu uwu')
 		# Check filters
 		if mc.id in filters:
 			filter_type = filters[mc.id][0]
