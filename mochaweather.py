@@ -57,7 +57,7 @@ def main(loc):
 	return cleanup(l(loc))
 
 
-huracan = telnetlib.Telnet(host='rainmaker.wunderground.com')
+huracan = None
 
 
 def hurricane(x):
@@ -68,6 +68,8 @@ def hurricane(x):
 	if not 0 < x < 6:
 		x = 1
 	x = str(x)
+	if huracan is None:
+		huracan = telnetlib.Telnet(host='rainmaker.wunderground.com')
 	huracan.read_until(b':', timeout=1) # PRESS RETURN TO CONTINUE
 	huracan.write(b'\n')
 	huracan.read_until(b'-- ', timeout=1) # PRESS RETURN FOR MENU
@@ -84,10 +86,12 @@ def hurricane(x):
 	return '```\n'+y+'\n```'
 
 
-th = telnetlib.Telnet(host='telehack.com')
+th = None
 
 
 def phoon():
+	if th is None:
+		th = telnetlib.Telnet(host='telehack.com')
 	th.read_until(b'\n.', timeout=1)
 	th.write(b'phoon\r\n')
 
